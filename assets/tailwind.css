@@ -1,7 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,400;0,500;0,700;1,200;1,400;1,500;1,700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-a {
-    @apply text-blue-300 hover:underline hover:text-gray-500
+.top-hud { 
+    @apply xl:mx-96 fixed grid grid-cols-4 items-center top-0 left-0 right-0
+    rounded-b-lg
+    font-exo
+    text-white
+    text-lg
+    xl:text-lg
+    border-none
+    z-10
 }
+
+.bottom-hud { 
+    @apply xl:mx-96 fixed grid grid-cols-4 items-center bottom-0 left-0 right-0
+    rounded-b-lg
+    font-exo
+    font-medium
+    text-white
+    text-lg
+    xl:text-lg
+    border-none
+}
+
+.hud1 {
+    @apply p-1 
+    bg-glass-100 text-center
+    rounded-bl-lg
+    border-none
+    hover:bg-cyber-100
+    hover:text-white
+    cursor-pointer
+}
+
+.hud1con {
+    @apply p-1 
+    bg-glass-100 text-white
+    hover:bg-solar-100 hover:text-night-100
+    rounded-bl-lg
+    border-none
+    cursor-pointer
+    px-10
+  }
+
+.hud2 {
+    @apply p-1 
+    bg-glass-100 text-center
+    border-none
+  }
+
+  .hud3 {
+    @apply p-1 
+    bg-glass-100 text-center
+    border-none
+    hover:bg-solar-100
+    hover:text-night-100
+    cursor-pointer
+  }
+  
+  .hud4 {
+    @apply p-1 
+    bg-glass-100 text-center
+    border-none
+    hover:bg-solar-100
+    hover:text-night-100
+    cursor-pointer
+    rounded-br-lg
+  }
+
+  .huda {
+    @apply p-1 
+    bg-glass-100 text-center text-white
+    hover:bg-solar-100 hover:text-night-100
+    border-none
+    rounded-tl-lg
+  }
+
+  .hudb {
+    @apply p-1 
+    bg-glass-100 text-center text-white
+    hover:bg-solar-100 hover:text-night-100
+    border-none
+  }
+
+  .hudc {
+    @apply p-1 
+    bg-glass-100 text-center text-white
+    border-none
+  }
+
+  .hudd {
+    @apply p-1 
+    bg-glass-100 text-center
+    border-none
+    rounded-tr-lg
+  }
