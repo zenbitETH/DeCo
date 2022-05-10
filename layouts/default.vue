@@ -1,11 +1,11 @@
 <template>
-    <div class="py-10 px-2">
+    <div class="py-10 px-2 bg-gradient-to-t from-deco-900 to-deco-800 h-screen overflow-y-auto">
         <nav class="top-hud">
             <div class="hud1con">Wallet</div>
         
           <div class="hud3">
             <span> 🏢 </span>
-            <span className="mx-2">2</span>
+            <span class="mx-2">2</span>
           </div>
           <div class="hud3">
             <span> ⚡ </span>
@@ -20,16 +20,13 @@
         <Nuxt />
         <nav class="bottom-hud">
             <div class="huda">
-                New business NFT
+                New deco NFT
             </div>
             <div class="hudb">
-                My business
-            </div>
-            <div class="hudb">
-                My city business
+                My decos
             </div>
             <div class="hudd">
-                All business
+                Explore decos
             </div>
         </nav>
    </div>

@@ -1,34 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,400;0,500;0,700;1,200;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Exo+2:ital,wght@0,400;0,500;0,700;1,200;1,400;1,500;1,700&family=Lexend:wght@200;300;400;700;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .top-hud { 
-    @apply xl:mx-96 fixed grid grid-cols-4 items-center top-0 left-0 right-0
+    @apply xl:mx-96 mx-5 fixed grid  grid-cols-4 items-center top-0 left-0 right-0
     rounded-b-lg
     font-exo
     text-white
-    text-lg
-    xl:text-lg
+    text-sm
+    xl:text-xl
     border-none
-    z-10
 }
 
 .bottom-hud { 
-    @apply xl:mx-96 fixed grid grid-cols-4 items-center bottom-0 left-0 right-0
+    @apply xl:mx-96 mx-5 fixed grid grid-cols-3 items-center bottom-0 left-0 right-0
     rounded-b-lg
     font-exo
     font-medium
     text-white
-    text-lg
+    text-sm
     xl:text-lg
     border-none
 }
 
 .hud1 {
     @apply p-1 
-    bg-glass-100 text-center
+    bg-glass-200 text-center
     rounded-bl-lg
     border-none
     hover:bg-cyber-100
@@ -38,7 +37,7 @@
 
 .hud1con {
     @apply p-1 
-    bg-glass-100 text-white
+    bg-glass-200 text-white
     hover:bg-solar-100 hover:text-night-100
     rounded-bl-lg
     border-none
@@ -48,13 +47,13 @@
 
 .hud2 {
     @apply p-1 
-    bg-glass-100 text-center
+    bg-glass-200 text-center
     border-none
   }
 
   .hud3 {
     @apply p-1 
-    bg-glass-100 text-center
+    bg-glass-200 text-center
     border-none
     hover:bg-solar-100
     hover:text-night-100
@@ -63,7 +62,7 @@
   
   .hud4 {
     @apply p-1 
-    bg-glass-100 text-center
+    bg-glass-200 text-center
     border-none
     hover:bg-solar-100
     hover:text-night-100
@@ -73,7 +72,7 @@
 
   .huda {
     @apply p-1 
-    bg-glass-100 text-center text-white
+    bg-glass-200 text-center text-white
     hover:bg-solar-100 hover:text-night-100
     border-none
     rounded-tl-lg
@@ -81,20 +80,45 @@
 
   .hudb {
     @apply p-1 
-    bg-glass-100 text-center text-white
+    bg-glass-200 text-center text-white
     hover:bg-solar-100 hover:text-night-100
     border-none
   }
 
   .hudc {
     @apply p-1 
-    bg-glass-100 text-center text-white
+    bg-glass-200 text-center text-white
     border-none
   }
 
   .hudd {
     @apply p-1 
-    bg-glass-100 text-center
+    bg-glass-200 text-center
     border-none
     rounded-tr-lg
   }
+
+ /* How to join */
+
+ .joinBG {
+  @apply 
+  bg-glass-200 rounded-lg p-5 
+  cursor-pointer hover:bg-deco-200 hover:text-deco-900
+}
+
+.Future {
+  @apply 
+  bg-glass-200 rounded-lg p-5 
+  cursor-pointer hover:bg-deco-100 hover:text-deco-900
+}
+
+/* Built with */
+.builtBG {
+  @apply 
+  bg-glass-200 hover:bg-deco-100 hover:text-deco-900 rounded-lg p-5
+}
+/* Team */
+.teamMB {
+  @apply 
+  p-5 text-white hover:text-solar-100 pb-32
+}
