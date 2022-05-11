@@ -1,4 +1,4 @@
-      // SPDX-License-Identifier: MIT
+  // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
 //import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
@@ -26,6 +26,7 @@ contract BusinessNFT is ERC721URIStorage {
     mapping(uint256 => businessDetails) businessMapping;
     mapping(uint256 => address) businessOwner;
     mapping(uint256 => uint256) placeVerification;
+    mapping(address => uint256) businessNumberMapping;
     mapping(address => bool) registeredABusiness;
 
     constructor(address punkcitycontract) ERC721("BusinessNFT", "BT") {
@@ -45,6 +46,7 @@ contract BusinessNFT is ERC721URIStorage {
         _mint(msg.sender, businessNumber);
 
         registeredABusiness[msg.sender] = true;
+        businessNumberMapping[msg.sender] = businessNumber;
 
         businessNumber++;
     }
@@ -58,6 +60,10 @@ contract BusinessNFT is ERC721URIStorage {
         require(businessOwner[_businessId] == msg.sender);
 
         delete businessOwner[_businessId];
+    }
+
+    function getBusinessId(address _address) public view returns(uint256){
+        return businessNumberMapping[_address];
     }
 
   /*  function listAllBusiness() public view returns(string[] memory lists){ ============> This function might not be needed as we will lists everything with Covalent probably
@@ -96,6 +102,11 @@ contract BusinessNFT is ERC721URIStorage {
 
     function ownsABusiness(address _businessOwner) public view returns (bool) {
         return registeredABusiness[_businessOwner];
-    } 
+    }
+
+   /* function listServices() public view returns(string memory) {
+        uint256 businessNumber = businessNumberMapping[msg.sender];
+        return 
+    } */
     
 }
