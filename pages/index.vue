@@ -25,7 +25,7 @@
       <li>
         <!-- nuxt link is a special tag, because it generate <a> content, but it must be used this way so we doesn't have page reloads -->
         <!-- This generates: -->
-        <nuxt-link to="/register">Register</nuxt-link>
+        <nuxt-link to="/new-business">New business</nuxt-link>
         <!-- This <a href="/">Register</a> but Nuxt uses it's magic in the background to make it work-->
       </li>
       <li>

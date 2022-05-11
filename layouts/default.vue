@@ -17,10 +17,12 @@
           </div>
         </nav>
         <!-- The actual page will be inserted here -->
-        <Nuxt />
+        <div class="max-w-7xl mx-auto mt-10">
+          <Nuxt />
+        </div>
         <nav class="bottom-hud">
             <div class="huda">
-                New business NFT
+                <nuxt-link to="new-business">New business NFT</nuxt-link>
             </div>
             <div class="hudb">
                 My business
