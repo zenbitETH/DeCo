@@ -54,6 +54,10 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: [/^@fawmi\/vue-google-maps($|\/)/],
-  }
+    transpile: [/^vue2-google-maps($|\/)/]
+  },
+
+  publicRuntimeConfig: {
+    google_maps_api_key: process.env.GOOGLE_MAPS_API_KEY || ''
+  },
 }

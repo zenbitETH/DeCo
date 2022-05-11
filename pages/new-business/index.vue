@@ -20,17 +20,19 @@
             
             <Textarea v-model="form.name" placeholder="Eg.: hair coloring, hari cutting, styling, etc..." class="w-full" :rows="3" />
         </div>
-        
-        <div class="flex flex-col mt-8">
-            <h2 class="text-3xl text-left">Location</h2>
-            <h3 class="text-lg text-left">Please select the location of your business</h3>
 
-            <Map v-model="form.location" />
-            <Input v-model="form.location" :disabled="true" />
-        </div>
 
+
+        <client-only>
+          <div class="flex flex-col mt-8">
+              <h2 class="text-3xl text-left">Location</h2>
+              <h3 class="text-lg text-left">Please select the location of your business</h3>
+
+              <Map v-model="form.location" />
+              <Input v-model="form.location" :disabled="true" />
+          </div>
+        </client-only>
         
-        <!-- TODO logo<br> -->
 
         <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400">Mint Business NFT</button>
     </section>
