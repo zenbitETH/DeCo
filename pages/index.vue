@@ -53,7 +53,6 @@
               <a href="" class="builtBG">5.</a>
               <a href="/" class="builtBG">6.</a>
             </div>
-
             <div class="text-6xl mt-20 mx-10 text-white font-black hover:animate-pulse ">Future work:</div>
             <div class="grid xl:grid-cols-3 gap-5 mt-20 text-white text-2xl font-exo mb-96">
               <div class="Future cursor-default">1. 

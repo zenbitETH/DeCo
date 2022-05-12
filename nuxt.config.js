@@ -20,6 +20,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/google-maps.js',
+    "~/plugins/moralis.client.js"
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -53,5 +55,14 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+    transpile: [/^vue2-google-maps($|\/)/]
+  },
+
+  publicRuntimeConfig: {
+    google_maps_api_key: process.env.GOOGLE_MAPS_API_KEY || '',
+    moralis_app_id: process.env.MORALIS_APP_ID || '',
+    moralis_server_url: process.env.MORALIS_SERVER_URL || '',
+    contract_punk_cities: process.env.CONTRACT_PUNK_CITIES || ''
+  },
+  
 }
