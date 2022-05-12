@@ -1,5 +1,5 @@
 <template>
-    <div class="py-10 px-2">
+    <div class="py-10 px-2 bg-gradient-to-t from-deco-900 to-deco-800 h-screen overflow-y-auto">
         <nav class="top-hud">
             <div v-if="!user" class="hud1con" @click="connectWallet()">
               Wallet</div>
@@ -7,7 +7,7 @@
               {{getAddress()}}</div>
           <div class="hud3">
             <span> 🏢 </span>
-            <span className="mx-2">2</span>
+            <span class="mx-2">2</span>
           </div>
           <div class="hud3">
             <span> ⚡ </span>
@@ -24,16 +24,13 @@
         </div>
         <nav class="bottom-hud">
             <div class="huda">
-                <nuxt-link to="new-business">New business NFT</nuxt-link>
+              <nuxt-link to="new-business">New business NFT</nuxt-link>
             </div>
             <div class="hudb">
-                My business
-            </div>
-            <div class="hudb">
-                My city business
+                My decos
             </div>
             <div class="hudd">
-                All business
+                Explore decos
             </div>
         </nav>
    </div>
@@ -68,8 +65,7 @@ async logOut(){
   const address = this.user.get("ethAddress");
   return address;
 }
-
-
   }
 }
 </script>
+
