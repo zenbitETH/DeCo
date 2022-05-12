@@ -16,8 +16,10 @@
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.15.1",
     "luxon": "^2.4.0",
+    "moralis": "^1.7.0",
     "nuxt": "^2.15.7",
-    "vue2-google-maps": "^0.10.7"
+    "vue2-google-maps": "^0.10.7",
+    "web3": "^1.7.3"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",

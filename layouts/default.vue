@@ -1,8 +1,10 @@
 <template>
     <div class="py-10 px-2">
         <nav class="top-hud">
-            <div class="hud1con">Wallet</div>
-        
+            <div v-if="!user" class="hud1con" @click="connectWallet()">
+              Wallet</div>
+            <div v-else class="hud1con" @click="logOut()">
+              {{getAddress()}}</div>
           <div class="hud3">
             <span> 🏢 </span>
             <span className="mx-2">2</span>
@@ -36,3 +38,38 @@
         </nav>
    </div>
 </template>
+<script>
+import Moralis from 'moralis';
+export default {
+  data(){
+    return {
+      user: null
+    }
+  },
+  beforeMount(){
+  this.user = Moralis.User.current();
+  console.log(this.$config);
+  },
+  methods: {
+    async  connectWallet() {
+     this.user = Moralis.User.current();
+    if(!this.user) {
+        this.user = await Moralis.authenticate({
+            signingMessage: "Log in using Moralis"
+        })
+    }
+},
+async logOut(){
+      await Moralis.User.logOut();
+      this.user = null;
+},
+ getAddress(){
+  console.log(this.user.get("ethAddress"));
+  const address = this.user.get("ethAddress");
+  return address;
+}
+
+
+  }
+}
+</script>

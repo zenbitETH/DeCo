@@ -4,6 +4,11 @@
             <nuxt-link to="/" class="absolute left-0 top-0  text-2xl">Back</nuxt-link>
             <h1 class="text-center text-5xl">Create new Business</h1>
         </div>
+
+        <div>
+          <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="registerToPunkCity()">Register to Punk Cities</button>
+          <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" >Register Place</button>
+        </div>
         
         <div class="flex flex-col mt-8">
             <h2 class="text-3xl text-left">Business info</h2>
@@ -18,7 +23,7 @@
             <h2 class="text-3xl text-left">Services</h2>
             <h3 class="text-lg text-left">Please list your services in a comma separated list</h3>
             
-            <Textarea v-model="form.name" placeholder="Eg.: hair coloring, hari cutting, styling, etc..." class="w-full" :rows="3" />
+            <Textarea v-model="form.services" placeholder="Eg.: hair coloring, hari cutting, styling, etc..." class="w-full" :rows="3" />
         </div>
 
 
@@ -37,6 +42,7 @@
         <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400">Mint Business NFT</button>
     </section>
 </template>
+
 <script>
 // TODO:[Design] create design for inputs and page
 // TODO:[Feature] upload logo to IPFS
@@ -49,6 +55,7 @@ import Input from '~/components/inputs/Input.vue'
 import Select from '~/components/inputs/Select.vue'
 import Textarea from '~/components/inputs/Textarea.vue'
 import Map from '~/components/inputs/Map.vue'
+import Moralis from 'moralis'
 
 export default {
   components: {
@@ -65,8 +72,9 @@ export default {
         name: '',//input
         type: '',//select
         description: '',//textarea
-        products: '',
-
+        services: '',
+      // services.split(",").map(s => s.trim())
+    // ezek fognak kelleni a business NFT creation function argumentként
 
         //from google calendar
         location: 'test',
@@ -76,6 +84,47 @@ export default {
         logo: '', //file upload
       }
     }
+  },
+  methods: {
+
+async registerToPunkCity() {
+  var ABI = [
+{
+				inputs: [
+					{
+						internalType: "string",
+						name: "_name",
+						type: "string"
+					},
+					{
+						internalType: "string",
+						name: "_hometown",
+						type: "string"
+					},
+					{
+						internalType: "string",
+						name: "_country",
+						type: "string"
+					}
+				],
+				name: "registerUser",
+				outputs: [],
+				stateMutability: "nonpayable",
+				type: "function"
+			},
+  ];
+  const options = {
+    contractAddress: this.$config.contract_punk_cities,
+    functionName: "registerUser",
+    abi: ABI,
+    params: {_name: "faszfeh", _hometown: "blblab", _country: "kabbe.com"}
+  }
+  let register = await Moralis.executeFunction(options);
+  
+}
   }
 }
+
+
+
 </script>
