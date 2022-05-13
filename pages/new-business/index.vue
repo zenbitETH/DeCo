@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="text-white font-lex">
         <div class="relative">
             <nuxt-link to="/" class="absolute left-0 top-0  text-2xl">Back</nuxt-link>
             <h1 class="text-center text-5xl">Create new Business</h1>
@@ -10,18 +10,18 @@
           <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" >Register Place</button>
         </div>
         
-        <div class="flex flex-col mt-8">
+        <div class="flex flex-col mt-8 text-deco-100">
             <h2 class="text-3xl text-left">Business info</h2>
             <div class="flex flex-row gap-3">
-                <Input v-model="form.name" placeholder="Business name" class="w-1/2" />
-                <Select v-model="form.type" :items="businessTypes" placeholder="Business type" class="w-1/2" />
+                <Input v-model="form.name" type="text" placeholder="What is the name of your business?" class="w-1/2"  />
+                <Select v-model="form.type, selected" :items="businessTypes" placeholder="Choose the type of your business" class="w-1/2 " />
             </div>
             <Textarea v-model="form.description" placeholder="Business description" class="mt-3" :rows="3" />
         </div>
         
         <div class="flex flex-col mt-8">
             <h2 class="text-3xl text-left">Services</h2>
-            <h3 class="text-lg text-left">Please list your services in a comma separated list</h3>
+            <h3 class="text-lg text-left ">Please list your services in a comma separated list</h3>
             
             <Textarea v-model="form.services" placeholder="Eg.: hair coloring, hari cutting, styling, etc..." class="w-full" :rows="3" />
         </div>
