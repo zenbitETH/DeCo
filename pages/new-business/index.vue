@@ -7,7 +7,7 @@
 
         <div>
           <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="registerToPunkCity()">Register to Punk Cities</button>
-          <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" >Register Place</button>
+          <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="registerPunkCityPlace()">Register Place</button>
         </div>
         
         <div class="flex flex-col mt-8">
@@ -33,13 +33,19 @@
               <h2 class="text-3xl text-left">Location</h2>
               <h3 class="text-lg text-left">Please select the location of your business</h3>
 
-              <Map v-model="form.location" />
-              <Input v-model="form.location" :disabled="true" />
+              <Map v-model="form.location" @localityChange="form.city=$event"/>
+              <div class="flex flex-row gap-3"> 
+
+              <Input class="w-1/2" v-model="form.city" :disabled="true" />
+              <Input class="w-1/2" v-model="form.location" :disabled="true" />
+              </div>
           </div>
         </client-only>
         
 
-        <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400">Mint Business NFT</button>
+        <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400"  @click="createBusiness()">Mint Business NFT</button>
+        <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400"  @click="createServiceNFT()">Mint Service NFT</button>
+
     </section>
 </template>
 
@@ -121,7 +127,125 @@ async registerToPunkCity() {
   }
   let register = await Moralis.executeFunction(options);
   
-}
+},
+  async registerPunkCityPlace(){
+    var ABI = [
+{
+				inputs: [
+					{
+						internalType: "uint256",
+						name: "_placeType",
+						type: "uint256"
+					},
+					{
+						internalType: "uint256",
+						name: "_questType",
+						type: "uint256"
+					},
+					{
+						internalType: "string",
+						name: "_ipfsuri",
+						type: "string"
+					}
+				],
+				name: "registerPlace",
+				outputs: [],
+				stateMutability: "nonpayable",
+				type: "function"
+			}
+    ];
+
+    const options = {
+      contractAddress: this.$config.contract_punk_cities,
+      functionName: "registerPlace",
+      abi: ABI,
+      params: {_placeType: 5, _questType: 1, _ipfsuri: "punkCities.com"}
+    }
+
+    let registerPlace = await Moralis.executeFunction(options);
+  },
+
+  async createBusiness(){
+    var services = this.form.services.split(",").map(s => s.trim());
+    var ABI = [
+      {
+				inputs: [
+					{
+						internalType: "string",
+						name: "cityName",
+						type: "string"
+					},
+					{
+						internalType: "string",
+						name: "description",
+						type: "string"
+					},
+					{
+						internalType: "string",
+						name: "_googleAddress",
+						type: "string"
+					},
+					{
+						internalType: "string",
+						name: "_logo",
+						type: "string"
+					},
+					{
+						internalType: "string[]",
+						name: "_services",
+						type: "string[]"
+					}
+				],
+				name: "createBusiness",
+				outputs: [],
+				stateMutability: "nonpayable",
+				type: "function"
+			},
+
+    ]
+    const options = {
+      contractAddress: this.$config.contract_business_nft,
+      functionName: "createBusiness",
+      abi: ABI,
+      params: {cityName: this.form.city, description: this.form.name, _googleAddress: this.form.location, _logo: "logo.com", _services: services}
+    }
+
+    let createBusiness = await Moralis.executeFunction(options);
+  },
+
+  async createServiceNFT() {
+    var ABI = [
+{
+				inputs: [
+					{
+						internalType: "uint256",
+						name: "servicePrice",
+						type: "uint256"
+					},
+					{
+						internalType: "string",
+						name: "_serviceDescription",
+						type: "string"
+					}
+				],
+				name: "makeService",
+				outputs: [],
+				stateMutability: "nonpayable",
+				type: "function"
+			},
+    ];
+
+  const options = {
+    contractAddress: this.$config.contract_service_nft,
+    functionName: "makeService",
+    abi: ABI,
+    params: {servicePrice: 15, _serviceDescription: "Haircut for Man"}
+  }
+
+    let createService = await Moralis.executeFunction(options);
+
+  },
+
   }
 }
 

@@ -62,7 +62,9 @@ export default {
     google_maps_api_key: process.env.GOOGLE_MAPS_API_KEY || '',
     moralis_app_id: process.env.MORALIS_APP_ID || '',
     moralis_server_url: process.env.MORALIS_SERVER_URL || '',
-    contract_punk_cities: process.env.CONTRACT_PUNK_CITIES || ''
+    contract_punk_cities: process.env.CONTRACT_PUNK_CITIES || '',
+    contract_business_nft: process.env.CONTRACT_BUSINESS_NFT || '',
+    contract_service_nft: process.env.CONTRACT_SERVICE_NFT || ''
   },
   
 }
