@@ -35,7 +35,7 @@
                 My decos
             </div>
             <div class="hudd">
-                Explore decos
+                <nuxt-link to="all-businesses">Explore decos</nuxt-link>
             </div>
         </nav>
    </div>

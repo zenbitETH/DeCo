@@ -102,12 +102,17 @@ export default {
       const geocoder = new window.google.maps.Geocoder();
       geocoder.geocode({ location: location })
         .then((response) => {
-          // console.log(response)
 
           const address = response.results.find(
             (result) => result.types.includes("street_address") || result.types.includes('route')
           );
+          const city = response.results.find(
+            (result) => result.types.includes("locality") 
+          );
+          if(city){
+          this.$emit('localityChange', city.formatted_address.split(',')[0])
 
+          }
           if(address) {
             this.$emit('input', address.formatted_address)
           } else {
