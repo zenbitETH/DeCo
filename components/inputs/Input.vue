@@ -22,7 +22,7 @@
       :disabled="disabled ? true : false"
       autocomplete="off"
       :class="{ '!bg-gray-300 !placeholder-gray-light': disabled, 'h-8': small, 'pl-11': icon}"
-      class="ring-1 ring-[#CFCFCF] rounded h-12 px-5 w-full focus:outline-none focus-within:bg-[#e8f0fe] hover:ring-gray-600 group-hover:bg-[#e8f0fe] group-disabled:bg-gray-300 disabled:bg-gray-300"
+      class=""
       @input="onInput()"
       @focus="onFocus($event)"
       @blur="onBlur($event)"

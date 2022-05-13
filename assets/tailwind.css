@@ -4,6 +4,18 @@
 @tailwind components;
 @tailwind utilities;
 
+
+Input {
+  @apply
+  bg-transparent font-lex border-white
+  placeholder-gray-400
+  hover:border-deco-100 hover:placeholder-deco-100
+  focus:outline-none focus:border-deco-100 focus:placeholder-transparent focus:text-deco-100
+  valid:text-deco-400 valid:border-deco-400 
+  h-12 px-5 w-full border-b group-hover:bg-[#e8f0fe] group-disabled:bg-gray-300 disabled:bg-gray-300
+}
+
+
 .top-hud { 
     @apply xl:mx-96 mx-5 fixed grid  grid-cols-4 items-center top-0 left-0 right-0
     rounded-b-lg
