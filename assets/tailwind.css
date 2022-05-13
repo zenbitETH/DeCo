@@ -22,7 +22,7 @@ Input {
     font-exo
     text-white
     text-sm
-    xl:text-xl
+    md:text-xl lg:text-2xl xl:text-2xl
     border-none
 }
 
@@ -133,4 +133,51 @@ Input {
 .teamMB {
   @apply 
   p-5 text-white hover:text-solar-100 pb-32
+}
+
+/* New Place NFT */
+.step {
+  @apply 
+  grid md:grid-cols-2 gap-5 m-5
+}
+
+.placeNFT {
+  @apply 
+  bg-glass-200 
+  hover:bg-glass-500 hover:cursor-pointer
+  rounded-lg py-2 md:px-5
+  text-xl
+  grid grid-cols-4 grid-rows-4 
+}
+
+.decoNFT {
+  @apply 
+  bg-glass-200
+  hover:bg-glass-700 hover:cursor-pointer
+  rounded-lg py-2 md:px-5
+  text-xl
+  grid grid-cols-4 grid-rows-4
+}
+
+.NFTasset {
+  @apply
+  row-span-4 col-span-4
+}
+
+.NFTlogo {
+  @apply
+  row-span-4 md:col-span-4
+}
+
+.NFTtitle {
+  @apply
+  md:col-span-4 col-span-3 row-span-4 
+  text-2xl
+}
+
+.NFTdes {
+  @apply
+  col-span-3
+  text-lg
+  text-white
 }

@@ -1,13 +1,38 @@
 <template>
     <section class="text-white font-lex">
         <div class="relative">
-            <nuxt-link to="/" class="absolute left-0 top-0  text-2xl">Back</nuxt-link>
-            <h1 class="text-center text-5xl">Create new Business</h1>
+            <nuxt-link to="/" class="text-2xl">Back</nuxt-link>
+            <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="registerToPunkCity()">Register to Punk Cities</button>
+            <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="registerPunkCityPlace()">Register Place</button>
+            <h1 class="text-center text-5xl">Mint place or business NFT</h1>
         </div>
 
-        <div>
-          <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="registerToPunkCity()">Register to Punk Cities</button>
-          <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="registerPunkCityPlace()">Register Place</button>
+        <div id="step1" class="step">
+          <div class="placeNFT">
+            <div class="NFTlogo">
+              <img
+                src="../../static/punkcities.png"
+                class=""
+              />
+            </div>
+            
+            <div class="NFTtitle text-solar-100">Punk Cities NFT
+              <div class="NFTdes">Mint a public place in your city to get energy or chips</div>
+            </div>
+            
+          </div>
+
+          <div class="decoNFT">
+            <div class="NFTlogo px-2">
+              <img
+                src="../../static/deco logo.svg"
+                class=""
+              />
+            </div>
+            <div class="NFTtitle text-deco-100">Deco NFT
+              <div class="NFTdes">Mint your own business NFT to get income and defi interactions</div>
+            </div>
+          </div>
         </div>
         
         <div class="flex flex-col mt-8 text-deco-100">
