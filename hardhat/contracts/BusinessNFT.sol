@@ -7,7 +7,7 @@ import "./PunkCities.sol";
 
 contract BusinessNFT is ERC721URIStorage {
 
-    PunkCity private _PunkCity; 
+    PunkCities private _PunkCities; 
     uint256 businessNumber = 1;
 
     struct businessDetails {
@@ -33,11 +33,11 @@ contract BusinessNFT is ERC721URIStorage {
     }
 
     function setPunkcityContract(address _punkcityAddress) public {
-        _PunkCity = PunkCity(_punkcityAddress);
+        _PunkCities = PunkCities(_punkcityAddress);
     }
 
     function createBusiness(string memory cityName, string memory description, string memory _googleAddress, string memory _logo, string[] memory _services) public {
-        require(_PunkCity.checkRegisteredPlace(msg.sender) == true, "You must be registered for Punk Cities in order to create a Business");
+        require(_PunkCities.checkRegisteredPlace(msg.sender) == true, "You must be registered for Punk Cities in order to create a Business");
         require(registeredABusiness[msg.sender] == false, "You already own a business");
         // Does one member can have only one business, or can have more?
         businessDetails memory nextBusiness = businessDetails(businesses.length, cityName, description, msg.sender, _googleAddress, _logo, block.timestamp, _services);
@@ -85,7 +85,7 @@ contract BusinessNFT is ERC721URIStorage {
     }  */
 
     function verifyBusiness(uint256 _tokenId) external {
-        require(_PunkCity.checkRegisteredPlace(msg.sender) == true, "You must be registered for Punk Cities in order to verify a place");
+        require(_PunkCities.checkRegisteredPlace(msg.sender) == true, "You must be registered for Punk Cities in order to verify a place");
 
         placeVerification[_tokenId]++;
     }
