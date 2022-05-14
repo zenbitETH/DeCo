@@ -5,7 +5,7 @@
   >
     <div
       v-if="icon"
-      class="ml-3 absolute h-12 flex place-items-center place-content-center"
+      class="absolute h-12 flex place-items-center place-content-center"
       :class="{'h-8': small }"
     >
       <img
@@ -21,7 +21,7 @@
       :placeholder="placeholder"
       :disabled="disabled ? true : false"
       autocomplete="off"
-      :class="{ '!bg-gray-300 !placeholder-gray-light': disabled, 'h-8': small, 'pl-11': icon}"
+      :class="{ '!bg-transparent !border-none !text-deco-400 !placeholder-gray-light': disabled, 'h-8': small, 'pl-11': icon}"
       class=""
       @input="onInput()"
       @focus="onFocus($event)"

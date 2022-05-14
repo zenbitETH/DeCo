@@ -1,9 +1,9 @@
 <template>
   <client-only>
     <div class="w-full h-full relative ">
-      <div class="search absolute -top-16 z-30 w-full md:px-24 xl:px-48">
+      <div class="search absolute -top-16 z-30 w-full">
         <GmapAutocomplete
-          :placeholder="'5. Where is your address? (eg.: Washington DC, USA)'"
+          :placeholder="'5. Type your business address or locate it on the map'"
           @place_changed="setPlace"
         />
       </div>
@@ -157,6 +157,6 @@ export default {
 </script>
 <style>
 .pac-target-input {
-  @apply left-auto h-12 focus:outline-none hover:ring-gray-600 group-hover:bg-[#e8f0fe] group-disabled:bg-gray-300 disabled:bg-gray-300
+  @apply left-auto h-12 focus:outline-none hover:ring-gray-600 group-hover:bg-[#e8f0fe] group-disabled:bg-none
 }
 </style>
