@@ -1,15 +1,13 @@
 <template>
     <div class="py-10 px-2 bg-gradient-to-t from-deco-900 to-deco-800 h-screen overflow-y-auto">
         <nav class="top-hud">
-          <div class="hud1con">
-            wallet
+          <div v-if="!user" class="hud1con" @click="connectWallet()">
+            Connect to Deco
           </div>
-          <!-- <div v-if="!user" class="hud1con" @click="connectWallet()">
-            Wallet
-          </div>
+          <!-- TODO show only first and last 4 characters= 0x04...abcd-->
           <div v-else class="hud1con" @click="logOut()">
             {{getAddress()}}
-          </div>-->
+          </div>
           <div class="hud3">
             <span> 🏢 </span>
             <span class="mx-2">2</span>
@@ -40,7 +38,7 @@
         </nav>
    </div>
 </template>
-<!--<script>
+<script>
 import Moralis from 'moralis';
 export default {
   data(){
