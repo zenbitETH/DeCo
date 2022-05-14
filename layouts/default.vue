@@ -1,10 +1,15 @@
 <template>
     <div class="py-10 px-2 bg-gradient-to-t from-deco-900 to-deco-800 h-screen overflow-y-auto">
         <nav class="top-hud">
-            <div v-if="!user" class="hud1con" @click="connectWallet()">
-              Wallet</div>
-            <div v-else class="hud1con" @click="logOut()">
-              {{getAddress()}}</div>
+          <div class="hud1con">
+            wallet
+          </div>
+          <!-- <div v-if="!user" class="hud1con" @click="connectWallet()">
+            Wallet
+          </div>
+          <div v-else class="hud1con" @click="logOut()">
+            {{getAddress()}}
+          </div>-->
           <div class="hud3">
             <span> 🏢 </span>
             <span class="mx-2">2</span>
@@ -24,7 +29,7 @@
         </div>
         <nav class="bottom-hud">
             <div class="huda">
-              <nuxt-link to="new-business">New business NFT</nuxt-link>
+              <nuxt-link to="new-business">New deco NFT</nuxt-link>
             </div>
             <div class="hudb">
                 My decos
@@ -35,7 +40,7 @@
         </nav>
    </div>
 </template>
-<script>
+<!--<script>
 import Moralis from 'moralis';
 export default {
   data(){

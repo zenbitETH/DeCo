@@ -19,12 +19,12 @@
       </div>
       <button
         id="dropzone"
-        class="ring-1 ring-[#CFCFCF] rounded h-12 px-5 w-full focus:outline-none focus-within:bg-[#e8f0fe] hover:ring-gray-600 group-hover:bg-[#e8f0fe] group-disabled:bg-gray-300 disabled:bg-gray-300
+        class="h-12 px-5 w-full focus:outline-none focus:bg-transparent border-b group-disabled:bg-gray-300 disabled:bg-gray-300 valid:text-deco-400 border-deco-400 hover:border-deco-100 selection:text-deco-400
         flex items-center group"
         :class="{ 
           'justify-center text-center': center,
           'justify-start': !center,
-          'bg-gray-lightest font-semibold rounded-none ring-0 text-lg': gray,
+          ' font-semibold rounded-none ring-0 text-lg': gray,
           '!bg-gray-300 !placeholder-gray-light !pointer-events-none cursor-default': disabled,
           'h-8': small,
           'pl-11': icon
@@ -36,7 +36,7 @@
       >
         <p
           v-if="selectedItems.length == 0"
-          class="text-gray-300 whitespace-nowrap"
+          class="text-deco-400 border-deco-400 whitespace-nowrap"
           :class="{ '!text-white': disabled}"
         >
           {{ placeholder }}
@@ -66,7 +66,7 @@
         </div>
         <div
           v-if="!showAll && showableItems.length < selectedItems.length"
-          class="inline-block mr-2 rounded-3xl bg-gray-lightest py-1 px-2 hover:bg-gray-light"
+          class="inline-block mr-2 rounded-3xl  py-1 px-2 hover:bg-gray-light"
         >
           + {{ (selectedItems.length - showableItems.length) }}
         </div>
@@ -87,7 +87,7 @@
           'text-center': center,
           'bg-gray-lightest': gray 
         }"
-        class="z-30 absolute top-14 ring-1 bg-white rounded w-full h-auto transition-height duration-500 overflow-y-auto "
+        class="z-30 absolute top-14 bg-deco-900 rounded w-full h-auto transition-height duration-500 overflow-y-auto"
       >
         <ReOverlayLoader
           :loading="loading"
@@ -115,7 +115,7 @@
                 v-for="(item, index) in selectedItems"
                 :key="'selected_'+ index + (item.key ? item.key : item.value)"
                 :value="isSelected(item.value)"
-                class="h-full"
+                class="h-full "
                 @input="selectItem(item.value)"
               >
                 {{ item.text }}
@@ -124,7 +124,7 @@
             <div>
               <p
                 v-if="showSelected"
-                class="mt-3"
+                class="mt-3 text-deco-400"
               >
                 Lehetőségek {{ resultSize !== -1 ? '(' + resultSize +' db)' : '' }}:
               </p>
@@ -153,7 +153,7 @@
               <div 
                 v-for="(item, index) in selectedItems"
                 :key="'selected_'+ index + (item.key ? item.key : item.value)"
-                class="pointer-events-auto cursor-pointer"
+                class="pointer-events-auto cursor-pointer  text-deco-400 border-deco-400"
                 @click="selectItem(item.value)"
               >
                 {{ item.text }}
@@ -162,7 +162,7 @@
             <div>
               <p
                 v-if="showSelected"
-                class="mt-3"
+                class="mt-3 text-deco-400 border-deco-400"
               >
                 Lehetőségek {{ resultSize !== -1 ? '(' + resultSize +' db)' : '' }}:
               </p>

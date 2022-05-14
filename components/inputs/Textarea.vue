@@ -2,7 +2,7 @@
   <div>
     <div
       v-if="icon"
-      class="ml-3 absolute h-12 flex place-items-center place-content-center"
+      class="absolute h-12 flex place-items-center place-content-center"
     >
       <img
         :src="icon"
@@ -15,7 +15,7 @@
       :rows="rows"
       :disabled="disabled"
       :class="{ '!bg-gray-300': disabled, 'pl-11': icon}"
-      class="ring-1 ring-[#CFCFCF] rounded min-h-12 px-5 py-3 w-full focus:outline-none focus-within:bg-[#e8f0fe] hover:ring-gray-600 group-hover:bg-[#e8f0fe] group-disabled:bg-gray-300 disabled:bg-gray-300"
+      class="] bg-transparent border-b border-deco-400 min-h-12 px-5 w-full focus:outline-none hover:ring-gray-600 group-hover:bg-[#e8f0fe] group-disabled:bg-gray-300 disabled:bg-gray-300"
       @input="updateText()"
       @focus="isFocus = true"
       @blur="isFocus = false"
