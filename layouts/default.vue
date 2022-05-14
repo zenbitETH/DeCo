@@ -29,7 +29,7 @@
         </div>
         <nav class="bottom-hud">
             <div class="huda">
-              <nuxt-link to="new-business">New business NFT</nuxt-link>
+              <nuxt-link to="new-business">New deco NFT</nuxt-link>
             </div>
             <div class="hudb">
                 My decos
