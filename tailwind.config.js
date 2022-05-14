@@ -1,13 +1,14 @@
 module.exports = {
-    jit: true,
-    content: [],
+    mode: 'jit',
+    purge: [
+      './pages/**/*.{js,jsx,ts,tsx,vue}',
+      './components/**/*.{js,jsx,ts,tsx,vue}',
+    ],
     media: false, // or 'media' or 'class'
     variants: {},
     theme: {
         extend: {
             colors: {
-        
-
                 cyber: {
                     100: "#119195",
                     200: "#0b979b",
@@ -43,6 +44,18 @@ module.exports = {
                     100: "#fdb04e",
                 },
 
+                deco: {
+                    900: "#110922",
+                    800: "#221138",
+                    700: "#01181a",
+                    600: "#056e78",
+                    500: "#09d6ea",
+                    400: "#49e9f8",
+                    300: "#811567",
+                    200: "#d522ab",
+                    100: "#e03fba",
+                },
+
                 night: {
                     300: "#014875",
                     200: "#01304E",
@@ -66,6 +79,11 @@ module.exports = {
                 "bookmark-grey": "#9194A2",
                 "bookmark-white": "#f7f7f7",
             },
+            screens: {
+                'fhd': '1920px',
+                'qhd': '2560px',
+                'uhd': '3840px',
+              },
             spacing: {
                 88: "22rem",
             },
@@ -75,6 +93,8 @@ module.exports = {
             fontFamily: {
                 Poppins: ["Poppins, sans-serif"],
                 exo: ['"Exo 2"'],
+                lex: ['"Lexend"'],
+                bal: ['"Baloo 2"'],
             },
             container: {
                 center: true,
