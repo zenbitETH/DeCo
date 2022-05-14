@@ -1,9 +1,9 @@
 <template>
   <client-only>
     <div class="w-full h-full relative ">
-      <div class="search absolute top-3 left-3 z-30 w-96">
+      <div class="search absolute -top-16 z-30 w-full md:px-24 xl:px-48">
         <GmapAutocomplete
-          :placeholder="'Search on map (eg.: Washington DC, USA)'"
+          :placeholder="'5. Where is your address? (eg.: Washington DC, USA)'"
           @place_changed="setPlace"
         />
       </div>
@@ -20,7 +20,7 @@
           disableDefaultUi: false
         }"
         @click="onMapClick($event)"
-        class="h-[486px] w-full mb-4"
+        class="h-[486px] mb-4"
         map-type-id="terrain"
       >
         <GmapMarker
@@ -157,6 +157,6 @@ export default {
 </script>
 <style>
 .pac-target-input {
-  @apply ring-1 ring-[#CFCFCF] rounded h-12 px-5 w-full focus:outline-none focus-within:bg-[#e8f0fe] hover:ring-gray-600 group-hover:bg-[#e8f0fe] group-disabled:bg-gray-300 disabled:bg-gray-300
+  @apply left-auto h-12 focus:outline-none hover:ring-gray-600 group-hover:bg-[#e8f0fe] group-disabled:bg-gray-300 disabled:bg-gray-300
 }
 </style>

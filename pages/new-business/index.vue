@@ -1,13 +1,15 @@
 <template>
-    <section class="text-white font-lex">
-        <div class="relative">
+  <div>
+    <section id="Step1" class="text-white font-lex">
+      <div class="relative">
             <nuxt-link to="/" class="text-2xl">Back</nuxt-link>
             <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="registerToPunkCity()">Register to Punk Cities</button>
             <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="registerPunkCityPlace()">Register Place</button>
             <h1 class="text-center text-5xl">Mint place or business NFT</h1>
         </div>
-
+        <h2 class="stepTitle">Step 1: what do you want to mint?</h2>
         <div id="step1" class="step">
+
           <div class="placeNFT">
             <div class="NFTlogo">
               <img
@@ -34,44 +36,90 @@
             </div>
           </div>
         </div>
-        
-        <div class="flex flex-col mt-8 text-deco-100">
-            <h2 class="text-3xl text-left">Business info</h2>
-            <div class="flex flex-row gap-3">
-                <Input v-model="form.name" type="text" placeholder="What is the name of your business?" class="w-1/2"  />
-                <Select v-model="form.type, selected" :items="businessTypes" placeholder="Choose the type of your business" class="w-1/2 " />
+    </section>
+
+    <section id="Step2" class="text-white font-lex">
+      <div class="stepTitle">Step 2: Product or service?</div>
+        <div id="step2" class="step">
+          <div class="placeNFT">
+            <div class="NFTlogo">
+              <img
+                src="../../static/decoNFT.png"
+                class=""
+              />
             </div>
-            <Textarea v-model="form.description" placeholder="Business description" class="mt-3" :rows="3" />
-        </div>
-        
-        <div class="flex flex-col mt-8">
-            <h2 class="text-3xl text-left">Services</h2>
-            <h3 class="text-lg text-left ">Please list your services in a comma separated list</h3>
             
-            <Textarea v-model="form.services" placeholder="Eg.: hair coloring, hari cutting, styling, etc..." class="w-full" :rows="3" />
-        </div>
-
-
-
-        <client-only>
-          <div class="flex flex-col mt-8">
-              <h2 class="text-3xl text-left">Location</h2>
-              <h3 class="text-lg text-left">Please select the location of your business</h3>
-
-              <Map v-model="form.location" @localityChange="form.city=$event"/>
-              <div class="flex flex-row gap-3"> 
-
-              <Input class="w-1/2" v-model="form.city" :disabled="true" />
-              <Input class="w-1/2" v-model="form.location" :disabled="true" />
-              </div>
+            <div class="NFTtitle text-solar-100">I want to sell physical products
+              <div class="NFTdes">Mint a public place in your city to get energy or chips</div>
+            </div>
+            
           </div>
-        </client-only>
-        
 
-        <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400"  @click="createBusiness()">Mint Business NFT</button>
-        <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400"  @click="createServiceNFT()">Mint Service NFT</button>
+          <div class="decoNFT">
+            <div class="NFTlogo px-2">
+              <img
+                src="../../static/serviceNFT.png"
+                class=""
+              />
+            </div>
+            <div class="NFTtitle text-deco-100"> I want to offer a service
+              <div class="NFTdes">Mint your own business NFT to get income and defi interactions</div>
+            </div>
+          </div>
+        </div>
+    </section>
+    
+    <section id="Step3-Products" class="text-white font-lex">
+      <div class="stepTitle">Step 3: Add info about your products</div>  
+      <div class="flex flex-col mt-8 text-deco-100 md:px-24 xl:px-48">
+          <div class="md:flex md:flex-row gap-3">
+              <Select v-model="form.type, selected" :items="productsTypes" placeholder="1. Choose the type of your business" class="md:w-1/2 " />
+              <Input v-model="form.name" type="text" placeholder="2. What is the name of your business?" class="md:w-1/2"  />
+          </div>
+          <Textarea v-model="form.description" placeholder="3. Describe your business" class="mt-3" :rows="3" />
+          <Input v-model="form.name" type="text" placeholder="4. Choose tags for your business" class=""  />
+      </div>
+
+      <client-only>
+        <div class="flex flex-col mt-8 md:px-24 xl:px-4 ">
+          <Map v-model="form.location" @localityChange="form.city=$event"/>
+          <div class="flex flex-row gap-3"> 
+            <Input class="w-1/2" v-model="form.city" :disabled="true" />
+            <Input class="w-1/2" v-model="form.location" :disabled="true" />
+          </div>
+        </div>
+      </client-only>
+      <div class="text-center">
+        <button class="mintButton"  @click="createBusiness()">Mint Products NFT</button>
+      </div>
+    </section>
+    
+    <section id="Step3-Services" class="text-white font-lex">
+      <div class="stepTitle">Step 3: Add info about your services</div>
+      <div class="flex flex-col mt-8 text-deco-100 md:px-24 xl:px-48">
+          <div class="md:flex md:flex-row gap-3">
+              <Select v-model="form.type, selected" :items="servicesTypes" placeholder="1. Choose the type of your business" class="md:w-1/2 " />
+              <Input v-model="form.name" type="text" placeholder="2. What is the name of your business?" class="md:w-1/2"  />
+          </div>
+          <Textarea v-model="form.description" placeholder="3. Describe your business" class="mt-3" :rows="3" />
+          <Input v-model="form.name" type="text" placeholder="4. Choose tags for your business" class=""  />
+      </div>
+
+      <client-only>
+        <div class="flex flex-col mt-8 md:px-24 xl:px-4 ">
+          <Map v-model="form.location" @localityChange="form.city=$event"/>
+          <div class="flex flex-row gap-3"> 
+            <Input class="w-1/2" v-model="form.city" :disabled="true" />
+            <Input class="w-1/2" v-model="form.location" :disabled="true" />
+          </div>
+        </div>
+      </client-only>
+      <div class="text-center">
+        <button class="mintButton"  @click="createServiceNFT()">Mint Services NFT</button>
+      </div>
 
     </section>
+  </div>
 </template>
 
 <script>
@@ -94,10 +142,19 @@ export default {
   },
   data() {
     return {
-      businessTypes: [
-        { key: 'market', value: 'shop', text: 'Market' },
-        { key: 'shop', value: 'shop', text: 'Shop' },
-        { key: 'other', value: 'other', text: 'Other' }
+      productsTypes: [
+        { key: 'clothes', value: 'products-1', text: 'Clothes' },
+        { key: 'home-products', value: 'products-2', text: 'Home Products' },
+        { key: 'food', value: 'products-3', text: 'Food / Restaurant' },
+        { key: 'punk-products', value: 'products-4', text: 'Home Products' },
+        { key: 'general-store', value: 'products-5', text: 'General store' }
+      ],
+      servicesTypes: [
+        { key: 'sports', value: 'services-1', text: 'Sports clasess' },
+        { key: 'art-fun', value: 'services-2', text: 'Art/fun clasess' },
+        { key: 'beauty', value: 'services-3', text: 'Beauty/Barber shop' },
+        { key: 'professional', value: 'services-4', text: 'Profesional services' },
+        { key: 'logistic', value: 'services-5', text: 'Logistic service' }
       ],
       form: {
         name: '',//input
