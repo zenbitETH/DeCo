@@ -70,14 +70,17 @@
     </section>
     
     <section id="Step3-Products" class="text-white font-lex">
-      <div class="stepTitle">Step 3: Add info about your products</div>  
+      <div class="stepTitle">Step 3: Present your deco business</div>  
       <div class="flex flex-col mt-8 text-deco-100 md:px-24 xl:px-48">
-          <div class="md:flex md:flex-row gap-3">
-              <Select v-model="form.type, selected" :items="productsTypes" placeholder="1. Choose the type of your business" class="md:w-1/2 " />
-              <Input v-model="form.name" type="text" placeholder="2. What is the name of your business?" class="md:w-1/2"  />
+          <div class="md:grid md:grid-cols-2 gap-3">
+              <Select v-model="form.type, selected" :items="productsTypes" placeholder="1. Choose the type of your business" class="" />
+              <Input v-model="form.name" type="text" placeholder="2. What is the name of your business?" class=""  />
+              <div class="md:w-1/2 mx-5 mb-3 text-deco-400">3. Upload your business logo</div>
+              <Input v-model="form.name" type="file" placeholder="3. Upload your business logo" class=""/>
           </div>
-          <Textarea v-model="form.description" placeholder="3. Describe your business" class="mt-8" :rows="3" />
-          <Input v-model="form.name" type="text" placeholder="4. Choose tags for your business" class=""  />
+          <div class="stepTitle">Step 4: Add details to your Deco NFT</div>  
+          <Textarea v-model="form.description" placeholder="4. Describe your business" class="mt-8" :rows="3" />
+          <Input v-model="form.name" type="text" placeholder="5. Choose tags for your business" class=""  />
       </div>
 
       <client-only>
@@ -100,30 +103,38 @@
       </div>
     </section>
     
-    <section id="Step3-Services" class="text-white font-lex">
-      <div class="stepTitle">Step 3: Add info about your services</div>
-      <div class="flex flex-col text-deco-100 md:px-24 xl:px-48">
-          <div class="md:flex md:flex-row gap-3">
-              <Select v-model="form.type, selected" :items="servicesTypes" placeholder="1. Choose the type of your business" class="md:w-1/2 " />
-              <Input v-model="form.name" type="text" placeholder="2. What is the name of your business?" class="md:w-1/2"  />
+    <section id="Step3-Products" class="text-white font-lex">
+      <div class="stepTitle">Step 3: Present your deco service</div>  
+      <div class="flex flex-col mt-8 text-deco-100 md:px-24 xl:px-48">
+          <div class="md:grid md:grid-cols-2 gap-3">
+              <Select v-model="form.type, selected" :items="servicesTypes" placeholder="1. Choose the type of your business" class="" />
+              <Input v-model="form.name" type="text" placeholder="2. What is the name of your business?" class=""  />
+              <div class="md:w-1/2 mx-5 mb-3 text-deco-400">3. Upload your business logo</div>
+              <Input v-model="form.name" type="file" placeholder="3. Upload your business logo" class=""/>
           </div>
-          <Textarea v-model="form.description" placeholder="3. Describe your business" class="mt-2" :rows="3" />
-          <Input v-model="form.name" type="text" placeholder="4. Choose tags for your business" class=""  />
+          <div class="stepTitle">Step 4: Add details to your Deco NFT</div>  
+          <Textarea v-model="form.description" placeholder="4. Describe your business" class="mt-8" :rows="3" />
+          <Input v-model="form.name" type="text" placeholder="5. Choose tags for your business" class=""  />
       </div>
 
       <client-only>
         <div class="flex flex-col mt-16 md:px-24 xl:px-4 ">
           <Map v-model="form.location" @localityChange="form.city=$event"/>
           <div class="grid grid-cols-2 gap-5"> 
-            <Input class="verify" v-model="form.city" :disabled="true" />
-            <Input class="verify" v-model="form.location" :disabled="true" />
+            <div class="verify">
+              Verify your city
+              <Input class="w-1/2" v-model="form.city" :disabled="true" />
+            </div>
+            <div class="verify">
+              Verify your address
+              <Input class="w-1/2" v-model="form.location" :disabled="true" />
+            </div>
           </div>
         </div>
       </client-only>
       <div class="text-center">
-        <button class="mintButton"  @click="createServiceNFT()">Mint Services NFT</button>
+        <button class="mintButton"  @click="createBusiness()">Mint Services NFT</button>
       </div>
-
     </section>
   </div>
 </template>
