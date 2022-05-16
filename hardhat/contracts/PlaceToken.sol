@@ -32,7 +32,7 @@ contract PlaceToken is ERC721 {
     Counters.Counter private _tokenIds;
 
     constructor() public ERC721("PlaceToken", "PT") {
-        console.log("Deploying PlaceToken contract");
+        // console.log("Deploying PlaceToken contract");
     }
 
     function createPlace(string memory _name, PlaceCategory _category, string memory _googleAddress, uint _tokenId, string memory _tags)
