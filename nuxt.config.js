@@ -32,7 +32,8 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/tailwindcss
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/eslint-module'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -45,6 +46,10 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
+
+  eslint: {
+    fix: true
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
@@ -59,12 +64,12 @@ export default {
   },
 
   publicRuntimeConfig: {
-    google_maps_api_key: process.env.GOOGLE_MAPS_API_KEY || '',
-    moralis_app_id: process.env.MORALIS_APP_ID || '',
-    moralis_server_url: process.env.MORALIS_SERVER_URL || '',
-    contract_punk_cities: process.env.CONTRACT_PUNK_CITIES || '',
-    contract_business_nft: process.env.CONTRACT_BUSINESS_NFT || '',
-    contract_service_nft: process.env.CONTRACT_SERVICE_NFT || ''
+    googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY || '',
+    moralisAppId: process.env.MORALIS_APP_ID || '',
+    moralisServerUrl: process.env.MORALIS_SERVER_URL || '',
+    contractPunkCities: process.env.CONTRACT_PUNK_CITIES || '',
+    contractBusinessNft: process.env.CONTRACT_BUSINESS_NFT || '',
+    contractServiceNft: process.env.CONTRACT_SERVICE_NFT || ''
   },
   
 }
