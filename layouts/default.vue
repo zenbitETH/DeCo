@@ -1,5 +1,5 @@
 <template>
-    <div class="py-10 px-2 bg-gradient-to-t from-deco-900 to-deco-800 h-screen overflow-y-auto">
+    <div class="py-10 bg-gradient-to-t from-deco-900 to-deco-800 h-screen overflow-y-auto">
         <nav class="top-hud">
           <div v-if="!user" class="hud1con" @click="connectWallet()">
             Connect to Deco
@@ -22,7 +22,7 @@
           </div>
         </nav>
         <!-- The actual page will be inserted here -->
-        <div class="max-w-7xl mx-auto mt-10">
+        <div class="fhd:mx-36 qhd:mx-96 mt-10">
           <Nuxt />
         </div>
         <nav class="bottom-hud">
@@ -30,7 +30,7 @@
               <nuxt-link to="new-business">New deco NFT</nuxt-link>
             </div>
             <div class="hudb">
-                My decos
+                <nuxt-link to="dashboard">Deco Dashboard</nuxt-link>
             </div>
             <div class="hudd">
                 <nuxt-link to="all-businesses">Explore decos</nuxt-link>
