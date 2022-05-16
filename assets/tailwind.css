@@ -17,7 +17,8 @@ Input {
 
 
 .top-hud { 
-    @apply xl:mx-96 mx-5 fixed grid  grid-cols-4 items-center top-0 left-0 right-0
+    @apply fhd:mx-36 qhd:mx-96 
+    mx-5 fixed grid  grid-cols-4 items-center top-0 left-0 right-0
     rounded-b-lg
     font-exo
     text-white
@@ -27,7 +28,8 @@ Input {
 }
 
 .bottom-hud { 
-    @apply xl:mx-96 mx-5 fixed grid grid-cols-3 items-center bottom-0 left-0 right-0
+    @apply fhd:mx-36 qhd:mx-96 
+    mx-5 fixed grid grid-cols-3 items-center bottom-0 left-0 right-0
     rounded-b-lg
     font-exo
     font-medium
@@ -189,11 +191,90 @@ Input {
 
 .mintButton {
   @apply
-  bg-deco-100 p-3 rounded-lg
+  bg-deco-100 p-3 rounded-lg 
   hover:bg-deco-400 hover:text-deco-900 hover:cursor-pointer 
+}
+
+.myVaultBT {
+  @apply
+  bg-deco-100 p-3 rounded-lg text-deco-900
+  hover:bg-deco-900 hover:text-white hover:cursor-pointer 
+}
+
+.cityVaultBT {
+  @apply
+  bg-deco-400 p-3 rounded-lg text-deco-900
+  hover:bg-deco-900 hover:text-white hover:cursor-pointer 
 }
 
 .verify {
   @apply
    text-center text-deco-400 animate-pulse rounded-lg
+}
+
+/* Deco Dashboard*/
+.MainScreen { 
+  @apply
+  flex 
+  items-center 
+  justify-center
+}
+
+.MainBoard {
+  @apply grid grid-cols-1 
+  grid-rows-4
+  fhd:grid-cols-12 gap-5 
+  w-full fhd:h-[54rem] qhd:h-[75rem] flex 
+  font-exo
+  text-2xl
+}
+
+.Board1 {
+  @apply text-center rounded-lg 2xl:col-span-3 
+  xl:row-span-4 text-white
+}
+.Board2 {
+  @apply bg-gradient-to-r from-glass-700 to-glass-700 text-center rounded-lg  
+  2xl:col-span-6 xl:row-span-2 text-white
+}
+
+.Board3 {
+  @apply bg-gradient-to-r from-glass-800 to-glass-800 text-center rounded-lg text-white 
+  xl:col-span-6 xl:row-span-2
+}
+
+.PlaceBG {
+  @apply 
+  bg-glass-200 rounded-lg 
+  hover:bg-glass-800
+  cursor-pointer
+}
+
+.DecoBG {
+  @apply 
+  bg-glass-200 rounded-lg 
+  hover:bg-glass-700
+  cursor-pointer
+}
+
+.myVaultBG {
+  @apply 
+  bg-gradient-to-b from-glass-700 to-glass-800 rounded-lg 
+  grid row-span-4
+  cursor-pointer 
+}
+
+
+.productBG {
+  @apply 
+  bg-glass-700 rounded-lg 
+  grid row-span-2
+  cursor-pointer
+}
+
+.serviceBG {
+  @apply 
+  bg-glass-800 rounded-lg 
+  grid row-span-2
+  cursor-pointer
 }

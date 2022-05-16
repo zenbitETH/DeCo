@@ -13,13 +13,24 @@ async function main () {
   // manually to make sure everything is compiled
   // await hre.run('compile');
 
-  // We get the contract to deploy
-  const PlaceToken = await hre.ethers.getContractFactory("PlaceToken");
-  const placeToken = await PlaceToken.deploy();
+  const PunkCity = await ethers.getContractFactory("PunkCities");
+  const punkCity = await PunkCity.deploy();
+  await punkCity.deployed("punk");
+  console.log("punk");
 
-  await placeToken.deployed();
+  // const BusinessNFT = await ethers.getContractFactory("BusinessNFT");
+  // const businessNFT = await BusinessNFT.deploy();
+  // await businessNFT.deployed();
 
-  console.log("PlaceToken deployed to:", placeToken.address);
+  // const PlaceToken = await ethers.getContractFactory("PlaceToken");
+  // const placeToken = await PlaceToken.deploy();
+  // await placeToken.deployed();
+
+  // const ServiceNFT = await ethers.getContractFactory("ServiceNFT");
+  // const serviceNFT = await ServiceNFT.deploy();
+  // await serviceNFT.deployed();
+
+  // console.log("PlaceToken deployed to:", placeToken.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

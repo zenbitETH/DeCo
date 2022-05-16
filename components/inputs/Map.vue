@@ -3,7 +3,7 @@
     <div class="w-full h-full relative ">
       <div class="search absolute -top-16 z-30 w-full">
         <GmapAutocomplete
-          :placeholder="'5. Type your business address or locate it on the map'"
+          :placeholder="'6. Type your business address or locate it on the map'"
           @place_changed="setPlace"
         />
       </div>
