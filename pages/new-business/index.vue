@@ -243,6 +243,7 @@ export default {
     async uploadFile ({ file }) {
       // console.log(IPFS)
       try {
+        // TODO:[FIXME] we need to control the repo instead of generating a random math number
         const ipfs2 = await IPFS.create({ repo: 'deco-' + Math.random() })
         // console.log(ipfs2)
         const result = await ipfs2.add({
