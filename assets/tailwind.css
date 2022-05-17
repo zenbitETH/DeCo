@@ -232,7 +232,7 @@ Input {
   @apply bg-gradient-to-b from-glass-700 to-glass-800 rounded-lg
   text-center text-white
   grid grid-rows-2
-  2xl:col-span-4 xl:row-span-4 fhd:pt-5
+  2xl:col-span-4 xl:row-span-4 
 }
 .Board2 {
   @apply bg-gradient-to-r from-glass-700 to-glass-700 text-center rounded-lg  
