@@ -52,6 +52,8 @@ contract DEX {
   //TODO: allow deposits
 
   //TODO: incentivise rewards
+
+  //TODO: allow swap between more pairs, e.g. energy and chip
   
 
 }
