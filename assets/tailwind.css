@@ -221,26 +221,27 @@ Input {
 }
 
 .MainBoard {
-  @apply grid grid-cols-1 
-  grid-rows-4
-  fhd:grid-cols-12 gap-5 
+  @apply grid grid-cols-1 grid-rows-4
+  fhd:grid-cols-12 gap-5 p-5 xl:p-0
   w-full fhd:h-[54rem] qhd:h-[75rem] flex 
   font-exo
   text-2xl
 }
 
 .Board1 {
-  @apply text-center rounded-lg 2xl:col-span-3 
-  xl:row-span-4 text-white
+  @apply bg-gradient-to-b from-glass-700 to-glass-800 rounded-lg
+  text-center text-white
+  grid grid-rows-2
+  2xl:col-span-4 xl:row-span-4 fhd:pt-5
 }
 .Board2 {
   @apply bg-gradient-to-r from-glass-700 to-glass-700 text-center rounded-lg  
-  2xl:col-span-6 xl:row-span-2 text-white
+  2xl:col-span-8 xl:row-span-2 text-white
 }
 
 .Board3 {
   @apply bg-gradient-to-r from-glass-800 to-glass-800 text-center rounded-lg text-white 
-  xl:col-span-6 xl:row-span-2
+  xl:col-span-8 xl:row-span-2
 }
 
 .PlaceBG {
@@ -264,7 +265,6 @@ Input {
   cursor-pointer 
 }
 
-
 .productBG {
   @apply 
   bg-glass-700 rounded-lg 
@@ -277,4 +277,17 @@ Input {
   bg-glass-800 rounded-lg 
   grid row-span-2
   cursor-pointer
+}
+
+.bigNumber {
+  @apply
+  text-3xl text-center
+  fhd:text-5xl
+  col-span-2
+}
+
+.numDesc {
+  @apply
+  fhd:text-2xl
+  col-span-3 pt-3 pl-3
 }
