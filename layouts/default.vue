@@ -8,7 +8,7 @@
       <div v-else class="hud1con" @click="logOut()">
         {{ connectedAddress }}
       </div>
-      <div class="hud3">
+      <div class="hud2">
         <span> 🏢 </span>
         <span class="mx-2">2</span>
       </div>
@@ -34,6 +34,11 @@
       <div class="hudb">
         <nuxt-link to="dashboard">
           Deco Dashboard
+        </nuxt-link>
+      </div>
+      <div class="hudb">
+        <nuxt-link to="dashboard">
+          DeFi Vault
         </nuxt-link>
       </div>
       <div class="hudd">
