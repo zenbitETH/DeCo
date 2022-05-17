@@ -37,7 +37,7 @@
         </nuxt-link>
       </div>
       <div class="hudb">
-        <nuxt-link to="dashboard">
+        <nuxt-link to="vaults">
           DeFi Vault
         </nuxt-link>
       </div>
