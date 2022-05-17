@@ -12,12 +12,12 @@ describe("PunkCities", function () {
       const BusinessNFT = await ethers.getContractFactory("BusinessNFT");
       businessNFT = await BusinessNFT.deploy(punkCities.address);
       await businessNFT.deployed();
-      console.log("it's just business");
+      //console.log("it's just business");
 
       const PlaceToken = await ethers.getContractFactory("PlaceToken");
       placeToken = await PlaceToken.deploy();
       await placeToken.deployed();
-      console.log("Happy place");
+      //console.log("Happy place");
 
       const signers = await ethers.getSigners();
       addr0 = signers[0];
@@ -95,7 +95,91 @@ describe("PunkCities", function () {
     console.log(verifyPlace);
   });
 
-      //TODO: register place in Punk Cities
+  it("Should not be able to create a business NFT due to unregistration", async function () {
+    await expect (
+      businessNFT.createBusiness(
+      "Berlin", 
+      "This is a laundromat", 
+      "some google address",
+      "Laudromat.logo",
+      ["washes clothes", "drys clothes"],
+      )
+    ).to.be.revertedWith('You must be registered for Punk Cities in order to create a Business')   
+  });
+
+  it("Should be able to create a business NFT", async function () {
+
+    const user = await punkCities.registerUser(
+      "Test User",
+      "Berlin",
+      "Germany"
+    )
+    const place = await punkCities.registerPlace(
+      0, 
+      0, 
+      "some ipfs hash"
+    )
+    const user2 = await punkCities.connect(addr1).registerUser(
+      "Test User2",
+      "Frankfurt",
+      "Germany"
+    )
+    const verifyPlace = await punkCities.connect(addr1).verifyPlace(
+      0,
+      0,
+    )
+
+    const businessNFTcreated = await businessNFT.connect(addr0).createBusiness(
+      "Berlin", 
+      "This is a laundromat", 
+      "some google address",
+      "Laudromat.logo",
+      ["washes clothes", "drys clothes"],
+    )
+    console.log(businessNFTcreated);
+  });
+
+  it("Should not be able to create two businesses", async function () {
+
+    const user = await punkCities.registerUser(
+      "Test User",
+      "Berlin",
+      "Germany"
+    )
+    const place = await punkCities.registerPlace(
+      0, 
+      0, 
+      "some ipfs hash"
+    )
+    const user2 = await punkCities.connect(addr1).registerUser(
+      "Test User2",
+      "Frankfurt",
+      "Germany"
+    )
+    const verifyPlace = await punkCities.connect(addr1).verifyPlace(
+      0,
+      0,
+    )
+
+    const businessNFTcreated = await businessNFT.connect(addr0).createBusiness(
+      "Berlin", 
+      "This is a laundromat", 
+      "some google address",
+      "Laudromat.logo",
+      ["washes clothes", "drys clothes"],
+    )
+
+    await expect (
+      businessNFT2created = businessNFT.connect(addr0).createBusiness(
+      "Berlin", 
+      "This is a laundromat", 
+      "some google address",
+      "Laudromat.logo",
+      ["washes clothes", "drys clothes"],
+      )
+    ).to.be.revertedWith('You already own a business')  
+  });
+  
       // register user
       // create business NFT with an ID
       // create service NFTs
