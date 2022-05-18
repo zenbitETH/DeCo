@@ -35,12 +35,12 @@
       <nuxt-link class="hudb" to="dashboard">
         <div class="bigIcon xl:Spx-5">
           🏪
-        </div>0
+        </div>1
       </nuxt-link>
       <nuxt-link class="hudc" to="">
         <div class="bigIcon xl:px-5">
           💼
-        </div>0
+        </div>1
       </nuxt-link>
     </nav>
     <nav class="bottom-r-hud">

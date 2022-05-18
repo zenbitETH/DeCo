@@ -63,7 +63,7 @@
               <div class="text-6xl pb-5">
                 🏪
               </div>
-              New business NFT
+              New business
             </div>
             <div class="DecoBG">
               <div class="">
@@ -86,7 +86,7 @@
               <div class="text-6xl pb-5">
                 💼
               </div>
-              New service NFT
+              New service
             </div>
             <div class="PlaceBG">
               <div class="">
