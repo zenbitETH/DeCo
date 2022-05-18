@@ -4,7 +4,7 @@
       <div class="MainBoard">
         <div class="Board1">
           <div class="fhd:mt-10">
-            🛒 Business NFT
+            🏪 Business NFT
             <div class="text-lg text-left m-5 grid grid-cols-5 fhd:gap-3">
               <div class="bigNumber">
                 1
@@ -29,7 +29,7 @@
             </div>
           </div>
           <div class="fhd:mt-10">
-            👩🏽‍💻 Services NFT
+            💼 Services NFT
             <div class="text-lg text-left m-5 grid grid-cols-5 fhd:gap-3">
               <div class="bigNumber">
                 1
@@ -60,8 +60,8 @@
           </div>
           <div class="grid fhd:grid-cols-5 grid-cols-2 px-10 gap-5">
             <div class="DecoBG text-lg py-5 hover:text-deco-900">
-              <div class="text-6xl">
-                +
+              <div class="text-6xl pb-5">
+                🏪
               </div>
               New business NFT
             </div>
@@ -83,10 +83,10 @@
           </div>
           <div class="grid fhd:grid-cols-5 grid-cols-2 px-10 gap-5">
             <div class="PlaceBG text-lg py-5 hover:text-deco-900">
-              <div class="text-6xl">
-                +
+              <div class="text-6xl pb-5">
+                💼
               </div>
-              New business NFT
+              New service NFT
             </div>
             <div class="PlaceBG">
               <div class="">

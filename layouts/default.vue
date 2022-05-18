@@ -28,18 +28,18 @@
     <nav class="bottom-l-hud">
       <nuxt-link class="huda" to="new-business">
         <div class="bigIcon">
-          🏪
-        </div>New NFT
+          🆕
+        </div>Deco NFT
       </nuxt-link>
 
       <nuxt-link class="hudb" to="dashboard">
         <div class="bigIcon xl:Spx-5">
-          🛒
+          🏪
         </div>0
       </nuxt-link>
       <nuxt-link class="hudc" to="">
         <div class="bigIcon xl:px-5">
-          👩🏽‍💻
+          💼
         </div>0
       </nuxt-link>
     </nav>
