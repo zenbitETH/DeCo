@@ -43,7 +43,7 @@
           <div class="decoNFT" @click.prevent="currentPage = 2">
             <div class="NFTlogo px-2">
               <img
-                src="../../static/deco logo.svg"
+                src="../../static/deco_logo.svg"
                 class=""
               >
             </div>

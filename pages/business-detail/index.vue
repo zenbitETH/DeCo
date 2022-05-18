@@ -17,7 +17,7 @@
             </div>
           </div>
           <div class="row-span-4">
-            <img class="fhd:h-full mx-auto" src="../../static/deco logo.svg">
+            <img class="fhd:h-full mx-auto" src="../../static/deco_logo.svg">
           </div>
           <div class="grid grid-cols-2 mt-10 gap-5">
             <div class="assetBG">
@@ -58,7 +58,7 @@
               edit
             </div>
             <div class="col-span-2">
-              <img class="fhd:h-full mx-auto" src="../../static/deco logo.svg">
+              <img class="fhd:h-full mx-auto" src="../../static/deco_logo.svg">
             </div>
             <div class="col-span-2 xl:col-span-4 xl:pt-6">
               product name
