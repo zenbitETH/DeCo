@@ -50,7 +50,7 @@
                     Y/N
                   </div>
                   <div class="col-span-3 px-5">
-                    <div class="myVaultBT text-white">
+                    <div class="myVaultBT text-white" @click="showWithdrawModal = true">
                       Withdraw
                     </div>
                   </div>
@@ -115,7 +115,7 @@
                     Y/N
                   </div>
                   <div class="col-span-3 px-5">
-                    <div class="myVaultBT text-white">
+                    <div class="myVaultBT text-white" @click="showSupplyModal = true">
                       Supply
                     </div>
                   </div>
@@ -202,7 +202,7 @@
                     0%
                   </div>
                   <div class="col-span-3 px-5">
-                    <div class="myVaultBT2 text-white">
+                    <div class="myVaultBT2 text-white" @click="showRepayModal = true">
                       Repay
                     </div>
                   </div>
@@ -267,7 +267,7 @@
                     0%
                   </div>
                   <div class="col-span-3 px-5">
-                    <div class="myVaultBT2 text-white">
+                    <div class="myVaultBT2 text-white" @click="showBorrowModal = true">
                       Borrow
                     </div>
                   </div>
@@ -318,5 +318,59 @@
         </div>
       </div>
     </div>
+
+    <Modal :show="showWithdrawModal">
+      <h2 class="stepTitle">
+        Withdraw modal
+      </h2>
+      <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="showWithdrawModal = false">
+        Cancel
+      </button>
+    </Modal>
+
+    <Modal :show="showBorrowModal">
+      <h2 class="stepTitle">
+        Borrow modal
+      </h2>
+      <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="showBorrowModal = false">
+        Cancel
+      </button>
+    </Modal>
+
+    <Modal :show="showSupplyModal">
+      <h2 class="stepTitle">
+        Supply modal
+      </h2>
+      <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="showSupplyModal = false">
+        Cancel
+      </button>
+    </Modal>
+
+    <Modal :show="showRepayModal">
+      <h2 class="stepTitle">
+        Repay modal
+      </h2>
+      <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="showRepayModal = false">
+        Cancel
+      </button>
+    </Modal>
   </section>
 </template>
+<script>
+
+import Modal from '~/components/Modal.vue'
+
+export default {
+  components: {
+    Modal
+  },
+  data () {
+    return {
+      showWithdrawModal: false,
+      showBorrowModal: false,
+      showRepayModal: false,
+      showSupplyModal: false
+    }
+  }
+}
+</script>
