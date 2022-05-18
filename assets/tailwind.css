@@ -17,7 +17,7 @@ Input {
 
 
 .top-hud { 
-    @apply fhd:mx-36 qhd:mx-96 
+    @apply fhd:mx-40 qhd:mx-96 
     mx-5 fixed grid  grid-cols-3 items-center top-0 left-0 right-0
     rounded-b-lg
     font-exo
@@ -27,10 +27,10 @@ Input {
     border-none
 }
 
-.bottom-hud { 
-    @apply fhd:mx-36 qhd:mx-96 
-    mx-5 fixed grid grid-cols-4 items-center bottom-0 left-0 right-0
-    rounded-b-lg
+.bottom-l-hud { 
+    @apply
+    fixed grid grid-cols-3 xl:grid-cols-1 xl:grid-rows-3 items-center 
+    bottom-0 xl:bottom-auto xl:top-20 left-0
     font-exo
     font-medium
     text-white
@@ -39,10 +39,23 @@ Input {
     border-none
 }
 
+
+.bottom-r-hud { 
+  @apply
+  fixed grid grid-cols-3 xl:grid-cols-1 xl:grid-rows-3 items-center
+  bottom-0 xl:bottom-auto xl:top-20 right-0
+  rounded-b-lg
+  font-exo
+  font-medium
+  text-white
+  text-sm
+  md:text-xl lg:text-2xl xl:text-2xl 
+  border-none
+}
+
 .hud1 {
     @apply p-1 
     bg-glass-200 text-center
-
     rounded-bl-lg
     border-none
     hover:bg-cyber-100
@@ -91,16 +104,17 @@ Input {
   .huda {
     @apply p-1 
     bg-glass-200 text-center text-white
-    hover:bg-glass-800
+    hover:bg-glass-700
     border-none
-    rounded-tl-lg
+    xl:rounded-tr-lg
     cursor-pointer
+    xl:px-4
   }
 
   .hudb {
     @apply p-1 
     bg-glass-200 text-center text-white
-    hover:bg-glass-800
+    hover:bg-glass-700
     border-none
     cursor-pointer
   }
@@ -110,15 +124,29 @@ Input {
     bg-glass-200 text-center text-white
     border-none
     cursor-pointer
+    rounded-tr-lg
+    xl:rounded-none
+    xl:rounded-br-lg
+    hover:bg-glass-700
   }
 
   .hudd {
     @apply p-1 
     bg-glass-200 text-center
     border-none
-    rounded-tr-lg
+    rounded-none
+    rounded-tl-lg
     hover:bg-glass-800
     cursor-pointer
+  }
+
+  .hude {
+    @apply p-1 
+    bg-glass-200 text-center
+    border-none
+    hover:bg-glass-800
+    cursor-pointer
+    xl:rounded-bl-lg
   }
 
  /* How to join */
@@ -336,6 +364,13 @@ Input {
   text-3xl text-center
   fhd:text-5xl
   col-span-2
+}
+
+.bigIcon {
+  @apply
+  text-xl text-center
+  fhd:text-7xl
+  xl:pt-3
 }
 
 .numDesc {

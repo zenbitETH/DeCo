@@ -22,31 +22,47 @@
       </div>
     </nav>
     <!-- The actual page will be inserted here -->
-    <div class="fhd:mx-36 qhd:mx-96 mt-10">
+    <div class="fhd:mx-40 qhd:mx-96 mt-10">
       <Nuxt />
     </div>
-    <nav class="bottom-hud">
-      <div class="huda">
-        <nuxt-link to="new-business">
-          New deco NFT
-        </nuxt-link>
-      </div>
-      <div class="hudb">
-        <nuxt-link to="dashboard">
-          Deco Dashboard
-        </nuxt-link>
-      </div>
-      <div class="hudb">
-        <nuxt-link to="vaults">
-          DeFi Vault
-        </nuxt-link>
-      </div>
-      <div class="hudd">
-        <nuxt-link to="all-businesses">
-          Explore decos
-        </nuxt-link>
-      </div>
+    <nav class="bottom-l-hud">
+      <nuxt-link class="huda" to="new-business">
+        <div class="bigIcon">
+          🏪
+        </div>New NFT
+      </nuxt-link>
+
+      <nuxt-link class="hudb" to="dashboard">
+        <div class="bigIcon xl:Spx-5">
+          🛒
+        </div>0
+      </nuxt-link>
+      <nuxt-link class="hudc" to="">
+        <div class="bigIcon xl:px-5">
+          👩🏽‍💻
+        </div>0
+      </nuxt-link>
     </nav>
+    <nav class="bottom-r-hud">
+      <nuxt-link class="hudd " to="dashboard">
+        <div class="bigIcon">
+          🎛️
+        </div>My decos
+      </nuxt-link>
+      <nuxt-link class="hudb " to="all-businesses">
+        <div class="bigIcon">
+          🗺️
+        </div>Explore
+      </nuxt-link>
+      <nuxt-link class="hude " to="vaults">
+        <div class="bigIcon xl:px-5">
+          🏦
+        </div><div class="">
+          DeFi Vault
+        </div>
+      </nuxt-link>
+    </nav>
+
     <div v-if="showConnectWalletModal" class="fixed top-0 left-0 z-50 w-screen h-screen bg-gray-500 bg-opacity-75">
       <div class="top-1/2 left-1/2 w-96 h-64 joinBG relative -translate-x-1/2 -translate-y-1/2">
         <h2 class="stepTitle">
