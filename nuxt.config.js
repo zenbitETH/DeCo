@@ -1,5 +1,5 @@
 export default {
-
+  ssr: false,
   server: {
     host: '0.0.0.0', // default: localhost
   },
@@ -77,7 +77,8 @@ export default {
     contractBusinessNft: process.env.CONTRACT_BUSINESS_NFT || '',
     contractServiceNft: process.env.CONTRACT_SERVICE_NFT || '',
 
-    walletConnectId: process.env.WALLET_CONNECT_ID || ''
+    walletConnectId: process.env.WALLET_CONNECT_ID || '',
+    nftStorageApiKey: process.env.NFT_STORAGE_API_KEY || ''
   },
   
 }
