@@ -158,12 +158,16 @@ export default {
       const ethereum = this.coinbaseWallet.makeWeb3Provider(DEFAULT_ETH_JSONRPC_URL, DEFAULT_CHAIN_ID)
       // Use eth_requestAccounts
       ethereum.request({ method: 'eth_requestAccounts' }).then((response) => {
+        this.showConnectWalletModal = false
         const accounts = response
         this.connectedAddress = accounts[0]
         // console.log(`User's address is ${accounts[0]}`)
 
         // Optionally, have the default account set for web3.js
         // web3.eth.defaultAccount = accounts[0]
+      }).catch((e) => {
+        console.error(e)
+        this.showConnectWalletModal = false
       })
     },
     connectWithConnectWallet () {
