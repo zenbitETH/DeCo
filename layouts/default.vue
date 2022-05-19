@@ -1,18 +1,16 @@
 <template>
   <div class="relative py-10 bg-gradient-to-t from-deco-900 to-deco-800 h-screen overflow-y-auto">
     <nav class="top-hud">
-      <div v-if="!connectedAddress" class="hud1con" @click="showConnectWalletModal = true">
-        Connect to Deco
-      </div>
-      <!-- TODO show only first and last 4 characters= 0x04...abcd-->
-      <div v-else class="hud1con" @click="logOut()">
-        {{ connectedAddress }}
+      <div class="hud1con">
+        <div v-if="!connectedAddress" @click="showConnectWalletModal = true">
+          Connect to Deco
+        </div>
+        <!-- TODO show only first and last 4 characters= 0x04...abcd-->
+        <div v-else class="" @click="logOut()">
+          {{ connectedAddress }}
+        </div>
       </div>
       <div class="hud2">
-        <span> 🏢 </span>
-        <span class="mx-2">2</span>
-      </div>
-      <div class="hud3">
         <span> ⚡ </span>
         <span class="mx-2">20</span>
       </div>
@@ -31,25 +29,14 @@
           🆕
         </div>Deco NFT
       </nuxt-link>
-
-      <nuxt-link class="hudb" to="dashboard">
-        <div class="bigIcon xl:Spx-5">
-          🏪
-        </div>1
-      </nuxt-link>
-      <nuxt-link class="hudc" to="">
-        <div class="bigIcon xl:px-5">
-          💼
-        </div>1
-      </nuxt-link>
-    </nav>
-    <nav class="bottom-r-hud">
-      <nuxt-link class="hudd " to="dashboard">
+      <nuxt-link class="hudc " to="dashboard">
         <div class="bigIcon">
           🎛️
         </div>My decos
       </nuxt-link>
-      <nuxt-link class="hudb " to="all-businesses">
+    </nav>
+    <nav class="bottom-r-hud">
+      <nuxt-link class="hudd " to="all-businesses">
         <div class="bigIcon">
           🗺️
         </div>Explore
