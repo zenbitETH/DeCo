@@ -2,7 +2,7 @@
   <section class="text-white">
     <div class="MainScreen">
       <div class="vBoard">
-        <div class="vBoard0">
+        <div class="vBoard0 xl:-mt-20 xl:pt-12">
           <div class="">
             My Deco Vault
           </div>

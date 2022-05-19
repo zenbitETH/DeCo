@@ -18,18 +18,18 @@ Input {
 
 .top-hud { 
   @apply fhd:mx-40 qhd:mx-96 
-  mx-5 fixed grid  grid-cols-3 items-center top-0 left-0 right-0
+  mx-5 fixed grid  grid-cols-2 grid-rows-2 items-center top-0 left-0 right-0
   rounded-b-lg
   font-exo
   text-white
   text-sm
-  md:text-xl lg:text-2xl xl:text-2xl xl:grid-cols-4
+  md:text-xl lg:text-2xl xl:text-2xl xl:grid-cols-3
   border-none
 }
 
 .bottom-l-hud { 
   @apply
-  fixed grid grid-cols-3 xl:grid-cols-1 xl:grid-rows-3 items-center 
+  fixed grid grid-cols-2 xl:grid-cols-1 xl:grid-rows-3 items-center 
   bottom-0 xl:bottom-auto xl:top-20 left-0
   font-exo
   font-medium
@@ -42,7 +42,7 @@ Input {
 
 .bottom-r-hud { 
   @apply
-  fixed grid grid-cols-3 xl:grid-cols-1 xl:grid-rows-3 items-center
+  fixed grid grid-cols-2 xl:grid-cols-1 xl:grid-rows-3 items-center
   bottom-0 xl:bottom-auto xl:top-20 right-0
   rounded-b-lg
   font-exo
@@ -66,7 +66,7 @@ Input {
 .hud1con {
   @apply p-1 
   bg-glass-200 text-white
-  col-span-3
+  col-span-2
   xl:col-span-1 xl:rounded-bl-lg
   hover:bg-glass-700
   border-none
@@ -281,20 +281,20 @@ Input {
 }
 
 .Board1 {
-  @apply bg-gradient-to-b from-glass-700 to-glass-800 rounded-lg
+  @apply bg-gradient-to-b from-glass-700 via-glass-800 to-glass-800 rounded-lg
   text-center text-white
   grid grid-rows-2
-  2xl:col-span-4 xl:row-span-4 
+  2xl:col-span-3 xl:row-span-4 
 }
 
 .Board2 {
-  @apply bg-gradient-to-r from-glass-700 to-glass-700 text-center rounded-lg  
-  2xl:col-span-8 xl:row-span-2 text-white
+  @apply bg-gradient-to-b from-glass-700 to-glass-800 text-center rounded-t-lg  
+  2xl:col-span-9 xl:row-span-2 text-white
 }
 
 .Board3 {
-  @apply bg-gradient-to-r from-glass-800 to-glass-800 text-center rounded-lg text-white 
-  xl:col-span-8 xl:row-span-2
+  @apply bg-gradient-to-b from-glass-800 to-glass-800 text-center rounded-b-lg text-white 
+  xl:col-span-9 xl:row-span-2
 }
 
 .vBoard0 {
@@ -347,6 +347,13 @@ Input {
   cursor-pointer
 }
 
+.selDecoBG {
+  @apply 
+  bg-glass-800 rounded-lg 
+  hover:bg-glass-700
+  cursor-pointer
+}
+
 .myVaultBG {
   @apply 
   bg-gradient-to-b from-glass-700 to-glass-800 rounded-lg 
@@ -388,7 +395,7 @@ Input {
 .bigNumber {
   @apply
   text-3xl text-center
-  fhd:text-5xl
+  fhd:text-4xl
   col-span-2
 }
 
@@ -401,11 +408,11 @@ Input {
 
 .numDesc {
   @apply
+  fhd:text-lg
+  col-span-5 pt-3 pl-3
   fhd:text-2xl
   col-span-3 pt-3 pl-3
 }
-
-
 
 /* SLIDE ANIMATION CLASSES */
 /* during entering and leaving : */
