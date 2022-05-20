@@ -220,6 +220,7 @@ Input {
 
 .mintButton {
   @apply
+  text-white font-lex 
   bg-deco-100 p-3 rounded-lg 
   hover:bg-deco-400 hover:text-deco-900 hover:cursor-pointer 
 }
@@ -415,4 +416,34 @@ Input {
   @apply
   fhd:text-lg
   col-span-5 pt-3 pl-3
+  fhd:text-2xl
+  col-span-3 pt-3 pl-3
+}
+
+/* SLIDE ANIMATION CLASSES */
+/* during entering and leaving : */
+.slide-enter-active, .slide-leave-active {
+  /* max-width:725.328px; make sur our content keep it's original width */
+  /* width: 1; */
+  @apply transform-gpu transition-transform duration-500
+}
+
+/* entering start */
+.slide-enter {
+  @apply translate-x-full
+}
+
+/* entering end */
+.slide-enter-to {
+  @apply translate-x-0
+}
+
+/* leaving start */
+.slide-leave {
+  @apply translate-x-0
+}
+
+/* leaving end */
+.slide-leave-to {
+  @apply -translate-x-full
 }

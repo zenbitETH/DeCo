@@ -21,7 +21,7 @@
         id="dropzone"
         class="h-12 px-5 w-full focus:outline-none focus:bg-transparent border-b group-disabled:bg-gray-300 disabled:bg-gray-300 valid:text-deco-400 border-deco-400 hover:border-deco-100 selection:text-deco-400
         flex items-center group"
-        :class="{ 
+        :class="{
           'justify-center text-center': center,
           'justify-start': !center,
           ' font-semibold rounded-none ring-0 text-lg': gray,
@@ -52,7 +52,7 @@
           }"
           @dragstart="dragStart($event, item.value)"
         >
-          {{ item.text }} 
+          {{ item.text }}
           <span
             v-if="multiple"
             class="ml-1 hover:text-red hover:cursor-pointer text-gray-300 text-sm"
@@ -73,19 +73,19 @@
         <img
           src="/img/icons/inputs/dropdown_arrow_icon.svg"
           class="h-[16px] w-[16px] ml-6 transform transition-all group-hover:text-gray-darkest duration-500 "
-          :class="{ 
+          :class="{
             'rotate-180': hasFocus,
             '!ml-auto': !center
           }"
         >
       </button>
-      
+
       <div
-        :class="{ 
+        :class="{
           'ring-[#CFCFCF] max-h-[224px] px-5 py-3': hasFocus,
           'ring-transparent max-h-[0px] py-0 px-5': !hasFocus,
           'text-center': center,
-          'bg-gray-lightest': gray 
+          'bg-gray-lightest': gray
         }"
         class="z-30 absolute top-14 bg-deco-900 rounded w-full h-auto transition-height duration-500 overflow-y-auto"
       >
@@ -150,7 +150,7 @@
               >
                 Kiválasztottak:
               </p>
-              <div 
+              <div
                 v-for="(item, index) in selectedItems"
                 :key="'selected_'+ index + (item.key ? item.key : item.value)"
                 class="pointer-events-auto cursor-pointer  text-deco-400 border-deco-400"
@@ -166,7 +166,7 @@
               >
                 Lehetőségek {{ resultSize !== -1 ? '(' + resultSize +' db)' : '' }}:
               </p>
-              <div 
+              <div
                 v-for="(item, index) in filteredItems"
                 :key="'filtered_' + index + (item.key ? item.key : item.value)"
                 class="pointer-events-auto cursor-pointer"
@@ -192,7 +192,7 @@
 <script>
 import ReInput from '~/components/inputs/Input.vue'
 import ReCheckbox from '~/components/inputs/Checkbox.vue'
-import ReOverlayLoader from "~/components/OverlayLoader.vue";
+import ReOverlayLoader from '~/components/OverlayLoader.vue'
 export default {
   components: {
     ReInput,
@@ -204,19 +204,19 @@ export default {
       required: true,
       default: null,
       validator: value =>
-        typeof value === "string" ||
+        typeof value === 'string' ||
         value === null ||
         Array.isArray(value) ||
-        typeof value === "number"
+        typeof value === 'number'
     },
     placeholder: {
       type: String,
-      default: ""
+      default: ''
     },
     validationErrors: {
       type: Array,
       default: () => {
-        return [];
+        return []
       }
     },
     items: {
@@ -226,12 +226,12 @@ export default {
     preSelectedItems: {
       type: Array,
       default: () => {
-        return [];
+        return []
       }
     },
     icon: {
       type: String,
-      default: ""
+      default: ''
     },
     showAll: {
       type: Boolean,
@@ -271,7 +271,7 @@ export default {
     },
     gray: {
       type: Boolean,
-      default: false,
+      default: false
     },
     resultSize: {
       type: Number,
@@ -290,156 +290,112 @@ export default {
       default: false
     }
   },
-  data() {
+  data () {
     return {
       timer: null,
       hasFocus: false,
       innerLoading: false,
       filteredItems: this.items,
-      filterText: "",
+      filterText: '',
       selectedItems: [],
 
       previousFilterText: null,
       intervalTimer: null,
 
       valueChange: false
-    };
+    }
   },
   computed: {
-    showableItems() {
-      if(this.showAll){
+    showableItems () {
+      if (this.showAll) {
         return this.selectedItems
       }
-      return this.selectedItems.slice(0, this.showedItemsNumber);
+      return this.selectedItems.slice(0, this.showedItemsNumber)
     }
   },
   watch: {
-    loading() {
+    loading () {
       this.innerLoading = this.loading
     },
-    items() {
-      this.filteredItems = this.items;
+    items () {
+      this.filteredItems = this.items
       // this.$forceUpdate();
     },
-    value() {
-      if (this.multiple && Array.isArray(this.value)) {
-        if (this.value.length > 0) {
-          this.value.forEach(val => {
-            const toBePushed = this.items.find(item => {
-              return item.value === val;
-            });
-            const inSelected = this.selectedItems.find(item => {
-              return item.value === val;
-            });
-            if (toBePushed && !inSelected) {
-              this.selectedItems.push(toBePushed);
-            }
-          });
-        } else {
-          this.selectedItems = [];
+    value: {
+      handler () {
+        if (this.multiple && Array.isArray(this.value)) {
+          if (this.value.length > 0) {
+            this.value.forEach((val) => {
+              const toBePushed = this.items.find((item) => {
+                return item.value === val
+              })
+              const inSelected = this.selectedItems.find((item) => {
+                return item.value === val
+              })
+              if (toBePushed && !inSelected) {
+                this.selectedItems.push(toBePushed)
+              }
+            })
+          } else {
+            this.selectedItems = []
+          }
         }
-      }
-      if (!this.multiple && this.value !== null) {
-        const toBePushed = this.items.find(item => {
-          return item.value === this.value;
-        });
-        const inSelected = this.selectedItems.find(item => {
-          return item.value === this.value;
-        });
-        if (toBePushed && !inSelected) {
-          this.selectedItems = [];
-          this.selectedItems.push(toBePushed);
+        if (!this.multiple && this.value !== null) {
+          const toBePushed = this.items.find((item) => {
+            return item.value === this.value
+          })
+          const inSelected = this.selectedItems.find((item) => {
+            return item.value === this.value
+          })
+          if (toBePushed && !inSelected) {
+            this.selectedItems = []
+            this.selectedItems.push(toBePushed)
+          }
+        } else if (!this.multiple && this.value === null) {
+          this.selectedItems = []
         }
-      } else if (!this.multiple && this.value === null) {
-        this.selectedItems = [];
-      }
+      },
+      immediate: true
     }
   },
-  beforeMount() {
+  beforeMount () {
     this.innerLoading = this.loading
     if (process.browser) {
-      window.addEventListener("click", this.close);
-    }
-    if (this.multiple && Array.isArray(this.value)) {
-      if (this.value.length > 0) {
-        this.value.forEach(val => {
-          const toBePushed = this.items.find(item => {
-            return item.value === val;
-          });
-          const inSelected = this.selectedItems.find(item => {
-            return item.value === val;
-          });
-          if (toBePushed && !inSelected) {
-            this.selectedItems.push(toBePushed);
-          } else if(!toBePushed){
-            this.selectedItems.push({
-              value: val,
-              text: val,
-              key: val
-            })
-          }
-        });
-      } else {
-        this.selectedItems = [];
-      }
-    }
-    if (!this.multiple && this.value !== null) {
-      const toBePushed = this.items.find(item => {
-        return item.value === this.value;
-      });
-      const inSelected = this.preSelectedItems.find(item => {
-        return item.value === toBePushed;
-      });
-      if (toBePushed && !inSelected) {
-        this.selectedItems.push(toBePushed);
-      }
-      if (toBePushed && !inSelected) {
-        this.selectedItems = [];
-        this.selectedItems.push(toBePushed);
-      } else if(!toBePushed){
-        this.selectedItems = [];
-        this.selectedItems.push({
-          value: this.value,
-          text: this.value,
-          key: this.value
-        })
-      }
-    } else if (!this.multiple && this.value === null) {
-      this.selectedItems = [];
+      window.addEventListener('click', this.close)
     }
   },
-  beforeDestroy() {
+  beforeDestroy () {
     if (process.browser) {
-      window.removeEventListener("click", this.close);
+      window.removeEventListener('click', this.close)
     }
   },
   methods: {
-    dragStart(event, value) {
-      event.dataTransfer.setData("value", value);
+    dragStart (event, value) {
+      event.dataTransfer.setData('value', value)
     },
-    onDrop(event) {
-      const id = event.dataTransfer.getData("value");
+    onDrop (event) {
+      const id = event.dataTransfer.getData('value')
 
-      const atElement = document.elementFromPoint(event.clientX, event.clientY);
-      const atId = atElement.id;
+      const atElement = document.elementFromPoint(event.clientX, event.clientY)
+      const atId = atElement.id
 
-      const indexInsertBefore = this.selectedItems.findIndex(item => {
+      const indexInsertBefore = this.selectedItems.findIndex((item) => {
         // eslint-disable-next-line
         return item.value == atId;
-      });
-      const indexToSplice = this.selectedItems.findIndex(item => {
+      })
+      const indexToSplice = this.selectedItems.findIndex((item) => {
         // eslint-disable-next-line
         return item.value == id;
-      });
+      })
 
       if (indexInsertBefore !== -1 && indexToSplice !== -1) {
-        const itemToInsert = this.selectedItems.splice(indexToSplice, 1);
-        this.selectedItems.splice(indexInsertBefore, 0, itemToInsert[0]);
+        const itemToInsert = this.selectedItems.splice(indexToSplice, 1)
+        this.selectedItems.splice(indexInsertBefore, 0, itemToInsert[0])
       }
 
-      event.dataTransfer.clearData();
+      event.dataTransfer.clearData()
 
-      this.emitInput();
+      this.emitInput()
     },
     // filter() {
     //   if (!this.ajax) {
@@ -456,63 +412,62 @@ export default {
     //     setTimeout(this.filterTimout, 700)
     //   }
     // },
-    filterTimeout(){
+    filterTimeout () {
       if (!this.ajax) {
         if (this.filterText.length > 0) {
           this.filteredItems = this.items.filter(
             item =>
               item.text.toLowerCase().indexOf(this.filterText.toLowerCase()) ===
               0
-          );
+          )
         } else {
-          this.filteredItems = this.items;
+          this.filteredItems = this.items
         }
       } else {
-
         if (this.timer) {
-          clearTimeout(this.timer);
-          this.timer = null;
+          clearTimeout(this.timer)
+          this.timer = null
         }
         this.timer = setTimeout(() => {
-          this.$emit("filter", this.filterText);
-        }, 800);
+          this.$emit('filter', this.filterText)
+        }, 800)
       }
     },
-    show() {
-      this.hasFocus = !this.hasFocus;
-      if(this.hasFocus){
+    show () {
+      this.hasFocus = !this.hasFocus
+      if (this.hasFocus) {
         this.filterTimeout()
       }
     },
-    isSelected(value) {
+    isSelected (value) {
       if (
-        this.selectedItems.find(item => {
-          return item.value === value;
+        this.selectedItems.find((item) => {
+          return item.value === value
         })
       ) {
-        return true;
+        return true
       }
-      return false;
+      return false
     },
-    selectItem(value) {
-      let input = null;
+    selectItem (value) {
+      let input = null
       if (this.multiple) {
-        const removeIndex = this.selectedItems.findIndex(item => {
-          return item.value === value;
-        });
+        const removeIndex = this.selectedItems.findIndex((item) => {
+          return item.value === value
+        })
         if (removeIndex !== -1) {
-          this.selectedItems.splice(removeIndex, 1);
+          this.selectedItems.splice(removeIndex, 1)
         } else {
           this.selectedItems.push(
-            this.items.find(item => {
-              return item.value === value;
+            this.items.find((item) => {
+              return item.value === value
             })
-          );
+          )
         }
 
-        input = this.selectedItems.map(item => {
-          return item.value;
-        });
+        input = this.selectedItems.map((item) => {
+          return item.value
+        })
       }
       //  else if (
       //   this.selectedItems[0] &&
@@ -520,36 +475,36 @@ export default {
       // ) {
       //   this.selectedItems = [];
       // }
-       else {
+      else {
         this.hasFocus = false
-        this.selectedItems = [];
+        this.selectedItems = []
         this.selectedItems.push(
-          this.items.find(item => {
-            return item.value === value;
+          this.items.find((item) => {
+            return item.value === value
           })
-        );
-        input = this.selectedItems[0] ? this.selectedItems[0].value : null;
+        )
+        input = this.selectedItems[0] ? this.selectedItems[0].value : null
       }
       // this.hasFocus = false
       // this.$forceUpdate();
-      this.$emit("input", input);
+      this.$emit('input', input)
     },
-    emitInput() {
-      let input = null;
+    emitInput () {
+      let input = null
       if (this.multiple) {
-        input = this.selectedItems.map(item => {
-          return item.value;
-        });
+        input = this.selectedItems.map((item) => {
+          return item.value
+        })
       } else {
-        input = this.selectedItems[0] ? this.selectedItems[0].value : null;
+        input = this.selectedItems[0] ? this.selectedItems[0].value : null
       }
-      this.$emit("input", input);
+      this.$emit('input', input)
     },
-    close(e) {
+    close (e) {
       if (!this.$el.contains(e.target)) {
-        this.hasFocus = false;
+        this.hasFocus = false
       }
     }
   }
-};
+}
 </script>

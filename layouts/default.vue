@@ -50,32 +50,38 @@
       </nuxt-link>
     </nav>
 
-    <div v-if="showConnectWalletModal" class="fixed top-0 left-0 z-50 w-screen h-screen bg-gray-500 bg-opacity-75">
-      <div class="top-1/2 left-1/2 w-96 h-64 joinBG relative -translate-x-1/2 -translate-y-1/2">
-        <h2 class="stepTitle">
-          How would you like to connect?
-        </h2>
-        <div class="flex flex-row gap-3">
-          <img src="/img/ic_wallet.png" class="p-5 w-32 h-32 mx-auto" @click="connectWithMoralis()">
-          <img src="/img/ic_wallet-connect.png" class="p-5 w-32 h-32 mx-auto" @click="connectWithConnectWallet()">
-        </div>
-        <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="showConnectWalletModal = false">
-          Cancel
-        </button>
+    <Modal :show="showConnectWalletModal">
+      <h2 class="stepTitle">
+        How would you like to connect?
+      </h2>
+      <div class="flex flex-row gap-3">
+        <img src="/img/ic_wallet.png" class="p-5 w-32 h-32 mx-auto" @click="connectWithMoralis()">
+        <img src="/img/ic_wallet-connect.png" class="p-5 w-32 h-32 mx-auto" @click="connectWithConnectWallet()">
+        <img src="/img/ic_wallet.png" class="p-5 w-32 h-32 mx-auto" @click="connectWithCoinbaseWallet()">
       </div>
-    </div>
+      <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="showConnectWalletModal = false">
+        Cancel
+      </button>
+    </Modal>
   </div>
 </template>
 <script>
+import CoinbaseWalletSDK from '@coinbase/wallet-sdk'
 import Moralis from 'moralis'
 import WalletConnect from '@walletconnect/client'
 import QRCodeModal from '@walletconnect/qrcode-modal'
 
+import Modal from '~/components/Modal.vue'
+
 export default {
+  components: {
+    Modal
+  },
   data () {
     return {
       showConnectWalletModal: false,
 
+      coinbaseWallet: null,
       walletConnector: null,
       user: null,
       connectedAddress: null
@@ -84,11 +90,20 @@ export default {
   beforeMount () {
     this.initMoralisUser()
     this.initWalletConnect()
+    this.initCoinbaseWallet()
     // console.log(this.walletConnector)
 
     // this.initWalletConnect()
   },
   methods: {
+    initCoinbaseWallet () {
+      // Initialize Coinbase Wallet SDK
+      this.coinbaseWallet = new CoinbaseWalletSDK({
+        appName: 'deco',
+        appLogoUrl: '/deco-logo.png',
+        darkMode: false
+      })
+    },
     initWalletConnect () {
       this.walletConnector = new WalletConnect({
         bridge: 'https://bridge.walletconnect.org', // Required
@@ -136,6 +151,21 @@ export default {
       }
       this.showConnectWalletModal = false
     },
+    connectWithCoinbaseWallet () {
+      const DEFAULT_ETH_JSONRPC_URL = 'https://polygon-rpc.com'
+      const DEFAULT_CHAIN_ID = 137
+      // Initialize a Web3 Provider object
+      const ethereum = this.coinbaseWallet.makeWeb3Provider(DEFAULT_ETH_JSONRPC_URL, DEFAULT_CHAIN_ID)
+      // Use eth_requestAccounts
+      ethereum.request({ method: 'eth_requestAccounts' }).then((response) => {
+        const accounts = response
+        this.connectedAddress = accounts[0]
+        // console.log(`User's address is ${accounts[0]}`)
+
+        // Optionally, have the default account set for web3.js
+        // web3.eth.defaultAccount = accounts[0]
+      })
+    },
     connectWithConnectWallet () {
       if (!this.walletConnector) {
         this.walletConnector = new WalletConnect({
@@ -161,6 +191,8 @@ export default {
         this.user = null
       } else if (this.walletConnector) {
         this.walletConnector.killSession()
+      } else if (this.coinbaseWallet) {
+        coinbaseWallet.disconnect()
       }
       this.connectedAddress = null
     }
