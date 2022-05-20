@@ -76,7 +76,6 @@
             <div class="my-2 md:mx-30 xl:mx-60 mx-10">
               Sold
             </div>
-            <<<<<<< HEAD
             <div class="grid md:grid-cols-4 grid-cols-2 px-10 gap-5">
               <div class="PlaceBG">
                 <div class="">
@@ -110,20 +109,6 @@
                   </div>
                   <div>5 usdc</div>
                 </div>
-              </div>
-              =======
-              <div class="col-span-2">
-                <img class="fhd:h-full mx-auto" src="../../static/deco_logo.svg">
-              </div>
-              <div class="col-span-2 xl:col-span-4 xl:pt-6">
-                product name
-              </div>
-              <div class="xl:col-span-2 xl:pt-6">
-                5 pcs
-              </div>
-              <div class="xl:col-span-2 xl:pt-6">
-                10 usd
-                >>>>>>> 9c9b1ff282919526b45cc5c4427b276c4c398bf6
               </div>
             </div>
           </div>
