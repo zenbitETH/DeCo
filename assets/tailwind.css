@@ -288,6 +288,11 @@ Input {
   xl:col-span-9 xl:row-span-2
 }
 
+.eBoard1 {
+  @apply bg-gradient-to-b from-glass-700 to-glass-800 text-center rounded-lg  
+  xl:col-span-12 xl:row-span-4 text-white pb-10
+}
+
 .vBoard0 {
   @apply bg-gradient-to-b from-glass-400 to-glass-200 rounded-b-lg
   text-center text-white
