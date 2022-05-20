@@ -51,10 +51,10 @@
           <div class="my-2 ">
             My deco business
           </div>
-          <div class="grid fhd:grid-cols-6 grid-cols-2 px-10 gap-5">
+          <div class="grid md:grid-cols-4 lg:grid-cols-6 grid-cols-2 px-10 gap-5">
             <div class="col-span-2 row-span-2 text-lg">
               Type of place / name
-              <img src="https://punkcities.mypinata.cloud/ipfs/bafybeidufeb4xfrzwgzcx3iaabbyu7ck7p2tij3c2w2azixolxmlyouqii/7-Hospital.png" alt="">
+              <img class="" src="https://punkcities.mypinata.cloud/ipfs/bafybeidufeb4xfrzwgzcx3iaabbyu7ck7p2tij3c2w2azixolxmlyouqii/7-Hospital.png" alt="">
             </div>
             <div class="selDecoBG bg-glass-700">
               <div class="">
@@ -68,7 +68,7 @@
             </div>
             <div class="DecoBG bg-glass-700">
               <div class="">
-                <img class="fhd:h-32 qhd:h-43 h-32 mx-auto" src="../../static/deco logo.svg">
+                <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../static/deco logo.svg">
               </div>
               <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
                 <div>0 👍</div>
@@ -83,10 +83,10 @@
           <div class="my-2 ">
             Products and services on this business
           </div>
-          <div class="grid fhd:grid-cols-6 grid-cols-2 px-10 gap-5">
+          <div class="grid md:grid-cols-4 lg:grid-cols-6 grid-cols-2 px-10 gap-5">
             <div class="PlaceBG">
               <div class="">
-                <img class="fhd:h-32 qhd:h-43 h-32 mx-auto" src="../../static/product.png">
+                <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../static/product.png">
               </div>
               <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
                 <div class="col-span-2">
