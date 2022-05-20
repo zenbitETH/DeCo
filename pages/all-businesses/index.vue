@@ -7,15 +7,6 @@
             All Deco business
           </div>
           <div class="grid md:grid-cols-4 xl:grid-cols-8 grid-cols-2 px-10 gap-5">
-            <!-- <div class="DecoBG bg-glass-700">
-              <div class="">
-                <img class="fhd:h-32 qhd:h-43 h-32 mx-auto" src="punkcities.png">
-              </div>
-              <div class="bg-night-100 rounded-b-lg grid grid-cols-2 text-center text-base py-2">
-                <div>1 👍</div>
-                <div>3 🛍️</div>
-              </div>
-            </div> -->
             <div v-for="business in businesses" :key="business.tokenId">
               <nuxt-link :to="'business-detail-customer/' + business.tokenId">
                 <div class="DecoBG bg-glass-700">
@@ -30,6 +21,15 @@
                 </div>
               </nuxt-link>
             </div>
+            <!-- <nuxt-link to="business-detail-customer" class="DecoBG bg-glass-700">
+              <div class="">
+                <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../static/deco logo.svg">
+              </div>
+              <div class="bg-deco-900 rounded-b-lg grid grid-cols-2 text-center text-base py-2">
+                <div>0 👍</div>
+                <div>0 🛍️</div>
+              </div>
+            </nuxt-link> -->
           </div>
         </div>
       </div>

@@ -6,17 +6,17 @@
           <div class="fhd:mt-10">
             🏪 My Deco Business NFT
             <div class="text-lg text-left m-5 grid grid-cols-7 fhd:gap-3 mt-12">
-              <div class="bigNumber">
+              <div class="bigNumber col-span-3">
                 50 <span class="text-base">usdc</span>
               </div><div class="numDesc">
                 Total income
               </div>
-              <div class="bigNumber">
+              <div class="bigNumber col-span-3">
                 5 <span class="text-base">usdc</span>
               </div><div class="numDesc">
                 Inocome on vault
               </div>
-              <div class="bigNumber">
+              <div class="bigNumber col-span-3">
                 3%
               </div><div class="numDesc">
                 APY on vault
@@ -62,19 +62,32 @@
               <div class="">
                 <img class="fhd:h-32 qhd:h-43 h-32 mx-auto" src="/punkcities.png">
               </div>
-              <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
-                <div>1 👍</div>
-                <div>3 🛍️</div>
-                <div>edit</div>
+              <div class="bg-deco-900 rounded-b-lg grid grid-cols-3 text-center text-base">
+                <div class="py-2">
+                  1 👍
+                </div>
+                <div class="py-2">
+                  3 🛍️
+                </div>
+                <nuxt-link class="hover:bg-glass-700 rounded-br-lg py-2" to="../business-detail">
+                  ⚙️
+                </nuxt-link>
               </div>
             </div> -->
             <!-- <div class="DecoBG bg-glass-700">
               <div class="">
                 <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="/deco logo.svg">
               </div>
-              <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
-                <div>0 👍</div>
-                <div>0 🛍️</div>
+              <div class="bg-deco-900 rounded-b-lg grid grid-cols-3 text-center text-base">
+                <div class="py-2">
+                  1 👍
+                </div>
+                <div class="py-2">
+                  3 🛍️
+                </div>
+                <nuxt-link class="hover:bg-glass-700 rounded-br-lg py-2" to="../business-detail">
+                  ⚙️
+                </nuxt-link>
               </div>
             </div> -->
           </div>
