@@ -6,17 +6,17 @@
           <div class="fhd:mt-10">
             🏪 My Deco Business NFT
             <div class="text-lg text-left m-5 grid grid-cols-7 fhd:gap-3 mt-12">
-              <div class="bigNumber">
+              <div class="bigNumber col-span-3">
                 50 <span class="text-base">usdc</span>
               </div><div class="numDesc">
                 Total income
               </div>
-              <div class="bigNumber">
+              <div class="bigNumber col-span-3">
                 5 <span class="text-base">usdc</span>
               </div><div class="numDesc">
                 Inocome on vault
               </div>
-              <div class="bigNumber">
+              <div class="bigNumber col-span-3">
                 3%
               </div><div class="numDesc">
                 APY on vault
