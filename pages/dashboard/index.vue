@@ -60,20 +60,32 @@
               <div class="">
                 <img class="fhd:h-32 qhd:h-43 h-32 mx-auto" src="../../static/punkcities.png">
               </div>
-              <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
-                <div>1 👍</div>
-                <div>3 🛍️</div>
-                <div>edit</div>
+              <div class="bg-deco-900 rounded-b-lg grid grid-cols-3 text-center text-base">
+                <div class="py-2">
+                  1 👍
+                </div>
+                <div class="py-2">
+                  3 🛍️
+                </div>
+                <nuxt-link class="hover:bg-glass-700 rounded-br-lg py-2" to="../business-detail">
+                  ⚙️
+                </nuxt-link>
               </div>
             </div>
             <div class="DecoBG bg-glass-700">
               <div class="">
                 <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../static/deco logo.svg">
               </div>
-              <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
-                <div>0 👍</div>
-                <div>0 🛍️</div>
-                <div>edit</div>
+              <div class="bg-deco-900 rounded-b-lg grid grid-cols-3 text-center text-base">
+                <div class="py-2">
+                  1 👍
+                </div>
+                <div class="py-2">
+                  3 🛍️
+                </div>
+                <nuxt-link class="hover:bg-glass-700 rounded-br-lg py-2" to="../business-detail">
+                  ⚙️
+                </nuxt-link>
               </div>
             </div>
           </div>

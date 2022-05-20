@@ -356,7 +356,7 @@ Input {
 .selDecoBG {
   @apply 
   bg-glass-800 rounded-lg 
-  hover:bg-glass-700
+  hover:bg-glass-800
   cursor-pointer
 }
 
