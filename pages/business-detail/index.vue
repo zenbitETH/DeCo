@@ -1,73 +1,115 @@
 <template>
   <section class="text-white">
     <div class="MainScreen">
-      <div class="MainBoard">
+      <div class="dBoard">
         <div class="assetBoard">
           <div class="grid grid-cols-6 text-left">
             <div class="text-center col-span-2">
-              <img class="fhd:h-full mx-auto" src="https://punkcities.mypinata.cloud/ipfs/bafybeidufeb4xfrzwgzcx3iaabbyu7ck7p2tij3c2w2azixolxmlyouqii/7-Hospital.png">
+              <img class="fhd:h-full mx-auto" src="../../static/decoNFT.png">
             </div>
             <div class="col-span-4 pt-6 xl:pt-20">
               <div class="text-xl">
                 Type of place
               </div>
-              <div class="xl:text-5xl text-3xl">
-                Name
+              <div class="xl:text-5xl text-2xl">
+                Business Name
               </div>
             </div>
           </div>
-          <div class="row-span-4">
+
+          <div class="col-span-6 row-span-4">
             <img class="fhd:h-full mx-auto" src="../../static/deco logo.svg">
           </div>
-          <div class="grid grid-cols-2 mt-10 gap-5">
-            <div class="assetBG">
-              City (google address?)
-            </div>
-            <div class="assetBG">
-              Owner: 0x12...abcd
-            </div>
-          </div>
-        </div>
 
-        <div class="dataBoard">
-          <div class="row-span-3 col-span-6">
-            Description
-          </div>
-          <div class="row-span-2 col-span-6">
-            Tags
-          </div>
-          <div class="text-center grid grid-cols-3 col-span-6 gap-5">
-            <div class="assetBG text-4xl">
-              5👌🏽
+          <div class="dataBoard">
+            <div class="col-span-4 row-span-2 p-3">
+              Description
             </div>
-            <div class="assetBG text-4xl">
-              3 🤑
+            <div class="grid fhd:col-span-2 col-span-4 gap-3 row-span-2">
+              <div class="p-3">
+                Tags
+              </div>
+              <div class="text-center grid grid-cols-3 col-span-4 gap-3 fhd:pt-5">
+                <div class=" text-4xl">
+                  3👍
+                </div>
+                <div class=" text-4xl">
+                  3 🤑
+                </div>
+                <div class=" text-xl">
+                  15 usd
+                </div>
+              </div>
             </div>
-            <div class="assetBG text-4xl">
-              100 usd 💰
+            <div class="col-span-4 row-span-2 p-3">
+              City (google address?)
             </div>
           </div>
         </div>
 
         <div class="inventory">
-          <div class="my-2 xl:mx-60 mx-10 myVaultBT">
-            + Add a product
+          <div>
+            <div class="my-2 md:mx-30 xl:mx-60 mx-10">
+              On sale
+            </div>
+
+            <div class="grid md:grid-cols-4 grid-cols-2 px-10 gap-5">
+              <div class="PlaceBG">
+                <div class="bigIcon">
+                  +
+                </div>Add a product or service
+              </div>
+              <div class="PlaceBG">
+                <div class="">
+                  <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../static/product.png">
+                </div>
+                <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
+                  <div class="col-span-2">
+                    Black T-shirt
+                  </div>
+                  <div>5 usdc</div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="grid fhd:grid-cols-12 grid-cols-2 px-10 gap-5">
-            <div class="myVaultBT col-span-2 xl:pt-6">
-              edit
+          <div class="mb-5">
+            <div class="my-2 md:mx-30 xl:mx-60 mx-10">
+              Sold
             </div>
-            <div class="col-span-2">
-              <img class="fhd:h-full mx-auto" src="../../static/deco logo.svg">
-            </div>
-            <div class="col-span-2 xl:col-span-4 xl:pt-6">
-              product name
-            </div>
-            <div class="xl:col-span-2 xl:pt-6">
-              5 pcs
-            </div>
-            <div class="xl:col-span-2 xl:pt-6">
-              10 usd
+            <div class="grid md:grid-cols-4 grid-cols-2 px-10 gap-5">
+              <div class="PlaceBG">
+                <div class="">
+                  <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../static/product.png">
+                </div>
+                <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
+                  <div class="col-span-2">
+                    Black T-shirt
+                  </div>
+                  <div>5 usdc</div>
+                </div>
+              </div>
+              <div class="PlaceBG">
+                <div class="">
+                  <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../static/product.png">
+                </div>
+                <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
+                  <div class="col-span-2">
+                    Black T-shirt
+                  </div>
+                  <div>5 usdc</div>
+                </div>
+              </div>
+              <div class="PlaceBG">
+                <div class="">
+                  <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../static/product.png">
+                </div>
+                <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
+                  <div class="col-span-2">
+                    Black T-shirt
+                  </div>
+                  <div>5 usdc</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

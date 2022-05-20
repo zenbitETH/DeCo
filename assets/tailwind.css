@@ -263,6 +263,14 @@ Input {
   text-2xl
 }
 
+.dBoard {
+  @apply grid grid-cols-1 xl:grid-rows-6  xl:grid-cols-12 
+  gap-5 p-5 xl:p-0
+  w-full xl:h-[54rem] qhd:h-[75rem] flex 
+  font-exo
+  text-2xl
+}
+
 .vBoard {
   @apply grid grid-cols-1 grid-rows-6
   fhd:grid-cols-12 gap-5 p-5 xl:p-0
@@ -316,18 +324,19 @@ Input {
   @apply rounded-lg
   text-center text-white
   grid xl:grid-rows-6 gap-5
-  col-span-6 row-span-4 
+  col-span-6 row-span-6 
 }
 
 .dataBoard {
-  @apply text-left rounded-lg
-  grid grid-rows-6 grid-cols-6
-  col-span-6 row-span-2 text-white
+  @apply text-left rounded-xl
+  bg-gradient-to-t from-deco-900 to-glass-700
+  grid grid-rows-2 fhd:grid-cols-6 grid-cols-4
+  col-span-6 text-white row-span-2
 }
 
 .inventory {
-  @apply bg-gradient-to-r from-glass-800 to-glass-800 text-center rounded-lg text-white 
-  col-span-6 row-span-2
+  @apply bg-gradient-to-b from-glass-700 to-glass-800 text-center rounded-lg text-white 
+  col-span-6 row-span-6 grid grid-rows-2 
 }
 .PlaceBG {
   @apply 
