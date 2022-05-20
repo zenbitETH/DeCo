@@ -29,15 +29,12 @@
               <div class="p-3">
                 Tags
               </div>
-              <div class="text-center grid grid-cols-3 col-span-4 gap-3 fhd:pt-5">
+              <div class="text-center grid grid-cols-2 col-span-4 gap-3 fhd:pt-5 mr-5">
                 <div class=" text-4xl">
                   3👍
                 </div>
-                <div class=" text-4xl">
-                  3 🤑
-                </div>
-                <div class=" text-xl">
-                  15 usd
+                <div class="myVaultBT">
+                  👍 Verify
                 </div>
               </div>
             </div>
@@ -55,12 +52,7 @@
 
             <div class="grid md:grid-cols-4 grid-cols-2 px-10 gap-5">
               <div class="PlaceBG">
-                <div class="bigIcon">
-                  +
-                </div>Add a product or service
-              </div>
-              <div class="PlaceBG">
-                <div class="">
+                <div class="text-center">
                   <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../static/product.png">
                 </div>
                 <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
@@ -76,7 +68,6 @@
             <div class="my-2 md:mx-30 xl:mx-60 mx-10">
               Sold
             </div>
-            <<<<<<< HEAD
             <div class="grid md:grid-cols-4 grid-cols-2 px-10 gap-5">
               <div class="PlaceBG">
                 <div class="">
@@ -110,20 +101,6 @@
                   </div>
                   <div>5 usdc</div>
                 </div>
-              </div>
-              =======
-              <div class="col-span-2">
-                <img class="fhd:h-full mx-auto" src="../../static/deco_logo.svg">
-              </div>
-              <div class="col-span-2 xl:col-span-4 xl:pt-6">
-                product name
-              </div>
-              <div class="xl:col-span-2 xl:pt-6">
-                5 pcs
-              </div>
-              <div class="xl:col-span-2 xl:pt-6">
-                10 usd
-                >>>>>>> 9c9b1ff282919526b45cc5c4427b276c4c398bf6
               </div>
             </div>
           </div>
