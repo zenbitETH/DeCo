@@ -26,7 +26,7 @@
             <div class="placeNFT">
               <div class="NFTlogo">
                 <img
-                  src="../../static/punkcities.png"
+                  src="/punkcities.png"
                   class=""
                 >
               </div>
@@ -43,7 +43,7 @@
           <div class="decoNFT" @click.prevent="currentPage = 2">
             <div class="NFTlogo px-2">
               <img
-                src="../../static/deco_logo.svg"
+                src="/deco_logo.svg"
                 class=""
               >
             </div>
@@ -65,7 +65,7 @@
           <div class="placeNFT" @click.prevent="currentPage = 3; form.kind='businesses'">
             <div class="NFTlogo">
               <img
-                src="../../static/decoNFT.png"
+                src="/decoNFT.png"
                 class=""
               >
             </div>
@@ -81,7 +81,7 @@
           <div class="decoNFT" @click.prevent="currentPage = 3; form.kind='service'">
             <div class="NFTlogo px-2">
               <img
-                src="../../static/serviceNFT.png"
+                src="/serviceNFT.png"
                 class=""
               >
             </div>
@@ -193,7 +193,7 @@ import Upload from '~/components/inputs/Upload.vue'
 import Map from '~/components/inputs/Map.vue'
 
 import createBusiness from '~/contracts/business-nft/createBusiness'
-import createService from '~/contracts/service-nft/createService'
+import makeService from '~/contracts/service-nft/makeService'
 // const IPFS = require('ipfs')
 
 export default {
@@ -203,21 +203,6 @@ export default {
   data () {
     return {
       // TODO replace with business types
-      businessTypes: [
-        { key: 'clothes', value: 'products-1', text: 'Clothes' },
-        { key: 'home-products', value: 'products-2', text: 'Home Products' },
-        { key: 'food', value: 'products-3', text: 'Food / Restaurant' },
-        { key: 'punk-products', value: 'products-4', text: 'Home Products' },
-        { key: 'general-store', value: 'products-5', text: 'General store' }
-      ],
-      servicesTypes: [
-        { key: 'sports', value: 'services-1', text: 'Sports clasess' },
-        { key: 'art-fun', value: 'services-2', text: 'Art/fun clasess' },
-        { key: 'beauty', value: 'services-3', text: 'Beauty/Barber shop' },
-        { key: 'professional', value: 'services-4', text: 'Profesional services' },
-        { key: 'logistic', value: 'services-5', text: 'Logistic service' }
-      ],
-
       currentPage: 1,
 
       file: null, // file upload
@@ -241,6 +226,14 @@ export default {
         location: '', // location of the business -> googleAddress //string
         city: '' // city of the business -> city //string
       }
+    }
+  },
+  computed: {
+    businessTypes () {
+      return this.$store.state.businessTypes
+    },
+    serviceTypes () {
+      return this.$store.state.serviceTypes
     }
   },
   methods: {
@@ -283,7 +276,7 @@ export default {
           this.$router.push('/')
         })
       } else {
-        createService(this.$config.contractServiceNft, this.form).then(() => {
+        makeService(this.$config.contractServiceNft, this.form).then(() => {
           this.$router.push('/')
         })
       }

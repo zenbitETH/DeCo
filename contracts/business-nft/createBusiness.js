@@ -1,58 +1,12 @@
 
 import Moralis from 'moralis'
-
-const ABI = [
-  {
-    inputs: [
-      {
-        internalType: 'string',
-        name: 'cityName',
-        type: 'string'
-      },
-      {
-        internalType: 'string',
-        name: '_businessType',
-        type: 'string'
-      },
-      {
-        internalType: 'string',
-        name: 'kind',
-        type: 'string'
-      },
-      {
-        internalType: 'string',
-        name: 'description',
-        type: 'string'
-      },
-      {
-        internalType: 'string',
-        name: 'name',
-        type: 'string'
-      },
-      {
-        internalType: 'string',
-        name: '_googleAddress',
-        type: 'string'
-      },
-      {
-        internalType: 'string[]',
-        name: '_services',
-        type: 'string[]'
-      }
-    ],
-    name: 'createBusiness',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function'
-  }
-]
+import abi from './abi.json'
 
 export default async function (address, form) {
-  console.log(Moralis.User.current())
   const options = {
     contractAddress: address,
     functionName: 'createBusiness',
-    abi: ABI,
+    abi,
     params: {
       cityName: form.city,
       _businessType: form.type,
