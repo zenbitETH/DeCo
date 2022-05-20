@@ -17,7 +17,7 @@ Input {
 
 
 .top-hud { 
-  @apply fhd:mx-40 qhd:mx-96 
+  @apply xl:mx-40 qhd:mx-96 
   mx-5 fixed grid  grid-cols-2 grid-rows-2 items-center top-0 left-0 right-0
   rounded-b-lg
   font-exo
@@ -29,8 +29,8 @@ Input {
 
 .bottom-l-hud { 
   @apply
-  fixed grid grid-cols-2 xl:grid-cols-1 xl:grid-rows-3 items-center 
-  bottom-0 xl:bottom-auto xl:top-20 left-0
+  fixed grid grid-cols-2 fhd:grid-cols-1 fhd:grid-rows-3 items-center 
+  bottom-0 fhd:bottom-auto fhd:top-20 left-0
   font-exo
   font-medium
   text-white
@@ -42,8 +42,8 @@ Input {
 
 .bottom-r-hud { 
   @apply
-  fixed grid grid-cols-2 xl:grid-cols-1 xl:grid-rows-3 items-center
-  bottom-0 xl:bottom-auto xl:top-20 right-0
+  fixed grid grid-cols-2 fhd:grid-cols-1 fhd:grid-rows-3 items-center
+  bottom-0 fhd:bottom-auto fhd:top-20 right-0
   rounded-b-lg
   font-exo
   font-medium
@@ -106,7 +106,7 @@ Input {
   bg-glass-200 text-center text-white
   hover:bg-glass-700
   border-none
-  xl:rounded-tr-lg
+  fhd:rounded-tr-lg
   cursor-pointer
   xl:px-4
 }
@@ -114,23 +114,15 @@ Input {
 .hudb {
   @apply p-1 
   bg-glass-200 text-center text-white
-  hover:bg-glass-700
-  border-none
-  cursor-pointer
-}
-
-.hudc {
-  @apply p-1 
-  bg-glass-200 text-center text-white
   border-none
   cursor-pointer
   rounded-tr-lg
-  xl:rounded-none
-  xl:rounded-br-lg
+  fhd:rounded-none
+  fhd:rounded-br-lg
   hover:bg-glass-700
 }
 
-.hudd {
+.hudc {
   @apply p-1 
   bg-glass-200 text-center
   border-none
@@ -140,7 +132,7 @@ Input {
   cursor-pointer
 }
 
-.hude {
+.hudd {
   @apply p-1 
   bg-glass-200 text-center
   border-none
@@ -264,9 +256,9 @@ Input {
 }
 
 .MainBoard {
-  @apply grid grid-cols-1 xl:grid-rows-4
-  fhd:grid-cols-12 gap-5 p-5 xl:p-0
-  w-full fhd:h-[54rem] qhd:h-[75rem] flex 
+  @apply grid grid-cols-1 xl:grid-rows-4 xl:grid-cols-12 
+  gap-5 p-5 xl:p-0
+  w-full xl:h-[54rem] qhd:h-[75rem] flex 
   font-exo
   text-2xl
 }
@@ -283,12 +275,12 @@ Input {
   @apply bg-gradient-to-b from-glass-700 via-glass-800 to-glass-800 rounded-lg
   text-center text-white
   grid grid-rows-2
-  2xl:col-span-3 xl:row-span-4 
+  xl:col-span-3 xl:row-span-4 
 }
 
 .Board2 {
   @apply bg-gradient-to-b from-glass-700 to-glass-800 text-center rounded-t-lg  
-  2xl:col-span-9 xl:row-span-2 text-white
+  xl:col-span-9 xl:row-span-2 text-white
 }
 
 .Board3 {

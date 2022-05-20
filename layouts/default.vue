@@ -20,28 +20,28 @@
       </div>
     </nav>
     <!-- The actual page will be inserted here -->
-    <div class="fhd:mx-40 qhd:mx-96 mt-10">
+    <div class="2xl:mx-40 qhd:mx-96 mt-10">
       <Nuxt />
     </div>
     <nav class="bottom-l-hud">
       <nuxt-link class="huda" to="new-business">
         <div class="bigIcon">
-          🆕
+          🏪
         </div>Deco NFT
       </nuxt-link>
-      <nuxt-link class="hudc " to="dashboard">
+      <nuxt-link class="hudb " to="dashboard">
         <div class="bigIcon">
           🎛️
         </div>My decos
       </nuxt-link>
     </nav>
     <nav class="bottom-r-hud">
-      <nuxt-link class="hudd " to="all-businesses">
+      <nuxt-link class="hudc " to="all-businesses">
         <div class="bigIcon">
           🗺️
         </div>Explore
       </nuxt-link>
-      <nuxt-link class="hude " to="vaults">
+      <nuxt-link class="hudd " to="vaults">
         <div class="bigIcon xl:px-5">
           🏦
         </div><div class="">
