@@ -439,9 +439,9 @@ export default {
   },
   methods: {
 
-    soldNFTs = 0,
+    soldNFTs: 0,
 
-    getSoldNFTs = async () => {
+    getSoldNFTs: async () => {
       await Moralis.start({
         appId, serverUrl
       })
@@ -476,12 +476,13 @@ export default {
       soldNFTs = await Moralis.Web3API.native.runContractFunction(options)
     },
 
-    init = async () => {
+    init: async () => {
       await Moralis.start({
         appId, serverUrl
       })
 
       const web3 = new Web3(window.ethereum)
+      console.log(web3)
 
       Moralis.initPlugins()
       const covalent = Moralis.Plugins.covalent
