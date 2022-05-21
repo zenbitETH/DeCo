@@ -1,12 +1,11 @@
 <template>
   <div>
-    <div class="flex flex-col mt-8 text-deco-100 md:px-24 xl:px-48">
-      <button class="absolute bottom-32 xl:bottom-1/2 left-0 text-white hud0" @click="currentPage === 1 ? $router.push('/') : currentPage--">
-        <div class="bigIcon">
-          ⏪
-        </div>Back
-      </button>
-    </div>
+    <button class="absolute bottom-32 xl:bottom-1/2 left-0 text-white hud0" @click="currentPage === 1 ? $router.push('/') : currentPage--">
+      <div class="bigIcon">
+        ⏪
+      </div>Back
+    </button>
+
     <!-- <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="registerToPunkCity()">
       Register to Punk Cities
     </button>
@@ -14,9 +13,41 @@
       Register Place
     </button> -->
     <transition name="slide" mode="out-in" class="relative mt-3">
-      <section v-if="currentPage === 1" id="Step1" key="Step1" class="text-white font-lex block">
+      <section v-if="currentPage === 1" id="Step1" key="Step1" class="text-white font-lex block xl:text-2xl">
         <div class="relative">
-          <h1 class="text-center text-5xl">
+          <div id="step2" class="step">
+            <div class="placeNFT" @click.prevent="currentPage = 2; form.kind='businesses'">
+              <div class="NFTlogo">
+                <img
+                  src="/decoNFT.png"
+                  class=""
+                >
+              </div>
+
+              <div class="NFTtitle text-solar-100">
+                Step 1: Create your Deco Business
+                <div class="NFTdes">
+                  Mint your own service NFT to get income and defi interactions
+                </div>
+              </div>
+            </div>
+
+            <div class="decoNFT" @click.prevent="currentPage = 2; form.kind='service'">
+              <div class="NFTlogo px-2">
+                <img
+                  src="/product.png"
+                  class=""
+                >
+              </div>
+              <div class="NFTtitle text-deco-100">
+                Step 2: Set up your Deco business
+                <div class="NFTdes">
+                  Add products or services to your business
+                </div>
+              </div>
+            </div>
+          </div>
+        <!--  <h1 class="text-center text-5xl">
             Mint place or business NFT
           </h1>
         </div>
@@ -56,64 +87,39 @@
                 Mint your own business NFT to get income and defi interactions
               </div>
             </div>
-          </div>
+          </div>-->
         </div>
       </section>
 
-      <section v-else-if="currentPage === 2" id="Step2" key="Step2" class="text-white font-lex">
+      <section v-else-if="currentPage === 2" id="Step2" key="Step2" class="text-white font-lex xl:text-2xl">
         <div class="stepTitle">
-          Step 2: Business or service?
-        </div>
-        <div id="step2" class="step">
-          <div class="placeNFT" @click.prevent="currentPage = 3; form.kind='businesses'">
-            <div class="NFTlogo">
-              <img
-                src="/decoNFT.png"
-                class=""
-              >
-            </div>
-
-            <div class="NFTtitle text-solar-100">
-              I want to create a new business
-              <div class="NFTdes">
-                Mint a public place in your city to get energy or chips
-              </div>
-            </div>
-          </div>
-
-          <div class="decoNFT" @click.prevent="currentPage = 3; form.kind='service'">
-            <div class="NFTlogo px-2">
-              <img
-                src="/serviceNFT.png"
-                class=""
-              >
-            </div>
-            <div class="NFTtitle text-deco-100">
-              I want to offer a service
-              <div class="NFTdes">
-                Mint your own service NFT to get income and defi interactions
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section v-else-if="currentPage === 3" id="Step3-Products" key="Step3" class="text-white font-lex">
-        <div class="stepTitle">
-          Step 3: Present your Deco {{ form.kind === 'businesses' ? 'business' : 'service' }}
+          Step 1: Set up your Deco business {{ form.kind === 'businesses' ? 'business' : 'service' }}
         </div>
         <div class="flex flex-col mt-8 text-deco-100 md:px-24 xl:px-48">
           <div v-if="form.kind === 'businesses'" class="md:grid md:grid-cols-2 gap-3">
             <Select v-model="form.type" :items="businessTypes" placeholder="1. Choose the type of your business" />
             <Input v-model="form.name" type="text" placeholder="2. What is the name of your business?" />
+            <div class="md:w-full mx-5 mb-3 text-deco-400">
+              3. Upload a logo for your business
+              <Input v-model="form.imageUrl" type="text" placeholder="" :disabled="true" class="w-full" />
+            </div>
+            <Upload
+              v-model="file"
+              :max="1"
+              :return-raw="true"
+              class="mt-3 col-span-2"
+              :has-preview="true"
+              :upload="uploadFile"
+            />
           </div>
 
           <div v-else class="md:grid md:grid-cols-2 gap-3">
-            <Textarea v-model="form.description" placeholder="1. Describe your service" class="mt-8 col-span-2" :rows="3" />
-            <Input v-model="form.price" type="number" placeholder="2. Choose a price for your NFT in MATIC" class="col-span-2" />
+            <Input v-model="form.name" type="text" placeholder="1. What is the name of your business?" class="mt-8 col-span-2" />
+            <Textarea v-model="form.description" placeholder="2. Describe your service" class="mt-8 col-span-2" :rows="3" />
+            <Input v-model="form.price" type="number" placeholder="3. Choose a price for your NFT in MATIC" class="col-span-2" />
             <div class="md:w-full mx-5 mb-3 text-deco-400">
-              3. Upload an image about your service
-              <Input v-model="form.imageUrl" type="text" placeholder="Logo URL will be shown here" :disabled="true" class="w-full" />
+              4. Upload an image for your product or service
+              <Input v-model="form.imageUrl" type="text" placeholder="" :disabled="true" class="w-full" />
             </div>
             <Upload
               v-model="file"
@@ -127,7 +133,7 @@
         </div>
 
         <div v-if="form.kind ==='businesses'" class="text-center mt-8">
-          <button class="mintButton w-48" @click="currentPage = 4">
+          <button class="mintButton w-48" @click="currentPage = 3">
             Next
           </button>
         </div>
@@ -139,9 +145,9 @@
         </div>
       </section>
 
-      <section v-else-if="currentPage === 4" id="Step4-Products" key="Step4" class="text-white font-lex">
+      <section v-else-if="currentPage === 3" id="Step3-Products" key="Step3" class="text-white font-lex xl:text-2xl">
         <div class="stepTitle mt-3">
-          Step 4: Add details to your Deco NFT
+          Step 2: Add details to your Deco NFT
         </div>
 
         <div class="flex flex-col mt-8 text-deco-100 md:px-24 xl:px-48">
@@ -164,12 +170,11 @@
               </div>
             </div>
           </client-only>
-        </div>
-
-        <div class="text-center">
-          <button class="mintButton w-48" @click="mintNFT()">
-            Mint Business NFT
-          </button>
+          <div class="text-center">
+            <button class="mintButton" @click="mintNFT()">
+              Mint Business NFT
+            </button>
+          </div>
         </div>
       </section>
     </transition>

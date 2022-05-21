@@ -1,8 +1,8 @@
 <template>
   <client-only>
-    <div class="w-full ">
+    <div class="w-full -m">
       <div
-        class="bg-gray-lightest p-3 border border-dashed border-red flex flex-col place-items-center"
+        class="bg-glass-200 hover:bg-glass-700 animate-pulse p-3 border-none flex flex-col place-items-center rounded-lg"
       >
         <div
           class="w-full text-center "
@@ -19,11 +19,11 @@
             <div
               v-for="(file, index) in files"
               :key="file.url"
-              class="w-full lg:w-1/3 px-1 text-left"
+              class="w-full lg:w-1/3 px-1 text-center"
             >
               <img
                 :src="imgPreview[index]"
-                class="w-full"
+                class="w-full text-center"
               >
               <span class="text-left text-semigray">
                 {{ file.name }}
@@ -79,7 +79,7 @@
               :for="id"
               class="font-merriweather-sans text-lg"
             >
-              <span class="font-bold pointer-events-auto cursor-pointer">Select a file</span><br>
+              <span class="font-bold pointer-events-auto cursor-pointer text-white">Select a file</span><br>
               <span class="text-semigray">or drag it here!</span>
             </label>
           </div>
