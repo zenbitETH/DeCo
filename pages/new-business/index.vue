@@ -1,8 +1,10 @@
 <template>
   <div>
     <div class="flex flex-col mt-8 text-deco-100 md:px-24 xl:px-48">
-      <button class="text-white mintButton w-24" @click="currentPage === 1 ? $router.push('/') : currentPage--">
-        Back
+      <button class="absolute bottom-32 xl:bottom-1/2 left-0 text-white hud0" @click="currentPage === 1 ? $router.push('/') : currentPage--">
+        <div class="bigIcon">
+          ⏪
+        </div>Back
       </button>
     </div>
     <!-- <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="registerToPunkCity()">
@@ -21,6 +23,7 @@
         <h2 class="stepTitle">
           Step 1: what do you want to mint?
         </h2>
+
         <div id="step1" class="step">
           <a href="#" target="_blank">
             <div class="placeNFT">

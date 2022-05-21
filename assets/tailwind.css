@@ -53,6 +53,19 @@ Input {
   border-none
 }
 
+.hud0 {
+  @apply p-1 
+  bg-glass-200 text-center
+  rounded-r-lg
+  border-none
+  hover:bg-cyber-100
+  hover:text-white
+  cursor-pointer
+  text-sm
+  md:text-xl lg:text-2xl xl:text-2xl
+  px-5
+}
+
 .hud1 {
   @apply p-1 
   bg-glass-200 text-center
@@ -169,7 +182,7 @@ Input {
 /* New Place NFT */
 .step {
   @apply 
-  grid md:grid-cols-2 gap-5 m-5
+  grid md:grid-cols-2 gap-5 m-5 fhd:px-20
 }
 
 .stepTitle {

@@ -7,19 +7,14 @@ export const state = {
   myPurchasedServices: [],
 
   businessTypes: [
-    { key: 'clothes', value: 'products-1', text: 'Clothes' },
-    { key: 'home-products', value: 'products-2', text: 'Home Products' },
-    { key: 'food', value: 'products-3', text: 'Food / Restaurant' },
-    { key: 'punk-products', value: 'products-4', text: 'Home Products' },
-    { key: 'general-store', value: 'products-5', text: 'General store' }
-  ],
-
-  serviceTypes: [
-    { key: 'sports', value: 'services-1', text: 'Sports clasess' },
-    { key: 'art-fun', value: 'services-2', text: 'Art/fun clasess' },
-    { key: 'beauty', value: 'services-3', text: 'Beauty/Barber shop' },
-    { key: 'professional', value: 'services-4', text: 'Profesional services' },
-    { key: 'logistic', value: 'services-5', text: 'Logistic service' }
+    { key: 'clothes', value: 'products-1', text: '1. Clothes' },
+    { key: 'food', value: 'products-3', text: '2. Food / Restaurant' },
+    { key: 'punk-products', value: 'products-4', text: '3. Punk Products' },
+    { key: 'general-store', value: 'products-5', text: '4. General store' },
+    { key: 'sports', value: 'services-1', text: '5. Sports' },
+    { key: 'art-fun', value: 'services-2', text: '6. Art/fun' },
+    { key: 'beauty', value: 'services-3', text: '7. Beauty/Barber shop' },
+    { key: 'professional', value: 'services-4', text: '8. Profesional/Talent' }
   ]
 
 }
