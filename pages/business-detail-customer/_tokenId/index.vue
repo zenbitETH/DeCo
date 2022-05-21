@@ -69,15 +69,15 @@
               Sold
             </div>
             <div class="grid md:grid-cols-4 grid-cols-2 px-10 gap-5">
-              <div v-for="service in soldServices" :key="service.serviceId" class="PlaceBG">
-                <div class="">
-                  <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="/product.png">
+              <div v-for="service in soldServices" :key="service.serviceId" class="PlaceBG col-span-2">
+                <div class="text-center">
+                  <img class="xl:h-32 qhd:h-43 h-32 mx-auto" :src="service.tokenURI">
                 </div>
                 <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
                   <div class="col-span-2">
-                    Black T-shirt
+                    {{ service.serviceDescription }}
                   </div>
-                  <div>5 usdc</div>
+                  <div>{{ service.price / Math.pow(10,18) }} MATIC</div>
                 </div>
               </div>
             </div>
@@ -137,18 +137,18 @@ export default {
       listMyServices(this.$config.contractServiceNft, this.tokenId).then((result) => {
         console.log(result)
         this.services = result
-        this.services.forEach((service) => {
-          const CID_REGEX = /ipfs:\/\/(.*)\/metadata.json/
-          const cid = CID_REGEX.exec(service.tokenURI)
-          console.log(cid)
-          const htmlURI = `https://ipfs.io/ipfs/${cid[1]}`
-          console.log(htmlURI)
-          fetch(htmlURI)
-            .then(res => res.json())
-            .then((json) => {
-              console.log(json)
-            })
-        })
+        // this.services.forEach((service) => {
+        //   const CID_REGEX = /ipfs:\/\/(.*)\/metadata.json/
+        //   const cid = CID_REGEX.exec(service.tokenURI)
+        //   console.log(cid)
+        //   const htmlURI = `https://ipfs.io/ipfs/${cid[1]}`
+        //   console.log(htmlURI)
+        //   fetch(htmlURI)
+        //     .then(res => res.json())
+        //     .then((json) => {
+        //       console.log(json)
+        //     })
+        // })
         // ipfs://bafyreicob6ss5pyghymbcw5p7r4piwovgy6b336sudpu57gbfupfpuigxm/metadata.json
         // https://bafyreicob6ss5pyghymbcw5p7r4piwovgy6b336sudpu57gbfupfpuigxm.ipfs.dweb.link/metadata.json
       })
