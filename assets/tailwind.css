@@ -53,6 +53,19 @@ Input {
   border-none
 }
 
+.hud0 {
+  @apply p-1 
+  bg-glass-200 text-center
+  rounded-r-lg
+  border-none
+  hover:bg-cyber-100
+  hover:text-white
+  cursor-pointer
+  text-sm
+  md:text-xl lg:text-2xl xl:text-2xl
+  px-5
+}
+
 .hud1 {
   @apply p-1 
   bg-glass-200 text-center
@@ -169,7 +182,7 @@ Input {
 /* New Place NFT */
 .step {
   @apply 
-  grid md:grid-cols-2 gap-5 m-5
+  grid md:grid-cols-2 gap-5 m-5 
 }
 
 .stepTitle {
@@ -177,6 +190,7 @@ Input {
   text-3xl text-left text-center text-deco-400
   animate-pulse
 }
+
 .placeNFT {
   @apply 
   bg-glass-200 
@@ -237,10 +251,22 @@ Input {
   hover:bg-deco-900 hover:text-white hover:cursor-pointer 
 }
 
+.productBT {
+  @apply
+  bg-deco-100 rounded-br-lg rounded-tl-lg text-deco-900
+  hover:bg-deco-900 hover:text-white hover:cursor-pointer 
+}
+
 .cityVaultBT {
   @apply
   bg-deco-400 p-3 rounded-lg text-deco-900
   hover:bg-deco-900 hover:text-white hover:cursor-pointer 
+}
+
+.wButton {
+  @apply 
+  hover:bg-glass-800 rounded-lg text-center font-exo text-xl pb-5
+  cursor-pointer
 }
 
 .verify {
@@ -328,6 +354,13 @@ Input {
   col-span-6 row-span-6 
 }
 
+.productBoard {
+  @apply rounded-lg
+  text-center text-white
+  grid xl:grid-rows-6 gap-5
+  col-span-12 row-span-6 
+}
+
 .dataBoard {
   @apply text-left rounded-xl
   bg-gradient-to-t from-deco-900 to-glass-700
@@ -396,6 +429,12 @@ Input {
   text-base
   xl:text-2xl
   bg-glass-700 rounded-lg xl:pt-6 xl:py-0 py-3 
+}
+
+.wTitle {
+  @apply
+  font-lex font-bold text-3xl text-left text-center text-deco-900
+  animate-pulse
 }
 
 .bigNumber {

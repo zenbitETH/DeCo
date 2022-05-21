@@ -1,0 +1,195 @@
+[
+	{
+		"inputs": [],
+		"name": "listAllBusinessNfts",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "city",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "businessType",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "kind",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "shortname",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "googleAddress",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "createdAt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string[]",
+						"name": "services",
+						"type": "string[]"
+					}
+				],
+				"internalType": "struct BusinessNFT.businessDetails[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getBusinessByOwner",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "city",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "businessType",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "kind",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "shortname",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "googleAddress",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "createdAt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string[]",
+						"name": "services",
+						"type": "string[]"
+					}
+				],
+				"internalType": "struct BusinessNFT.businessDetails",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+		  {
+			"internalType": "address",
+			"name": "_businessOwner",
+			"type": "address"
+		  }
+		],
+		"name": "ownsABusiness",
+		"outputs": [
+		  {
+			"internalType": "bool",
+			"name": "",
+			"type": "bool"
+		  }
+		],
+		"stateMutability": "view",
+		"type": "function"
+	  },
+	  
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "cityName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_businessType",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "kind",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_googleAddress",
+        "type": "string"
+      },
+      {
+        "internalType": "string[]",
+        "name": "_services",
+        "type": "string[]"
+      }
+    ],
+    "name": "createBusiness",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

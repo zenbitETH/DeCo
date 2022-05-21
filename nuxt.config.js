@@ -76,6 +76,7 @@ export default {
     contractPunkCities: process.env.CONTRACT_PUNK_CITIES || '',
     contractBusinessNft: process.env.CONTRACT_BUSINESS_NFT || '',
     contractServiceNft: process.env.CONTRACT_SERVICE_NFT || '',
+    contractVault: process.env.CONTRACT_VAULT || '',
 
     walletConnectId: process.env.WALLET_CONNECT_ID || '',
     nftStorageApiKey: process.env.NFT_STORAGE_API_KEY || ''

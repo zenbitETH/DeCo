@@ -1,0 +1,117 @@
+[
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_businessId",
+				"type": "uint256"
+			}
+		],
+		"name": "listMyServices",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "serviceId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address payable",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "serviceDescription",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "sold",
+						"type": "bool"
+					},
+					{
+						"internalType": "string",
+						"name": "tokenURI",
+						"type": "string"
+					}
+				],
+				"internalType": "struct serviceNFT.Service[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "printAllServices",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "serviceId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address payable",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "serviceDescription",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "sold",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct serviceNFT.Service[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+
+	{
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "servicePrice",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "_serviceDescription",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "tokenURI",
+        "type": "string"
+      }
+    ],
+    "name": "makeService",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

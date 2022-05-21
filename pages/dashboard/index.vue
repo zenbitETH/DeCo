@@ -21,9 +21,6 @@
               </div><div class="numDesc">
                 APY on vault
               </div>
-              <div class="myVaultBT m-3 p-3 text-center col-span-7">
-                🏪 New business
-              </div>
             </div>
           </div>
           <div class="fhd:mt-10">
@@ -51,14 +48,19 @@
           <div class="my-2 ">
             My deco business
           </div>
-          <div class="grid md:grid-cols-4 lg:grid-cols-6 grid-cols-2 px-10 gap-5">
+          <div v-if="hasBusiness" class="grid fhd:grid-cols-6 grid-cols-2 px-10 gap-5">
             <div class="col-span-2 row-span-2 text-lg">
-              Type of place / name
-              <img class="" src="https://punkcities.mypinata.cloud/ipfs/bafybeidufeb4xfrzwgzcx3iaabbyu7ck7p2tij3c2w2azixolxmlyouqii/7-Hospital.png" alt="">
+              Type of place / name<br>
+              {{ business.shortname }}<br>
+              {{ business.googleAddress }}
             </div>
-            <div class="selDecoBG bg-glass-700">
+            <div class="col-span-2 row-span-2 text-lg">
+              <img src="https://punkcities.mypinata.cloud/ipfs/bafybeidufeb4xfrzwgzcx3iaabbyu7ck7p2tij3c2w2azixolxmlyouqii/7-Hospital.png" class="max-h-80" alt="">
+              <!-- >>>>>>> Stashed changes -->
+            </div>
+            <!-- <div class="selDecoBG bg-glass-700">
               <div class="">
-                <img class="fhd:h-32 qhd:h-43 h-32 mx-auto" src="../../static/punkcities.png">
+                <img class="fhd:h-32 qhd:h-43 h-32 mx-auto" src="/punkcities.png">
               </div>
               <div class="bg-deco-900 rounded-b-lg grid grid-cols-3 text-center text-base">
                 <div class="py-2">
@@ -71,10 +73,10 @@
                   ⚙️
                 </nuxt-link>
               </div>
-            </div>
-            <div class="DecoBG bg-glass-700">
+            </div> -->
+            <!-- <div class="DecoBG bg-glass-700">
               <div class="">
-                <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../static/deco logo.svg">
+                <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="/deco logo.svg">
               </div>
               <div class="bg-deco-900 rounded-b-lg grid grid-cols-3 text-center text-base">
                 <div class="py-2">
@@ -87,6 +89,15 @@
                   ⚙️
                 </nuxt-link>
               </div>
+            </div> -->
+          </div>
+
+          <div v-else class="grid fhd:grid-cols-6 grid-cols-2 px-10 gap-5">
+            <div class="col-span-6 row-span-2 text-lg">
+              Sorry you don't have a business yet. Login and create one.
+            </div>
+            <div class="myVaultBT m-3 p-3 text-center col-span-7 max-w-xs mx-auto">
+              🏪 New business
             </div>
           </div>
         </div>
@@ -98,7 +109,7 @@
           <div class="grid md:grid-cols-4 lg:grid-cols-6 grid-cols-2 px-10 gap-5">
             <div class="PlaceBG">
               <div class="">
-                <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../static/product.png">
+                <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="/product.png">
               </div>
               <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
                 <div class="col-span-2">
@@ -113,3 +124,32 @@
     </div>
   </section>
 </template>
+<script>
+import getBusinessByOwner from '~/contracts/business-nft/getBusinessByOwner'
+
+export default {
+  computed: {
+    connectedAddress () {
+      return this.$store.state.connectedAddress
+    },
+    hasBusiness () {
+      return this.$store.state.myBusiness &&
+        this.$store.state.myBusiness.tokenId >= 0 &&
+        this.$store.state.myBusiness.createdAt !== 0
+    },
+    business () {
+      return this.$store.state.myBusiness
+    }
+  },
+  mounted () {
+    if (!this.hasBusiness) { setTimeout(this.getBusinessByOwner, 3000) }
+  },
+  methods: {
+    getBusinessByOwner () {
+      getBusinessByOwner(this.$config.contractBusinessNft).then((response) => {
+        if (response.createdAt !== 0) { this.$store.commit('setMyBusiness', response) }
+      })
+    }
+  }
+}
+</script>

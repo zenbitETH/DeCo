@@ -1,12 +1,11 @@
-import Moralis from "moralis";
-// import Web3 from "web3";
-export default function({$config}){
-  Moralis.enableWeb3();
-  Moralis.start({appId:$config.moralisAppId,serverUrl:$config.moralisServerUrl});
+import Moralis from 'moralis'
+// import Web3 from 'web3'
+import Web3 from 'web3'
+export default function ({ $config }) {
+  console.log('hello')
+  Moralis.start({ appId: $config.moralisAppId, serverUrl: $config.moralisServerUrl })
+  Moralis.enableWeb3()
 
-
-
-  //initMoralis();
-  // const web3 = new Web3(window.ethereum);
-} 
-
+  // initMoralis();
+  window.web3 = new Web3(Moralis.provider)
+}

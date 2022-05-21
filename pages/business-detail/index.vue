@@ -5,7 +5,7 @@
         <div class="assetBoard">
           <div class="grid grid-cols-6 text-left">
             <div class="text-center col-span-2">
-              <img class="fhd:h-full mx-auto" src="../../static/decoNFT.png">
+              <img class="fhd:h-full mx-auto" src="decoNFT.png">
             </div>
             <div class="col-span-4 pt-6 xl:pt-20">
               <div class="text-xl">
@@ -18,7 +18,7 @@
           </div>
 
           <div class="col-span-6 row-span-4">
-            <img class="fhd:h-full mx-auto" src="../../static/deco logo.svg">
+            <img class="fhd:h-full mx-auto" src="/deco logo.svg">
           </div>
 
           <div class="dataBoard">
@@ -61,7 +61,7 @@
               </div>
               <div class="PlaceBG">
                 <div class="">
-                  <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../static/product.png">
+                  <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="product.png">
                 </div>
                 <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
                   <div class="col-span-2">
@@ -79,7 +79,7 @@
             <div class="grid md:grid-cols-4 grid-cols-2 px-10 gap-5">
               <div class="PlaceBG">
                 <div class="">
-                  <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../static/product.png">
+                  <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="product.png">
                 </div>
                 <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
                   <div class="col-span-2">
@@ -90,7 +90,7 @@
               </div>
               <div class="PlaceBG">
                 <div class="">
-                  <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../static/product.png">
+                  <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="product.png">
                 </div>
                 <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
                   <div class="col-span-2">
@@ -101,7 +101,7 @@
               </div>
               <div class="PlaceBG">
                 <div class="">
-                  <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../static/product.png">
+                  <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="product.png">
                 </div>
                 <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
                   <div class="col-span-2">
@@ -110,6 +110,19 @@
                   <div>5 usdc</div>
                 </div>
               </div>
+              <!--
+              <div class="col-span-2">
+                <img class="fhd:h-full mx-auto" src="deco_logo.svg">
+              </div>
+              <div class="col-span-2 xl:col-span-4 xl:pt-6">
+                product name
+              </div>
+              <div class="xl:col-span-2 xl:pt-6">
+                5 pcs
+              </div>
+              <div class="xl:col-span-2 xl:pt-6">
+                10 usd
+              </div> -->
             </div>
           </div>
         </div>
