@@ -7,9 +7,9 @@
             My Deco Vault
           </div>
           <div class="grid fhd:grid-cols-3 gap-5 h-full ">
-            <div>My MATIC Balance:  </div>
-            <div>Vault Balance: </div>
-            <div>Current NFTs on Sale: </div>
+            <div>Net worth:</div>
+            <div>Net APY:</div>
+            <div>Healtg factor:</div>
           </div>
         </div>
 
@@ -422,7 +422,6 @@
 </template>
 <script>
 
-import Moralis from 'moralis'
 import Modal from '~/components/Modal.vue'
 
 export default {
@@ -436,84 +435,6 @@ export default {
       showRepayModal: false,
       showSupplyModal: false
     }
-  },
-  methods: {
-
-    soldNFTs = 0,
-
-    getSoldNFTs = async () => {
-      await Moralis.start({
-        appId, serverUrl
-      })
-
-      await Moralis.enableWeb3()
-      const ABI = [
-        {
-          inputs: [],
-          name: 'getSoldNFTs',
-          outputs: [
-            {
-              internalType: 'uint256',
-              name: '',
-              type: 'uint256'
-            }
-          ],
-          stateMutability: 'view',
-          type: 'function'
-        }
-      ]
-
-      const options = {
-        chain: 'mumbai',
-        address: this.$config.contractServiceNft,
-        function_name: 'getSoldNFTs',
-        abi: ABI
-        //   contractAddress: contractAddress,
-        //   functionName: "getSoldNFTs",
-        //   abi: abi
-      }
-
-      soldNFTs = await Moralis.Web3API.native.runContractFunction(options)
-    },
-
-    init = async () => {
-      await Moralis.start({
-        appId, serverUrl
-      })
-
-      const web3 = new Web3(window.ethereum)
-
-      Moralis.initPlugins()
-      const covalent = Moralis.Plugins.covalent
-      await getSoldsNFTs()
-
-      // Ezt nagyon magyarázni nem kell, meghívja a contracton lévő NFT-ket egyesével
-      const result = await covalent.getNftTokenIdForContract({
-        chainId: 80001,
-        contractAddress: this.$config.contractServiceNft,
-        pageNumber: 10,
-        pageSize: 100
-      })
-      // Itt így ki tudjuk számolni mennyi NFT van jelenleg Salen, mindig
-      console.log('Available On-sale NFTs: ', result.data.items.length - soldNFTs)
-
-      // Ez itt meg tudja hívni egy adott ERC20 tokennek a balancát, például MATIC
-      const vaultBalance = await covalent.getTokenBalancesForAddress({
-        chainId: 80001,
-        address: this.$config.contractVault,
-        quoteCurrency: 'MATIC'
-      })
-      console.log('MATIC Balance for Vault is: ', vaultBalance.data.items[0].balance)
-
-      const userMaticBalance = await covalent.getTokenBalancesForAddress({
-        chainId: 80001,
-        address: ethereum.selectedAddress,
-        quoteCurrency: 'MATIC'
-      })
-
-      console.log('Your MATIC Balance is: ', userMaticBalance.data.items[0].balance)
-    }
-
   }
 }
 </script>
