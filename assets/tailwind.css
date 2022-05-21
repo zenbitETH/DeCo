@@ -251,6 +251,12 @@ Input {
   hover:bg-deco-900 hover:text-white hover:cursor-pointer 
 }
 
+.productBT {
+  @apply
+  bg-deco-100 rounded-br-lg rounded-tl-lg text-deco-900
+  hover:bg-deco-900 hover:text-white hover:cursor-pointer 
+}
+
 .cityVaultBT {
   @apply
   bg-deco-400 p-3 rounded-lg text-deco-900
@@ -346,6 +352,13 @@ Input {
   text-center text-white
   grid xl:grid-rows-6 gap-5
   col-span-6 row-span-6 
+}
+
+.productBoard {
+  @apply rounded-lg
+  text-center text-white
+  grid xl:grid-rows-6 gap-5
+  col-span-12 row-span-6 
 }
 
 .dataBoard {
