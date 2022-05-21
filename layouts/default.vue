@@ -51,17 +51,28 @@
     </nav>
 
     <Modal :show="showConnectWalletModal">
-      <h2 class="stepTitle">
-        How would you like to connect?
+      <h2 class="wTitle text-deco-900 mb-10">
+        Choose your wallet or create a new wallet
       </h2>
-      <div class="flex flex-row gap-3">
-        <img src="/img/ic_wallet.png" class="p-5 w-32 h-32 mx-auto" @click="connectWithMoralis()">
-        <img src="/img/ic_wallet-connect.png" class="p-5 w-32 h-32 mx-auto" @click="connectWithConnectWallet()">
-        <img src="/img/ic_wallet.png" class="p-5 w-32 h-32 mx-auto" @click="connectWithCoinbaseWallet()">
+      <div class="grid grid-cols-3 text-center xl:px-10">
+        <div class="wButton">
+          <img src="../static/img/metamask.png" class="p-5 w-32 h-32 mx-auto" @click="connectWithMoralis()">
+          Metamask
+        </div>
+        <div class="wButton">
+          <img src="../static/img/wallet connect.png" class="p-5 w-32 h-32 mx-auto" @click="connectWithConnectWallet()">
+          Wallet Connect
+        </div>
+        <div class="wButton">
+          <img src="../static/img/coinbase.png" class="p-5 w-32 h-32 mx-auto" @click="connectWithCoinbaseWallet()">
+          Coinbase Wallet
+        </div>
       </div>
-      <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="showConnectWalletModal = false">
-        Cancel
-      </button>
+      <div class="text-center mt-10">
+        <button class="myVaultBT py-3 px-5 text-2xl font-exo" @click="showConnectWalletModal = false">
+          Cancel
+        </button>
+      </div>
     </Modal>
   </div>
 </template>

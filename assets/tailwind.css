@@ -177,6 +177,7 @@ Input {
   text-3xl text-left text-center text-deco-400
   animate-pulse
 }
+
 .placeNFT {
   @apply 
   bg-glass-200 
@@ -241,6 +242,12 @@ Input {
   @apply
   bg-deco-400 p-3 rounded-lg text-deco-900
   hover:bg-deco-900 hover:text-white hover:cursor-pointer 
+}
+
+.wButton {
+  @apply 
+  hover:bg-glass-800 rounded-lg text-center font-exo text-xl pb-5
+  cursor-pointer
 }
 
 .verify {
@@ -396,6 +403,12 @@ Input {
   text-base
   xl:text-2xl
   bg-glass-700 rounded-lg xl:pt-6 xl:py-0 py-3 
+}
+
+.wTitle {
+  @apply
+  font-lex font-bold text-3xl text-left text-center text-deco-900
+  animate-pulse
 }
 
 .bigNumber {
