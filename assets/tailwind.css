@@ -15,6 +15,15 @@ Input {
   h-12 px-5 w-full border-b group-hover:bg-[#e8f0fe] group-disabled:bg-gray-300 disabled:bg-gray-300
 }
 
+.inNum {
+  @apply
+  !text-deco-900 text-3xl
+}
+
+.inMatic {
+  @apply
+  absolute top-0  font-exo text-2xl
+}
 
 .top-hud { 
   @apply xl:mx-40 qhd:mx-96 
@@ -237,6 +246,12 @@ Input {
   text-white font-lex 
   bg-deco-100 p-3 rounded-lg 
   hover:bg-deco-400 hover:text-deco-900 hover:cursor-pointer 
+}
+
+.xBT {
+  @apply
+  bg-deco-100 rounded-tr-lg rounded-bl-lg text-deco-900
+  hover:bg-deco-900 hover:text-white hover:cursor-pointer 
 }
 
 .myVaultBT {
