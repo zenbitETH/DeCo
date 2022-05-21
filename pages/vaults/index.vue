@@ -320,39 +320,103 @@
     </div>
 
     <Modal :show="showWithdrawModal">
-      <h2 class="stepTitle">
-        Withdraw modal
+      <h2 class="wTitle text-2xl mb-10">
+        Withdraw from vault
       </h2>
-      <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="showWithdrawModal = false">
-        Cancel
-      </button>
+      <div class="relative px-36 text-deco-900">
+        <input
+
+          type="number"
+          placeholder="0"
+          class="inNum"
+          :value="'(' + number + ') matic'"
+        ><span class="inMatic right-1/5">Matic <div class="text-lg">available <br> 2 Matic</div></span>
+      </div>
+      <div class="text-center mt-10">
+        <button class="myVaultBT2 py-3 px-5 text-2xl font-exo">
+          Withdraw funds
+        </button>
+      </div>
+      <div class="absolute -top-10 right-0 text-center mt-10">
+        <button class="xBT py-3 px-5 text-2xl font-exo" @click="showWithdrawModal = false">
+          X
+        </button>
+      </div>
     </Modal>
 
     <Modal :show="showBorrowModal">
-      <h2 class="stepTitle">
-        Borrow modal
+      <h2 class="wTitle text-deco-900 mb-10">
+        Borrow from vault
       </h2>
-      <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="showBorrowModal = false">
-        Cancel
-      </button>
+      <div class="relative px-36 text-deco-900">
+        <input
+
+          type="number"
+          placeholder="0"
+          class="inNum"
+          :value="'(' + number + ') matic'"
+        ><span class="inMatic right-1/5">Matic <div class="text-lg">available <br> 2 Matic</div></span>
+      </div>
+      <div class="text-center mt-10">
+        <button class="myVaultBT2 py-3 px-5 text-2xl font-exo">
+          Withdraw funds
+        </button>
+      </div>
+      <div class="absolute -top-10 right-0 text-center mt-10">
+        <button class="xBT py-3 px-5 text-2xl font-exo" @click="showBorrowModal = false">
+          X
+        </button>
+      </div>
     </Modal>
 
     <Modal :show="showSupplyModal">
-      <h2 class="stepTitle">
+      <h2 class="wTitle text-deco-900 mb-10">
         Supply modal
       </h2>
-      <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="showSupplyModal = false">
-        Cancel
-      </button>
+      <div class="relative px-36 text-deco-900">
+        <input
+
+          type="number"
+          placeholder="0"
+          class="inNum"
+          :value="'(' + number + ') matic'"
+        ><span class="inMatic right-1/5">Matic <div class="text-lg">available <br> 2 Matic</div></span>
+      </div>
+      <div class="text-center mt-10">
+        <button class="myVaultBT2 py-3 px-5 text-2xl font-exo">
+          Withdraw funds
+        </button>
+      </div>
+      <div class="absolute -top-10 right-0 text-center mt-10">
+        <button class="xBT py-3 px-5 text-2xl font-exo" @click="showSupplyModal = false">
+          X
+        </button>
+      </div>
     </Modal>
 
     <Modal :show="showRepayModal">
-      <h2 class="stepTitle">
+      <h2 class="wTitle text-deco-900 mb-10">
         Repay modal
       </h2>
-      <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="showRepayModal = false">
-        Cancel
-      </button>
+      <div class="relative px-36 text-deco-900">
+        <input
+
+          type="number"
+          placeholder="0"
+          class="inNum"
+          :value="'(' + number + ') matic'"
+        ><span class="inMatic right-1/5">Matic <div class="text-lg">available <br> 2 Matic</div></span>
+      </div>
+      <div class="text-center mt-10">
+        <button class="myVaultBT2 py-3 px-5 text-2xl font-exo">
+          Withdraw funds
+        </button>
+      </div>
+      <div class="absolute -top-10 right-0 text-center mt-10">
+        <button class="xBT py-3 px-5 text-2xl font-exo" @click="showRepayModal = false">
+          X
+        </button>
+      </div>
     </Modal>
   </section>
 </template>

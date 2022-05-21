@@ -21,7 +21,7 @@
       :placeholder="placeholder"
       :disabled="disabled ? true : false"
       autocomplete="off"
-      :class="{ '!bg-transparent !border-none !text-deco-400 !placeholder-gray-light': disabled, 'h-8': small, 'pl-11': icon}"
+      :class="{ 'bg-transparent !border-none text-deco-400 !placeholder-gray-light': disabled, 'h-8': small, 'pl-11': icon}"
       class=""
       @input="onInput()"
       @focus="onFocus($event)"
@@ -43,19 +43,19 @@ export default {
     // eslint-disable-next-line
     value: {
       required: true,
-      validation: prop => {
+      validation: (prop) => {
         return (
           prop instanceof String || prop instanceof Number || prop === null
-        );
+        )
       }
     },
     placeholder: {
       type: String,
-      default: ""
+      default: ''
     },
     type: {
       type: String,
-      default: ""
+      default: ''
     },
     id: {
       type: String,
@@ -64,12 +64,12 @@ export default {
     validationErrors: {
       type: Array,
       default: () => {
-        return [];
+        return []
       }
     },
     icon: {
       type: String,
-      default: ""
+      default: ''
     },
     disabled: {
       type: Boolean,
@@ -77,7 +77,7 @@ export default {
     },
     afterText: {
       type: String,
-      default: ""
+      default: ''
     },
     hasFocus: {
       type: Boolean,
@@ -92,40 +92,40 @@ export default {
       default: false
     }
   },
-  data() {
+  data () {
     return {
       isFocus: false,
-      inputValue: ""
-    };
+      inputValue: ''
+    }
   },
   watch: {
-    hasFocus() {
-      if(this.hasFocus){
+    hasFocus () {
+      if (this.hasFocus) {
         this.$refs.input.focus({
           preventScroll: true
         })
       }
     },
-    value(newValue) {
-      this.inputValue = newValue;
+    value (newValue) {
+      this.inputValue = newValue
       // this.$emit("input", this.inputValue);
     }
   },
-  beforeMount() {
-    this.inputValue = this.value;
+  beforeMount () {
+    this.inputValue = this.value
   },
   methods: {
-    onInput() {
-      this.$emit("input", this.inputValue);
+    onInput () {
+      this.$emit('input', this.inputValue)
     },
-    onFocus(event) {
-      this.isFocus = true;
-      this.$emit("focus", event);
+    onFocus (event) {
+      this.isFocus = true
+      this.$emit('focus', event)
     },
-    onBlur(event) {
-      this.isFocus = false;
-      this.$emit("blur", event);
+    onBlur (event) {
+      this.isFocus = false
+      this.$emit('blur', event)
     }
   }
-};
+}
 </script>
