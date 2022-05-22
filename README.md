@@ -1,69 +1,63 @@
-# deco-nuxt
+# Deco / Decentralized Commerce
+Developed at [Hack Money 2022](https://showcase.ethglobal.com/hackmoney2022/deco-zxa8s)  
 
-## Build Setup
+## About
+This project lets users mint  IRL small businesses as NFTs and set them to create products or services and offer them on decentralized commerce as ERC 721 tokens.
 
-```bash
-# install dependencies
-$ npm install
+90% of the income for products or service sales is deposited to the business owner while 10% is deposited into a vault to generate income from de-fi protocols. Punk Cities players will be able to verify Deco business to get Energy and Chips as rewards and use them to buy products or services on Deco and Deco owners will be able to exchange their energy and chips for ERC20 tokens.
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+## Contracts
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+[📚 Business NFT](https://mumbai.polygonscan.com/address/0xEAA8e3Db8166930ccaF2Da1765dA592E8F4933c0)
+  
+[📚 Service NFT](https://mumbai.polygonscan.com/address/0xfCF3798Ae93e09E3f01f4A546e80F7ef3cF5FEaE)
 
-# generate static project
-$ npm run generate
+[📚 Vault NFT](https://mumbai.polygonscan.com/address/0x8E132BfDCa244bE72B066e3663ff2A202073Ae5c)
+
+### Built with:
+
+-Nuxt.js
+-ERC721 contracts
+-Wallet Connect
+-Coinbase Wallet
+-IPFS
+-Covalent
+
+
+
+### Dev Environemnt
+
+Working with Polygon Mumbai testnet contracts (further update to deploy your own contracts)
+
+1. Make `.env.sample`
+
+```shell
+touch .env.sample
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+add environment variable
 
-## Special Directories
+```text
+GOOGLE_MAPS_API_KEY=
+MORALIS_APP_ID=
+MORALIS_SERVER_URL=
+CONTRACT_PUNK_CITIES=""
+CONTRACT_BUSINESS_NFT=""
+CONTRACT_SERVICE_NFT=""
+CONTRACT_VAULT=""
+NFT_STORAGE_API_KEY=""
+```
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+3. Install dependencies
 
-### `assets`
+```bash
+npm install
+```
 
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
+4. Start developmment
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
+```bash
+npm run dev
+```
 
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+5. 📱 Open http://localhost:3000 to see the app
