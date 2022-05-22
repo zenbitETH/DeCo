@@ -29,7 +29,7 @@
           🏪
         </div>Deco NFT
       </nuxt-link>
-      <nuxt-link class="hudb " to="/dashboard">
+      <nuxt-link class="hudb " to="/business-detail-customer/0">
         <div class="bigIcon">
           🎛️
         </div>My decos
@@ -41,7 +41,7 @@
           🗺️
         </div>Explore
       </nuxt-link>
-      <nuxt-link class="hudd " to="/vaults">
+      <nuxt-link class="hudd " to="/dashboard">
         <div class="bigIcon xl:px-5">
           🏦
         </div><div class="">

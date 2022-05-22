@@ -7,12 +7,12 @@
             🏪 My Deco Business NFT
             <div class="text-lg text-left m-5 grid grid-cols-7 fhd:gap-3 mt-12">
               <div class="bigNumber col-span-3">
-                50 <span class="text-base">usdc</span>
+                0 <span class="text-base">matic</span>
               </div><div class="numDesc">
                 Total income
               </div>
               <div class="bigNumber col-span-3">
-                5 <span class="text-base">usdc</span>
+                0 <span class="text-base">matic</span>
               </div><div class="numDesc">
                 Inocome on vault
               </div>
@@ -32,12 +32,12 @@
                 product or service
               </div>
               <div class="bigNumber">
-                1
+                0
               </div><div class="numDesc">
                 product or service sold
               </div>
               <div class="bigNumber">
-                30 <span class="text-base">usdc</span>
+                0 <span class="text-base">usdc</span>
               </div><div class="numDesc">
                 Income from this business
               </div>
@@ -55,7 +55,7 @@
               {{ business.googleAddress }}
             </div>
             <div class="col-span-2 row-span-2 text-lg">
-              <img src="https://punkcities.mypinata.cloud/ipfs/bafybeidufeb4xfrzwgzcx3iaabbyu7ck7p2tij3c2w2azixolxmlyouqii/7-Hospital.png" class="max-h-80" alt="">
+              <img src="../../static/3dAssets/1-Clothes.png" class="max-h-80" alt="">
               <!-- >>>>>>> Stashed changes -->
             </div>
             <!-- <div class="selDecoBG bg-glass-700">
@@ -115,7 +115,7 @@
                 <div class="col-span-2">
                   Black T-shirt
                 </div>
-                <div>5 usdc</div>
+                <div>0.0002 matic</div>
               </div>
             </div>
           </div>

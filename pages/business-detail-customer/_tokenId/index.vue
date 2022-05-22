@@ -31,7 +31,7 @@
               </div> -->
               <div class="text-center grid grid-cols-2 col-span-4 gap-3 fhd:pt-5 mr-5">
                 <div class=" text-4xl">
-                  3👍
+                  0👍
                 </div>
                 <div class="myVaultBT">
                   👍 Verify

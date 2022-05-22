@@ -6,7 +6,7 @@
     <div
       :id="id"
       :class="{ '!bg-red': inputValue }"
-      class="h-4 w-4 ring-1 ring-gray-300 group-hover:ring-gray-600 bg-[#F6F6F6]  transition-all flex place-items-center cursor-pointer place-self-start mt-2"
+      class="h-4 w-4 ring-1 ring-gray-300 group-hover:ring-gray-600 bg-transparent  transition-all flex place-items-center cursor-pointer place-self-start mt-2"
     >
       <img
         src="/img/icons/inputs/checkbox_mark_icon.svg"
@@ -33,22 +33,22 @@ export default {
     value: {
     // eslint-disable-next-line
       validation: prop => {
-        return prop instanceof Boolean || prop === undefined;
+        return prop instanceof Boolean || prop === undefined
       },
       required: true
     },
     label: {
       type: String,
-      default: ""
+      default: ''
     },
     id: {
       type: String,
-      default: ""
+      default: ''
     },
     validationErrors: {
       type: Array,
       default: () => {
-        return [];
+        return []
       }
     },
     disabled: {
@@ -56,29 +56,29 @@ export default {
       default: false
     }
   },
-  data() {
+  data () {
     return {
       isFocus: false,
       data: false,
       inputValue: false
-    };
+    }
   },
   watch: {
-    value(newValue) {
-      this.inputValue = newValue;
+    value (newValue) {
+      this.inputValue = newValue
       // this.$emit("input", this.inputValue);
     }
   },
-  beforeMount() {
-    this.inputValue = this.value;
+  beforeMount () {
+    this.inputValue = this.value
   },
   methods: {
-    onInput() {
+    onInput () {
       if (!this.disabled) {
-        this.inputValue = !this.inputValue;
-        this.$emit("input", this.inputValue);
+        this.inputValue = !this.inputValue
+        this.$emit('input', this.inputValue)
       }
     }
   }
-};
+}
 </script>

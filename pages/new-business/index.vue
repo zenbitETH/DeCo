@@ -1,13 +1,13 @@
 <template>
   <OverlayLoader :loading="loading">
     <div>
-      <button class="absolute bottom-32 xl:bottom-1/2 left-0 text-white hud0 z-30" @click="currentPage === 1 ? $router.push('/') : currentPage--">
+      <!-- <button class="absolute bottom-32 xl:bottom-1/2 -left-42 text-white hud0 z-30" @click="currentPage === 1 ? $router.push('/') : currentPage--">
         <div class="bigIcon">
           ⏪
         </div>Back
       </button>
 
-      <!-- <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="registerToPunkCity()">
+       <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="registerToPunkCity()">
       Register to Punk Cities
     </button>
     <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="registerPunkCityPlace()">
@@ -20,7 +20,7 @@
               <div class="placeNFT" @click.prevent="currentPage = 2; form.kind='businesses'">
                 <div class="NFTlogo">
                   <img
-                    src="/decoNFT.png"
+                    src="../../static/3dAssets/4-store.png"
                     class=""
                   >
                 </div>
@@ -36,7 +36,7 @@
               <div class="decoNFT" @click.prevent="currentPage = 2; form.kind='service'">
                 <div class="NFTlogo px-2">
                   <img
-                    src="/product.png"
+                    src="/proser.png"
                     class=""
                   >
                 </div>
@@ -100,6 +100,18 @@
             <div v-if="form.kind === 'businesses'" class="md:grid md:grid-cols-2 gap-3">
               <Select v-model="form.type" :items="businessTypes" placeholder="1. Choose the type of your business" />
               <Input v-model="form.name" type="text" placeholder="2. What is the name of your business?" />
+              <div class="md:w-full mx-5 mb-3 text-deco-400">
+                3. Upload a logo for your business
+                <Input v-model="form.imageUrl" type="text" placeholder="" class="w-full bg-transparent" />
+              </div>
+              <Upload
+                v-model="file"
+                :max="1"
+                :return-raw="true"
+                class="mt-3 col-span-2 "
+                :has-preview="true"
+                :upload="uploadFile"
+              />
             <!-- There is no backing for the uploaded logo in the businessNFT smartcontract, so we cannot upload the image -->
             <!-- <div class="md:w-full mx-5 mb-3 text-deco-400">
               3. Upload a logo for your business

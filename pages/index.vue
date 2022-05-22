@@ -8,7 +8,7 @@
         >
         <div class="justify-items-center text-center xl:pt-60">
           <div class=" 2xl:text-5xl text-3xl font-lex items-center items-center text-white">
-            Decentralized Commerce for IRL business
+            Decentralized Commerce for small business with game-fi
           </div>
           <div class="xl:text-2xl mx-10 font-lex-200 text-center mt-20 text-white">
             Developed @
