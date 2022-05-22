@@ -9,8 +9,9 @@ contract DEX {
   using SafeMath for uint256;
   IERC20 token;
 
-  constructor(address token_addr) {
-    token = IERC20(token_addr);
+  constructor(address chipToken_addr, address energyToken_addr) {
+    chipToken = IERC20(chipToken_addr);
+    energyToken = IERC20(energyToken_addr);
   }
 
   uint256 public totalLiquidity;
@@ -50,6 +51,28 @@ contract DEX {
   }
 
   //TODO: allow deposits
+  function deposit() public payable returns (uint256) {
+      uint256 token_reserve = token.balanceOf(address(this));
+      uint256 matic_reserve = address(this).balance.sub(msg.value);
+      uint256 token_amount = (msg.value.mul(token_reserve) / matic_reserve).add(1);
+      uint256 liquidity_minted = msg.value.mul(totalLiquidity) / matic_reserve;
+      liquidity[msg.sender] = liquidity[msg.sender].add(liquidity_minted);
+      totalLiquidity = totalLiquidity.add(liquidity_minted);
+      require(token.transferFrom(msg.sender, address(this), token_amount));
+      return liquidity_minted;
+  }
+  
+  function withdraw(uint256 amount) public returns(uint256, uint256) {
+      uint256 token_reserve = token.balanceOf(address(this));
+      uint256 matic_amount = amount.mul(address(this).balance) / totalLiquidity;
+      uint256 token_amount = amount.mul(token_reserve) / totalLiquidity;
+      liquidity[msg.sender] = liquidity[msg.sender].sub(matic_amount);
+      totalLiquidity = totalLiquidity.sub(matic_amount);
+      // Need to confirm if the line below works: had error with msg.sender.transfer(matic_amount); <-- original code
+      payable (msg.sender).transfer(matic_amount);
+      require(token.transfer(msg.sender, token_amount));
+      return (matic_amount, token_amount);
+  }
 
   //TODO: incentivise rewards
 

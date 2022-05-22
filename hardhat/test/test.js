@@ -179,6 +179,40 @@ describe("PunkCities", function () {
       )
     ).to.be.revertedWith('You already own a business')  
   });
+
+  it("Should be able to delete a business NFT", async function () {
+
+    const user = await punkCities.registerUser(
+      "Test User",
+      "Berlin",
+      "Germany"
+    )
+    const place = await punkCities.registerPlace(
+      0, 
+      0, 
+      "some ipfs hash"
+    )
+    const user2 = await punkCities.connect(addr1).registerUser(
+      "Test User2",
+      "Frankfurt",
+      "Germany"
+    )
+    const verifyPlace = await punkCities.connect(addr1).verifyPlace(
+      0,
+      0,
+    )
+
+    const businessNFTcreated = await businessNFT.connect(addr0).createBusiness(
+      "Berlin", 
+      "This is a laundromat", 
+      "some google address",
+      "Laudromat.logo",
+      ["washes clothes", "drys clothes"],
+    )
+    
+    const deleteString = await businessNFT.connect(addr0).deleteBusiness(0);
+    console.log(deleteString);
+  });
   
       // register user
       // create business NFT with an ID
