@@ -167,7 +167,7 @@ Input {
 
  .joinBG {
   @apply 
-  bg-glass-200 rounded-lg 
+  bg-glass-200 rounded-lg py-10
   cursor-pointer hover:bg-deco-200 hover:text-deco-900
 }
 
@@ -185,7 +185,7 @@ Input {
 /* Team */
 .teamMB {
   @apply 
-  p-5 text-white hover:text-solar-100 pb-32
+  p-5 text-white hover:text-deco-100 hover:animate-pulse pb-32
 }
 
 /* New Place NFT */

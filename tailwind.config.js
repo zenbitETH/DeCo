@@ -100,6 +100,7 @@ module.exports = {
                 lex: ['"Lexend"'],
                 bal: ['"Baloo 2"'],
             },
+
             container: {
                 center: true,
                 padding: "1rem",
