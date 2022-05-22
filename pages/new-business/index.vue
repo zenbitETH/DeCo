@@ -289,6 +289,7 @@ export default {
       // const ipfsUrl = `ipfs://${blobResult}`
       // this.form.imageUrl = ipfsUrl
       // const json = {
+      //   image: file,
       //   name: file.name,
       //   description: this.form.description,
       //   properties: {
@@ -310,11 +311,17 @@ export default {
         createBusiness(this.$config.contractBusinessNft, this.form).then(() => {
           this.loading = false
           this.$router.push('/')
+        }).catch((e) => {
+          console.error(e)
+          this.loading = false
         })
       } else {
         makeService(this.$config.contractServiceNft, this.form).then(() => {
           this.loading = false
           this.$router.push('/')
+        }).catch((e) => {
+          console.error(e)
+          this.loading = false
         })
       }
     }
