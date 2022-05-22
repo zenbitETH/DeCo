@@ -5,7 +5,7 @@
         <div class="assetBoard">
           <div class="grid grid-cols-6 text-left">
             <div class="text-center col-span-2">
-              <img class="fhd:h-full mx-auto" src="/decoNFT.png">
+              <img class="fhd:h-full mx-auto" src="../../../static/3dAssets/1-Clothes.png">
             </div>
             <div class="col-span-4 pt-6 xl:pt-20">
               <div class="text-xl">
@@ -50,13 +50,13 @@
               On sale
             </div>
 
-            <div class="grid md:grid-cols-4 grid-cols-2 px-10 gap-5">
-              <div v-for="service in unsoldServices" :key="service.serviceId" class="PlaceBG col-span-2" @click="purchaseServiceNft(service)">
+            <div class="grid md:grid-cols-3 grid-cols-2 px-10 gap-5">
+              <div v-for="service in unsoldServices" :key="service.serviceId" class="PlaceBG" @click="purchaseServiceNft(service)">
                 <div class="text-center">
-                  <img class="xl:h-32 qhd:h-43 h-32 mx-auto" :src="service.tokenURI">
+                  <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../../static/product.png">
                 </div>
-                <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
-                  <div class="col-span-2">
+                <div class="bg-gradient-to-r from-deco-500 to-glass-700 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
+                  <div class="text-deco-900 col-span-2">
                     {{ service.serviceDescription }}
                   </div>
                   <div>{{ service.price / Math.pow(10,18) }} MATIC</div>
@@ -73,7 +73,7 @@
                 <div class="text-center">
                   <img class="xl:h-32 qhd:h-43 h-32 mx-auto" :src="service.tokenURI">
                 </div>
-                <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
+                <div class="bg-gradient-to-r from-glass-700 to-glass-800 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
                   <div class="col-span-2">
                     {{ service.serviceDescription }}
                   </div>
