@@ -71,7 +71,7 @@ async function registerPlace(placeType, questType, ipfsUri) {
 
 }
 
-async function createBusinessNFT(_cityName, _description, googleAddress, logo, services) {
+async function createBusinessNFT(_cityName, _description, googleAddress, logo, services, _URI) {
     var ABI = [
 
     ];
@@ -79,7 +79,7 @@ async function createBusinessNFT(_cityName, _description, googleAddress, logo, s
         contractAddress: BusinessNFTAddress,
         functionName: "createBusiness",
         abi: ABI,
-        params: {cityName: _cityName, description: _description, _googleAddress:googleAddress, _logo:logo, _services:services}
+        params: {cityName: _cityName, description: _description, _googleAddress:googleAddress, _logo:logo, _services:services, URI:_URI}
     }
 
     let creation = await Moralis.executeFunction(options);

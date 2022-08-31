@@ -217,7 +217,7 @@ export default {
     uploadValidation (file) {
       if (this.size && file.size > this.size) {
         const size = Math.round((this.size / 1024 / 1024) * 100) / 100
-        this.fileError = 'A fájlok mérete maximum ' + size + ' MB lehet'
+        this.fileError = 'The file maximum size can be ' + size + ' MB '
       } else {
         return true
       }

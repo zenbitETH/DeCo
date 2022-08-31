@@ -110,7 +110,7 @@
                 :return-raw="true"
                 class="mt-3 col-span-2 "
                 :has-preview="true"
-                :upload="uploadFile"
+                :upload="upload"
               />
             <!-- There is no backing for the uploaded logo in the businessNFT smartcontract, so we cannot upload the image -->
             <!-- <div class="md:w-full mx-5 mb-3 text-deco-400">
@@ -142,7 +142,7 @@
                 :return-raw="true"
                 class="mt-3"
                 :has-preview="true"
-                :upload="uploadFile"
+                :upload="upload"
               />
             </div>
           </div>
@@ -209,7 +209,7 @@
 // The 'mime' npm package helps us set the correct file type on our File objects
 // import mime from 'mime'
 
-import { NFTStorage } from 'nft.storage/dist/bundle.esm.min.js'
+import Moralis from 'moralis'
 import OverlayLoader from '~/components/OverlayLoader.vue'
 import Input from '~/components/inputs/Input.vue'
 import Select from '~/components/inputs/Select.vue'
@@ -250,7 +250,9 @@ export default {
 
         // BUSINESSES location from google calendar
         location: '', // location of the business -> googleAddress //string
-        city: '' // city of the business -> city //string
+        city: '', // city of the business -> city //string
+        URI: '', // Image of the 3d assets, this is going to be the main NFT picture of OpenSea
+        logoPicture: ''
       }
     }
   },
@@ -260,66 +262,46 @@ export default {
     },
     serviceTypes () {
       return this.$store.state.serviceTypes
+    },
+    getImageUrl () {
+      return this.$store.state.businessTypes.find(businessTpye => businessTpye.value === this.form.type).imageUrl
+    },
+    getBusinessType () {
+      return this.$store.state.businessTypes.find(businessType => businessType.value === this.form.type).text
     }
   },
   methods: {
-    async uploadFile ({ file }) {
+    async upload ({ file }) {
       this.loading = true
-      // PURE IPFS IMPLEMENTATION
-      console.log(file)
-      // try {
-      //   // TODO:[FIXME] we need to control the repo instead of generating a random math number
-      //   const ipfs2 = await IPFS.create({ repo: 'deco-' + Math.random() })
-      //   // console.log(ipfs2)
-      //   const result = await ipfs2.add({
-      //     content: file
-      //   })
-      //   // ipfs2.
-      //   // console.log(result)
-      //   this.form.logo = `https://ipfs.io/ipfs/${result.path}`
-      // } catch (e) {
-      //   console.log(e)
-      // }
-
-      // NFT.STORAGE IMPLEMENTATION
-      // create a new NFTStorage client using our API key
-      const nftstorage = new NFTStorage({ token: this.$config.nftStorageApiKey })
-
-      // call client.store, passing in the image & metadata
-      const result = await nftstorage.store({
-        image: file,
-        name: file.name,
-        description: this.form.description
-      })
-      // this.form.logoMetadata = Object.assign({}, result)
-      // this.form.logoMetadata.data = result.data
-      this.form.imageUrl = result.url
-      console.log(result)
-
-      // const blobResult = await nftstorage.storeBlob(file)
-      // console.log(blobResult)
-      // const ipfsUrl = `ipfs://${blobResult}`
-      // this.form.imageUrl = ipfsUrl
-      // const json = {
-      //   image: file,
-      //   name: file.name,
-      //   description: this.form.description,
-      //   properties: {
-      //     origins: {
-      //       http: `https://ipfs.io/ipfs/${blobResult}`,
-      //       ipfs: ipfsUrl
-      //     }
-      //   }
-      // }
-      // const result = await nftstorage.store(json)
-      // this.form.imageUrl = result.url
-      // console.log(result)
+      // const logoPicture = ''
+      console.log(file.name)
+      const data = file
+      const imageFile = new Moralis.File(data.name, data)
+      await imageFile.saveIPFS()
+      console.log(imageFile.ipfs(), imageFile.hash())
+      this.form.logoPicture = imageFile.ipfs()
+      console.log('ipfs file is: ', this.form.logoPicture)
+      // this.form.logoPicture = ipfsUri
       this.loading = false
     },
-    mintNFT () {
+
+    async mintNFT () {
       // TODO mint business or service NFT based on kind
       this.loading = true
       if (this.form.kind === 'businesses') {
+        const metadata = {
+          name: this.getBusinessType,
+          image: this.getImageUrl, // here there is no () as normally with functions, because getImageUrl() is used in methods!!!
+          description: this.form.description,
+          uploadedImage: this.form.logoPicture
+        }
+        const metadataFile = new Moralis.File('metadata.json', {
+          base64: btoa(JSON.stringify(metadata))
+        })
+        await metadataFile.saveIPFS()
+        const metadataURI = metadataFile.ipfs()
+        this.form.URI = metadataURI
+        console.log(metadataURI)
         createBusiness(this.$config.contractBusinessNft, this.form).then(() => {
           this.loading = false
           this.$router.push('/')
@@ -409,5 +391,4 @@ export default {
     // },
   }
 }
-
 </script>

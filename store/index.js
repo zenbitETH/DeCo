@@ -7,14 +7,14 @@ export const state = {
   myPurchasedServices: [],
 
   businessTypes: [
-    { key: 'clothes', value: 'products-1', text: '1. Clothes' },
-    { key: 'food', value: 'products-2', text: '2. Food / Restaurant' },
-    { key: 'punk-products', value: 'products-3', text: '3. Punk Products' },
-    { key: 'general-store', value: 'products-4', text: '4. General store' },
-    { key: 'fitness', value: 'services-1', text: '5. Fitness' },
-    { key: 'art-fun', value: 'services-2', text: '6. Art/fun' },
-    { key: 'beauty', value: 'services-3', text: '7. Beauty/Barber shop' },
-    { key: 'professional', value: 'services-4', text: '8. Profesional/Talent' }
+    { key: 'clothes', value: 'products-1', text: ' Clothes', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmUti5SNcWjPEFZpv47cbYmQPU3FMcGKrXH7fHTdcqft8z' },
+    { key: 'food', value: 'products-2', text: ' Food / Restaurant', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmfEbx2aFHNmTZqgye5FNqE3yNLS8vZJm1nTaNHxLfZLn4 ' },
+    { key: 'punk-products', value: 'products-3', text: ' Punk Products', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmUKSuYhkR5GiyHQ2VU6jM1nfzN6hjc1T3GTaVWKrMaiwf ' },
+    { key: 'general-store', value: 'products-4', text: ' General store', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmbYezsAuWcsiKGkNU5ZRudUyAWGe7j4JBqhXqdRvkDTjc ' },
+    { key: 'fitness', value: 'services-1', text: ' Fitness', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmfXw61b7sjPquphjLVivdAas9a8XZT1Bs6BqoAiExzo4r ' },
+    { key: 'art-fun', value: 'services-2', text: ' Art/fun', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmT9bTPitveSZhf2yAoHmG8D8cAsksByD383vvf2JEdFm2 ' },
+    { key: 'beauty', value: 'services-3', text: ' Beauty/Barber shop', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmdRX9bWmuZu24wvBEscm4L3z9TEs3yPfCeGWvwpHKhfFC ' },
+    { key: 'professional', value: 'services-4', text: ' Profesional/Talent', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmVD1c9rtBCfjFmBZ3AjDtL7nzVUDgkG96KysrB1LneGvp ' }
   ]
 
 }

@@ -14,7 +14,8 @@ export default async function (address, form) {
       description: form.description,
       name: form.name,
       _googleAddress: form.location,
-      _services: []
+      _services: [],
+      URI: form.URI
       // tokenURI: form.imageUrl
     }
   }
