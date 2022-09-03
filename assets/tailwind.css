@@ -75,91 +75,61 @@ Input {
   px-5
 }
 
-.hud1 {
+.hud1, .hud2, .hud3  {
   @apply p-1 
   bg-glass-200 text-center
-  rounded-bl-lg
   border-none
-  hover:bg-cyber-100
+  hover:bg-glass-800
   hover:text-white
   cursor-pointer
 }
 
-.hud1con {
-  @apply p-1 
-  bg-glass-200 text-white
+.hud1 {
+  @apply 
   col-span-2
   xl:col-span-1 xl:rounded-bl-lg
-  hover:bg-glass-700
-  border-none
-  cursor-pointer
   px-10
 }
 
 .hud2 {
   @apply p-1 
-  bg-glass-200 text-center
   rounded-bl-lg
   xl:rounded-none
-  border-none
-  hover:bg-glass-700
-  cursor-pointer
 }
 
 .hud3 {
-  @apply p-1 
-  bg-glass-200 text-center
-  border-none
-  hover:bg-glass-700
-  cursor-pointer
+  @apply 
+  xl:rounded-br-lg
 }
 
-.hud4 {
-  @apply p-1 
-  bg-glass-200 text-center
-  border-none
-  hover:bg-glass-700
-  cursor-pointer
-  rounded-br-lg
-}
-
-.huda {
+.huda, .hudb, .hudc, .hudd {
   @apply p-1 
   bg-glass-200 text-center text-white
-  hover:bg-glass-700
+  hover:bg-glass-800
   border-none
-  fhd:rounded-tr-lg
   cursor-pointer
   xl:px-4
 }
 
+.huda {
+  @apply 
+  fhd:rounded-tr-lg
+}
+
 .hudb {
-  @apply p-1 
-  bg-glass-200 text-center text-white
-  border-none
-  cursor-pointer
+  @apply
   rounded-tr-lg
   fhd:rounded-none
   fhd:rounded-br-lg
-  hover:bg-glass-700
 }
 
 .hudc {
-  @apply p-1 
-  bg-glass-200 text-center
-  border-none
-  rounded-none
+  @apply 
   rounded-tl-lg
-  hover:bg-glass-800
-  cursor-pointer
 }
 
 .hudd {
   @apply p-1 
-  bg-glass-200 text-center
-  border-none
-  hover:bg-glass-800
-  cursor-pointer
   xl:rounded-bl-lg
 }
 
@@ -212,7 +182,7 @@ Input {
 .decoNFT {
   @apply 
   bg-glass-200
-  hover:bg-glass-700 hover:cursor-pointer
+  hover:bg-glass-500 hover:cursor-pointer
   rounded-lg py-2 md:px-5
   text-xl
   grid grid-cols-4 grid-rows-4
@@ -322,14 +292,14 @@ Input {
 }
 
 .Board1 {
-  @apply bg-gradient-to-b from-glass-700 via-glass-800 to-glass-800 rounded-lg
+  @apply bg-gradient-to-b from-glass-500 via-glass-800 to-glass-800 rounded-lg
   text-center text-white
   grid grid-rows-2
   xl:col-span-3 xl:row-span-4 
 }
 
 .Board2 {
-  @apply bg-gradient-to-b from-glass-700 to-glass-800 text-center rounded-t-lg  
+  @apply bg-gradient-to-b from-glass-500 to-glass-800 text-center rounded-t-lg  
   xl:col-span-9 xl:row-span-2 text-white
 }
 
@@ -339,7 +309,7 @@ Input {
 }
 
 .eBoard1 {
-  @apply bg-gradient-to-b from-glass-700 to-glass-800 text-center rounded-lg  
+  @apply bg-gradient-to-b from-glass-500 to-glass-800 text-center rounded-lg  
   xl:col-span-12 xl:row-span-4 text-white pb-10
 }
 
@@ -351,7 +321,7 @@ Input {
 }
 
 .vBoard1 {
-  @apply bg-gradient-to-b from-glass-200 to-glass-700 rounded-lg
+  @apply bg-gradient-to-b from-glass-200 to-glass-500 rounded-lg
   text-center text-white
   2xl:col-span-6 xl:row-span-5
 }
@@ -378,13 +348,13 @@ Input {
 
 .dataBoard {
   @apply text-left rounded-xl
-  bg-gradient-to-t from-deco-900 to-glass-700
+  bg-gradient-to-t from-deco-900 to-glass-500
   grid grid-rows-2 fhd:grid-cols-6 grid-cols-4
   col-span-6 text-white row-span-2
 }
 
 .inventory {
-  @apply bg-gradient-to-b from-glass-700 to-glass-800 text-center rounded-lg text-white 
+  @apply bg-gradient-to-b from-glass-500 to-glass-800 text-center rounded-lg text-white 
   col-span-6 row-span-6 grid grid-rows-2 
 }
 .PlaceBG {
@@ -397,7 +367,7 @@ Input {
 .DecoBG {
   @apply 
   bg-glass-200 rounded-lg 
-  hover:bg-glass-700
+  hover:bg-glass-500
   cursor-pointer
 }
 
@@ -410,14 +380,14 @@ Input {
 
 .myVaultBG {
   @apply 
-  bg-gradient-to-b from-glass-700 to-glass-800 rounded-lg 
+  bg-gradient-to-b from-glass-500 to-glass-800 rounded-lg 
   grid row-span-4
   cursor-pointer 
 }
 
 .productBG {
   @apply 
-  bg-glass-700 rounded-lg 
+  bg-glass-500 rounded-lg 
   grid row-span-2
   cursor-pointer
 }
@@ -443,7 +413,7 @@ Input {
   @apply
   text-base
   xl:text-2xl
-  bg-glass-700 rounded-lg xl:pt-6 xl:py-0 py-3 
+  bg-glass-500 rounded-lg xl:pt-6 xl:py-0 py-3 
 }
 
 .wTitle {
