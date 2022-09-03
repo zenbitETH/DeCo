@@ -75,8 +75,6 @@ module.exports = {
                     800: "#49e9f871",
                 },
 
-                
-
                 "bookmark-purple": "#5267DF",
                 "bookmark-red": "#fa5959",
                 "bookmark-blue": "#242A45",
