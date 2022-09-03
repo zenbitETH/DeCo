@@ -9,7 +9,7 @@
           <div class="grid md:grid-cols-4 xl:grid-cols-8 grid-cols-2 px-10 gap-5">
             <div v-for="business in businesses" :key="business.tokenId">
               <nuxt-link :to="'business-detail-customer/' + business.tokenId">
-                <div class="DecoBG bg-glass-700">
+                <div class="DecoBG bg-glass-500">
                   <div class="">
                     <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="/deco logo.svg">
                     {{ business.shortname }}
@@ -21,7 +21,7 @@
                 </div>
               </nuxt-link>
             </div>
-            <!-- <nuxt-link to="business-detail-customer" class="DecoBG bg-glass-700">
+            <!-- <nuxt-link to="business-detail-customer" class="DecoBG bg-glass-500">
               <div class="">
                 <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../static/deco logo.svg">
               </div>

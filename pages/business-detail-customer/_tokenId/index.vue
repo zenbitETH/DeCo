@@ -55,7 +55,7 @@
                 <div class="text-center">
                   <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../../static/product.png">
                 </div>
-                <div class="bg-gradient-to-r from-deco-500 to-glass-700 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
+                <div class="bg-gradient-to-r from-deco-500 to-glass-500 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
                   <div class="text-deco-900 col-span-2">
                     {{ service.serviceDescription }}
                   </div>
@@ -73,7 +73,7 @@
                 <div class="text-center">
                   <img class="xl:h-32 qhd:h-43 h-32 mx-auto" :src="service.tokenURI">
                 </div>
-                <div class="bg-gradient-to-r from-glass-700 to-glass-800 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
+                <div class="bg-gradient-to-r from-glass-500 to-glass-800 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
                   <div class="col-span-2">
                     {{ service.serviceDescription }}
                   </div>

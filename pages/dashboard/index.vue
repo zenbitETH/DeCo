@@ -58,7 +58,7 @@
               <img src="../../static/3dAssets/1-Clothes.png" class="max-h-80" alt="">
               <!-- >>>>>>> Stashed changes -->
             </div>
-            <!-- <div class="selDecoBG bg-glass-700">
+            <!-- <div class="selDecoBG bg-glass-500">
               <div class="">
                 <img class="fhd:h-32 qhd:h-43 h-32 mx-auto" src="/punkcities.png">
               </div>
@@ -69,12 +69,12 @@
                 <div class="py-2">
                   3 🛍️
                 </div>
-                <nuxt-link class="hover:bg-glass-700 rounded-br-lg py-2" to="../business-detail">
+                <nuxt-link class="hover:bg-glass-500 rounded-br-lg py-2" to="../business-detail">
                   ⚙️
                 </nuxt-link>
               </div>
             </div> -->
-            <!-- <div class="DecoBG bg-glass-700">
+            <!-- <div class="DecoBG bg-glass-500">
               <div class="">
                 <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="/deco logo.svg">
               </div>
@@ -85,7 +85,7 @@
                 <div class="py-2">
                   3 🛍️
                 </div>
-                <nuxt-link class="hover:bg-glass-700 rounded-br-lg py-2" to="../business-detail">
+                <nuxt-link class="hover:bg-glass-500 rounded-br-lg py-2" to="../business-detail">
                   ⚙️
                 </nuxt-link>
               </div>

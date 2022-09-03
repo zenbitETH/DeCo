@@ -32,7 +32,7 @@
             E-commerce and M-Commerce rising
           </div>
 
-          <div class="!bg-glass-700 !animate-pulse joinBG cursor-default">
+          <div class="!bg-glass-500 !animate-pulse joinBG cursor-default">
             <div class="text-9xl my-10">
               Only 25%
             </div>

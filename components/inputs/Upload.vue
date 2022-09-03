@@ -2,7 +2,7 @@
   <client-only>
     <div class="w-full -m">
       <div
-        class="bg-glass-200 hover:bg-glass-700 animate-pulse p-3 border-none flex flex-col place-items-center rounded-lg"
+        class="bg-glass-200 hover:bg-glass-500 animate-pulse p-3 border-none flex flex-col place-items-center rounded-lg"
       >
         <div
           class="w-full text-center "

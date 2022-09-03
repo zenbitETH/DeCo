@@ -1,7 +1,7 @@
 <template>
-  <div class="relative py-10 bg-gradient-to-t from-deco-900 to-deco-800 h-screen overflow-y-auto">
+  <div class="relative py-10 bg-gradient-to-t from-deco-700 to-deco-700 h-screen overflow-y-auto">
     <nav class="top-hud">
-      <div class="hud1con">
+      <div class="hud1">
         <div v-if="!connectedAddress" @click="showConnectWalletModal = true">
           Connect to Deco
         </div>
@@ -14,7 +14,7 @@
         <span> ⚡ </span>
         <span class="mx-2">20</span>
       </div>
-      <div class="hud4">
+      <div class="hud3">
         <span> 💽 </span>
         <span class="mx-2">12</span>
       </div>
