@@ -292,29 +292,29 @@ Input {
 }
 
 .Board1 {
-  @apply bg-gradient-to-b from-glass-500 via-glass-800 to-glass-800 rounded-lg
+  @apply bg-glass-200 rounded-lg
   text-center text-white
   grid grid-rows-2
   xl:col-span-3 xl:row-span-4 
 }
 
 .Board2 {
-  @apply bg-gradient-to-b from-glass-500 to-glass-800 text-center rounded-t-lg  
+  @apply bg-glass-200 text-center rounded-t-lg  
   xl:col-span-9 xl:row-span-2 text-white
 }
 
 .Board3 {
-  @apply bg-gradient-to-b from-glass-800 to-glass-800 text-center rounded-b-lg text-white 
+  @apply bg-glass-200 text-center rounded-b-lg text-white 
   xl:col-span-9 xl:row-span-2
 }
 
 .eBoard1 {
-  @apply bg-gradient-to-b from-glass-500 to-glass-800 text-center rounded-lg  
+  @apply text-center rounded-lg  
   xl:col-span-12 xl:row-span-4 text-white pb-10
 }
 
 .vBoard0 {
-  @apply bg-gradient-to-b from-glass-400 to-glass-200 rounded-b-lg
+  @apply  rounded-b-lg
   text-center text-white
   grid 
   2xl:col-span-12 xl:row-span-1  xl:-mt-20 xl:pt-12
@@ -348,13 +348,13 @@ Input {
 
 .dataBoard {
   @apply text-left rounded-xl
-  bg-gradient-to-t from-deco-900 to-glass-500
+  bg-glass-200
   grid grid-rows-2 fhd:grid-cols-6 grid-cols-4
   col-span-6 text-white row-span-2
 }
 
 .inventory {
-  @apply bg-gradient-to-b from-glass-500 to-glass-800 text-center rounded-lg text-white 
+  @apply bg-glass-200 text-center rounded-lg text-white 
   col-span-6 row-span-6 grid grid-rows-2 
 }
 .PlaceBG {
@@ -380,7 +380,7 @@ Input {
 
 .myVaultBG {
   @apply 
-  bg-gradient-to-b from-glass-500 to-glass-800 rounded-lg 
+  bg-glass-200 rounded-lg 
   grid row-span-4
   cursor-pointer 
 }

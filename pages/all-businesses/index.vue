@@ -14,7 +14,7 @@
                     <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="/deco logo.svg">
                     {{ business.shortname }}
                   </div>
-                  <div class="bg-night-100 rounded-b-lg grid grid-cols-2 text-center text-base py-2">
+                  <div class="bg-glass-600 rounded-b-lg grid grid-cols-2 text-center text-base py-2">
                     <div>0 👍</div>
                     <div>0 🛍️</div>
                   </div>
