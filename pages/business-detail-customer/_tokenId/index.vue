@@ -4,8 +4,8 @@
       <div class="dBoard">
         <div class="assetBoard">
           <div class="grid grid-cols-6 text-left">
-            <div class="text-center col-span-2">
-              <img class="fhd:h-full mx-auto" src="../../../static/3dAssets/1-Clothes.png">
+            <div v-if="business" class="text-center col-span-2">
+              <img class="fhd:h-full mx-auto" :src="'/3dAssets/' + business.businessType + '.png'">
             </div>
             <div class="col-span-4 pt-6 xl:pt-20">
               <div class="text-xl">
@@ -18,7 +18,7 @@
           </div>
 
           <div class="col-span-6 row-span-4">
-            <img class="fhd:h-full mx-auto" src="/deco logo.svg">
+            <!-- <img class="fhd:h-full mx-auto" src="/deco logo.svg"> --> <img class="fhd:h-full mx-auto" :src="logo">
           </div>
 
           <div class="dataBoard">
@@ -88,16 +88,19 @@
   </section>
 </template>
 <script>
+import getYourLogoPicture from '~/contracts/business-nft/getYourLogoPicture'
 import listAllBusinessNFTs from '~/contracts/business-nft/listAllBusinessNFTs'
 import listMyServices from '~/contracts/service-nft/listMyServices'
 import buy from '~/contracts/vault/buy'
 
 export default {
   data () {
+    getYourLogoPicture()
     return {
       tokenId: null,
       business: null,
-      services: []
+      services: [],
+      logo: ''
     }
   },
   computed: {
@@ -121,6 +124,7 @@ export default {
     business () {
       if (this.business) {
         this.listMyServices()
+        this.getLogo()
       }
     }
   },
@@ -163,6 +167,9 @@ export default {
       buy(this.$config.contractVault, service).then(() => {
         console.log('succesful purchase')
       })
+    },
+    async getLogo () {
+      this.logo = await getYourLogoPicture(this.$config.contractBusinessNft)
     }
   }
 }

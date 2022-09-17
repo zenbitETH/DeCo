@@ -20,7 +20,7 @@
               <div class="placeNFT" @click.prevent="currentPage = 2; form.kind='businesses'">
                 <div class="NFTlogo">
                   <img
-                    src="../../static/3dAssets/4-store.png"
+                    src="../../static/3dAssets/products-4.png"
                     class=""
                   >
                 </div>
@@ -194,6 +194,7 @@
         </section>
       </transition>
     </div>
+    <MintModal v-show="showModal" @goHome="$router.push('/')" />
   </OverlayLoader>
 </template>
 
@@ -216,6 +217,7 @@ import Select from '~/components/inputs/Select.vue'
 import Textarea from '~/components/inputs/Textarea.vue'
 import Upload from '~/components/inputs/Upload.vue'
 import Map from '~/components/inputs/Map.vue'
+import MintModal from '~/components/MintModal.vue'
 
 import createBusiness from '~/contracts/business-nft/createBusiness'
 import makeService from '~/contracts/service-nft/makeService'
@@ -223,7 +225,7 @@ import makeService from '~/contracts/service-nft/makeService'
 
 export default {
   components: {
-    Input, Select, Textarea, Map, Upload, OverlayLoader
+    Input, Select, Textarea, Map, Upload, OverlayLoader, MintModal
   },
   data () {
     return {
@@ -232,7 +234,7 @@ export default {
       currentPage: 1,
 
       file: null, // file upload
-
+      showModal: false,
       form: {
         // COMMON FIELDS
         // form data -> smart contract data
@@ -302,9 +304,10 @@ export default {
         const metadataURI = metadataFile.ipfs()
         this.form.URI = metadataURI
         console.log(metadataURI)
-        createBusiness(this.$config.contractBusinessNft, this.form).then(() => {
+        createBusiness(this.$config.contractBusinessNft, this.form).then(async (txHash) => {
+          await txHash.wait()
+          this.showModal = true
           this.loading = false
-          this.$router.push('/')
         }).catch((e) => {
           console.error(e)
           this.loading = false
