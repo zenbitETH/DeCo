@@ -16,7 +16,6 @@
               </div>
             </div>
           </div>
-
           <div class="col-span-6 row-span-4">
             <!-- <img class="fhd:h-full mx-auto" src="/deco logo.svg"> --> <img class="fhd:h-full mx-auto" :src="logo">
           </div>
@@ -43,13 +42,11 @@
             </div>
           </div>
         </div>
-
         <div class="inventory">
           <div>
             <div class="my-2 md:mx-30 xl:mx-60 mx-10">
               On sale
             </div>
-
             <div class="grid md:grid-cols-3 grid-cols-2 px-10 gap-5">
               <div v-for="service in unsoldServices" :key="service.serviceId" class="PlaceBG" @click="purchaseServiceNft(service)">
                 <div class="text-center">
@@ -95,7 +92,6 @@ import buy from '~/contracts/vault/buy'
 
 export default {
   data () {
-    getYourLogoPicture()
     return {
       tokenId: null,
       business: null,
@@ -129,6 +125,7 @@ export default {
     }
   },
   beforeMount () {
+    getYourLogoPicture()
     this.tokenId = parseInt(this.$route.params.tokenId)
     if (!this.businesses.length) {
       setTimeout(this.listAllBusinesses, 3000)
