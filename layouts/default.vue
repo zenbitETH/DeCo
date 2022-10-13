@@ -23,7 +23,7 @@
     <div class="2xl:mx-40 qhd:mx-96 mt-10">
       <Nuxt />
     </div>
-    <nav class="bottom-l-hud">
+    <nav class="bottom-l-hud">  
       <nuxt-link class="huda" to="/new-business">
         <div class="bigIcon">
           🏪
