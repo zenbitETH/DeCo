@@ -348,7 +348,7 @@ Input {
 
 .dataBoard {
   @apply text-left rounded-xl
-  bg-glass-200
+  bg-glass-200 h-full
   grid grid-rows-2 fhd:grid-cols-6 grid-cols-4
   col-span-6 text-white row-span-2
 }

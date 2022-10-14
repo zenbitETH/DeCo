@@ -4,41 +4,44 @@
       <div class="dBoard">
         <div class="assetBoard">
           <div class="grid grid-cols-6 text-left">
-            <div v-if="business" class="text-center col-span-2">
-              <img class="fhd:h-full mx-auto" :src="'/3dAssets/' + business.businessType + '.png'">
+            <div v-if="business" class="text-center col-span-2 p-5">
+              <img class="mx-auto" :src="'/3dAssets/' + business.businessType + '.png'">
             </div>
-            <div class="col-span-4 pt-6 xl:pt-20">
+            <div class="col-span-4 my-auto">
               <div class="text-xl">
                 {{ business ? businessTypes.find(t => t.value === business.businessType).text : 'Type of place' }}
               </div>
-              <div class="xl:text-5xl text-2xl">
+              <div class="xl:text-5xl text-3xl">
                 {{ business ? business.shortname : 'Loading...' }}
               </div>
             </div>
           </div>
-          <div class="col-span-6 row-span-4">
-            <!-- <img class="fhd:h-full mx-auto" src="/deco logo.svg"> --> <img class="fhd:h-full mx-auto" :src="logo">
+
+          <div class="col-span-6 row-span-3 xl:p-5 rounded-xl">
+            <!-- <img class="fhd:h-full mx-auto" src="/deco logo.svg"> --> <img class="m-auto md:h-4/5 rounded-lg" :src="logo">
           </div>
 
           <div class="dataBoard">
-            <div class="col-span-4 row-span-2 p-3">
-              {{ business ? business.description : 'Loading...' }}
-            </div>
-            <div class="grid fhd:col-span-2 col-span-4 gap-3 row-span-2">
-              <!-- <div class="p-3">
-                Tags
-              </div> -->
-              <div class="text-center grid grid-cols-2 col-span-4 gap-3 fhd:pt-5 mr-5">
-                <div class=" text-4xl">
-                  0👍
-                </div>
-                <div class="myVaultBT">
-                  👍 Verify
-                </div>
+            <div class="text-center grid grid-cols-2 col-span-6 gap-5 p-5">
+              <div class=" text-4xl">
+                0👍
+              </div>
+              <div class="myVaultBT">
+                👍 Verify
               </div>
             </div>
-            <div class="col-span-4 row-span-2 p-3">
-              {{ business ? `${business.city} ${business.googleAddress}` : 'Loading...' }}
+            <div class="col-span-6 row-span-1 p-3">
+              {{ business ? business.description : 'Loading...' }}
+            </div>
+            <!--  <div class="grid fhd:col-span-2 col-span-4 gap-3 row-span-2">
+             <div class="p-3">
+                Tags
+              </div>
+            </div>
+
+          -->
+            <div class="col-span-6 row-span-2 p-3">
+              {{ business ? `${business.city} / ${business.googleAddress}` : 'Loading...' }}
             </div>
           </div>
         </div>
