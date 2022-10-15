@@ -38,29 +38,14 @@ Input {
 
 .bottom-l-hud { 
   @apply
-  fixed grid grid-cols-2 fhd:grid-cols-1 fhd:grid-rows-3 items-center 
-  bottom-0 fhd:bottom-auto fhd:top-20 left-0
-  font-exo
-  font-medium
-  text-white
-  text-sm
-  md:text-xl lg:text-2xl xl:text-2xl 
-  border-none
+  grid grid-cols-4 font-exo
+  bg-glass-200 items-center xl:rounded-r-lg
+  fixed bottom-0 xl:grid-cols-1 xl:left-0 align-middle	
+  w-full xl:w-20 xl:h-[80%]   xl:grid-rows-4 
+  xl:py-32 z-50 backdrop-blur-md	
+  xl:inset-y-0 xl:my-auto 
 }
 
-
-.bottom-r-hud { 
-  @apply
-  fixed grid grid-cols-2 fhd:grid-cols-1 fhd:grid-rows-3 items-center
-  bottom-0 fhd:bottom-auto fhd:top-20 right-0
-  rounded-b-lg
-  font-exo
-  font-medium
-  text-white
-  text-sm
-  md:text-xl lg:text-2xl xl:text-2xl 
-  border-none
-}
 
 .hud0 {
   @apply p-1 
@@ -104,34 +89,32 @@ Input {
 
 .huda, .hudb, .hudc, .hudd {
   @apply p-1 
-  bg-glass-200 text-center text-white
+   text-center text-white
   hover:bg-glass-800
   border-none
   cursor-pointer
-  xl:px-4
 }
 
-.huda {
+.huda {/*
   @apply 
-  fhd:rounded-tr-lg
-}
+  fhd:rounded-tr-l
+*/}
 
-.hudb {
+.hudb {/*
   @apply
   rounded-tr-lg
-  fhd:rounded-none
-  fhd:rounded-br-lg
-}
+  md:rounded-none
+*/}
 
-.hudc {
+.hudc {/*
   @apply 
-  rounded-tl-lg
-}
+  rounded-none
+*/}
 
-.hudd {
+.hudd {/*
   @apply p-1 
-  xl:rounded-bl-lg
-}
+  xl:rounded-br-lg
+*/}
 
  /* How to join */
 
@@ -224,10 +207,16 @@ Input {
   hover:bg-deco-900 hover:text-white hover:cursor-pointer 
 }
 
+.dataVotes {
+  @apply
+  text-2xl grid items-center px-12
+}
+
 .myVaultBT {
   @apply
-  bg-deco-100 rounded-lg text-deco-900
-  hover:bg-deco-900 hover:text-white hover:cursor-pointer 
+  bg-glass-100 rounded-lg text-deco-900
+  hover:text-white hover:cursor-pointer 
+  py-2
 }
 
 .myVaultBT2 {
@@ -348,7 +337,7 @@ Input {
 
 .dataBoard {
   @apply text-left rounded-xl
-  bg-glass-200
+  bg-glass-200 h-full
   grid grid-rows-2 fhd:grid-cols-6 grid-cols-4
   col-span-6 text-white row-span-2
 }
@@ -432,7 +421,7 @@ Input {
 .bigIcon {
   @apply
   text-xl text-center
-  fhd:text-7xl
+  md:text-5xl
   xl:pt-3
 }
 

@@ -1,4 +1,3 @@
-
 import Moralis from 'moralis'
 import abi from './abi.json'
 
@@ -15,10 +14,14 @@ export default async function (address, form) {
       name: form.name,
       _googleAddress: form.location,
       _services: [],
-      URI: form.URI
-      // tokenURI: form.imageUrl
+      URI: form.URI,
+      ipfsHash: form.logoPicture
     }
   }
 
-  await Moralis.executeFunction(options)
+  const txHash = await Moralis.executeFunction(options)
+  console.log(txHash)
+  return txHash
+  // await txHash.wait()
+  // alert('You have successfully minted an NFT! your transaction hash is: ' + txHash.hash)
 }

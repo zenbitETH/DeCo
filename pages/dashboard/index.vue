@@ -55,7 +55,7 @@
               {{ business.googleAddress }}
             </div>
             <div class="col-span-2 row-span-2 text-lg">
-              <img src="../../static/3dAssets/1-Clothes.png" class="max-h-80" alt="">
+              <img src="../../static/3dAssets/products-1.png" class="max-h-80" alt="">
               <!-- >>>>>>> Stashed changes -->
             </div>
             <!-- <div class="selDecoBG bg-glass-500">

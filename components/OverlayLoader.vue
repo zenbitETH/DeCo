@@ -7,7 +7,7 @@
       class="z-50 fixed top-0 opacity-70 bg-gray-300 left-0 w-full h-full place-content-center"
       :class="{'flex  justify-center items-center': loading, 'hidden': !loading}"
     >
-      <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-24 w-24 " />
+      <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-24 w-24" />
     </div>
 
     <slot />
@@ -22,21 +22,21 @@ export default {
       required: true
     }
   },
-  data() {
+  data () {
     return {
       topPosition: 50,
       icon: null,
       overlay: null
     }
   },
-  mounted() {
+  mounted () {
     window.addEventListener('scroll', this.calculateIconPosition)
   },
-  beforeMount() {
+  beforeMount () {
     window.removeEventListener('scroll', this.calculateIconPosition)
   },
   methods: {
-    calculateIconPosition() {
+    calculateIconPosition () {
       if (icon.value && overlay.value) {
         const overlayHeight = overlay.value.getBoundingClientRect().height
         const overlayAbsoluteTop = caluclateElAbsoluteOffsetTop(overlay.value)
@@ -60,7 +60,7 @@ export default {
         // if ((listBottom + 75) - 1000 < (scrollbarHeight + window.scrollY) && !this.$fetchState.pending) {
       }
     },
-    caluclateElAbsoluteOffsetTop(el) {
+    caluclateElAbsoluteOffsetTop (el) {
       const pageHeight = (document.body.scrollHeight - window.innerHeight)
       let itemOffsetTop = 0
       let parent = el

@@ -1,4 +1,3 @@
-
 import Moralis from 'moralis'
 import abi from './abi.json'
 

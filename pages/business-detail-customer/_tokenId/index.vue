@@ -3,53 +3,60 @@
     <div class="MainScreen">
       <div class="dBoard">
         <div class="assetBoard">
-          <div class="grid grid-cols-6 text-left">
-            <div class="text-center col-span-2">
-              <img class="fhd:h-full mx-auto" src="../../../static/3dAssets/1-Clothes.png">
+          <div class="grid grid-cols-6 text-left ">
+            <div v-if="business" class="text-center col-span-2 p-5 max-h-52">
+              <img class="m-auto h-fit" :src="'/3dAssets/' + business.businessType + '.png'">
             </div>
-            <div class="col-span-4 pt-6 xl:pt-20">
+            <div class="col-span-4 my-auto">
               <div class="text-xl">
                 {{ business ? businessTypes.find(t => t.value === business.businessType).text : 'Type of place' }}
               </div>
-              <div class="xl:text-5xl text-2xl">
+              <div class="xl:text-5xl text-3xl">
                 {{ business ? business.shortname : 'Loading...' }}
+              </div>
+              <div class="">
+                {{ business ? `${business.city} ` : 'Loading...' }}
               </div>
             </div>
           </div>
 
-          <div class="col-span-6 row-span-4">
-            <img class="fhd:h-full mx-auto" src="/deco logo.svg">
+          <div class="col-span-6 md: row-span-3 xl:p-5 rounded-xl">
+            <!-- <img class="fhd:h-full mx-auto" src="/deco logo.svg"> --> <img class="m-auto md:max-h-96 rounded-lg" :src="logo">
           </div>
 
           <div class="dataBoard">
-            <div class="col-span-4 row-span-2 p-3">
-              {{ business ? business.description : 'Loading...' }}
-            </div>
-            <div class="grid fhd:col-span-2 col-span-4 gap-3 row-span-2">
-              <!-- <div class="p-3">
-                Tags
-              </div> -->
-              <div class="text-center grid grid-cols-2 col-span-4 gap-3 fhd:pt-5 mr-5">
-                <div class=" text-4xl">
-                  0👍
+            <div class="text-center grid grid-cols-2 col-span-6 gap-5 p-5">
+              <div class="dataVotes">
+                <div class="myVaultBT hover:bg-green-500">
+                  <span>0</span>👍
                 </div>
-                <div class="myVaultBT">
-                  👍 Verify
+              </div>
+              <div class="dataVotes">
+                <div class="myVaultBT hover:bg-red-500">
+                  <span>0</span>👎
                 </div>
               </div>
             </div>
-            <div class="col-span-4 row-span-2 p-3">
-              {{ business ? `${business.city} ${business.googleAddress}` : 'Loading...' }}
+            <div class="col-span-6 row-span-1 p-3">
+              {{ business ? business.description : 'Loading...' }}
+            </div>
+            <!--  <div class="grid fhd:col-span-2 col-span-4 gap-3 row-span-2">
+             <div class="p-3">
+                Tags
+              </div>
+            </div>
+
+          -->
+            <div class="col-span-6 row-span-2 p-3">
+              {{ business ? `${business.googleAddress}` : 'Loading...' }}
             </div>
           </div>
         </div>
-
         <div class="inventory">
           <div>
             <div class="my-2 md:mx-30 xl:mx-60 mx-10">
               On sale
             </div>
-
             <div class="grid md:grid-cols-3 grid-cols-2 px-10 gap-5">
               <div v-for="service in unsoldServices" :key="service.serviceId" class="PlaceBG" @click="purchaseServiceNft(service)">
                 <div class="text-center">
@@ -88,6 +95,7 @@
   </section>
 </template>
 <script>
+import getYourLogoPicture from '~/contracts/business-nft/getYourLogoPicture'
 import listAllBusinessNFTs from '~/contracts/business-nft/listAllBusinessNFTs'
 import listMyServices from '~/contracts/service-nft/listMyServices'
 import buy from '~/contracts/vault/buy'
@@ -97,7 +105,8 @@ export default {
     return {
       tokenId: null,
       business: null,
-      services: []
+      services: [],
+      logo: ''
     }
   },
   computed: {
@@ -121,10 +130,12 @@ export default {
     business () {
       if (this.business) {
         this.listMyServices()
+        this.getLogo()
       }
     }
   },
   beforeMount () {
+    getYourLogoPicture()
     this.tokenId = parseInt(this.$route.params.tokenId)
     if (!this.businesses.length) {
       setTimeout(this.listAllBusinesses, 3000)
@@ -163,6 +174,9 @@ export default {
       buy(this.$config.contractVault, service).then(() => {
         console.log('succesful purchase')
       })
+    },
+    async getLogo () {
+      this.logo = await getYourLogoPicture(this.$config.contractBusinessNft)
     }
   }
 }
