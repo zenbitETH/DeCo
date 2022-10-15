@@ -3,9 +3,9 @@
     <div class="MainScreen">
       <div class="dBoard">
         <div class="assetBoard">
-          <div class="grid grid-cols-6 text-left">
-            <div v-if="business" class="text-center col-span-2 p-5">
-              <img class="mx-auto" :src="'/3dAssets/' + business.businessType + '.png'">
+          <div class="grid grid-cols-6 text-left ">
+            <div v-if="business" class="text-center col-span-2 p-5 max-h-52">
+              <img class="m-auto h-fit" :src="'/3dAssets/' + business.businessType + '.png'">
             </div>
             <div class="col-span-4 my-auto">
               <div class="text-xl">
@@ -14,20 +14,27 @@
               <div class="xl:text-5xl text-3xl">
                 {{ business ? business.shortname : 'Loading...' }}
               </div>
+              <div class="">
+                {{ business ? `${business.city} ` : 'Loading...' }}
+              </div>
             </div>
           </div>
 
-          <div class="col-span-6 row-span-3 xl:p-5 rounded-xl">
-            <!-- <img class="fhd:h-full mx-auto" src="/deco logo.svg"> --> <img class="m-auto md:h-4/5 rounded-lg" :src="logo">
+          <div class="col-span-6 md: row-span-3 xl:p-5 rounded-xl">
+            <!-- <img class="fhd:h-full mx-auto" src="/deco logo.svg"> --> <img class="m-auto md:max-h-96 rounded-lg" :src="logo">
           </div>
 
           <div class="dataBoard">
             <div class="text-center grid grid-cols-2 col-span-6 gap-5 p-5">
-              <div class=" text-4xl">
-                0👍
+              <div class="dataVotes">
+                <div class="myVaultBT hover:bg-green-500">
+                  <span>0</span>👍
+                </div>
               </div>
-              <div class="myVaultBT">
-                👍 Verify
+              <div class="dataVotes">
+                <div class="myVaultBT hover:bg-red-500">
+                  <span>0</span>👎
+                </div>
               </div>
             </div>
             <div class="col-span-6 row-span-1 p-3">
@@ -41,7 +48,7 @@
 
           -->
             <div class="col-span-6 row-span-2 p-3">
-              {{ business ? `${business.city} / ${business.googleAddress}` : 'Loading...' }}
+              {{ business ? `${business.googleAddress}` : 'Loading...' }}
             </div>
           </div>
         </div>

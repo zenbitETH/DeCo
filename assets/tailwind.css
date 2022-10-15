@@ -224,10 +224,16 @@ Input {
   hover:bg-deco-900 hover:text-white hover:cursor-pointer 
 }
 
+.dataVotes {
+  @apply
+  text-2xl grid items-center px-12
+}
+
 .myVaultBT {
   @apply
-  bg-deco-100 rounded-lg text-deco-900
-  hover:bg-deco-900 hover:text-white hover:cursor-pointer 
+  bg-glass-100 rounded-lg text-deco-900
+  hover:text-white hover:cursor-pointer 
+  py-2
 }
 
 .myVaultBT2 {
