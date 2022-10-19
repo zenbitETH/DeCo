@@ -9,7 +9,7 @@
             </div>
             <div class="col-span-4 my-auto">
               <div class="text-xl">
-                {{ business ? businessTypes.find(t => t.value === business.businessType).text : 'Type of place' }}
+                {{ business ? businessTypes.find(t => t.value === business.businessType).text : '../static/deco_logo.svg' }}
               </div>
               <div class="xl:text-5xl text-3xl">
                 {{ business ? business.shortname : 'Loading...' }}
@@ -21,7 +21,7 @@
           </div>
 
           <div class="col-span-6 md: row-span-3 xl:p-5 rounded-xl">
-            <!-- <img class="fhd:h-full mx-auto" src="/deco logo.svg"> --> <img class="m-auto md:max-h-96 rounded-lg" :src="logo">
+            <img class="m-auto md:max-h-96 rounded-lg" :src="logo">
           </div>
 
           <div class="dataBoard">
@@ -95,7 +95,7 @@
   </section>
 </template>
 <script>
-import getYourLogoPicture from '~/contracts/business-nft/getYourLogoPicture'
+import logoPictureById from '~/contracts/business-nft/logoPictureById'
 import listAllBusinessNFTs from '~/contracts/business-nft/listAllBusinessNFTs'
 import listMyServices from '~/contracts/service-nft/listMyServices'
 import buy from '~/contracts/vault/buy'
@@ -135,7 +135,7 @@ export default {
     }
   },
   beforeMount () {
-    getYourLogoPicture()
+    logoPictureById()
     this.tokenId = parseInt(this.$route.params.tokenId)
     if (!this.businesses.length) {
       setTimeout(this.listAllBusinesses, 3000)
@@ -176,7 +176,7 @@ export default {
       })
     },
     async getLogo () {
-      this.logo = await getYourLogoPicture(this.$config.contractBusinessNft)
+      this.logo = await logoPictureById(this.$config.contractBusinessNft, this.$route.params.tokenId)
     }
   }
 }

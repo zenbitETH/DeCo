@@ -19,6 +19,7 @@
           </div>
 
           <div class="col-span-6 row-span-4">
+            {{ business ? businessTypes.find(t => t.value === business.businessType).text : '' }}
             <img class="fhd:h-full mx-auto" :src="logo">
           </div>
 
@@ -211,7 +212,7 @@ export default {
       })
     },
     async getLogo () {
-      this.logo = await getYourLogoPicture(this.$config.contractBusinessNft)
+      this.logo = await getYourLogoPicture(this.$config.contractBusinessNft, this.$route.params.tokenId)
     }
   }
 }
