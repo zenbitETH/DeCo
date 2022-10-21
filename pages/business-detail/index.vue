@@ -4,14 +4,14 @@
       <div class="MainBoard">
         <div class="eBoard1">
           <div class="my-2 ">
-            All Deco business
+            My Deco businesses
           </div>
           <div class="grid md:grid-cols-4 xl:grid-cols-8 grid-cols-2 px-10 gap-5">
             <div v-for="business in businesses" :key="business.tokenId">
-              <nuxt-link :to="'business-detail-customer/' + business.tokenId">
+              <nuxt-link :to="'business-detail/' + business.tokenId">
                 <div class="DecoBG bg-glass-500">
                   <div class="">
-                    <img class="xl:h-32 qhd:h-43 h-32 mx-auto" :src="logo">
+                    <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="/deco logo.svg">
                     {{ business.shortname }}
                   </div>
                   <div class="bg-glass-600 rounded-b-tf grid grid-cols-2 text-center text-base py-2">
@@ -37,26 +37,21 @@
   </section>
 </template>
 <script>
-import listAllBusinessNFTs from '~/contracts/business-nft/listAllBusinessNFTs'
+import listAllofMyBusinessNFTs from '~/contracts/business-nft/listAllofMyBusinessNFTs'
 
 export default {
-  data () {
-    return {
-      logo: ''
-    }
-  },
   computed: {
     businesses () {
-      return this.$store.state.allBusinesses
+      return this.$store.state.myBusinesses
     }
   },
   beforeMount () {
-    setTimeout(this.listAllBusinesses, 3000)
+    setTimeout(this.listAllofMyBusinessNFTs, 3000)
   },
   methods: {
-    listAllBusinesses () {
-      listAllBusinessNFTs(this.$config.contractBusinessNft).then((result) => {
-        this.$store.commit('setAllBusinesses', result)
+    listAllofMyBusinessNFTs () {
+      listAllofMyBusinessNFTs(this.$config.contractBusinessNft).then((result) => {
+        this.$store.commit('setMyBusinesses', result)
       })
     }
   }
