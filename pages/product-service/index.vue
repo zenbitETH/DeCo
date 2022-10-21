@@ -19,7 +19,7 @@
             </div>
           </div>
 
-          <div class="col-span-6 row-span-5 bg-glass-200 rounded-lg relative">
+          <div class="col-span-6 row-span-5 bg-glass-200 rounded-tf relative">
             <img class="xl:h-full mx-auto" src="/product.png">
             <div class="col-span-2 row-span-2 p-3 xl:text-9xl text-7xl productBT absolute bottom-0 right-0">
               <div class="xl:text-2xl text-xl">

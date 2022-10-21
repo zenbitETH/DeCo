@@ -28,7 +28,7 @@ Input {
 .top-hud { 
   @apply xl:mx-40 qhd:mx-96 
   mx-5 fixed grid  grid-cols-2 grid-rows-2 items-center top-0 left-0 right-0
-  rounded-b-lg
+  rounded-b-tf
   font-exo
   text-white
   text-sm
@@ -39,9 +39,9 @@ Input {
 .bottom-l-hud { 
   @apply
   grid grid-cols-4 font-exo
-  bg-glass-200 items-center xl:rounded-r-lg
+  bg-glass-200 items-center xl:rounded-r-tf
   fixed bottom-0 xl:grid-cols-1 xl:left-0 align-middle	
-  w-full xl:w-20 xl:h-[80%]   xl:grid-rows-4 
+  w-full xl:w-20 xl:h-[85%] xl:grid-rows-4 
   xl:py-32 z-50 backdrop-blur-md	
   xl:inset-y-0 xl:my-auto 
 }
@@ -120,20 +120,20 @@ Input {
 
  .joinBG {
   @apply 
-  bg-glass-200 rounded-lg py-10
+  bg-glass-200 rounded-tf py-10
   cursor-pointer hover:bg-deco-200 hover:text-deco-900
 }
 
 .Future {
   @apply 
-  bg-glass-200 rounded-lg p-5 
+  bg-glass-200 rounded-tf p-5 
   cursor-pointer hover:bg-deco-100 hover:text-deco-900
 }
 
 /* Built with */
 .builtBG {
   @apply 
-  bg-glass-200 hover:bg-deco-100 hover:text-deco-900 rounded-lg p-5
+  bg-glass-200 hover:bg-deco-100 hover:text-deco-900 rounded-tf p-5
 }
 /* Team */
 .teamMB {
@@ -157,7 +157,7 @@ Input {
   @apply 
   bg-glass-200 
   hover:bg-glass-500 hover:cursor-pointer
-  rounded-lg py-2 md:px-5
+  rounded-tf py-2 md:px-5
   text-xl
   grid grid-cols-4 grid-rows-4 
 }
@@ -166,7 +166,7 @@ Input {
   @apply 
   bg-glass-200
   hover:bg-glass-500 hover:cursor-pointer
-  rounded-lg py-2 md:px-5
+  rounded-tf py-2 md:px-5
   text-xl
   grid grid-cols-4 grid-rows-4
 }
@@ -197,7 +197,7 @@ Input {
 .mintButton {
   @apply
   text-white font-lex 
-  bg-deco-100 p-3 rounded-lg 
+  bg-deco-100 p-3 rounded-tf 
   hover:bg-deco-400 hover:text-deco-900 hover:cursor-pointer 
 }
 
@@ -209,19 +209,19 @@ Input {
 
 .dataVotes {
   @apply
-  text-2xl grid items-center px-12
+  text-2xl grid items-center
 }
 
 .myVaultBT {
   @apply
-  bg-glass-100 rounded-lg text-deco-900
+  rounded-lg text-deco-900
   hover:text-white hover:cursor-pointer 
-  py-2
+  py-2 px-5
 }
 
 .myVaultBT2 {
   @apply
-  bg-deco-400 rounded-lg text-deco-900
+  bg-deco-400 rounded-tf text-deco-900
   hover:bg-deco-900 hover:text-white hover:cursor-pointer 
 }
 
@@ -233,19 +233,19 @@ Input {
 
 .cityVaultBT {
   @apply
-  bg-deco-400 p-3 rounded-lg text-deco-900
+  bg-deco-400 p-3 rounded-tf text-deco-900
   hover:bg-deco-900 hover:text-white hover:cursor-pointer 
 }
 
 .wButton {
   @apply 
-  hover:bg-glass-800 rounded-lg text-center font-exo text-xl pb-5
+  hover:bg-glass-800 rounded-tf text-center font-exo text-xl pb-5
   cursor-pointer
 }
 
 .verify {
   @apply
-   text-center text-deco-400 animate-pulse rounded-lg
+   text-center text-deco-400 animate-pulse rounded-tf
 }
 
 /* Deco Dashboard*/
@@ -258,7 +258,7 @@ Input {
 
 .MainBoard {
   @apply grid grid-cols-1 xl:grid-rows-4 xl:grid-cols-12 
-  gap-5 p-5 xl:p-0
+  gap-5 xl:p-0
   w-full xl:h-[54rem] qhd:h-[75rem] flex 
   font-exo
   text-2xl
@@ -281,7 +281,7 @@ Input {
 }
 
 .Board1 {
-  @apply bg-glass-200 rounded-lg
+  @apply bg-glass-200 rounded-tf
   text-center text-white
   grid grid-rows-2
   xl:col-span-3 xl:row-span-4 
@@ -293,43 +293,43 @@ Input {
 }
 
 .Board3 {
-  @apply bg-glass-200 text-center rounded-b-lg text-white 
+  @apply bg-glass-200 text-center rounded-b-tf text-white 
   xl:col-span-9 xl:row-span-2
 }
 
 .eBoard1 {
-  @apply text-center rounded-lg  
+  @apply text-center rounded-tf  
   xl:col-span-12 xl:row-span-4 text-white pb-10
 }
 
 .vBoard0 {
-  @apply  rounded-b-lg
+  @apply  rounded-b-tf
   text-center text-white
   grid 
   2xl:col-span-12 xl:row-span-1  xl:-mt-20 xl:pt-12
 }
 
 .vBoard1 {
-  @apply bg-gradient-to-b from-glass-200 to-glass-500 rounded-lg
+  @apply bg-gradient-to-b from-glass-200 to-glass-500 rounded-tf
   text-center text-white
   2xl:col-span-6 xl:row-span-5
 }
 
 .vBoard2 {
-  @apply bg-gradient-to-b from-glass-200 to-glass-800 rounded-lg
+  @apply bg-gradient-to-b from-glass-200 to-glass-800 rounded-tf
   text-center text-white
   2xl:col-span-6 xl:row-span-5
 }
 
 .assetBoard {
-  @apply rounded-lg
+  @apply rounded-tf
   text-center text-white
-  grid xl:grid-rows-6 gap-5
-  col-span-6 row-span-6 
+  grid xl:grid-rows-6 gap-5 grid-cols-2
+  col-span-12 row-span-2 
 }
 
 .productBoard {
-  @apply rounded-lg
+  @apply rounded-tf
   text-center text-white
   grid xl:grid-rows-6 gap-5
   col-span-12 row-span-6 
@@ -343,47 +343,46 @@ Input {
 }
 
 .inventory {
-  @apply bg-glass-200 text-center rounded-lg text-white 
-  col-span-6 row-span-6 grid grid-rows-2 
+  @apply text-center rounded-tf text-white 
+  col-span-12 row-span-4 grid grid-cols-2 gap-5
 }
 .PlaceBG {
   @apply 
-  bg-glass-200 rounded-lg 
-  hover:bg-glass-800
+  bg-glass-200 rounded-tf 
   cursor-pointer
 }
 
 .DecoBG {
   @apply 
-  bg-glass-200 rounded-lg 
-  hover:bg-glass-500
+  bg-glass-200 rounded-tf 
+  hover:bg-glass-800
   cursor-pointer
 }
 
 .selDecoBG {
   @apply 
-  bg-glass-800 rounded-lg 
+  bg-glass-800 rounded-tf 
   hover:bg-glass-800
   cursor-pointer
 }
 
 .myVaultBG {
   @apply 
-  bg-glass-200 rounded-lg 
+  bg-glass-200 rounded-tf 
   grid row-span-4
   cursor-pointer 
 }
 
 .productBG {
   @apply 
-  bg-glass-500 rounded-lg 
+  bg-glass-500 rounded-tf 
   grid row-span-2
   cursor-pointer
 }
 
 .serviceBG {
   @apply 
-  bg-glass-800 rounded-lg 
+  bg-glass-800 rounded-tf 
   grid row-span-2
   cursor-pointer
 }
@@ -402,7 +401,7 @@ Input {
   @apply
   text-base
   xl:text-2xl
-  bg-glass-500 rounded-lg xl:pt-6 xl:py-0 py-3 
+  bg-glass-500 rounded-tf xl:pt-6 xl:py-0 py-3 
 }
 
 .wTitle {
