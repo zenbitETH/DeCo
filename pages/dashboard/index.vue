@@ -62,7 +62,7 @@
               <div class="">
                 <img class="fhd:h-32 qhd:h-43 h-32 mx-auto" src="/punkcities.png">
               </div>
-              <div class="bg-deco-900 rounded-b-lg grid grid-cols-3 text-center text-base">
+              <div class="bg-deco-900 rounded-b-tf grid grid-cols-3 text-center text-base">
                 <div class="py-2">
                   1 👍
                 </div>
@@ -78,7 +78,7 @@
               <div class="">
                 <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="/deco logo.svg">
               </div>
-              <div class="bg-deco-900 rounded-b-lg grid grid-cols-3 text-center text-base">
+              <div class="bg-deco-900 rounded-b-tf grid grid-cols-3 text-center text-base">
                 <div class="py-2">
                   1 👍
                 </div>
@@ -111,7 +111,7 @@
               <div class="">
                 <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="/product.png">
               </div>
-              <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
+              <div class="bg-night-100 rounded-b-tf grid grid-cols-3 text-center text-base py-2">
                 <div class="col-span-2">
                   Black T-shirt
                 </div>

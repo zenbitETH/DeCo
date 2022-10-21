@@ -2,6 +2,7 @@
 export const state = {
   connectedAddress: null,
   allBusinesses: [],
+  myBusinesses: [],
   myBusiness: null,
   myBusinessServices: [],
   myPurchasedServices: [],
@@ -31,6 +32,9 @@ export const mutations = {
   },
   setAllBusinesses: (state, payload) => {
     state.allBusinesses = payload
+  },
+  setMyBusinesses: (state, payload) => {
+    state.myBusinesses = payload
   },
   setMyBusiness: (state, payload) => {
     state.myBusiness = payload

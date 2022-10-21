@@ -3,112 +3,108 @@
     <div class="MainScreen">
       <div class="dBoard">
         <div class="assetBoard">
-          <div class="grid grid-cols-6 text-left">
-            <div v-if="business" class="text-center col-span-2">
-              <img class="fhd:h-full mx-auto" :src="'/3dAssets/' + business.businessType + '.png'">
+          <div
+            class="bg-gradient-to-tl p-3 from-glass-400 to-glass-100 rounded-tf grid grid-cols-6 text-left items-center row-span-6 relative"
+          >
+            <div class="text-lg absolute top-5 right-5">
+              📍{{ business ? `${business.city} ` : 'Loading...' }}
             </div>
-            <div class="text-center col-span-2" />
-            <div class="col-span-4 pt-6 xl:pt-20">
-              <div class="text-xl">
-                {{ business ? businessTypes.find(t => t.value === business.businessType).text : 'Type of place' }}
-              </div>
+            <div class="text-center p-5 col-span-2">
+              <img class="m-auto h-fit" :src="logo">
+            </div>
+            <div class="col-span-3 pl-5 grid gap-2">
               <div class="xl:text-5xl text-2xl">
                 {{ business ? business.shortname : 'Loading...' }}
               </div>
+              <div class="col-span-6 text-lg text-left  rounded-tf ">
+                {{ business ? business.description : 'Loading...' }}
+              </div>
+            </div>
+            <div class="absolute bottom-5 right-5 text-center grid grid-cols-2 gap-3 ">
+              <div class="myVaultBT">
+                <span>0</span>👍
+              </div>
+              <div class="myVaultBT">
+                <span>0</span>👎
+              </div>
             </div>
           </div>
-
-          <div class="col-span-6 row-span-4">
-            <img class="fhd:h-full mx-auto" :src="logo">
-          </div>
-
-          <div class="dataBoard">
-            <div class="col-span-4 row-span-2 p-3">
-              {{ business ? business.description : 'Loading...' }}
-            </div>
-            <div class="grid fhd:col-span-2 col-span-4 gap-3 row-span-2">
-              <div class="p-3">
+          <!--  <div class="grid fhd:col-span-2 col-span-4 gap-3 row-span-2">
+             <div class="p-3">
                 Tags
               </div>
-              <div class="text-center grid grid-cols-3 col-span-4 gap-3 fhd:pt-5">
-                <div class=" text-4xl">
-                  3👍
-                </div>
-                <div class=" text-4xl">
-                  3 🤑
-                </div>
-                <div class=" text-xl">
-                  15 usd
-                </div>
+            </div>
+             <div class="p-3">
+              {{ business ? `${business.googleAddress}` : 'Loading...' }}
+            </div>
+            -->
+
+          <div v-if="business" class="md:row-span-6 rounded-xl md:grid grid-cols-3 gap-5">
+            <div class="bg-gradient-to-tl p-3 from-glass-400 to-glass-100 rounded-tf relative">
+              <div class="p-3">
+                <img class=" h-fit" :src="'/3dAssets/' + business.businessType + '.png'">
+              </div>
+              <div class="text-xl absolute bottom-5 text-center left-0 right-0 font-bold">
+                {{ business ? businessTypes.find(t => t.value === business.businessType).text : 'Type of place' }}
               </div>
             </div>
-            <div class="col-span-4 row-span-2 p-3">
-              {{ business ? `${business.city} ${business.googleAddress}` : 'Loading...' }}
+            <div class="bg-gradient-to-tl p-3 from-glass-400 to-glass-100 rounded-tf h-fit py-5 backdrop-blur-md grid items-center">
+              <div class="text-6xl">
+                20
+              </div>
+              <div>Products Sold </div>
+            </div>
+            <div class="bg-gradient-to-tl p-3 from-glass-400 to-glass-100 rounded-tf h-fit py-5 backdrop-blur-md grid items-center">
+              <div class="text-6xl">
+                $1.2k
+              </div>
+              <div>Total Income</div>
             </div>
           </div>
         </div>
 
         <div class="inventory">
-          <div>
+          <div class="bg-glass-100 rounded-tf">
             <div class="my-2 md:mx-30 xl:mx-60 mx-10">
               On sale
             </div>
 
-            <div class="grid md:grid-cols-4 grid-cols-2 px-10 gap-5">
-              <div class="PlaceBG">
+            <div class="grid md:grid-cols-3 grid-cols-2 px-10 gap-5">
+              <div class="PlaceBG hover:bg-glass-800">
                 <div class="bigIcon">
                   +
                 </div>Add a product or service
               </div>
-              <div class="PlaceBG">
+              <div class="PlaceBG ">
                 <div class="">
                   <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="product.png">
                 </div>
-                <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
-                  <div class="col-span-2" />
+                <div class="bg-glass-800 rounded-b-tf grid grid-cols-3 text-center text-base py-2">
+                  <div class="col-span-2">
+                    Black T-shirt
+                  </div>
                   <div>5 usdc</div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="mb-5">
+          <div class="bg-glass-100 rounded-tf">
             <div class="my-2 md:mx-30 xl:mx-60 mx-10">
               Sold
             </div>
-            <div class="grid md:grid-cols-4 grid-cols-2 px-10 gap-5">
+            <div class="grid md:grid-cols-3 grid-cols-2 px-10 gap-5">
               <div class="PlaceBG">
                 <div class="">
                   <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="product.png">
                 </div>
-                <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
+                <div class="bg-glass-500 rounded-b-tf grid grid-cols-3 text-center text-base py-2">
                   <div class="col-span-2">
                     Black T-shirt
                   </div>
                   <div>5 usdc</div>
                 </div>
               </div>
-              <div class="PlaceBG">
-                <div class="">
-                  <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="product.png">
-                </div>
-                <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
-                  <div class="col-span-2">
-                    Black T-shirt
-                  </div>
-                  <div>5 usdc</div>
-                </div>
-              </div>
-              <div class="PlaceBG">
-                <div class="">
-                  <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="product.png">
-                </div>
-                <div class="bg-night-100 rounded-b-lg grid grid-cols-3 text-center text-base py-2">
-                  <div class="col-span-2">
-                    Black T-shirt
-                  </div>
-                  <div>5 usdc</div>
-                </div>
-              </div>
+
               <!--
               <div class="col-span-2">
                 <img class="fhd:h-full mx-auto" src="deco_logo.svg">
@@ -211,7 +207,7 @@ export default {
       })
     },
     async getLogo () {
-      this.logo = await getYourLogoPicture(this.$config.contractBusinessNft)
+      this.logo = await getYourLogoPicture(this.$config.contractBusinessNft, this.$route.params.tokenId)
     }
   }
 }
