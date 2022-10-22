@@ -6,7 +6,6 @@
           ⏪
         </div>Back
       </button>
-
        <button class="px-3 py-1 bg-green-200 text-black text-lg text-center border-solid border border-green-400" @click="registerToPunkCity()">
       Register to Punk Cities
     </button>
@@ -55,7 +54,6 @@
         <h2 class="stepTitle">
           Step 1: what do you want to mint?
         </h2>
-
         <div id="step1" class="step">
           <a href="#" target="_blank">
             <div class="placeNFT">
@@ -65,7 +63,6 @@
                   class=""
                 >
               </div>
-
               <div class="NFTtitle text-solar-100">
                 Punk Cities NFT
                 <div class="NFTdes">
@@ -74,7 +71,6 @@
               </div>
             </div>
           </a>
-
           <div class="decoNFT" @click.prevent="currentPage = 2">
             <div class="NFTlogo px-2">
               <img
@@ -99,7 +95,7 @@
           <div class="flex flex-col mt-8 text-deco-100 md:px-24 xl:px-48">
             <div v-if="form.kind === 'businesses'" class="md:grid md:grid-cols-2 gap-3">
               <Select v-model="form.type" :items="businessTypes" placeholder="1. Choose the type of your business" />
-              <Input v-model="form.name" type="text" placeholder="2. What is the name of your business?" />
+              <Input v-model="form.name" type="text" placeholder="2. What is the name of your business?" :max-length="nameLength" />
               <div class="md:w-full mx-5 mb-3 text-deco-400">
                 3. Upload a logo for your business
                 <Input v-model="form.imageUrl" type="text" placeholder="" class="w-full bg-transparent" />
@@ -166,7 +162,7 @@
           </div>
 
           <div class="flex flex-col mt-8 text-deco-100 md:px-24 xl:px-48">
-            <Textarea v-model="form.description" placeholder="4. Describe your business" class="mt-8" :rows="3" />
+            <Textarea v-model="form.description" placeholder="4. Describe your business" class="mt-8" :rows="3" :max-length="dLength" />
             <!-- <Input v-model="form.tags" type="text" placeholder="5. Choose tags for your business" class="w-full" /> -->
             <!-- <Input v-if="form.kind === 'services'" v-model="form.price" type="text" placeholder="6. Choose a price for your NFT" class="w-full" /> -->
 
@@ -205,11 +201,9 @@
 // TODO:[Feature] minimalistic input validation
 // TODO:[Content] more business types
 // TODO:[Content] maybe some more written content and descriptions
-
 // Import the NFTStorage class and File constructor from the 'nft.storage' package
 // The 'mime' npm package helps us set the correct file type on our File objects
 // import mime from 'mime'
-
 import Moralis from 'moralis'
 import OverlayLoader from '~/components/OverlayLoader.vue'
 import Input from '~/components/inputs/Input.vue'
@@ -218,11 +212,9 @@ import Textarea from '~/components/inputs/Textarea.vue'
 import Upload from '~/components/inputs/Upload.vue'
 import Map from '~/components/inputs/Map.vue'
 import MintModal from '~/components/MintModal.vue'
-
 import createBusiness from '~/contracts/business-nft/createBusiness'
 import makeService from '~/contracts/service-nft/makeService'
 // const IPFS = require('ipfs')
-
 export default {
   components: {
     Input, Select, Textarea, Map, Upload, OverlayLoader, MintModal
@@ -230,26 +222,24 @@ export default {
   data () {
     return {
       loading: false,
+      nameLength: 15,
+      dLength: 140,
       // TODO replace with business types
       currentPage: 1,
-
       file: null, // file upload
       showModal: false,
       form: {
         // COMMON FIELDS
         // form data -> smart contract data
         kind: '', // kind of NFT business or service
-
         name: '', // name of the NFT -> shortName //string
         type: '', // type of the NFT -> type //string
         description: '', // description of the NFT -> description //string
         tags: '',
         // from nft-storage trough file upload
         imageUrl: '', // logo url -> tokenUri //string
-
         // SERVICES
         price: '',
-
         // BUSINESSES location from google calendar
         location: '', // location of the business -> googleAddress //string
         city: '', // city of the business -> city //string
@@ -286,7 +276,6 @@ export default {
       // this.form.logoPicture = ipfsUri
       this.loading = false
     },
-
     async mintNFT () {
       // TODO mint business or service NFT based on kind
       this.loading = true
@@ -382,14 +371,12 @@ export default {
     //       type: 'function'
     //     }
     //   ]
-
     //   const options = {
     //     contractAddress: this.$config.contractPunkCities,
     //     functionName: 'registerPlace',
     //     abi: ABI,
     //     params: { _placeType: 5, _questType: 1, _ipfsuri: 'punkCities.com' }
     //   }
-
     //   await Moralis.executeFunction(options)
     // },
   }

@@ -13,6 +13,7 @@
       v-model="innerValue"
       :placeholder="placeholder"
       :rows="rows"
+      :maxlength="maxLength"
       :disabled="disabled"
       :class="{ '!bg-gray-300': disabled, 'pl-11': icon}"
       class="] bg-transparent border-b border-deco-400 min-h-12 px-5 w-full focus:outline-none hover:ring-gray-600 group-hover:bg-[#e8f0fe] group-disabled:bg-gray-300 disabled:bg-gray-300"
@@ -33,12 +34,12 @@
 export default {
   props: {
     value: {
-      validator: prop => typeof prop === "string" || prop === null,
+      validator: prop => typeof prop === 'string' || prop === null,
       required: true
     },
     defaultValue: {
       type: String,
-      default: ""
+      default: ''
     },
     disabled: {
       type: Boolean,
@@ -46,16 +47,20 @@ export default {
     },
     placeholder: {
       type: String,
-      default: ""
+      default: ''
+    },
+    maxLength: {
+      type: Number,
+      default: null
     },
     icon: {
       type: String,
-      default: ""
+      default: ''
     },
     validationErrors: {
       type: Array,
       default: () => {
-        return [];
+        return []
       }
     },
     rows: {
@@ -63,24 +68,24 @@ export default {
       default: 8
     }
   },
-  data() {
+  data () {
     return {
       innerValue: '',
       isFocus: false
-    };
+    }
   },
   watch: {
-    value(newValue) {
+    value (newValue) {
       this.innerValue = newValue
     }
   },
-  beforeMount() {
+  beforeMount () {
     this.innerValue = this.defaultValue ? this.defaultValue : this.value
   },
   methods: {
-    updateText() {
-      this.$emit("input", this.innerValue);
+    updateText () {
+      this.$emit('input', this.innerValue)
     }
   }
-};
+}
 </script>
