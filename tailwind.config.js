@@ -62,13 +62,26 @@ module.exports = {
                     100: "#01243b",
                     
                 },
+
+                
+				backgrounds: {
+					900: "#719CE4",//backgrounnd dark
+					800: "#2765cc",
+					700: "#75C31D",
+					600: "#9E9E9E",//button
+					500: "#FAFAFA",//white
+					400: "#2D3134",
+					300: "#5538b5",
+					200: "#cec5ed",
+					100: "#A898DF",//background light
+				},
                 
                 glass: {
                     900: "#19191a00",
-                    100: "#19191a71",
+                    100: "#ffffff10",
                     200: "#ffffff20",
-                    300: "#ffffff71",
-                    400: "#fdb04e00",
+                    300: "#ffffff30",
+                    400: "#ffffff40",
                     500: "#fdb04e71",
                     600: "#11919551",
                     700: "#e03fba71",
@@ -90,7 +103,7 @@ module.exports = {
                 88: "22rem",
             },
             borderRadius: {
-                'lg': '25px',
+                'tf': '25px',
             },
             fontFamily: {
                 Poppins: ["Poppins, sans-serif"],
