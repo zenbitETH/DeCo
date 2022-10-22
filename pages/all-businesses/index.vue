@@ -11,7 +11,8 @@
               <nuxt-link :to="'business-detail-customer/' + business.tokenId">
                 <div class="DecoBG bg-glass-500">
                   <div class="">
-                    <img class="xl:h-32 qhd:h-43 h-32 mx-auto" :src="logo">
+                    <!-- <img class="xl:h-32 qhd:h-43 h-32 mx-auto" :src="logo"> -->
+                    <img class="fhd:h-full mx-auto" :src="'/3dAssets/' + business.businessType + '.png'">
                     {{ business.shortname }}
                   </div>
                   <div class="bg-glass-600 rounded-b-lg grid grid-cols-2 text-center text-base py-2">
