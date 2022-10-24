@@ -9,8 +9,8 @@
             <div class="text-lg absolute top-5 right-5">
               📍{{ business ? `${business.city} ` : 'Loading...' }}
             </div>
-            <div class="text-center p-5 col-span-2">
-              <img class="m-auto h-fit" :src="logo">
+            <div class="relative text-center col-span-2 pb-11/12">
+              <img class="absolute w-auto h-full  left-1/2 transform -translate-x-1/2" :src="logo">
             </div>
             <div class="col-span-3 pl-5 grid gap-2">
               <div class="xl:text-5xl text-2xl">
