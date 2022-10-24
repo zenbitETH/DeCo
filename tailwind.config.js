@@ -101,6 +101,8 @@ module.exports = {
               },
             spacing: {
                 88: "22rem",
+            '2/3': "66.666667%",
+            '11/12': "91.67%",
             },
             borderRadius: {
                 'tf': '25px',
