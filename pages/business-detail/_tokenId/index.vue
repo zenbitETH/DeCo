@@ -129,6 +129,7 @@
 import getYourLogoPicture from '~/contracts/business-nft/getYourLogoPicture'
 import listAllBusinessNFTs from '~/contracts/business-nft/listAllBusinessNFTs'
 import listMyServices from '~/contracts/service-nft/listMyServices'
+import getSoldProducts from '~/contracts/service-nft/getSoldProducts'
 import buy from '~/contracts/vault/buy'
 
 export default {
@@ -137,7 +138,8 @@ export default {
       tokenId: null,
       business: null,
       services: [],
-      logo: ''
+      logo: '',
+      soldNFTs: 0
     }
   },
   computed: {
@@ -162,6 +164,7 @@ export default {
       if (this.business) {
         this.listMyServices()
         this.getLogo()
+        this.getSoldNFTs()
       }
     }
   },
@@ -208,6 +211,11 @@ export default {
     },
     async getLogo () {
       this.logo = await getYourLogoPicture(this.$config.contractBusinessNft, this.$route.params.tokenId)
+    },
+    async getSoldNFTs () {
+      this.soldNFTs = await getSoldProducts(this.$config.contractBusinessNft, this.$route.params.tokenId).then(() => {
+        console.log('Current sales number is: ', soldNFTs)
+      })
     }
   }
 }
