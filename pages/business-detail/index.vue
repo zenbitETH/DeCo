@@ -10,8 +10,9 @@
             <div v-for="business in businesses" :key="business.tokenId">
               <nuxt-link :to="'business-detail/' + business.tokenId">
                 <div class="DecoBG bg-glass-500">
-                  <div class="">
-                    <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="/deco logo.svg">
+                  <div class="text-lg">
+                    <img class="fhd:h-full mx-auto" :src="'/3dAssets/' + business.businessType + '.png'">
+                    <!-- <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="/deco logo.svg"> -->
                     {{ business.shortname }}
                   </div>
                   <div class="bg-glass-600 rounded-b-tf grid grid-cols-2 text-center text-base py-2">

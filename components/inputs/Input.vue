@@ -17,6 +17,7 @@
       :id="id"
       ref="input"
       v-model="inputValue"
+      :maxlength="maxLength"
       :type="type"
       :placeholder="placeholder"
       :disabled="disabled ? true : false"
@@ -52,6 +53,10 @@ export default {
     placeholder: {
       type: String,
       default: ''
+    },
+    maxLength: {
+      type: Number,
+      default: null
     },
     type: {
       type: String,
