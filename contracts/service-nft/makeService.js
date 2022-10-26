@@ -9,9 +9,10 @@ export default async function (address, form) {
     params: {
       servicePrice: form.price * Math.pow(10, 18),
       _serviceDescription: form.description,
-      tokenURI: form.imageUrl// ipfs://bafyreibhhe2j2uazqh4epvtikp2wjpcn6upskhtjeuiaimqtrry3vcxhvm/metadata.json
+      tokenURI: form.logoPicture, // ipfs://bafyreibhhe2j2uazqh4epvtikp2wjpcn6upskhtjeuiaimqtrry3vcxhvm/metadata.json
+      businessId: parseInt(form.businessId)
     }
   }
 
-  await Moralis.executeFunction(options)
+  return await Moralis.executeFunction(options)
 }
