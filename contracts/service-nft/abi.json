@@ -446,6 +446,11 @@
 				"internalType": "string",
 				"name": "tokenURI",
 				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "businessId",
+				"type": "uint256"
 			}
 		],
 		"name": "makeService",
