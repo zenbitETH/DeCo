@@ -168,7 +168,7 @@
                     </div>
                     Add a product or service
                   </div>
-                  <div class="PlaceBG">
+                  <div v-for="service in myServices" :key="service.tokenId" class="PlaceBG">
                     <div class="">
                       <img
                         class="xl:h-32 qhd:h-43 h-32 mx-auto"
@@ -185,9 +185,9 @@
                     "
                     >
                       <div class="col-span-2">
-                        Black T-shirt
+                        {{ service.serviceDescription }}
                       </div>
-                      <div>5 usdc</div>
+                      <div>{{ service.price / Math.pow(10,18) }} MATIC</div>
                     </div>
                   </div>
                 </div>
@@ -418,6 +418,9 @@ export default {
     },
     serviceTypes () {
       return this.$store.state.serviceTypes
+    },
+    myServices () {
+      return this.$store.state.myBusinessServices
     }
   },
   watch: {
@@ -439,27 +442,15 @@ export default {
         business => business.tokenId === this.tokenId
       )
     }
+    listMyServices()
   },
   methods: {
     listMyServices () {
-      listMyServices(this.$config.contractServiceNft, this.tokenId).then(
+      listMyServices(this.$config.contractServiceNft, this.$route.params.tokenId).then(
         (result) => {
-          console.log(result)
-          this.services = result
-          // this.services.forEach((service) => {
-          //   const CID_REGEX = /ipfs:\/\/(.*)\/metadata.json/
-          //   const cid = CID_REGEX.exec(service.tokenURI)
-          //   console.log(cid)
-          //   const htmlURI = `https://ipfs.io/ipfs/${cid[1]}`
-          //   console.log(htmlURI)
-          //   fetch(htmlURI)
-          //     .then(res => res.json())
-          //     .then((json) => {
-          //       console.log(json)
-          //     })
-          // })
-          // ipfs://bafyreicob6ss5pyghymbcw5p7r4piwovgy6b336sudpu57gbfupfpuigxm/metadata.json
-          // https://bafyreicob6ss5pyghymbcw5p7r4piwovgy6b336sudpu57gbfupfpuigxm.ipfs.dweb.link/metadata.json
+          this.$store.commit('setMyBusinessServices', result)
+          // console.log(result)
+          // this.services = result
         }
       )
     },
@@ -486,9 +477,7 @@ export default {
       this.soldNFTs = await getSoldProducts(
         this.$config.contractBusinessNft,
         this.$route.params.tokenId
-      ).then(() => {
-        console.log('Current sales number is: ', soldNFTs)
-      })
+      )
     },
     async upload ({ file }) {
       this.loading = true

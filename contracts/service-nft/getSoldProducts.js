@@ -13,7 +13,7 @@ export default async function (address, tokenId) {
     }
   }
   const soldNFTs = await Moralis.executeFunction(options)
-  console.log('This business has ' + soldNFTs + 'soldt Products')
+  console.log('This business has ', soldNFTs)
   //   return (await Moralis.executeFunction(options)).map(item => normalizeContractOutput(item))
   return soldNFTs
 }
