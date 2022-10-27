@@ -98,12 +98,15 @@ module.exports = {
                 'fhd': '1920px',
                 'qhd': '2560px',
                 'uhd': '3840px',
+                '3xl': '1800px',
               },
+              
             spacing: {
                 88: "22rem",
             '2/3': "66.666667%",
             '11/12': "91.67%",
             },
+
             borderRadius: {
                 'tf': '25px',
             },
@@ -117,11 +120,6 @@ module.exports = {
             container: {
                 center: true,
                 padding: "1rem",
-                screens: {
-                    lg: "1124px",
-                    xl: "1124px",
-                    "2xl": "1124px",
-                },
             },
         },
     },

@@ -8,7 +8,7 @@
               <div
                 class="
                 bg-gradient-to-tl
-                p-3
+                p-3 py-16 xl:py-3
                 from-glass-400
                 to-glass-100
                 rounded-tf
@@ -35,7 +35,7 @@
                     :src="logo"
                   >
                 </div>
-                <div class="col-span-3 pl-5 grid gap-2">
+                <div class="col-span-4 pl-5 grid gap-2">
                   <div class="xl:text-5xl text-2xl">
                     {{ business ? business.shortname : "Loading..." }}
                   </div>
@@ -73,7 +73,7 @@
 
               <div
                 v-if="business"
-                class="md:row-span-6 rounded-xl md:grid grid-cols-3 gap-5"
+                class="md:row-span-6 rounded-xl grid grid-cols-3 gap-5"
               >
                 <div
                   class="
@@ -157,12 +157,11 @@
                 <div class="my-2 md:mx-30 xl:mx-60 mx-10">
                   On sale
                 </div>
-                <div class="grid md:grid-cols-3 grid-cols-2 px-10 gap-5">
+                <div class="grid lg:grid-cols-3 xl:grid-cols-5 3xl:grid-cols-8 grid-cols-2 grid-flow-dense px-10 gap-3">
                   <div
                     class="PlaceBG hover:bg-glass-800"
                     @click="currentPage = 2"
                   >
-                    <img src="/proser.png" class="">
                     <div class="bigIcon">
                       +
                     </div>
@@ -190,49 +189,6 @@
                       <div>{{ service.price / Math.pow(10,18) }} MATIC</div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="bg-glass-100 rounded-tf">
-                <div class="my-2 md:mx-30 xl:mx-60 mx-10">
-                  Sold
-                </div>
-                <div class="grid md:grid-cols-3 grid-cols-2 px-10 gap-5">
-                  <div class="PlaceBG">
-                    <div class="">
-                      <img
-                        class="xl:h-32 qhd:h-43 h-32 mx-auto"
-                        src="product.png"
-                      >
-                    </div>
-                    <div
-                      class="
-                      bg-glass-500
-                      rounded-b-tf
-                      grid grid-cols-3
-                      text-center text-base
-                      py-2
-                    "
-                    >
-                      <div class="col-span-2">
-                        Black T-shirt
-                      </div>
-                      <div>5 usdc</div>
-                    </div>
-                  </div>
-
-                <!--
-              <div class="col-span-2">
-                <img class="fhd:h-full mx-auto" src="deco_logo.svg">
-              </div>
-              <div class="col-span-2 xl:col-span-4 xl:pt-6">
-                product name
-              </div>
-              <div class="xl:col-span-2 xl:pt-6">
-                5 pcs
-              </div>
-              <div class="xl:col-span-2 xl:pt-6">
-                10 usd
-              </div> -->
                 </div>
               </div>
             </div>

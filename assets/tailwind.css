@@ -265,8 +265,8 @@ Input {
 }
 
 .dBoard {
-  @apply grid grid-cols-1 xl:grid-rows-6  xl:grid-cols-12 
-  gap-5 p-5 xl:p-0
+  @apply grid grid-cols-1 3xl:grid-rows-6  2xl:grid-cols-12 
+  gap-5 p-5 xl:p-0 pb-24
   w-full xl:h-[54rem] qhd:h-[75rem] flex 
   font-exo
   text-2xl
@@ -324,7 +324,7 @@ Input {
 .assetBoard {
   @apply rounded-tf
   text-center text-white
-  grid xl:grid-rows-6 gap-5 grid-cols-2
+  grid xl:grid-rows-6 gap-5 3xl:grid-cols-2
   col-span-12 row-span-2 
 }
 
@@ -344,12 +344,12 @@ Input {
 
 .inventory {
   @apply text-center rounded-tf text-white 
-  col-span-12 row-span-4 grid grid-cols-2 gap-5
+  col-span-12 row-span-4 grid gap-3
 }
 .PlaceBG {
   @apply 
   bg-glass-200 rounded-tf 
-  cursor-pointer
+  cursor-pointer h-44 w-44 grid items-center
 }
 
 .DecoBG {
