@@ -4,7 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 Input {
   @apply
   bg-transparent font-lex border-white
@@ -344,7 +343,7 @@ Input {
 
 .inventory {
   @apply text-center rounded-tf text-white 
-  col-span-12 row-span-4 grid gap-3
+  col-span-12 row-span-6 grid gap-3
 }
 .PlaceBG {
   @apply 
@@ -430,6 +429,14 @@ Input {
   col-span-5 pt-3 pl-3
   fhd:text-2xl
   col-span-5 pt-3 pl-3
+}
+
+.tabFill {
+  @apply
+  w-full block font-medium text-xl text-glass-400
+  px-6 py-3 my-2
+  hover:border-transparent hover:text-white
+  focus:border-transparent
 }
 
 /* SLIDE ANIMATION CLASSES */
