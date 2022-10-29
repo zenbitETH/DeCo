@@ -63,39 +63,63 @@
           </div>
         </div>
 
-        <div class="inventory">
-          <div>
-            <div class="my-2 md:mx-30 xl:mx-60 mx-10">
-              On sale
-            </div>
-            <div class="grid md:grid-cols-3 grid-cols-2 px-10 gap-5">
-              <div v-for="service in unsoldServices" :key="service.serviceId" class="PlaceBG" @click="purchaseServiceNft(service)">
-                <div class="text-center">
-                  <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../../static/product.png">
-                </div>
-                <div class="bg-gradient-to-r from-deco-500 to-glass-500 rounded-b-tf grid grid-cols-3 text-center text-base py-2">
-                  <div class="text-deco-900 col-span-2">
-                    {{ service.serviceDescription }}
+        <div class="inventory relative">
+          <ul id="tabs-tabFill" class="nav nav-tabs flex flex-row flex-wrap list-none border-b-0 pl-0 mb-4 absolute w-full " role="tablist">
+            <li class="nav-item flex-auto text-center" role="presentation">
+              <a
+                id="tabs-home-tabFill"
+                href="#tabs-onsaleFill"
+                class="tabFill active focus:text-cyber-100"
+                data-bs-toggle="pill"
+                data-bs-target="#tabs-onsaleFill"
+                role="tab"
+                aria-controls="tabs-onsaleFill"
+                aria-selected="true"
+              >
+                On Sale
+              </a>
+            </li>
+            <li class="nav-item flex-auto text-center" role="presentation">
+              <a
+                id="tabs-profile-tabFill"
+                href="#tabs-soldFill"
+                class="tabFill focus:text-solar-100"
+                data-bs-toggle="pill"
+                data-bs-target="#tabs-soldFill"
+                role="tab"
+                aria-controls="tabs-soldFill"
+                aria-selected="false"
+              >Sold</a>
+            </li>
+          </ul>
+          <div id="tabs-tabContentFill" class="tab-content">
+            <div id="tabs-onsaleFill" class="tab-pane fade bg-glass-100 rounded-tf py-10 pt-16 show active h-full overflow-y-hidden" role="tabpanel" aria-labelledby="tabs-home-tabFill">
+              <div class="grid lg:grid-cols-3 xl:grid-cols-5 3xl:grid-cols-8 grid-cols-2 grid-flow-dense px-10 gap-3">
+                <div v-for="service in unsoldServices" :key="service.serviceId" class="PlaceBG" @click="purchaseServiceNft(service)">
+                  <div class="text-center">
+                    <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../../static/product.png">
                   </div>
-                  <div>{{ service.price / Math.pow(10,18) }} MATIC</div>
+                  <div class="bg-gradient-to-r from-deco-500 to-glass-500 rounded-b-tf grid grid-cols-3 text-center text-base py-2">
+                    <div class="text-deco-900 col-span-2">
+                      {{ service.serviceDescription }}
+                    </div>
+                    <div>{{ service.price / Math.pow(10,18) }} MATIC</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="mb-5">
-            <div class="my-2 md:mx-30 xl:mx-60 mx-10">
-              Sold
-            </div>
-            <div class="grid md:grid-cols-4 grid-cols-2 px-10 gap-5">
-              <div v-for="service in soldServices" :key="service.serviceId" class="PlaceBG col-span-2">
-                <div class="text-center">
-                  <img class="xl:h-32 qhd:h-43 h-32 mx-auto" :src="service.tokenURI">
-                </div>
-                <div class="bg-gradient-to-r from-glass-500 to-glass-800 rounded-b-tf grid grid-cols-3 text-center text-base py-2">
-                  <div class="col-span-2">
-                    {{ service.serviceDescription }}
+            <div id="tabs-soldFill" class="tab-pane fade bg-glass-100 rounded-tf py-10 pt-16 h-full overflow-y-hidden" role="tabpanel" aria-labelledby="tabs-profile-tabFill">
+              <div class="grid lg:grid-cols-3 xl:grid-cols-5 3xl:grid-cols-8 grid-cols-2 grid-flow-dense px-10 gap-3">
+                <div v-for="service in soldServices" :key="service.serviceId" class="PlaceBG col-span-2">
+                  <div class="text-center">
+                    <img class="xl:h-32 qhd:h-43 h-32 mx-auto" :src="service.tokenURI">
                   </div>
-                  <div>{{ service.price / Math.pow(10,18) }} MATIC</div>
+                  <div class="bg-gradient-to-r from-glass-500 to-glass-800 rounded-b-tf grid grid-cols-3 text-center text-base py-2">
+                    <div class="col-span-2">
+                      {{ service.serviceDescription }}
+                    </div>
+                    <div>{{ service.price / Math.pow(10,18) }} MATIC</div>
+                  </div>
                 </div>
               </div>
             </div>
