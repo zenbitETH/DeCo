@@ -172,7 +172,7 @@
                     <div class="">
                       <img
                         class="xl:h-32 qhd:h-43 h-32 mx-auto"
-                        src="product.png"
+                        :src="service.tokenURI"
                       >
                     </div>
                     <div
