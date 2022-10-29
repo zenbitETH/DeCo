@@ -9,7 +9,7 @@
           <div class="grid md:grid-cols-4 xl:grid-cols-8 grid-cols-2 px-10 gap-5">
             <div v-for="business in businesses" :key="business.tokenId">
               <nuxt-link :to="'business-detail/' + business.tokenId">
-                <div class="DecoBG bg-glass-500">
+                <div class="DecoBG bg-glass-200">
                   <div class="text-lg">
                     <img class="fhd:h-full mx-auto" :src="'/3dAssets/' + business.businessType + '.png'">
                     <!-- <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="/deco logo.svg"> -->

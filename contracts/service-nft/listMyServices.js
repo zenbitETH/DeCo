@@ -9,9 +9,12 @@ export default async function (address, businessId) {
     functionName: 'listMyServices',
     abi,
     params: {
-      _businessId: businessId + 1
+      _businessId: parseInt(businessId)
     }
   }
-
-  return (await Moralis.executeFunction(options)).map(item => normalizeContractOutput(item))
+  const result = await Moralis.executeFunction(options)
+  console.log(result)
+  const normalized = result.map(item => normalizeContractOutput(item))
+  return normalized
+  // return (await Moralis.executeFunction(options)).map(item => normalizeContractOutput(item))
 }
