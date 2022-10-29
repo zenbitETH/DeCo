@@ -1,4 +1,5 @@
 module.exports = {
+    important: true,
     mode: 'jit',
     purge: [
       './pages/**/*.{js,jsx,ts,tsx,vue}',
@@ -123,5 +124,7 @@ module.exports = {
             },
         },
     },
-    plugins: [],
+    plugins: [
+        require('tw-elements/dist/plugin')
+    ],
 }
