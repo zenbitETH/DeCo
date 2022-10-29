@@ -8,7 +8,7 @@
               <div
                 class="
                 bg-gradient-to-tl
-                p-3
+                p-3 py-16 xl:py-3
                 from-glass-400
                 to-glass-100
                 rounded-tf
@@ -35,7 +35,7 @@
                     :src="logo"
                   >
                 </div>
-                <div class="col-span-3 pl-5 grid gap-2">
+                <div class="col-span-4 pl-5 grid gap-2">
                   <div class="xl:text-5xl text-2xl">
                     {{ business ? business.shortname : "Loading..." }}
                   </div>
@@ -73,7 +73,7 @@
 
               <div
                 v-if="business"
-                class="md:row-span-6 rounded-xl md:grid grid-cols-3 gap-5"
+                class="md:row-span-6 rounded-xl grid grid-cols-3 gap-5"
               >
                 <div
                   class="
@@ -152,87 +152,103 @@
               </div>
             </div>
 
-            <div class="inventory">
-              <div class="bg-glass-100 rounded-tf">
-                <div class="my-2 md:mx-30 xl:mx-60 mx-10">
-                  On sale
-                </div>
-                <div class="grid md:grid-cols-3 grid-cols-2 px-10 gap-5">
-                  <div
-                    class="PlaceBG hover:bg-glass-800"
-                    @click="currentPage = 2"
+            <div class="inventory relative">
+              <ul id="tabs-tabFill" class="nav nav-tabs flex flex-row flex-wrap list-none border-b-0 pl-0 mb-4 absolute w-full " role="tablist">
+                <li class="nav-item flex-auto text-center" role="presentation">
+                  <a
+                    id="tabs-home-tabFill"
+                    href="#tabs-onsaleFill"
+                    class="tabFill active focus:text-cyber-100"
+                    data-bs-toggle="pill"
+                    data-bs-target="#tabs-onsaleFill"
+                    role="tab"
+                    aria-controls="tabs-onsaleFill"
+                    aria-selected="true"
                   >
-                    <img src="/proser.png" class="">
-                    <div class="bigIcon">
-                      +
-                    </div>
-                    Add a product or service
-                  </div>
-                  <div v-for="service in myServices" :key="service.tokenId" class="PlaceBG">
-                    <div class="">
-                      <img
-                        class="xl:h-32 qhd:h-43 h-32 mx-auto"
-                        :src="service.tokenURI"
-                      >
-                    </div>
+                    On Sale
+                  </a>
+                </li>
+                <li class="nav-item flex-auto text-center" role="presentation">
+                  <a
+                    id="tabs-profile-tabFill"
+                    href="#tabs-soldFill"
+                    class="tabFill focus:text-solar-100"
+                    data-bs-toggle="pill"
+                    data-bs-target="#tabs-soldFill"
+                    role="tab"
+                    aria-controls="tabs-soldFill"
+                    aria-selected="false"
+                  >Sold</a>
+                </li>
+              </ul>
+
+              <div id="tabs-tabContentFill" class="tab-content">
+                <div id="tabs-onsaleFill" class="tab-pane fade bg-glass-100 rounded-tf py-10 pt-16 show active h-full overflow-y-hidden" role="tabpanel" aria-labelledby="tabs-home-tabFill">
+                  <div class="grid lg:grid-cols-3 xl:grid-cols-5 3xl:grid-cols-8 grid-cols-2 grid-flow-dense px-10 gap-3">
                     <div
-                      class="
+                      class="PlaceBG hover:bg-glass-800"
+                      @click="currentPage = 2"
+                    >
+                      <div class="bigIcon">
+                        +
+                      </div>
+                      Add a product or service
+                    </div>
+                    <div v-for="service in myServices" :key="service.tokenId" class="PlaceBG hover:bg-glass-800 relative">
+                      <div class="absolute top-3 right-3">
+                        {{ service.price / Math.pow(10,18) }} MATIC
+                      </div>
+                      <div class="">
+                        <img
+                          class="xl:h-32 qhd:h-43 h-32 mx-auto"
+                          src="product.png"
+                        >
+                      </div>
+                      <div
+                        class="
                       bg-glass-800
                       rounded-b-tf
-                      grid grid-cols-3
+                      grid
                       text-center text-base
                       py-2
+                      relative
                     "
-                    >
-                      <div class="col-span-2">
-                        {{ service.serviceDescription }}
+                      >
+                        <div>
+                          {{ service.serviceDescription }}
+                        </div>
                       </div>
-                      <div>{{ service.price / Math.pow(10,18) }} MATIC</div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="bg-glass-100 rounded-tf">
-                <div class="my-2 md:mx-30 xl:mx-60 mx-10">
-                  Sold
-                </div>
-                <div class="grid md:grid-cols-3 grid-cols-2 px-10 gap-5">
-                  <div class="PlaceBG">
-                    <div class="">
-                      <img
-                        class="xl:h-32 qhd:h-43 h-32 mx-auto"
-                        src="product.png"
-                      >
-                    </div>
-                    <div
-                      class="
+                <div id="tabs-soldFill" class="tab-pane fade bg-glass-100 rounded-tf py-10 pt-16 h-full overflow-y-hidden" role="tabpanel" aria-labelledby="tabs-profile-tabFill">
+                  <div class="grid lg:grid-cols-3 xl:grid-cols-5 3xl:grid-cols-8 grid-cols-2 grid-flow-dense px-10 gap-3">
+                    <div v-for="service in myServices" :key="service.tokenId" class="PlaceBG bg-glass-500 relative cursor-none">
+                      <div class="absolute top-3 right-3">
+                        {{ service.price / Math.pow(10,18) }} MATIC
+                      </div>
+                      <div class="">
+                        <img
+                          class="xl:h-32 qhd:h-43 h-32 mx-auto"
+                          src="product.png"
+                        >
+                      </div>
+                      <div
+                        class="
                       bg-glass-500
                       rounded-b-tf
-                      grid grid-cols-3
+                      grid
                       text-center text-base
                       py-2
+                      relative
                     "
-                    >
-                      <div class="col-span-2">
-                        Black T-shirt
+                      >
+                        <div>
+                          {{ service.serviceDescription }}
+                        </div>
                       </div>
-                      <div>5 usdc</div>
                     </div>
                   </div>
-
-                <!--
-              <div class="col-span-2">
-                <img class="fhd:h-full mx-auto" src="deco_logo.svg">
-              </div>
-              <div class="col-span-2 xl:col-span-4 xl:pt-6">
-                product name
-              </div>
-              <div class="xl:col-span-2 xl:pt-6">
-                5 pcs
-              </div>
-              <div class="xl:col-span-2 xl:pt-6">
-                10 usd
-              </div> -->
                 </div>
               </div>
             </div>
@@ -349,6 +365,7 @@
   </OverlayLoader>
 </template>
 <script>
+import 'tw-elements'
 import Moralis from 'moralis'
 import getYourLogoPicture from '~/contracts/business-nft/getYourLogoPicture'
 import listAllBusinessNFTs from '~/contracts/business-nft/listAllBusinessNFTs'
