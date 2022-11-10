@@ -11,8 +11,7 @@ export default async function (address, tokenId) {
       _tokenId: parseInt(tokenId)
     }
   }
-
-  const logoPictureId = await Moralis.executeFunction(options)
-  // console.log('Your logo Picture is', logoPictureId)
-  return logoPictureId
+  const getLogoPicture = await Moralis.executeFunction(options)
+  console.log('Your logo Picture is', getLogoPicture)
+  return getLogoPicture
 }
