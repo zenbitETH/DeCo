@@ -54,11 +54,15 @@
                   gap-3
                 "
                 >
-                  <div class="myVaultBT">
-                    <span @click="makeUpVote()">{{ likes }}</span>👍
+                  <div class="myVaultBT" @click="makeUpVote()">
+                    <span>
+                      {{ likes }}
+                    </span>👍
                   </div>
-                  <div class="myVaultBT">
-                    <span @click="makeDownVote()">{{ disLikes }}</span>👎
+                  <div class="myVaultBT" @click="makeDownVote()">
+                    <span>
+                      {{ disLikes }}
+                    </span>👎
                   </div>
                 </div>
               </div>

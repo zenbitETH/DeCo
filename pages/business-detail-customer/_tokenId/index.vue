@@ -21,11 +21,11 @@
               </div>
             </div>
             <div class="absolute bottom-5 right-5 text-center grid grid-cols-2 gap-3 ">
-              <div class="myVaultBT bg-glass-300 hover:bg-green-500">
-                <span @click="makeUpVote()">{{ likes }}</span>👍
+              <div class="myVaultBT bg-glass-300 hover:bg-green-500" @click="makeUpVote()">
+                <span>{{ likes }}</span>👍
               </div>
-              <div class="myVaultBT bg-glass-300 hover:bg-red-500">
-                <span @click="makeDownVote()">{{ disLikes }}</span>👎
+              <div class="myVaultBT bg-glass-300 hover:bg-red-500" @click="makeDownVote()">
+                <span>{{ disLikes }}</span>👎
               </div>
             </div>
           </div>
