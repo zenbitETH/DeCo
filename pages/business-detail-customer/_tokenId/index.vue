@@ -94,11 +94,12 @@
           </ul>
           <div id="tabs-tabContentFill" class="tab-content">
             <div id="tabs-onsaleFill" class="tab-pane fade bg-glass-100 rounded-tf py-10 pt-16 show active h-full overflow-y-hidden" role="tabpanel" aria-labelledby="tabs-home-tabFill">
-              <div class="grid lg:grid-cols-3 xl:grid-cols-5 3xl:grid-cols-8 grid-cols-2 grid-flow-dense px-10 gap-3">
+              <div class="grid lg:grid-cols-3 xl:grid-cols-5 3xl:grid-cols-8  grid-flow-dense px-10 gap-3">
                 <div v-for="service in unsoldServices" :key="service.tokenId" class="PlaceBG" @click="purchaseServiceNft(service)">
                   <div class="text-center">
                     <img class="xl:h-32 qhd:h-43 h-32 mx-auto" :src="service.tokenURI">
                   </div>
+
                   <div class="bg-gradient-to-r from-deco-500 to-glass-500 rounded-b-tf grid grid-cols-3 text-center text-base py-2">
                     <div class="text-deco-900 col-span-2">
                       {{ service.serviceDescription }}
@@ -108,6 +109,7 @@
                 </div>
               </div>
             </div>
+
             <div id="tabs-soldFill" class="tab-pane fade bg-glass-100 rounded-tf py-10 pt-16 h-full overflow-y-hidden" role="tabpanel" aria-labelledby="tabs-profile-tabFill">
               <div class="grid lg:grid-cols-3 xl:grid-cols-5 3xl:grid-cols-8 grid-cols-2 grid-flow-dense px-10 gap-3">
                 <div v-for="service in soldServices" :key="service.tokenId" class="PlaceBG col-span-2">
