@@ -341,14 +341,53 @@ Input {
   col-span-6 text-white row-span-2
 }
 
+.businessCard {
+  @apply  bg-gradient-to-tl
+  p-3 py-16 xl:py-3
+  from-glass-400
+  to-glass-100
+  rounded-tf
+  grid grid-cols-6
+  text-left
+  items-center
+  row-span-6
+  relative
+}
+
+.businessCell {
+  @apply     bg-gradient-to-tl
+  p-3
+  from-glass-400
+  to-glass-100
+  rounded-tf
+  py-5
+  backdrop-blur-md
+  grid
+  items-center
+}
+
 .inventory {
   @apply text-center rounded-tf text-white 
   col-span-12 row-span-6 grid gap-3
 }
 .PlaceBG {
   @apply 
-  bg-glass-200 rounded-tf 
-  cursor-pointer h-44 w-44 grid items-center
+  bg-glass-200 rounded-tf grid grid-cols-5 gap-3 
+  h-48 w-full items-center px-3
+}
+
+.productCard {
+  @apply
+  col-span-3 rounded-b-tf grid text-left text-base py-2 relative items-center grid-rows-4
+}
+
+.productBuy {
+  @apply grid grid-cols-2 text-center items-center
+}
+
+.buyBT {
+  @apply
+  bg-cyber-100 hover:bg-solar-100 rounded-xl py-2 cursor-pointer hover:text-black hover:animate-pulse
 }
 
 .DecoBG {
