@@ -205,6 +205,25 @@
 		"inputs": [
 			{
 				"internalType": "uint256",
+				"name": "_businessId",
+				"type": "uint256"
+			}
+		],
+		"name": "downVote",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
 				"name": "_tokenId",
 				"type": "uint256"
 			}
@@ -367,6 +386,44 @@
 			}
 		],
 		"name": "getBusinessId",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_businessId",
+				"type": "uint256"
+			}
+		],
+		"name": "getDownVotes",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_businessId",
+				"type": "uint256"
+			}
+		],
+		"name": "getUpVotes",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -764,6 +821,25 @@
 		],
 		"name": "transferFrom",
 		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_businessId",
+				"type": "uint256"
+			}
+		],
+		"name": "upVote",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},

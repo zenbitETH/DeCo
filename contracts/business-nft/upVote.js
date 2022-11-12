@@ -3,14 +3,16 @@ import Moralis from 'moralis'
 import { normalizeContractOutput } from '../methods'
 import abi from './abi.json'
 
-export default async function (address) {
+export default async function (address, tokenId) {
   const options = {
     contractAddress: address,
-    functionName: 'getBusinessByOwner',
-    abi
+    functionName: 'upVote',
+    abi,
+    params: {
+      _businessId: parseInt(tokenId)
+    }
   }
   const result = normalizeContractOutput(await Moralis.executeFunction(options))
-
-  // console.log(result)
+  console.log(result)
   return result
 }

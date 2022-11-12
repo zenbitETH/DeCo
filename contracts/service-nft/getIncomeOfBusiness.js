@@ -6,14 +6,14 @@ import abi from './abi.json'
 export default async function (address, tokenId) {
   const options = {
     contractAddress: address,
-    functionName: 'getSoldNFTs',
+    functionName: 'getIncomeOfBusiness',
     abi,
     params: {
-      _serviceId: parseInt(tokenId)
+      _businessId: parseInt(tokenId)
     }
   }
   const soldNFTs = await Moralis.executeFunction(options)
-  // console.log('This business has ', soldNFTs)
+  console.log('This business has ', soldNFTs)
   //   return (await Moralis.executeFunction(options)).map(item => normalizeContractOutput(item))
   return soldNFTs
 }

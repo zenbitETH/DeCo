@@ -20,7 +20,7 @@
       </div>
     </nav>
     <!-- The actual page will be inserted here -->
-    <div class="md:mx-40 qhd:mx-96 mt-10">
+    <div class="xl:mx-40 qhd:mx-96 mt-10">
       <Nuxt />
     </div>
     <nav class="bottom-l-hud">

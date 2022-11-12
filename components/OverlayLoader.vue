@@ -7,7 +7,7 @@
       class="z-50 fixed top-0 opacity-70 bg-gray-300 left-0 w-full h-full place-content-center"
       :class="{'flex  justify-center items-center': loading, 'hidden': !loading}"
     >
-      <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-24 w-24" />
+      <div class="loader ease-linear rounded-full border-8 border-t-8 border-red-200 h-24 w-24" />
     </div>
 
     <slot />

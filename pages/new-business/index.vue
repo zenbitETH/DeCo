@@ -32,7 +32,7 @@
                 </div>
               </div>
 
-              <div class="decoNFT" @click.prevent="currentPage = 2; form.kind='service'">
+              <!-- <div class="decoNFT" @click.prevent="currentPage = 2; form.kind='service'">
                 <div class="NFTlogo px-2">
                   <img
                     src="/proser.png"
@@ -45,7 +45,7 @@
                     Add products or services to your business
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
             <!--  <h1 class="text-center text-5xl">
             Mint place or business NFT
@@ -214,11 +214,13 @@ import Map from '~/components/inputs/Map.vue'
 import MintModal from '~/components/MintModal.vue'
 import createBusiness from '~/contracts/business-nft/createBusiness'
 import makeService from '~/contracts/service-nft/makeService'
+import CommonsFunctions from '~/mixins/CommonFunctions'
 // const IPFS = require('ipfs')
 export default {
   components: {
     Input, Select, Textarea, Map, Upload, OverlayLoader, MintModal
   },
+  mixins: [CommonsFunctions],
   data () {
     return {
       loading: false,
@@ -295,6 +297,7 @@ export default {
         console.log(metadataURI)
         createBusiness(this.$config.contractBusinessNft, this.form).then(async (txHash) => {
           await txHash.wait()
+          await this.listAllofMyBusinessNFTs()
           this.showModal = true
           this.loading = false
         }).catch((e) => {

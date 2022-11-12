@@ -5,22 +5,10 @@
         <div class="MainScreen">
           <div class="dBoard">
             <div class="assetBoard">
-              <div
-                class="
-                bg-gradient-to-tl
-                p-3 py-16 xl:py-3
-                from-glass-400
-                to-glass-100
-                rounded-tf
-                grid grid-cols-6
-                text-left
-                items-center
-                row-span-6
-                relative
-              "
-              >
+              <div class="businessCard">
                 <div class="text-lg absolute top-5 right-5">
                   📍{{ business ? `${business.city} ` : "Loading..." }}
+                  <!--📍{{ business ? `${business.googleAddress} ` : "Loading..." }}-->
                 </div>
                 <div class="relative text-center col-span-2 pb-11/12">
                   <img
@@ -53,11 +41,15 @@
                   gap-3
                 "
                 >
-                  <div class="myVaultBT">
-                    <span>0</span>👍
+                  <div class="myVaultBT cursor-default">
+                    <span>
+                      {{ likes }}
+                    </span>👍
                   </div>
-                  <div class="myVaultBT">
-                    <span>0</span>👎
+                  <div class="myVaultBT cursor-default">
+                    <span>
+                      {{ disLikes }}
+                    </span>👎
                   </div>
                 </div>
               </div>
@@ -112,42 +104,24 @@
                   </div>
                 </div>
                 <div
-                  class="
-                  bg-gradient-to-tl
-                  p-3
-                  from-glass-400
-                  to-glass-100
-                  rounded-tf
-                  h-fit
-                  py-5
-                  backdrop-blur-md
-                  grid
-                  items-center
-                "
+                  class="businessCell"
                 >
-                  <div class="text-6xl">
-                    20
+                  <div class="md:text-6xl">
+                    {{ soldNFTs }}
                   </div>
-                  <div>Products Sold</div>
+                  <div class="text-base font-bold xl:text-xl">
+                    Products Sold
+                  </div>
                 </div>
                 <div
-                  class="
-                  bg-gradient-to-tl
-                  p-3
-                  from-glass-400
-                  to-glass-100
-                  rounded-tf
-                  h-fit
-                  py-5
-                  backdrop-blur-md
-                  grid
-                  items-center
-                "
+                  class="businessCell"
                 >
-                  <div class="text-6xl">
-                    $1.2k
+                  <div class="md:text-6xl">
+                    {{ income / Math.pow(10,18) }} MATIC
                   </div>
-                  <div>Total Income</div>
+                  <div class="text-base font-bold xl:text-xl">
+                    Total Income
+                  </div>
                 </div>
               </div>
             </div>
@@ -184,67 +158,62 @@
 
               <div id="tabs-tabContentFill" class="tab-content">
                 <div id="tabs-onsaleFill" class="tab-pane fade bg-glass-100 rounded-tf py-10 pt-16 show active h-full overflow-y-hidden" role="tabpanel" aria-labelledby="tabs-home-tabFill">
-                  <div class="grid lg:grid-cols-3 xl:grid-cols-5 3xl:grid-cols-8 grid-cols-2 grid-flow-dense px-10 gap-3">
+                  <div class="grid lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 px-5 gap-3 ">
                     <div
-                      class="PlaceBG hover:bg-glass-800"
+                      class="PlaceBG hover:bg-glass-800 cursor-pointer"
                       @click="currentPage = 2"
                     >
-                      <div class="bigIcon">
+                      <div class="bigIcon col-span-5">
                         +
+                        Add a product or service
                       </div>
-                      Add a product or service
                     </div>
-                    <div v-for="service in myServices" :key="service.tokenId" class="PlaceBG hover:bg-glass-800 relative">
-                      <div class="absolute top-3 right-3">
-                        {{ service.price / Math.pow(10,18) }} MATIC
-                      </div>
-                      <div class="">
+
+                    <div v-for="service in unsoldServices" :key="service.tokenId" class="PlaceBG relative" @click="purchaseServiceNft(service)">
+                      <div class="col-span-2 rounded-xl">
                         <img
-                          class="xl:h-32 qhd:h-43 h-32 mx-auto"
-                          src="product.png"
+                          class="mx-auto rounded-xl"
+                          :src="service.tokenURI"
                         >
                       </div>
-                      <div
-                        class="
-                      bg-glass-800
-                      rounded-b-tf
-                      grid
-                      text-center text-base
-                      py-2
-                      relative
-                    "
-                      >
-                        <div>
-                          {{ service.serviceDescription }}
+                      <div class="productCard">
+                        <div class="text-xl row-span-3">
+                          <div>Product Name</div>
+                          <div class="text-lg">
+                            {{ service.serviceDescription }}
+                          </div>
+                        </div>
+
+                        <div class="productBuy">
+                          <div class="text-xl col-span-2">
+                            {{ service.price / Math.pow(10,18) }} MATIC
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div id="tabs-soldFill" class="tab-pane fade bg-glass-100 rounded-tf py-10 pt-16 h-full overflow-y-hidden" role="tabpanel" aria-labelledby="tabs-profile-tabFill">
-                  <div class="grid lg:grid-cols-3 xl:grid-cols-5 3xl:grid-cols-8 grid-cols-2 grid-flow-dense px-10 gap-3">
-                    <div v-for="service in myServices" :key="service.tokenId" class="PlaceBG bg-glass-500 relative cursor-none">
-                      <div class="absolute top-3 right-3">
-                        {{ service.price / Math.pow(10,18) }} MATIC
-                      </div>
-                      <div class="">
+                  <div class="grid lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4  grid-flow-dense px-5 gap-3 ">
+                    <div v-for="service in soldServices" :key="service.tokenId" class="PlaceBG bg-glass-500 relative">
+                      <div class="col-span-2 rounded-xl">
                         <img
-                          class="xl:h-32 qhd:h-43 h-32 mx-auto"
-                          src="product.png"
+                          class="mx-auto rounded-xl"
+                          :src="service.tokenURI"
                         >
                       </div>
-                      <div
-                        class="
-                      bg-glass-500
-                      rounded-b-tf
-                      grid
-                      text-center text-base
-                      py-2
-                      relative
-                    "
-                      >
-                        <div>
-                          {{ service.serviceDescription }}
+                      <div class="productCard">
+                        <div class="text-xl row-span-3">
+                          <div>Product Name</div>
+                          <div class="text-lg">
+                            {{ service.serviceDescription }}
+                          </div>
+                        </div>
+
+                        <div class="productBuy">
+                          <div class="text-xl col-span-2">
+                            {{ service.price / Math.pow(10,18) }} MATIC
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -361,7 +330,7 @@
         </div>
       </section>
     </transition>
-    <MintModal v-show="showModal" @goHome="showModal=false" />
+    <MintModal v-show="showModal" @goHome="goHomeClick" />
   </OverlayLoader>
 </template>
 <script>
@@ -379,6 +348,12 @@ import Upload from '~/components/inputs/Upload.vue'
 import makeService from '~/contracts/service-nft/makeService'
 import OverlayLoader from '~/components/OverlayLoader.vue'
 import MintModal from '~/components/MintModal.vue'
+import CommonFunctions from '~/mixins/CommonFunctions'
+import upVote from '~/contracts/business-nft/upVote'
+import getUpVotes from '~/contracts/business-nft/getUpVotes'
+import downVote from '~/contracts/business-nft/downVote'
+import getDownVotes from '~/contracts/business-nft/getDownVotes'
+import getIncomeOfBusiness from '~/contracts/service-nft/getIncomeOfBusiness'
 
 export default {
   components: {
@@ -389,8 +364,12 @@ export default {
     OverlayLoader,
     MintModal
   },
+  mixins: [CommonFunctions],
   data () {
     return {
+      income: 0,
+      likes: 0,
+      disLikes: 0,
       showModal: false,
       loading: false,
       currentPage: 1,
@@ -422,10 +401,10 @@ export default {
   },
   computed: {
     unsoldServices () {
-      return this.services.filter(service => !service.sold)
+      return this.myServices.filter(service => !service.sold)
     },
     soldServices () {
-      return this.services.filter(service => service.sold)
+      return this.myServices.filter(service => service.sold)
     },
     businesses () {
       return this.$store.state.allBusinesses
@@ -438,6 +417,9 @@ export default {
     },
     myServices () {
       return this.$store.state.myBusinessServices
+    },
+    mySoldServices () {
+      return this.$store.myPurchasedServices
     }
   },
   watch: {
@@ -446,6 +428,9 @@ export default {
         this.listMyServices()
         this.getLogo()
         this.getSoldNFTs()
+        this.getLikes()
+        this.getDislikes()
+        this.getIncome()
       }
     }
   },
@@ -460,17 +445,17 @@ export default {
       )
     }
     listMyServices()
-  },
+  }, // Itt már alapból összemergeli a listMyServices-t
   methods: {
-    listMyServices () {
-      listMyServices(this.$config.contractServiceNft, this.$route.params.tokenId).then(
-        (result) => {
-          this.$store.commit('setMyBusinessServices', result)
-          // console.log(result)
-          // this.services = result
-        }
-      )
-    },
+    // listMyServices () {
+    //   listMyServices(this.$config.contractServiceNft, this.$route.params.tokenId).then(
+    //     (result) => {
+    //       this.$store.commit('setMyBusinessServices', result)
+    //       // console.log(result)
+    //       // this.services = result
+    //     }
+    //   )
+    // },
     listAllBusinesses () {
       listAllBusinessNFTs(this.$config.contractBusinessNft).then((result) => {
         this.$store.commit('setAllBusinesses', result)
@@ -480,8 +465,9 @@ export default {
       })
     },
     purchaseServiceNft (service) {
-      buy(this.$config.contractVault, service).then(() => {
+      buy(this.$config.contractVault, service, this.$route.params.tokenId).then(() => {
         console.log('succesful purchase')
+        // location.reload()
       })
     },
     async getLogo () {
@@ -492,7 +478,7 @@ export default {
     },
     async getSoldNFTs () {
       this.soldNFTs = await getSoldProducts(
-        this.$config.contractBusinessNft,
+        this.$config.contractServiceNft,
         this.$route.params.tokenId
       )
     },
@@ -505,7 +491,7 @@ export default {
       await imageFile.saveIPFS()
       console.log(imageFile.ipfs(), imageFile.hash())
       this.form.logoPicture = imageFile.ipfs()
-      console.log('ipfs file is: ', this.form.logoPicture)
+      // console.log('ipfs file is: ', this.form.logoPicture)
       // this.form.logoPicture = ipfsUri
       this.loading = false
     },
@@ -521,6 +507,32 @@ export default {
         console.error(e)
         this.loading = false
       })
+    },
+    goHomeClick () {
+      this.showModal = false
+      location.reload()
+    },
+    makeUpVote () {
+      upVote(this.$config.contractBusinessNft, this.$route.params.tokenId).then(async () => {
+        // console.log('Successfully upVoted')
+        // await location.reload()
+      })
+    },
+    async getLikes () {
+      this.likes = await getUpVotes(this.$config.contractBusinessNft, this.$route.params.tokenId)
+    },
+    async getDislikes () {
+      this.disLikes = await getDownVotes(this.$config.contractBusinessNft, this.$route.params.tokenId)
+    },
+    makeDownVote () {
+      downVote(this.$config.contractBusinessNft, this.$route.params.tokenId).then(() => {
+        // result.wait()
+        console.log('Successfully upVoted')
+        // location.reload()
+      })
+    },
+    async getIncome () {
+      this.income = await getIncomeOfBusiness(this.$config.contractServiceNft, this.$route.params.tokenId)
     }
   }
 }

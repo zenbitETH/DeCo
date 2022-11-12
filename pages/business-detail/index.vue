@@ -38,9 +38,11 @@
   </section>
 </template>
 <script>
-import listAllofMyBusinessNFTs from '~/contracts/business-nft/listAllofMyBusinessNFTs'
+// import listAllofMyBusinessNFTs from '~/contracts/business-nft/listAllofMyBusinessNFTs'
+import CommonFunctions from '~/mixins/CommonFunctions'
 
 export default {
+  mixins: [CommonFunctions],
   computed: {
     businesses () {
       return this.$store.state.myBusinesses
@@ -48,13 +50,13 @@ export default {
   },
   beforeMount () {
     setTimeout(this.listAllofMyBusinessNFTs, 3000)
-  },
-  methods: {
-    listAllofMyBusinessNFTs () {
-      listAllofMyBusinessNFTs(this.$config.contractBusinessNft).then((result) => {
-        this.$store.commit('setMyBusinesses', result)
-      })
-    }
   }
+  // methods: {
+  //   listAllofMyBusinessNFTs () {
+  //     listAllofMyBusinessNFTs(this.$config.contractBusinessNft).then((result) => {
+  //       this.$store.commit('setMyBusinesses', result)
+  //     })
+  //   }
+  // } => Ezt innen kitörölhetem mert már csináltunk egy mixins mappát ahonnan behúzzuk a functionoket
 }
 </script>

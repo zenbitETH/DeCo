@@ -4,15 +4,16 @@
       <div class="dBoard">
         <div class="assetBoard">
           <div
-            class="relative bg-gradient-to-tl pl-5 p-3 from-glass-400 to-glass-100 rounded-tf grid grid-cols-6 text-left items-center row-span-6"
+            class="businessCard"
           >
             <div class="text-lg absolute top-5 right-5">
-              📍{{ business ? `${business.city} ` : 'Loading...' }}
+              📍{{ business ? `${business.city} ` : "Loading..." }}
+              <!--📍{{ business ? `${business.googleAddress} ` : 'Loading...' }}-->
             </div>
             <div class="relative text-center col-span-2 pb-11/12">
               <img class="absolute w-auto h-full  left-1/2 transform -translate-x-1/2" :src="logo">
             </div>
-            <div class="col-span-3 pl-5 grid gap-2">
+            <div class="col-span-4 pl-5 grid gap-2">
               <div class="xl:text-5xl text-2xl">
                 {{ business ? business.shortname : 'Loading...' }}
               </div>
@@ -21,11 +22,11 @@
               </div>
             </div>
             <div class="absolute bottom-5 right-5 text-center grid grid-cols-2 gap-3 ">
-              <div class="myVaultBT bg-glass-300 hover:bg-green-500">
-                <span>0</span>👍
+              <div class="myVaultBT bg-glass-300 hover:bg-green-500" @click="makeUpVote()">
+                <span>{{ likes }}</span>👍
               </div>
-              <div class="myVaultBT bg-glass-300 hover:bg-red-500">
-                <span>0</span>👎
+              <div class="myVaultBT bg-glass-300 hover:bg-red-500" @click="makeDownVote()">
+                <span>{{ disLikes }}</span>👎
               </div>
             </div>
           </div>
@@ -39,26 +40,30 @@
             </div>
             -->
 
-          <div v-if="business" class="md:row-span-6 rounded-xl md:grid grid-cols-3 gap-5">
+          <div v-if="business" class="md:row-span-6 rounded-xl grid grid-cols-3 gap-5">
             <div class="bg-gradient-to-tl p-3 from-glass-400 to-glass-100 rounded-tf relative">
               <div class="p-3">
                 <img class=" h-fit" :src="'/3dAssets/' + business.businessType + '.png'">
               </div>
-              <div class="text-xl absolute bottom-5 text-center left-0 right-0 font-bold">
+              <div class="text-base xl:text-xl absolute bottom-5 text-center left-0 right-0 font-bold">
                 {{ business ? businessTypes.find(t => t.value === business.businessType).text : 'Type of place' }}
               </div>
             </div>
-            <div class="bg-gradient-to-tl p-3 from-glass-400 to-glass-100 rounded-tf h-fit py-5 backdrop-blur-md grid items-center">
-              <div class="text-6xl">
-                20
+            <div class="businessCell">
+              <div class="md:text-6xl">
+                {{ soldNFTs }}
               </div>
-              <div>Products Sold </div>
+              <div class="text-base font-bold xl:text-xl">
+                Products Sold
+              </div>
             </div>
-            <div class="bg-gradient-to-tl p-3 from-glass-400 to-glass-100 rounded-tf h-fit py-5 backdrop-blur-md grid items-center">
-              <div class="text-6xl">
-                $1.2k
+            <div class="businessCell">
+              <div class="md:text-6xl">
+                {{ income / Math.pow(10,18) }} MATIC
               </div>
-              <div>Total Income</div>
+              <div class="text-base font-bold xl:text-xl">
+                Total Income
+              </div>
             </div>
           </div>
         </div>
@@ -93,32 +98,58 @@
             </li>
           </ul>
           <div id="tabs-tabContentFill" class="tab-content">
-            <div id="tabs-onsaleFill" class="tab-pane fade bg-glass-100 rounded-tf py-10 pt-16 show active h-full overflow-y-hidden" role="tabpanel" aria-labelledby="tabs-home-tabFill">
-              <div class="grid lg:grid-cols-3 xl:grid-cols-5 3xl:grid-cols-8 grid-cols-2 grid-flow-dense px-10 gap-3">
-                <div v-for="service in unsoldServices" :key="service.serviceId" class="PlaceBG" @click="purchaseServiceNft(service)">
-                  <div class="text-center">
-                    <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../../static/product.png">
+            <div id="tabs-onsaleFill" class="tab-pane fade bg-glass-100 rounded-tf py-5 pt-16 show active h-full overflow-y-hidden" role="tabpanel" aria-labelledby="tabs-home-tabFill">
+              <div class="grid lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4  grid-flow-dense px-5 gap-3 ">
+                <div v-for="service in unsoldServices" :key="service.tokenId" class="PlaceBG relative" @click="purchaseServiceNft(service)">
+                  <div class="col-span-2 rounded-xl">
+                    <img
+                      class="mx-auto rounded-xl"
+                      :src="service.tokenURI"
+                    >
                   </div>
-                  <div class="bg-gradient-to-r from-deco-500 to-glass-500 rounded-b-tf grid grid-cols-3 text-center text-base py-2">
-                    <div class="text-deco-900 col-span-2">
-                      {{ service.serviceDescription }}
+                  <div class="productCard">
+                    <div class="text-xl row-span-3">
+                      <div>Product Name</div>
+                      <div class="text-lg">
+                        {{ service.serviceDescription }}
+                      </div>
                     </div>
-                    <div>{{ service.price / Math.pow(10,18) }} MATIC</div>
+
+                    <div class="productBuy">
+                      <div class="text-xl">
+                        {{ service.price / Math.pow(10,18) }} MATIC
+                      </div>
+                      <div class="buyBT">
+                        Buy
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div id="tabs-soldFill" class="tab-pane fade bg-glass-100 rounded-tf py-10 pt-16 h-full overflow-y-hidden" role="tabpanel" aria-labelledby="tabs-profile-tabFill">
-              <div class="grid lg:grid-cols-3 xl:grid-cols-5 3xl:grid-cols-8 grid-cols-2 grid-flow-dense px-10 gap-3">
-                <div v-for="service in soldServices" :key="service.serviceId" class="PlaceBG col-span-2">
-                  <div class="text-center">
-                    <img class="xl:h-32 qhd:h-43 h-32 mx-auto" :src="service.tokenURI">
+
+            <div id="tabs-soldFill" class="tab-pane fade bg-glass-100 rounded-tf  pt-16 h-full overflow-y-hidden" role="tabpanel" aria-labelledby="tabs-profile-tabFill">
+              <div class="grid lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4  grid-flow-dense px-5 gap-3 ">
+                <div v-for="service in soldServices" :key="service.tokenId" class="PlaceBG relative">
+                  <div class="col-span-2 rounded-xl">
+                    <img
+                      class="mx-auto rounded-xl"
+                      :src="service.tokenURI"
+                    >
                   </div>
-                  <div class="bg-gradient-to-r from-glass-500 to-glass-800 rounded-b-tf grid grid-cols-3 text-center text-base py-2">
-                    <div class="col-span-2">
-                      {{ service.serviceDescription }}
+                  <div class="productCard">
+                    <div class="text-xl row-span-3">
+                      <div>Product Name</div>
+                      <div class="text-lg">
+                        {{ service.serviceDescription }}
+                      </div>
                     </div>
-                    <div>{{ service.price / Math.pow(10,18) }} MATIC</div>
+
+                    <div class="productBuy">
+                      <div class="text-xl col-span-2">
+                        {{ service.price / Math.pow(10,18) }} MATIC
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -130,14 +161,25 @@
   </section>
 </template>
 <script>
-import logoPictureById from '~/contracts/business-nft/logoPictureById'
+import getAllIpfsHashbyTokenId from '~/contracts/business-nft/getAllIpfsHashByTokenId'
 import listAllBusinessNFTs from '~/contracts/business-nft/listAllBusinessNFTs'
 import listMyServices from '~/contracts/service-nft/listMyServices'
 import buy from '~/contracts/vault/buy'
+import upVote from '~/contracts/business-nft/upVote'
+import getUpVotes from '~/contracts/business-nft/getUpVotes'
+import downVote from '~/contracts/business-nft/downVote'
+import getDownVotes from '~/contracts/business-nft/getDownVotes'
+import getIncomeOfBusiness from '~/contracts/service-nft/getIncomeOfBusiness'
+
+import getSoldProducts from '~/contracts/service-nft/getSoldProducts'
 
 export default {
   data () {
     return {
+      soldNFTS: 0,
+      income: 0,
+      likes: 0,
+      disLikes: 0,
       tokenId: null,
       business: null,
       services: [],
@@ -146,10 +188,10 @@ export default {
   },
   computed: {
     unsoldServices () {
-      return this.services.filter(service => !service.sold)
+      return this.myServices.filter(service => !service.sold)
     },
     soldServices () {
-      return this.services.filter(service => service.sold)
+      return this.myServices.filter(service => service.sold)
     },
     businesses () {
       return this.$store.state.allBusinesses
@@ -159,6 +201,9 @@ export default {
     },
     serviceTypes () {
       return this.$store.state.serviceTypes
+    },
+    myServices () {
+      return this.$store.state.myBusinessServices
     }
   },
   watch: {
@@ -166,38 +211,34 @@ export default {
       if (this.business) {
         this.listMyServices()
         this.getLogo()
+        this.getSoldNFTs()
+        this.getLikes()
+        this.getDislikes()
+        this.getIncome()
       }
     }
   },
   beforeMount () {
-    logoPictureById()
+    getAllIpfsHashbyTokenId()
     this.tokenId = parseInt(this.$route.params.tokenId)
     if (!this.businesses.length) {
       setTimeout(this.listAllBusinesses, 3000)
     } else {
-      this.business = this.businesses.find(business => business.tokenId === this.tokenId)
+      this.business = this.businesses.find(
+        business => business.tokenId === this.tokenId
+      )
     }
+    listMyServices()
   },
   methods: {
     listMyServices () {
-      listMyServices(this.$config.contractServiceNft, this.tokenId).then((result) => {
-        console.log(result)
-        this.services = result
-        // this.services.forEach((service) => {
-        //   const CID_REGEX = /ipfs:\/\/(.*)\/metadata.json/
-        //   const cid = CID_REGEX.exec(service.tokenURI)
-        //   console.log(cid)
-        //   const htmlURI = `https://ipfs.io/ipfs/${cid[1]}`
-        //   console.log(htmlURI)
-        //   fetch(htmlURI)
-        //     .then(res => res.json())
-        //     .then((json) => {
-        //       console.log(json)
-        //     })
-        // })
-        // ipfs://bafyreicob6ss5pyghymbcw5p7r4piwovgy6b336sudpu57gbfupfpuigxm/metadata.json
-        // https://bafyreicob6ss5pyghymbcw5p7r4piwovgy6b336sudpu57gbfupfpuigxm.ipfs.dweb.link/metadata.json
-      })
+      listMyServices(this.$config.contractServiceNft, this.$route.params.tokenId).then(
+        (result) => {
+          this.$store.commit('setMyBusinessServices', result)
+          // console.log(result)
+          // this.services = result
+        }
+      )
     },
     listAllBusinesses () {
       listAllBusinessNFTs(this.$config.contractBusinessNft).then((result) => {
@@ -206,12 +247,44 @@ export default {
       })
     },
     purchaseServiceNft (service) {
-      buy(this.$config.contractVault, service).then(() => {
+      buy(this.$config.contractVault, service, this.$route.params.tokenId).then(() => {
         console.log('succesful purchase')
+        // location.reload()
       })
     },
     async getLogo () {
-      this.logo = await logoPictureById(this.$config.contractBusinessNft, this.$route.params.tokenId)
+      this.logo = await getAllIpfsHashbyTokenId(
+        this.$config.contractBusinessNft,
+        this.$route.params.tokenId
+      )
+    },
+    async getSoldNFTs () {
+      this.soldNFTs = await getSoldProducts(
+        this.$config.contractServiceNft,
+        this.$route.params.tokenId
+      )
+    },
+    makeUpVote () {
+      upVote(this.$config.contractBusinessNft, this.$route.params.tokenId).then(async () => {
+        // console.log('Successfully upVoted')
+        // await location.reload()
+      })
+    },
+    async getLikes () {
+      this.likes = await getUpVotes(this.$config.contractBusinessNft, this.$route.params.tokenId)
+    },
+    async getDislikes () {
+      this.disLikes = await getDownVotes(this.$config.contractBusinessNft, this.$route.params.tokenId)
+    },
+    makeDownVote () {
+      downVote(this.$config.contractBusinessNft, this.$route.params.tokenId).then(() => {
+        // result.wait()
+        console.log('Successfully upVoted')
+        // location.reload()
+      })
+    },
+    async getIncome () {
+      this.income = await getIncomeOfBusiness(this.$config.contractServiceNft, this.$route.params.tokenId)
     }
   }
 }
