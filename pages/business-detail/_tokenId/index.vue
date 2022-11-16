@@ -284,20 +284,26 @@
           <div v-else class="md:grid md:grid-cols-2 gap-3">
             <!-- There is no name filed in the serviceNFT smartcontract, we shall omit this one -->
             <!-- <Input v-model="form.name" type="text" placeholder="1. What is the name of your business?" class="mt-8 col-span-2" /> -->
+            <Input
+              v-model="form.name"
+              type="text"
+              placeholder="1. Name of your product or service"
+              :max-length="nameLength"
+            />
             <Textarea
               v-model="form.description"
-              placeholder="1. Describe your service"
+              placeholder="2. Describe your product or service"
               class="mt-8 col-span-2"
               :rows="3"
             />
             <Input
               v-model="form.price"
               type="number"
-              placeholder="2. Choose a price for your NFT in MATIC"
+              placeholder="3. Choose a price for your product or service in MATIC"
               class="col-span-2"
             />
             <div class="md:w-full mx-5 mb-3 text-deco-400">
-              3. Upload an image for your product or service
+              4. Upload an image for your product or service
               <Input
                 v-model="form.imageUrl"
                 type="text"
