@@ -15,5 +15,6 @@ export default async function (address, service, businessId) {
   }
   console.log(service.serviceId)
   console.log(service.sold)
-  await Moralis.executeFunction(options)
+  const txHash = await Moralis.executeFunction(options)
+  return txHash
 }

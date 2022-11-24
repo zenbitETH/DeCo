@@ -169,7 +169,7 @@
                       </div>
                     </div>
 
-                    <div v-for="service in unsoldServices" :key="service.tokenId" class="PlaceBG relative" @click="purchaseServiceNft(service)">
+                    <div v-for="service in unsoldServices" :key="service.tokenId" class="PlaceBG relative">
                       <div class="col-span-2 rounded-xl">
                         <img
                           class="mx-auto rounded-xl"
@@ -285,7 +285,7 @@
             <!-- There is no name filed in the serviceNFT smartcontract, we shall omit this one -->
             <!-- <Input v-model="form.name" type="text" placeholder="1. What is the name of your business?" class="mt-8 col-span-2" /> -->
             <Input
-              v-model="form.name"
+              v-model="form.serviceName"
               type="text"
               placeholder="1. Name of your product or service"
               :max-length="nameLength"
@@ -295,6 +295,7 @@
               placeholder="2. Describe your product or service"
               class="mt-8 col-span-2"
               :rows="3"
+              :max-length="dLength"
             />
             <Input
               v-model="form.price"
@@ -373,6 +374,8 @@ export default {
   mixins: [CommonFunctions],
   data () {
     return {
+      nameLength: 15,
+      dLength: 140,
       income: 0,
       likes: 0,
       disLikes: 0,
@@ -392,6 +395,7 @@ export default {
         type: '', // type of the NFT -> type //string
         description: '', // description of the NFT -> description //string
         tags: '',
+        serviceName: '',
         // from nft-storage trough file upload
         imageUrl: '', // logo url -> tokenUri //string
         // SERVICES
@@ -519,9 +523,12 @@ export default {
       location.reload()
     },
     makeUpVote () {
-      upVote(this.$config.contractBusinessNft, this.$route.params.tokenId).then(async () => {
+      upVote(this.$config.contractBusinessNft, this.$route.params.tokenId).then(() => {
         // console.log('Successfully upVoted')
         // await location.reload()
+        if (error) {
+          alert('You can only vote for a business once')
+        }
       })
     },
     async getLikes () {
