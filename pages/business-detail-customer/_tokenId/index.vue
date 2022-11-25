@@ -70,16 +70,16 @@
           </div>
 
           <div class="inventory relative">
-            <ul id="tabs-tabFill" class="nav nav-tabs flex flex-row flex-wrap list-none border-b-0 pl-0 mb-4 absolute w-full " role="tablist">
+            <ul id="customertabs-tabFill" class="nav nav-tabs flex flex-row flex-wrap list-none border-b-0 pl-0 mb-4 absolute w-full " role="tablist">
               <li class="nav-item flex-auto text-center" role="presentation">
                 <a
-                  id="tabs-home-tabFill"
-                  href="#tabs-onsaleFill"
+                  id="customertabs-home-tabFill"
+                  href="#customertabs-onSaleFill"
                   class="tabFill active focus:text-cyber-100"
-                  data-bs-toggle="pill"
-                  data-bs-target="#tabs-onsaleFill"
+                  data-bs-toggle="customerpill"
+                  data-bs-target="#customertabs-onsaleFill"
                   role="tab"
-                  aria-controls="tabs-onsaleFill"
+                  aria-controls="customertabs-onsaleFill"
                   aria-selected="true"
                 >
                   On Sale
@@ -87,19 +87,19 @@
               </li>
               <li class="nav-item flex-auto text-center" role="presentation">
                 <a
-                  id="tabs-profile-tabFill"
-                  href="#tabs-soldFill"
+                  id="customertabs-profile-tabFill"
+                  href="#customertabs-customersoldFill"
                   class="tabFill focus:text-solar-100"
-                  data-bs-toggle="pill"
-                  data-bs-target="#tabs-soldFill"
+                  data-bs-toggle="customerpill"
+                  data-bs-target="#customertabs-soldFill"
                   role="tab"
-                  aria-controls="tabs-soldFill"
+                  aria-controls="customertabs-soldFill"
                   aria-selected="false"
                 >Sold</a>
               </li>
             </ul>
-            <div id="tabs-tabContentFill" class="tab-content">
-              <div id="tabs-onsaleFill" class="tab-pane fade bg-glass-100 rounded-tf py-5 pt-16 show active h-full overflow-y-hidden" role="tabpanel" aria-labelledby="tabs-home-tabFill">
+            <div id="customertabs-tabContentFill" class="tab-content">
+              <div id="customertabs-onsaleFill" class="tab-pane fade bg-glass-100 rounded-tf py-5 pt-16 show active h-full overflow-y-hidden" role="tabpanel" aria-labelledby="customertabs-home-tabFill">
                 <div class="grid lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4  grid-flow-dense px-5 gap-3 ">
                   <div v-for="service in unsoldServices" :key="service.tokenId" class="PlaceBG relative">
                     <div class="col-span-2 rounded-xl">
@@ -129,7 +129,7 @@
                 </div>
               </div>
 
-              <div id="tabs-soldFill" class="tab-pane fade bg-glass-100 rounded-tf  pt-16 h-full overflow-y-hidden" role="tabpanel" aria-labelledby="tabs-profile-tabFill">
+              <div id="customertabs-soldFill" class="tab-pane fade bg-glass-100 rounded-tf  pt-16 h-full overflow-y-hidden" role="tabpanel" aria-labelledby="customertabs-profile-tabFill">
                 <div class="grid lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4  grid-flow-dense px-5 gap-3 ">
                   <div v-for="service in soldServices" :key="service.tokenId" class="PlaceBG relative">
                     <div class="col-span-2 rounded-xl">

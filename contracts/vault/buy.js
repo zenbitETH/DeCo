@@ -13,8 +13,7 @@ export default async function (address, service, businessId) {
       _businessId: parseInt(businessId)
     }
   }
-  console.log(service.serviceId)
-  console.log(service.sold)
+  console.log(options)
   const txHash = await Moralis.executeFunction(options)
   return txHash
 }
