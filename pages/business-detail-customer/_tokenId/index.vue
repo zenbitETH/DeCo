@@ -76,7 +76,7 @@
                   id="customertabs-home-tabFill"
                   href="#customertabs-onSaleFill"
                   class="tabFill active focus:text-cyber-100"
-                  data-bs-toggle="customerpill"
+                  data-bs-toggle="pill"
                   data-bs-target="#customertabs-onsaleFill"
                   role="tab"
                   aria-controls="customertabs-onsaleFill"
@@ -90,7 +90,7 @@
                   id="customertabs-profile-tabFill"
                   href="#customertabs-customersoldFill"
                   class="tabFill focus:text-solar-100"
-                  data-bs-toggle="customerpill"
+                  data-bs-toggle="pill"
                   data-bs-target="#customertabs-soldFill"
                   role="tab"
                   aria-controls="customertabs-soldFill"
@@ -101,10 +101,10 @@
             <div id="customertabs-tabContentFill" class="tab-content">
               <div id="customertabs-onsaleFill" class="tab-pane fade bg-glass-100 rounded-tf py-5 pt-16 show active h-full overflow-y-hidden" role="tabpanel" aria-labelledby="customertabs-home-tabFill">
                 <div class="grid lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4  grid-flow-dense px-5 gap-3 ">
-                  <div v-for="service in unsoldServices" :key="service.tokenId" class="PlaceBG relative">
-                    <div class="col-span-2 rounded-xl">
+                  <div v-for="service in unsoldServices" :key="service.tokenId" class="PlaceBG ">
+                    <div class="relative text-center col-span-2 rounded-xl pb-11/12">
                       <img
-                        class="mx-auto rounded-xl"
+                        class="absolute w-auto h-full left-1/2 transform -translate-x-1/2"
                         :src="service.tokenURI"
                       >
                     </div>

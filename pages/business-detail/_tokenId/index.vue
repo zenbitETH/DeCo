@@ -12,14 +12,7 @@
                 </div>
                 <div class="relative text-center col-span-2 pb-11/12">
                   <img
-                    class="
-                    absolute
-                    w-auto
-                    h-full
-                    left-1/2
-                    transform
-                    -translate-x-1/2
-                  "
+                    class="absolute w-auto h-full left-1/2 transform -translate-x-1/2"
                     :src="logo"
                   >
                 </div>
