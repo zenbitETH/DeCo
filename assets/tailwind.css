@@ -214,8 +214,8 @@ Input {
 .myVaultBT {
   @apply
   rounded-lg text-deco-900
-  hover:text-white hover:cursor-pointer 
-  py-2 px-5
+  hover:text-white hover:cursor-pointer
+  px-5 py-1 
 }
 
 .myVaultBT2 {
@@ -323,8 +323,8 @@ Input {
 .assetBoard {
   @apply rounded-tf
   text-center text-white
-  grid xl:grid-rows-6 gap-5 3xl:grid-cols-2
-  col-span-12 row-span-2 
+  grid xl:grid-cols-2
+  col-span-12 row-span-2 xl:row-span-1 xl:max-w-5xl mx-auto
 }
 
 .productBoard {
@@ -342,13 +342,11 @@ Input {
 }
 
 .businessCard {
-  @apply  bg-gradient-to-tl
-  p-3 py-16 xl:py-3
-  from-glass-400
-  to-glass-100
+  @apply
+
   rounded-tf
-  grid grid-cols-6
-  text-left
+  grid
+  text-center
   items-center
   row-span-6
   relative
@@ -368,7 +366,7 @@ Input {
 
 .inventory {
   @apply text-center rounded-tf text-white 
-  col-span-12 row-span-6 grid gap-3
+  col-span-12 row-span-4 grid gap-3
 }
 .PlaceBG {
   @apply 

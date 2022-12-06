@@ -4,25 +4,24 @@
       <div class="MainScreen">
         <div class="dBoard">
           <div class="assetBoard">
-            <div
-              class="businessCard"
-            >
-              <div class="text-lg absolute top-5 right-5">
-                <!-- 📍{{ business ? `${business.googleAddress} ` : "Loading..." }} -->
-                📍{{ business ? `${business.city} ` : 'Loading...' }}
+            <div class="relative text-center mx-auto items-center xl:flex">
+              <img class="w-auto xl:h-28 xl:mr-2 h-20 mx-auto" :src="logo">
+              <div class="xl:text-5xl text-2xl items-center col-span-6">
+                {{ business ? business.shortname : 'Loading...' }}
               </div>
-              <div class="relative text-center col-span-2 pb-11/12">
-                <img class="absolute w-auto h-full  left-1/2 transform -translate-x-1/2" :src="logo">
+            </div>
+            <div class="mx-auto ">
+              <div class="col-span-6 text-lg">
+                {{ business ? business.description : 'Loading...' }}
               </div>
-              <div class="col-span-4 pl-5 grid gap-2">
-                <div class="xl:text-5xl text-2xl">
-                  {{ business ? business.shortname : 'Loading...' }}
+              <div class="grid gap-2 mx-auto">
+                <div v-if="business" class="text-base flex items-center col-span-6">
+                  <img class="h-10 pr-2" :src="'/3dAssets/' + business.businessType + '.png'">
+                  {{ business ? `${business.googleAddress} ` : "Loading..." }}
                 </div>
-                <div class="col-span-6 text-lg text-left  rounded-tf ">
-                  {{ business ? business.description : 'Loading...' }}
-                </div>
+              <!--📍{{ business ? `${business.city} ` : 'Loading...' }} -->
               </div>
-              <div class="absolute bottom-5 right-5 text-center grid grid-cols-2 gap-3 ">
+              <div class="text-center grid grid-cols-2 gap-3 max-w-5xl mt-1 mx-auto col-span-2">
                 <div class="myVaultBT bg-glass-300 hover:bg-green-500" @click="makeUpVote()">
                   <span>{{ likes }}</span>👍
                 </div>
@@ -31,6 +30,7 @@
                 </div>
               </div>
             </div>
+
             <!--  <div class="grid fhd:col-span-2 col-span-4 gap-3 row-span-2">
              <div class="p-3">
                 Tags
@@ -40,117 +40,30 @@
               {{ business ? `${business.googleAddress}` : 'Loading...' }}
             </div>
             -->
-
-            <div v-if="business" class="md:row-span-6 rounded-xl grid grid-cols-3 gap-5">
-              <div class="bg-gradient-to-tl p-3 from-glass-400 to-glass-100 rounded-tf relative">
-                <div class="p-3">
-                  <img class=" h-fit" :src="'/3dAssets/' + business.businessType + '.png'">
-                </div>
-                <div class="text-base xl:text-xl absolute bottom-5 text-center left-0 right-0 font-bold">
-                  {{ business ? businessTypes.find(t => t.value === business.businessType).text : 'Type of place' }}
-                </div>
-              </div>
-              <div class="businessCell">
-                <div class="md:text-6xl">
-                  {{ soldNFTs }}
-                </div>
-                <div class="text-base font-bold xl:text-xl">
-                  Products Sold
-                </div>
-              </div>
-              <div class="businessCell">
-                <div class="md:text-6xl">
-                  {{ income / Math.pow(10,18) }} MATIC
-                </div>
-                <div class="text-base font-bold xl:text-xl">
-                  Total Income
-                </div>
-              </div>
-            </div>
           </div>
-
           <div class="inventory relative">
-            <ul id="customertabs-tabFill" class="nav nav-tabs flex flex-row flex-wrap list-none border-b-0 pl-0 mb-4 absolute w-full " role="tablist">
-              <li class="nav-item flex-auto text-center" role="presentation">
-                <a
-                  id="customertabs-home-tabFill"
-                  href="#customertabs-onSaleFill"
-                  class="tabFill active focus:text-cyber-100"
-                  data-bs-toggle="pill"
-                  data-bs-target="#customertabs-onsaleFill"
-                  role="tab"
-                  aria-controls="customertabs-onsaleFill"
-                  aria-selected="true"
-                >
-                  On Sale
-                </a>
-              </li>
-              <li class="nav-item flex-auto text-center" role="presentation">
-                <a
-                  id="customertabs-profile-tabFill"
-                  href="#customertabs-customersoldFill"
-                  class="tabFill focus:text-solar-100"
-                  data-bs-toggle="pill"
-                  data-bs-target="#customertabs-soldFill"
-                  role="tab"
-                  aria-controls="customertabs-soldFill"
-                  aria-selected="false"
-                >Sold</a>
-              </li>
-            </ul>
-            <div id="customertabs-tabContentFill" class="tab-content">
-              <div id="customertabs-onsaleFill" class="tab-pane fade bg-glass-100 rounded-tf py-5 pt-16 show active h-full overflow-y-hidden" role="tabpanel" aria-labelledby="customertabs-home-tabFill">
-                <div class="grid lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4  grid-flow-dense px-5 gap-3 ">
-                  <div v-for="service in unsoldServices" :key="service.tokenId" class="PlaceBG ">
-                    <div class="relative text-center col-span-2 rounded-xl pb-11/12">
-                      <img
-                        class="absolute w-auto h-full left-1/2 transform -translate-x-1/2"
-                        :src="service.tokenURI"
-                      >
-                    </div>
-                    <div class="productCard">
-                      <div class="text-xl row-span-3">
-                        <div>Product Name</div>
-                        <div class="text-lg">
-                          {{ service.serviceDescription }}
-                        </div>
-                      </div>
-
-                      <div class="productBuy" @click="purchaseServiceNft(service)">
-                        <div class="text-xl">
-                          {{ service.price / Math.pow(10,18) }} MATIC
-                        </div>
-                        <div class="buyBT">
-                          Buy
-                        </div>
-                      </div>
+            <div class="grid lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4  grid-flow-dense px-5 gap-3 ">
+              <div v-for="service in unsoldServices" :key="service.tokenId" class="PlaceBG ">
+                <div class="relative text-center col-span-2 rounded-xl pb-11/12">
+                  <img
+                    class="absolute w-auto h-full left-1/2 transform -translate-x-1/2"
+                    :src="service.tokenURI"
+                  >
+                </div>
+                <div class="productCard">
+                  <div class="text-xl row-span-3">
+                    <div>Product Name</div>
+                    <div class="text-lg">
+                      {{ service.serviceDescription }}
                     </div>
                   </div>
-                </div>
-              </div>
 
-              <div id="customertabs-soldFill" class="tab-pane fade bg-glass-100 rounded-tf  pt-16 h-full overflow-y-hidden" role="tabpanel" aria-labelledby="customertabs-profile-tabFill">
-                <div class="grid lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4  grid-flow-dense px-5 gap-3 ">
-                  <div v-for="service in soldServices" :key="service.tokenId" class="PlaceBG relative">
-                    <div class="col-span-2 rounded-xl">
-                      <img
-                        class="mx-auto rounded-xl"
-                        :src="service.tokenURI"
-                      >
+                  <div class="productBuy" @click="purchaseServiceNft(service)">
+                    <div class="text-xl">
+                      {{ service.price / Math.pow(10,18) }} MATIC
                     </div>
-                    <div class="productCard">
-                      <div class="text-xl row-span-3">
-                        <div> Product Name</div>
-                        <div class="text-lg">
-                          {{ service.serviceDescription }}
-                        </div>
-                      </div>
-
-                      <div class="productBuy">
-                        <div class="text-xl col-span-2">
-                          {{ service.price / Math.pow(10,18) }} MATIC
-                        </div>
-                      </div>
+                    <div class="buyBT">
+                      Buy
                     </div>
                   </div>
                 </div>
