@@ -1,4 +1,4 @@
-  // SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
 //import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
@@ -7,53 +7,73 @@ import "./PunkCities.sol";
 
 contract BusinessNFT is ERC721URIStorage {
 
-    PunkCities private _PunkCities; 
-    uint256 businessNumber = 1;
+    //PunkCity private _PunkCity;
+    uint256 businessNumber = 0;
 
     struct businessDetails {
         uint256 tokenId;
         string city;
-        string shortDescription;
+        string businessType;
+        string kind;
+        string description;
+        string shortname;
         address owner;
         string googleAddress;
-        string logo;
+
         uint256 createdAt; // timestamp
         string[] services; // services
+        string ipfsHash;
     }
 
     businessDetails [] businesses;
 
+    mapping(uint256 => mapping(address => bool)) alreadyVoted;
+    mapping(uint256 => uint256) upVotes;
+    mapping(uint256 => uint256) downVotes;
     mapping(uint256 => businessDetails) businessMapping;
+    mapping(address => businessDetails[]) myBusinessess;
+    mapping(address => mapping(uint256 => businessDetails[])) myBusinesses;
     mapping(uint256 => address) businessOwner;
     mapping(uint256 => uint256) placeVerification;
     mapping(address => uint256) businessNumberMapping;
     mapping(address => bool) registeredABusiness;
+    mapping(address => businessDetails) businessbyOwner;
+    mapping(address => mapping(uint256 => string)) ownIpfsHash; // needed for retrieving the logo pictures in the own business site
+    mapping(address => mapping(uint256 => string)) tokenIdHash;
+    mapping(uint256 => string) tokenIdtoIpfsHash;
 
-    constructor(address punkcitycontract) ERC721("BusinessNFT", "BT") {
-        setPunkcityContract(punkcitycontract);
+    constructor() ERC721("BusinessNFT", "BT") {
+        //setPunkcityContract(punkcitycontract);
     }
 
-    function setPunkcityContract(address _punkcityAddress) public {
-        _PunkCities = PunkCities(_punkcityAddress);
-    }
+   /* function setPunkcityContract(address _punkcityAddress) public {
+        _PunkCity = PunkCity(_punkcityAddress);
+    } */
 
-    function createBusiness(string memory cityName, string memory description, string memory _googleAddress, string memory _logo, string[] memory _services) public {
-        require(_PunkCities.checkRegisteredPlace(msg.sender) == true, "You must be registered for Punk Cities in order to create a Business");
-        require(registeredABusiness[msg.sender] == false, "You already own a business");
-        // Does one member can have only one business, or can have more?
-        businessDetails memory nextBusiness = businessDetails(businesses.length, cityName, description, msg.sender, _googleAddress, _logo, block.timestamp, _services);
+    function createBusiness(string memory cityName, string memory _businessType, string memory kind, string memory description,  string memory name, string memory _googleAddress, string[] memory _services, string memory URI, string memory ipfsHash) public {
+        //require(_PunkCity.checkRegisteredPlace(msg.sender) == true, "You must be registered for Punk Cities in order to create a Business");
+        //require(registeredABusiness[msg.sender] == false, "You already own a business");
+
+        businessDetails memory nextBusiness = businessDetails(businesses.length, cityName, _businessType, kind, description, name, msg.sender, _googleAddress, block.timestamp, _services, ipfsHash);
         businesses.push(nextBusiness);
+        myBusinessess[msg.sender].push(nextBusiness);
         _mint(msg.sender, businessNumber);
-
+        _setTokenURI(businessNumber, URI);
         registeredABusiness[msg.sender] = true;
         businessNumberMapping[msg.sender] = businessNumber;
-
+        businessbyOwner[msg.sender] = nextBusiness;
+        ownIpfsHash[msg.sender][businessNumber] = ipfsHash;
+        tokenIdtoIpfsHash[businessNumber] = ipfsHash;
         businessNumber++;
     }
 
     function getBusiness(uint256 _id) public view returns(uint256, string memory, string memory, address, string memory, uint256, string[] memory) {
-        return (businesses[_id].tokenId, businesses[_id].city, businesses[_id].shortDescription, businesses[_id].owner,
+        return (businesses[_id].tokenId, businesses[_id].city, businesses[_id].shortname, businesses[_id].owner,
                 businesses[_id].googleAddress, businesses[_id].createdAt, businesses[_id].services);
+    }
+
+    function getBusinessByOwner() public view returns (businessDetails memory){
+        return businessbyOwner[msg.sender];
     }
 
     function deleteBusiness(uint256 _businessId) public {
@@ -66,32 +86,8 @@ contract BusinessNFT is ERC721URIStorage {
         return businessNumberMapping[_address];
     }
 
-  /*  function listAllBusiness() public view returns(string[] memory lists){ ============> This function might not be needed as we will lists everything with Covalent probably
-        string[] memory _listOfBusinesses = new string[](businesses.length);
-        for(uint256 i = 0; i < businesses.length; i++){
-            
-        }        
-
-
-        return _listOfBusinesses;
-
-
-
-        if(businesses.length == 0){
-            return new string[](0);
-        }
-        else {
-            uint256[] memory _listOfBusinesses = new uint[](businesses.length);
-            for(uint256 i = 0; i < businesses.length; i++){
-                _listOfBusinesses.push(businessDetails[i].shortDescription);
-            }
-                    return _listOfBusinesses;
-        } 
-
-    }  */
-
     function verifyBusiness(uint256 _tokenId) external {
-        require(_PunkCities.checkRegisteredPlace(msg.sender) == true, "You must be registered for Punk Cities in order to verify a place");
+       //require(_PunkCity.checkRegisteredPlace(msg.sender) == true, "You must be registered for Punk Cities in order to verify a place");
 
         placeVerification[_tokenId]++;
     }
@@ -104,9 +100,45 @@ contract BusinessNFT is ERC721URIStorage {
         return registeredABusiness[_businessOwner];
     }
 
-   /* function listServices() public view returns(string memory) {
-        uint256 businessNumber = businessNumberMapping[msg.sender];
-        return 
-    } */
-    
+    function listAllBusinessNfts() public view returns(businessDetails[] memory) {
+        return businesses;
+    }
+
+    function getyourIpfsHash() public view returns (string memory) {
+        return ownIpfsHash[msg.sender][businessNumberMapping[msg.sender]];
+    }
+
+    function getyourIpfsHashbyTokenid(uint256 _tokenId) public view returns (string memory) {
+        return ownIpfsHash[msg.sender][_tokenId];
+    }
+
+    function getAllIpfsHashbyTokenId(uint256 _tokenId) public view returns(string memory) {
+        return tokenIdtoIpfsHash[_tokenId];
+    }
+
+    function listAllOfMyBusiness() public view returns(businessDetails[] memory){
+        return myBusinessess[msg.sender];
+    }
+
+    function upVote(uint256 _businessId) public returns (bool) {
+        require(alreadyVoted[_businessId][msg.sender] == false, "You cannot vote on a business more than once");
+        alreadyVoted[_businessId][msg.sender] = true;
+        upVotes[_businessId]++;
+        return true;
+    }
+
+    function downVote(uint256 _businessId) public returns (bool) {
+        require(alreadyVoted[_businessId][msg.sender] == false, "You cannot vote on a business more than once");
+        alreadyVoted[_businessId][msg.sender] = true;
+        downVotes[_businessId]++;
+        return true;
+    }
+
+    function getUpVotes(uint256 _businessId) public view returns (uint256) {
+        return upVotes[_businessId];
+    }
+
+    function getDownVotes(uint256 _businessId) public view returns(uint256) {
+        return downVotes[_businessId];
+    }
 }
