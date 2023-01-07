@@ -7,7 +7,6 @@ import "./PunkCities.sol";
 
 
 interface DaiToken {
-
     function totalSupply() external view returns (uint256);
     function balanceOf(address account) external view returns (uint256);
     function transfer(address recipient, uint256 amount) external returns (bool);
@@ -18,7 +17,6 @@ interface DaiToken {
     address recipient,
     uint256 amount
   ) external returns (bool);
-
 }
 
 contract BusinessNFT is ERC721URIStorage {
@@ -26,7 +24,7 @@ contract BusinessNFT is ERC721URIStorage {
     //PunkCity private _PunkCity;
     uint256 businessNumber = 0;
     DaiToken public daiToken;
-    address Vault;
+    address payable Vault;
 
     struct businessDetails {
         uint256 tokenId;
@@ -60,20 +58,17 @@ contract BusinessNFT is ERC721URIStorage {
     mapping(address => mapping(uint256 => string)) tokenIdHash;
     mapping(uint256 => string) tokenIdtoIpfsHash;
 
-    constructor(address _Vault) ERC721("BusinessNFT", "BT") {
+    constructor(address payable _Vault) ERC721("BusinessNFT", "BT") {
         daiToken = DaiToken(0x001B3B4d0F3714Ca98ba10F6042DaEbF0B1B7b6F);
         Vault = _Vault;
-    }
-
-    function checkYourDaiBalance() public view returns(uint256) {
-        return daiToken.balanceOf(msg.sender);
-    }
-
-    function createBusiness(string memory cityName, string memory _businessType, string memory kind, string memory description,  string memory name, string memory _googleAddress, string[] memory _services, string memory URI, string memory ipfsHash) public {
+    }  
+    // Before calling this function we need to approve the token allowance for address(this) via external call
+    function createBusiness(string memory cityName, string memory _businessType, string memory kind, string memory description,  string memory name, string memory _googleAddress, string[] memory _services, string memory URI, string memory ipfsHash) external payable {
         //require(_PunkCity.checkRegisteredPlace(msg.sender) == true, "You must be registered for Punk Cities in order to create a Business");
         //require(registeredABusiness[msg.sender] == false, "You already own a business");
-        require(daiToken.balanceOf(msg.sender) >= 100000000000000000 wei, "You do not have enough Dai to mint this NFT");
-
+        require(daiToken.balanceOf(msg.sender) >= 10, "You do not have enough Dai to mint this NFT");
+        require(daiToken.allowance(msg.sender, address(this)) < 10, "Not enough allowance");
+        require(daiToken.transferFrom(msg.sender, Vault, 10), "ERC20 transfer failed");
         businessDetails memory nextBusiness = businessDetails(businesses.length, cityName, _businessType, kind, description, name, msg.sender, _googleAddress, block.timestamp, _services, ipfsHash);
         businesses.push(nextBusiness);
         myBusinessess[msg.sender].push(nextBusiness);
@@ -85,7 +80,6 @@ contract BusinessNFT is ERC721URIStorage {
         ownIpfsHash[msg.sender][businessNumber] = ipfsHash;
         tokenIdtoIpfsHash[businessNumber] = ipfsHash;
         businessNumber++;
-        daiToken.transfer(Vault, 100000000000000000 wei);
     }
 
     function getBusiness(uint256 _id) public view returns(uint256, string memory, string memory, address, string memory, uint256, string[] memory) {
@@ -129,13 +123,13 @@ contract BusinessNFT is ERC721URIStorage {
     //     return ownIpfsHash[msg.sender][businessNumberMapping[msg.sender]];
     // }
 
-    function getyourIpfsHashbyTokenid(uint256 _tokenId) public view returns (string memory) {
-        return ownIpfsHash[msg.sender][_tokenId];
-    }
+    // function getyourIpfsHashbyTokenid(uint256 _tokenId) public view returns (string memory) {
+    //     return ownIpfsHash[msg.sender][_tokenId];
+    // }
 
-    function getAllIpfsHashbyTokenId(uint256 _tokenId) public view returns(string memory) {
-        return tokenIdtoIpfsHash[_tokenId];
-    }
+    // function getAllIpfsHashbyTokenId(uint256 _tokenId) public view returns(string memory) {
+    //     return tokenIdtoIpfsHash[_tokenId];
+    // }
 
     function listAllOfMyBusiness() public view returns(businessDetails[] memory){
         return myBusinessess[msg.sender];
