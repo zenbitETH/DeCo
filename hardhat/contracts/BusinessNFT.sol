@@ -67,7 +67,7 @@ contract BusinessNFT is ERC721URIStorage {
         //require(_PunkCity.checkRegisteredPlace(msg.sender) == true, "You must be registered for Punk Cities in order to create a Business");
         //require(registeredABusiness[msg.sender] == false, "You already own a business");
         require(daiToken.balanceOf(msg.sender) >= 10, "You do not have enough Dai to mint this NFT");
-        require(daiToken.allowance(msg.sender, address(this)) < 10, "Not enough allowance");
+        require(daiToken.allowance(msg.sender, address(this)) >= 10, "Not enough allowance");
         require(daiToken.transferFrom(msg.sender, Vault, 10), "ERC20 transfer failed");
         businessDetails memory nextBusiness = businessDetails(businesses.length, cityName, _businessType, kind, description, name, msg.sender, _googleAddress, block.timestamp, _services, ipfsHash);
         businesses.push(nextBusiness);
