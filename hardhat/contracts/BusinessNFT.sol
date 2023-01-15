@@ -7,11 +7,8 @@ import "./PunkCities.sol";
 
 
 interface DaiToken {
-    function totalSupply() external view returns (uint256);
     function balanceOf(address account) external view returns (uint256);
-    function transfer(address recipient, uint256 amount) external returns (bool);
     function allowance(address owner, address spender) external view returns (uint256);
-    function approve(address spender, uint256 amount) external returns (bool);
     function transferFrom(
     address sender,
     address recipient,
@@ -58,17 +55,17 @@ contract BusinessNFT is ERC721URIStorage {
     mapping(address => mapping(uint256 => string)) tokenIdHash;
     mapping(uint256 => string) tokenIdtoIpfsHash;
 
-    constructor(address payable _Vault) ERC721("BusinessNFT", "BT") {
+    constructor() ERC721("BusinessNFT", "BT") {
         daiToken = DaiToken(0x001B3B4d0F3714Ca98ba10F6042DaEbF0B1B7b6F);
-        Vault = _Vault;
-    }  
+        // Vault = _Vault;
+    } 
     // Before calling this function we need to approve the token allowance for address(this) via external call
     function createBusiness(string memory cityName, string memory _businessType, string memory kind, string memory description,  string memory name, string memory _googleAddress, string[] memory _services, string memory URI, string memory ipfsHash) external payable {
         //require(_PunkCity.checkRegisteredPlace(msg.sender) == true, "You must be registered for Punk Cities in order to create a Business");
         //require(registeredABusiness[msg.sender] == false, "You already own a business");
-        require(daiToken.balanceOf(msg.sender) >= 10, "You do not have enough Dai to mint this NFT");
-        require(daiToken.allowance(msg.sender, address(this)) >= 10, "Not enough allowance");
-        require(daiToken.transferFrom(msg.sender, Vault, 10), "ERC20 transfer failed");
+        // require(daiToken.balanceOf(msg.sender) >= 100000000000000000, "You do not have enough Dai to mint this NFT");
+        // require(daiToken.allowance(msg.sender, address(this)) <= 100000000000000000, "Not enough allowance");
+        // require(daiToken.transferFrom(msg.sender, Vault, 100000000000000000), "ERC20 transfer failed");
         businessDetails memory nextBusiness = businessDetails(businesses.length, cityName, _businessType, kind, description, name, msg.sender, _googleAddress, block.timestamp, _services, ipfsHash);
         businesses.push(nextBusiness);
         myBusinessess[msg.sender].push(nextBusiness);
@@ -80,6 +77,11 @@ contract BusinessNFT is ERC721URIStorage {
         ownIpfsHash[msg.sender][businessNumber] = ipfsHash;
         tokenIdtoIpfsHash[businessNumber] = ipfsHash;
         businessNumber++;
+        daiToken.transferFrom(msg.sender, Vault, 100000000000000000);
+    }
+
+    function addVaultContract(address payable _Vault) public {
+        Vault = _Vault;
     }
 
     function getBusiness(uint256 _id) public view returns(uint256, string memory, string memory, address, string memory, uint256, string[] memory) {
@@ -119,17 +121,17 @@ contract BusinessNFT is ERC721URIStorage {
         return businesses;
     }
 
-    // function getyourIpfsHash() public view returns (string memory) {
-    //     return ownIpfsHash[msg.sender][businessNumberMapping[msg.sender]];
-    // }
+    function getyourIpfsHash() public view returns (string memory) {
+        return ownIpfsHash[msg.sender][businessNumberMapping[msg.sender]];
+    }
 
-    // function getyourIpfsHashbyTokenid(uint256 _tokenId) public view returns (string memory) {
-    //     return ownIpfsHash[msg.sender][_tokenId];
-    // }
+    function getyourIpfsHashbyTokenid(uint256 _tokenId) public view returns (string memory) {
+        return ownIpfsHash[msg.sender][_tokenId];
+    }
 
-    // function getAllIpfsHashbyTokenId(uint256 _tokenId) public view returns(string memory) {
-    //     return tokenIdtoIpfsHash[_tokenId];
-    // }
+    function getAllIpfsHashbyTokenId(uint256 _tokenId) public view returns(string memory) {
+        return tokenIdtoIpfsHash[_tokenId];
+    }
 
     function listAllOfMyBusiness() public view returns(businessDetails[] memory){
         return myBusinessess[msg.sender];
