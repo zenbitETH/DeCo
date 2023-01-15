@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.10;
 
 import "./BusinessNFT.sol";
-import "./Vault.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
 
@@ -10,6 +9,7 @@ contract productNFT is ERC721URIStorage{
 
     BusinessNFT private _BusinessNFT;
     uint256 serviceId = 0;
+    address payable productVault;
 
     constructor(address businessContract) ERC721("Service NFT", "SFT")  {
         setBusinessContract(businessContract);
@@ -40,7 +40,6 @@ contract productNFT is ERC721URIStorage{
 
     function makeService(uint256 servicePrice, string memory _serviceDescription, string memory tokenURI, uint256 businessId) public {
         require(_BusinessNFT.ownsABusiness(msg.sender) == true, "You cannot create a service as you do not own a BusinessNFT");
-
         _mint(msg.sender, serviceId);
         _setTokenURI(serviceId, tokenURI);
         Service memory addService = Service(serviceId, servicePrice, payable(msg.sender), _serviceDescription, false, tokenURI);
@@ -50,9 +49,11 @@ contract productNFT is ERC721URIStorage{
         userServices[msg.sender].push(addService);
         serviceId++;
     }
+
     function buyService(uint256 _serviceId, uint256 _businessId) public {
         require(newService[_serviceId].owner != msg.sender, "You cannot buy your own service");
         require(newService[_serviceId].sold == false, "This service has already been bought or id unavailable");
+
         newService[_serviceId].sold = true;
         ServicesOfBusiness[_businessId][_serviceId].sold = true;
         //Service memory deletedService = deleteService(_serviceId);
