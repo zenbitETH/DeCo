@@ -3,6 +3,7 @@ pragma solidity ^0.8.10;
 
 import "./productNFT.sol";
 import { IAaveLendingPool } from "./IAaveLendingPool.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 
  interface DaiTokenVault {
@@ -16,11 +17,13 @@ import { IAaveLendingPool } from "./IAaveLendingPool.sol";
   ) external returns (bool);
 }
 
-contract Vault {
+contract Vault is Ownable {
 
     DaiTokenVault public daiTokenVault;
     productNFT private _productNFT;
     // IAaveLendingPool private aaveLendingPool;
+
+    mapping(address => uint256) daiBalance;
 
     constructor(address _productAddress){
         setProductContract(_productAddress);
@@ -36,7 +39,7 @@ contract Vault {
     // }
 
     // function borrowTest() public {
-
+        // Here we need to add a requirity that each user can borrow things up how much daiTokenBalance they are having in the Vault contract
     // }
     
     function buy(uint256 serviceId, uint256 _businessId) public payable {
@@ -44,21 +47,28 @@ contract Vault {
         // require for nonexistentBusiness
         uint256 price = _productNFT.getPriceForAService(serviceId);
         require(daiTokenVault.balanceOf(msg.sender) >= price, "you want to pay less than the actual price");
-        require(daiTokenVault.allowance(msg.sender, address(this)) >= price, "You don't have enough allowance to buy this product");
+        // require(daiTokenVault.allowance(msg.sender, address(this)) >= price, "You don't have enough allowance to buy this product");
         address payable receiver = _productNFT.getOwnerOfService(serviceId);
 
-        daiTokenVault.transferFrom(msg.sender, receiver, price / 10 * 9);
-        daiTokenVault.transferFrom(msg.sender, address(this), price / 10);
-        // receiver.transfer(msg.value / 10 * 9);  90% to seller 10% to Vault
+
+        daiTokenVault.transferFrom(msg.sender, receiver, price / 10 * 9); // 90% goes into the user's Wallet. 
+        daiTokenVault.transferFrom(msg.sender, address(this), price / 10); // 10% goes to the Vault after the transaction
+
+        daiBalance[msg.sender] += price / 10; // This mapping lets you know that how much DAI each user has access in the Vault 
+
+        // receiver.transfer(msg.value / 10 * 9);  90% to seller 10% to Vault ( only user can access it, not 
         _productNFT.buyService(serviceId, _businessId);
     }
 
     function getVaultBalance() public view returns(uint256){
         return daiTokenVault.balanceOf(address(this));
     }
-    function sendSomethingOut(address payable _address, uint256 daiAmount) public payable {
+    function sendSomethingOut(address payable _address, uint256 daiAmount) public payable onlyOwner {
         daiTokenVault.transfer(_address, daiAmount);
     }
+    
+    function checkYourVaultDaiBalance() public view returns (uint256){ // We might need to add an argument here for address, but we need to check this later
+        return daiBalance[msg.sender];
+    }
+
 }
-
-
