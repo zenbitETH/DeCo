@@ -3,7 +3,7 @@
     <div class="modal">
       <img class="check" src="~/assets/check-icon.png" alt="">
       <h6>Success</h6>
-      <p>You have successfuly minted your NFT!</p>
+      <p>You have successfully minted your NFT!</p>
       <button @click="goHome()">
         Go Home
       </button>

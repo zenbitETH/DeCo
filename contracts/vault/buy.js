@@ -7,7 +7,7 @@ export default async function (address, service, businessId) {
     contractAddress: address,
     functionName: 'buy',
     abi,
-    msgValue: Moralis.Units.ETH(service.price / Math.pow(10, 18)),
+    // msgValue: Moralis.Units.ETH(service.price / Math.pow(10, 18)), This is not needed anymore as we are using DAI
     params: {
       serviceId: service.serviceId,
       _businessId: parseInt(businessId)

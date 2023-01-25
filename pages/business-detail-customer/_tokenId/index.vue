@@ -1,37 +1,36 @@
 <template>
-  <OverlayLoader :loading="loading">
-    <section class="text-white">
-      <div class="MainScreen">
-        <div class="dBoard">
-          <div class="assetBoard">
-            <div class="relative text-center mx-auto items-center xl:flex">
-              <img class="w-auto xl:h-28 xl:mr-2 h-20 mx-auto" :src="logo">
-              <div class="xl:text-5xl text-2xl items-center col-span-6">
+  <section class="text-white">
+    <div class="MainScreen">
+      <div class="dBoard">
+        <div class="assetBoard">
+          <div
+            class="businessCard"
+          >
+            <div class="text-lg absolute top-5 right-5">
+              📍{{ business ? `${business.city} ` : "Loading..." }}
+              <!--📍{{ business ? `${business.googleAddress} ` : 'Loading...' }}-->
+            </div>
+            <div class="relative text-center col-span-2 pb-11/12">
+              <img class="absolute w-auto h-full  left-1/2 transform -translate-x-1/2" :src="logo">
+            </div>
+            <div class="col-span-4 pl-5 grid gap-2">
+              <div class="xl:text-5xl text-2xl">
                 {{ business ? business.shortname : 'Loading...' }}
               </div>
-            </div>
-            <div class="mx-auto ">
-              <div class="col-span-6 text-lg">
+              <div class="col-span-6 text-lg text-left  rounded-tf ">
                 {{ business ? business.description : 'Loading...' }}
               </div>
-              <div class="grid gap-2 mx-auto">
-                <div v-if="business" class="text-base flex items-center col-span-6">
-                  <img class="h-10 pr-2" :src="'/3dAssets/' + business.businessType + '.png'">
-                  {{ business ? `${business.googleAddress} ` : "Loading..." }}
-                </div>
-              <!--📍{{ business ? `${business.city} ` : 'Loading...' }} -->
+            </div>
+            <div class="absolute bottom-5 right-5 text-center grid grid-cols-2 gap-3 ">
+              <div class="myVaultBT bg-glass-300 hover:bg-green-500" @click="makeUpVote()">
+                <span>{{ likes }}</span>👍
               </div>
-              <div class="text-center grid grid-cols-2 gap-3 max-w-5xl mt-1 mx-auto col-span-2">
-                <div class="myVaultBT bg-glass-300 hover:bg-green-500" @click="makeUpVote()">
-                  <span>{{ likes }}</span>👍
-                </div>
-                <div class="myVaultBT bg-glass-300 hover:bg-red-500" @click="makeDownVote()">
-                  <span>{{ disLikes }}</span>👎
-                </div>
+              <div class="myVaultBT bg-glass-300 hover:bg-red-500" @click="makeDownVote()">
+                <span>{{ disLikes }}</span>👎
               </div>
             </div>
-
-            <!--  <div class="grid fhd:col-span-2 col-span-4 gap-3 row-span-2">
+          </div>
+          <!--  <div class="grid fhd:col-span-2 col-span-4 gap-3 row-span-2">
              <div class="p-3">
                 Tags
               </div>
@@ -40,30 +39,116 @@
               {{ business ? `${business.googleAddress}` : 'Loading...' }}
             </div>
             -->
+
+          <div v-if="business" class="md:row-span-6 rounded-xl grid grid-cols-3 gap-5">
+            <div class="bg-gradient-to-tl p-3 from-glass-400 to-glass-100 rounded-tf relative">
+              <div class="p-3">
+                <img class=" h-fit" :src="'/3dAssets/' + business.businessType + '.png'">
+              </div>
+              <div class="text-base xl:text-xl absolute bottom-5 text-center left-0 right-0 font-bold">
+                {{ business ? businessTypes.find(t => t.value === business.businessType).text : 'Type of place' }}
+              </div>
+            </div>
+            <div class="businessCell">
+              <div class="md:text-6xl">
+                {{ soldNFTs }}
+              </div>
+              <div class="text-base font-bold xl:text-xl">
+                Products Sold
+              </div>
+            </div>
+            <div class="businessCell">
+              <div class="md:text-6xl">
+                {{ income / Math.pow(10,18) }} MATIC
+              </div>
+              <div class="text-base font-bold xl:text-xl">
+                Total Income
+              </div>
+            </div>
           </div>
-          <div class="inventory relative">
-            <div class="grid lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4  grid-flow-dense px-5 gap-3 ">
-              <div v-for="service in unsoldServices" :key="service.tokenId" class="PlaceBG ">
-                <div class="relative text-center col-span-2 rounded-xl pb-11/12">
-                  <img
-                    class="absolute w-auto h-full left-1/2 transform -translate-x-1/2"
-                    :src="service.tokenURI"
-                  >
-                </div>
-                <div class="productCard">
-                  <div class="text-xl row-span-3">
-                    <div>Product Name</div>
-                    <div class="text-lg">
-                      {{ service.serviceDescription }}
+        </div>
+
+        <div class="inventory relative">
+          <ul id="tabs-tabFill" class="nav nav-tabs flex flex-row flex-wrap list-none border-b-0 pl-0 mb-4 absolute w-full " role="tablist">
+            <li class="nav-item flex-auto text-center" role="presentation">
+              <a
+                id="tabs-home-tabFill"
+                href="#tabs-onsaleFill"
+                class="tabFill active focus:text-cyber-100"
+                data-bs-toggle="pill"
+                data-bs-target="#tabs-onsaleFill"
+                role="tab"
+                aria-controls="tabs-onsaleFill"
+                aria-selected="true"
+              >
+                On Sale
+              </a>
+            </li>
+            <li class="nav-item flex-auto text-center" role="presentation">
+              <a
+                id="tabs-profile-tabFill"
+                href="#tabs-soldFill"
+                class="tabFill focus:text-solar-100"
+                data-bs-toggle="pill"
+                data-bs-target="#tabs-soldFill"
+                role="tab"
+                aria-controls="tabs-soldFill"
+                aria-selected="false"
+              >Sold</a>
+            </li>
+          </ul>
+          <div id="tabs-tabContentFill" class="tab-content">
+            <div id="tabs-onsaleFill" class="tab-pane fade bg-glass-100 rounded-tf py-5 pt-16 show active h-full overflow-y-hidden" role="tabpanel" aria-labelledby="tabs-home-tabFill">
+              <div class="grid lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4  grid-flow-dense px-5 gap-3 ">
+                <div v-for="service in unsoldServices" :key="service.tokenId" class="PlaceBG relative" @click="purchaseServiceNft(service)">
+                  <div class="col-span-2 rounded-xl">
+                    <img
+                      class="mx-auto rounded-xl"
+                      :src="service.tokenURI"
+                    >
+                  </div>
+                  <div class="productCard">
+                    <div class="text-xl row-span-3">
+                      <div>Product Name</div>
+                      <div class="text-lg">
+                        {{ service.serviceDescription }}
+                      </div>
+                    </div>
+
+                    <div class="productBuy">
+                      <div class="text-xl">
+                        {{ service.price / Math.pow(10,18) }} MATIC
+                      </div>
+                      <div class="buyBT">
+                        Buy
+                      </div>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
 
-                  <div class="productBuy" @click="purchaseServiceNft(service)">
-                    <div class="text-xl">
-                      {{ service.price / Math.pow(10,18) }} MATIC
+            <div id="tabs-soldFill" class="tab-pane fade bg-glass-100 rounded-tf  pt-16 h-full overflow-y-hidden" role="tabpanel" aria-labelledby="tabs-profile-tabFill">
+              <div class="grid lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4  grid-flow-dense px-5 gap-3 ">
+                <div v-for="service in soldServices" :key="service.tokenId" class="PlaceBG relative">
+                  <div class="col-span-2 rounded-xl">
+                    <img
+                      class="mx-auto rounded-xl"
+                      :src="service.tokenURI"
+                    >
+                  </div>
+                  <div class="productCard">
+                    <div class="text-xl row-span-3">
+                      <div>Product Name</div>
+                      <div class="text-lg">
+                        {{ service.serviceDescription }}
+                      </div>
                     </div>
-                    <div class="buyBT">
-                      Buy
+
+                    <div class="productBuy">
+                      <div class="text-xl col-span-2">
+                        {{ service.price / Math.pow(10,18) }} MATIC
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -72,9 +157,8 @@
           </div>
         </div>
       </div>
-    </section>
-    <BuyModal v-show="showModal" @goHome="goHomeClick" />
-  </OverlayLoader>
+    </div>
+  </section>
 </template>
 <script>
 import getAllIpfsHashbyTokenId from '~/contracts/business-nft/getAllIpfsHashByTokenId'
@@ -86,19 +170,12 @@ import getUpVotes from '~/contracts/business-nft/getUpVotes'
 import downVote from '~/contracts/business-nft/downVote'
 import getDownVotes from '~/contracts/business-nft/getDownVotes'
 import getIncomeOfBusiness from '~/contracts/service-nft/getIncomeOfBusiness'
-import OverlayLoader from '~/components/OverlayLoader.vue'
+
 import getSoldProducts from '~/contracts/service-nft/getSoldProducts'
-import BuyModal from '~/components/BuyModal.vue'
 
 export default {
-  components: {
-    OverlayLoader,
-    BuyModal
-  },
   data () {
     return {
-      showModal: false,
-      loading: false,
       soldNFTS: 0,
       income: 0,
       likes: 0,
@@ -170,14 +247,9 @@ export default {
       })
     },
     purchaseServiceNft (service) {
-      this.loading = true
-      buy(this.$config.contractVault, service, this.$route.params.tokenId).then(async (txHash) => {
-        await txHash.wait()
-        this.showModal = true
-        this.loading = false
-      }).catch((e) => {
-        console.error(e)
-        this.loading = false
+      buy(this.$config.contractVault, service, this.$route.params.tokenId).then(() => {
+        console.log('succesful purchase')
+        // location.reload()
       })
     },
     async getLogo () {
@@ -196,10 +268,6 @@ export default {
       upVote(this.$config.contractBusinessNft, this.$route.params.tokenId).then(async () => {
         // console.log('Successfully upVoted')
         // await location.reload()
-        await alert('You successfully made a vote for this business. In order to see the result please refresh the page after the Metamask Transaction')
-      }).catch((error) => {
-        console.error(error)
-        alert('You can only vote for a business once')
       })
     },
     async getLikes () {
@@ -209,21 +277,14 @@ export default {
       this.disLikes = await getDownVotes(this.$config.contractBusinessNft, this.$route.params.tokenId)
     },
     makeDownVote () {
-      downVote(this.$config.contractBusinessNft, this.$route.params.tokenId).then(async () => {
-        // console.log('Successfully upVoted')
-        // await location.reload()
-        await alert('You successfully made a vote for this business. In order to see the result please refresh the page after the Metamask Transaction')
-      }).catch((error) => {
-        console.error(error)
-        alert('You can only vote for a business once')
+      downVote(this.$config.contractBusinessNft, this.$route.params.tokenId).then(() => {
+        // result.wait()
+        console.log('Successfully upVoted')
+        // location.reload()
       })
     },
     async getIncome () {
       this.income = await getIncomeOfBusiness(this.$config.contractServiceNft, this.$route.params.tokenId)
-    },
-    goHomeClick () {
-      this.showModal = false
-      location.reload()
     }
   }
 }

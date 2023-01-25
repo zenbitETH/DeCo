@@ -12,7 +12,14 @@
                 </div>
                 <div class="relative text-center col-span-2 pb-11/12">
                   <img
-                    class="absolute w-auto h-full left-1/2 transform -translate-x-1/2"
+                    class="
+                    absolute
+                    w-auto
+                    h-full
+                    left-1/2
+                    transform
+                    -translate-x-1/2
+                  "
                     :src="logo"
                   >
                 </div>
@@ -162,7 +169,7 @@
                       </div>
                     </div>
 
-                    <div v-for="service in unsoldServices" :key="service.tokenId" class="PlaceBG relative">
+                    <div v-for="service in unsoldServices" :key="service.tokenId" class="PlaceBG relative" @click="purchaseServiceNft(service)">
                       <div class="col-span-2 rounded-xl">
                         <img
                           class="mx-auto rounded-xl"
@@ -277,27 +284,20 @@
           <div v-else class="md:grid md:grid-cols-2 gap-3">
             <!-- There is no name filed in the serviceNFT smartcontract, we shall omit this one -->
             <!-- <Input v-model="form.name" type="text" placeholder="1. What is the name of your business?" class="mt-8 col-span-2" /> -->
-            <Input
-              v-model="form.serviceName"
-              type="text"
-              placeholder="1. Name of your product or service"
-              :max-length="nameLength"
-            />
             <Textarea
               v-model="form.description"
-              placeholder="2. Describe your product or service"
+              placeholder="1. Describe your service"
               class="mt-8 col-span-2"
               :rows="3"
-              :max-length="dLength"
             />
             <Input
               v-model="form.price"
               type="number"
-              placeholder="3. Choose a price for your product or service in MATIC"
+              placeholder="2. Choose a price for your NFT in MATIC"
               class="col-span-2"
             />
             <div class="md:w-full mx-5 mb-3 text-deco-400">
-              4. Upload an image for your product or service
+              3. Upload an image for your product or service
               <Input
                 v-model="form.imageUrl"
                 type="text"
@@ -367,8 +367,6 @@ export default {
   mixins: [CommonFunctions],
   data () {
     return {
-      nameLength: 15,
-      dLength: 140,
       income: 0,
       likes: 0,
       disLikes: 0,
@@ -388,7 +386,6 @@ export default {
         type: '', // type of the NFT -> type //string
         description: '', // description of the NFT -> description //string
         tags: '',
-        serviceName: '',
         // from nft-storage trough file upload
         imageUrl: '', // logo url -> tokenUri //string
         // SERVICES
@@ -516,12 +513,9 @@ export default {
       location.reload()
     },
     makeUpVote () {
-      upVote(this.$config.contractBusinessNft, this.$route.params.tokenId).then(() => {
+      upVote(this.$config.contractBusinessNft, this.$route.params.tokenId).then(async () => {
         // console.log('Successfully upVoted')
         // await location.reload()
-        if (error) {
-          alert('You can only vote for a business once')
-        }
       })
     },
     async getLikes () {

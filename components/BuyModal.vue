@@ -3,7 +3,7 @@
     <div class="modal">
       <img class="check" src="~/assets/check-icon.png" alt="">
       <h6>Success</h6>
-      <p>Successfull Purhcase!</p>
+      <p>Successfull Purchase!</p>
       <button @click="goHome()">
         Go Home
       </button>
