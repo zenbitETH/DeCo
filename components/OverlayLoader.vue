@@ -81,7 +81,7 @@ export default {
 </script>
 <style>
   .loader {
-    border-top-color: rgb(151, 17, 16);
+    border-top-color: rgb(20, 145, 62);
     -webkit-animation: spinner 1.5s linear infinite;
     animation: spinner 1.5s linear infinite;
   }

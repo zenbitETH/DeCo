@@ -183,7 +183,7 @@
             </client-only>
             <div class="text-center">
               <button class="mintButton" @click="mintNFT()">
-                Mint Business NFT
+                {{ isApproved? "MintServiceNFT" : "Approve and Mint" }}
               </button>
             </div>
           </div>
@@ -215,6 +215,7 @@ import MintModal from '~/components/MintModal.vue'
 import createBusiness from '~/contracts/business-nft/createBusiness'
 import makeService from '~/contracts/service-nft/makeService'
 import CommonsFunctions from '~/mixins/CommonFunctions'
+import checkApproval from '~/contracts/business-nft/checkApproval'
 // const IPFS = require('ipfs')
 export default {
   components: {
@@ -223,6 +224,7 @@ export default {
   mixins: [CommonsFunctions],
   data () {
     return {
+      isApproved: false,
       loading: false,
       nameLength: 15,
       dLength: 140,
@@ -250,6 +252,7 @@ export default {
       }
     }
   },
+
   computed: {
     businessTypes () {
       return this.$store.state.businessTypes
@@ -263,6 +266,13 @@ export default {
     getBusinessType () {
       return this.$store.state.businessTypes.find(businessType => businessType.value === this.form.type).text
     }
+  },
+
+  beforeMount () {
+    this.checkApprove().then((response) => {
+      this.isApproved = response.data.isApproved
+    })
+    console.log('isApproved is', this.isApproved)
   },
   methods: {
     async upload ({ file }) {
@@ -281,6 +291,9 @@ export default {
     async mintNFT () {
       // TODO mint business or service NFT based on kind
       this.loading = true
+      if (this.isApproved) {
+        await this.getApproval() // async functionel kell megcsinálni
+      }
       if (this.form.kind === 'businesses') {
         const metadata = {
           name: this.getBusinessType,
@@ -313,6 +326,10 @@ export default {
           this.loading = false
         })
       }
+    },
+    async checkApprove () {
+      const result = await checkApproval(this.$config.contractBusinessNft)
+      console.log(result)
     }
     // async registerToPunkCity () {
     //   const ABI = [
