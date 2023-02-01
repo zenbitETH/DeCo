@@ -1,75 +1,88 @@
 [
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "_productAddress",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "nonpayable",
-        "type": "constructor"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "serviceId",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_businessId",
-                "type": "uint256"
-            }
-        ],
-        "name": "buy",
-        "outputs": [],
-        "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "getVaultBalance",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address payable",
-                "name": "_address",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256",
-                "name": "maticAmount",
-                "type": "uint256"
-            }
-        ],
-        "name": "sendSomethingOut",
-        "outputs": [],
-        "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "_productAddress",
-                "type": "address"
-            }
-        ],
-        "name": "setProductContract",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    }
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_productAddress",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "serviceId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_businessId",
+				"type": "uint256"
+			}
+		],
+		"name": "buy",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "daiTokenVault",
+		"outputs": [
+			{
+				"internalType": "contract DaiTokenVault",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getVaultBalance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_address",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "daiAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "sendSomethingOut",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_productAddress",
+				"type": "address"
+			}
+		],
+		"name": "setProductContract",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
 ]

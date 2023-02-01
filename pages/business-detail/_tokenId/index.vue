@@ -117,7 +117,7 @@
                   class="businessCell"
                 >
                   <div class="md:text-6xl">
-                    {{ income / Math.pow(10,18) }} MATIC
+                    {{ income / Math.pow(10,18) }} DAI
                   </div>
                   <div class="text-base font-bold xl:text-xl">
                     Total Income
@@ -186,7 +186,7 @@
 
                         <div class="productBuy">
                           <div class="text-xl col-span-2">
-                            {{ service.price / Math.pow(10,18) }} MATIC
+                            {{ service.price / Math.pow(10,18) }} DAI
                           </div>
                         </div>
                       </div>
@@ -212,7 +212,7 @@
 
                         <div class="productBuy">
                           <div class="text-xl col-span-2">
-                            {{ service.price / Math.pow(10,18) }} MATIC
+                            {{ service.price / Math.pow(10,18) }} DAI
                           </div>
                         </div>
                       </div>
@@ -340,7 +340,6 @@ import getYourLogoPicture from '~/contracts/business-nft/getYourLogoPicture'
 import listAllBusinessNFTs from '~/contracts/business-nft/listAllBusinessNFTs'
 import listMyServices from '~/contracts/service-nft/listMyServices'
 import getSoldProducts from '~/contracts/service-nft/getSoldProducts'
-import buy from '~/contracts/vault/buy'
 import Input from '~/components/inputs/Input.vue'
 import Select from '~/components/inputs/Select.vue'
 import Textarea from '~/components/inputs/Textarea.vue'
@@ -376,8 +375,9 @@ export default {
       tokenId: null,
       business: null,
       services: [],
-      logo: '',
       soldNFTs: 0,
+      logo: '',
+
       form: {
         // COMMON FIELDS
         // form data -> smart contract data
@@ -462,12 +462,6 @@ export default {
         this.business = this.businesses.find(
           business => business.tokenId === this.tokenId
         )
-      })
-    },
-    purchaseServiceNft (service) {
-      buy(this.$config.contractVault, service, this.$route.params.tokenId).then(() => {
-        console.log('succesful purchase')
-        // location.reload()
       })
     },
     async getLogo () {

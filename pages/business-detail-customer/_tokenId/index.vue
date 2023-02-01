@@ -59,7 +59,7 @@
             </div>
             <div class="businessCell">
               <div class="md:text-6xl">
-                {{ income / Math.pow(10,18) }} MATIC
+                {{ income / Math.pow(10,18) }} DAI
               </div>
               <div class="text-base font-bold xl:text-xl">
                 Total Income
@@ -117,10 +117,10 @@
 
                     <div class="productBuy">
                       <div class="text-xl">
-                        {{ service.price / Math.pow(10,18) }} MATIC
+                        {{ service.price / Math.pow(10,18) }} DAI
                       </div>
                       <div class="buyBT">
-                        Buy
+                        {{ buyApproved? "Buy" : "Approve DAI" }}
                       </div>
                     </div>
                   </div>
@@ -147,13 +147,16 @@
 
                     <div class="productBuy">
                       <div class="text-xl col-span-2">
-                        {{ service.price / Math.pow(10,18) }} MATIC
+                        {{ service.price / Math.pow(10,18) }} DAI
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            <button @click="approve()">
+              approveDAI
+            </button>
           </div>
         </div>
       </div>
@@ -170,13 +173,16 @@ import getUpVotes from '~/contracts/business-nft/getUpVotes'
 import downVote from '~/contracts/business-nft/downVote'
 import getDownVotes from '~/contracts/business-nft/getDownVotes'
 import getIncomeOfBusiness from '~/contracts/service-nft/getIncomeOfBusiness'
+import approveVaultContract from '~/contracts/vault/approveVaultContract'
+import checkApproval from '~/contracts/business-nft/checkApproval'
 
 import getSoldProducts from '~/contracts/service-nft/getSoldProducts'
 
 export default {
   data () {
     return {
-      soldNFTS: 0,
+      buyApproved: false,
+      soldNFTs: 0,
       income: 0,
       likes: 0,
       disLikes: 0,
@@ -219,6 +225,10 @@ export default {
     }
   },
   beforeMount () {
+    this.isApproved().then((response) => {
+      this.buyApproved = response.data.buyApproved
+      console.log('isApproved is', this.buyApproved)
+    })
     getAllIpfsHashbyTokenId()
     this.tokenId = parseInt(this.$route.params.tokenId)
     if (!this.businesses.length) {
@@ -247,10 +257,14 @@ export default {
       })
     },
     purchaseServiceNft (service) {
-      buy(this.$config.contractVault, service, this.$route.params.tokenId).then(() => {
-        console.log('succesful purchase')
+      if (this.buyApproved === true) {
+        buy(this.$config.contractVault, service, this.$route.params.tokenId).then(() => {
+          console.log('succesful purchase')
         // location.reload()
-      })
+        })
+      } else {
+        approveVaultContract(this.$config.contractDai, this.$config.contractVault)
+      }
     },
     async getLogo () {
       this.logo = await getAllIpfsHashbyTokenId(
@@ -285,6 +299,14 @@ export default {
     },
     async getIncome () {
       this.income = await getIncomeOfBusiness(this.$config.contractServiceNft, this.$route.params.tokenId)
+    },
+    async approve () {
+      await approveVaultContract(this.$config.contractDai, '0x001B3B4d0F3714Ca98ba10F6042DaEbF0B1B7b6F').then(() => {
+        console.log('Successfull approve')
+      })
+    },
+    async isApproved () {
+      await checkApproval(this.$config.contractBusinessNft)
     }
   }
 }

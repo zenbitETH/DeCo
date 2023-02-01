@@ -1,4 +1,5 @@
 import Moralis from 'moralis'
+import { normalizeContractOutput } from '../methods'
 import abi from './abi.json'
 
 export default async function (address) {
@@ -11,5 +12,5 @@ export default async function (address) {
     }
   }
 
-  return await Moralis.executeFunction(options)
+  return await normalizeContractOutput(await Moralis.executeFunction(options))
 }

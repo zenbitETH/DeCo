@@ -77,6 +77,7 @@ export default {
     contractBusinessNft: process.env.CONTRACT_BUSINESS_NFT || '',
     contractServiceNft: process.env.CONTRACT_SERVICE_NFT || '',
     contractVault: process.env.CONTRACT_VAULT || '',
+    contractDai: process.env.CONTRACT_DAI || '',
 
     walletConnectId: process.env.WALLET_CONNECT_ID || '',
     nftStorageApiKey: process.env.NFT_STORAGE_API_KEY || ''

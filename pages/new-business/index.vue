@@ -183,7 +183,10 @@
             </client-only>
             <div class="text-center">
               <button class="mintButton" @click="mintNFT()">
-                {{ isApproved? "MintServiceNFT" : "Approve and Mint" }}
+                Mint Business NFT
+              </button>
+              <button class="mintButton" @click="approveDai()">
+                Approve DAI
               </button>
             </div>
           </div>
@@ -216,6 +219,7 @@ import createBusiness from '~/contracts/business-nft/createBusiness'
 import makeService from '~/contracts/service-nft/makeService'
 import CommonsFunctions from '~/mixins/CommonFunctions'
 import checkApproval from '~/contracts/business-nft/checkApproval'
+import approveBusinessContract from '~/contracts/business-nft/approveBusinessContract'
 // const IPFS = require('ipfs')
 export default {
   components: {
@@ -291,9 +295,6 @@ export default {
     async mintNFT () {
       // TODO mint business or service NFT based on kind
       this.loading = true
-      if (this.isApproved) {
-        await this.getApproval() // async functionel kell megcsinálni
-      }
       if (this.form.kind === 'businesses') {
         const metadata = {
           name: this.getBusinessType,
@@ -330,6 +331,11 @@ export default {
     async checkApprove () {
       const result = await checkApproval(this.$config.contractBusinessNft)
       console.log(result)
+    },
+    async approveDai () {
+      await approveBusinessContract(this.$config.contractDai, this.$config.contractBusinessNft).then(async (response) => {
+        await response.wait()
+      })
     }
     // async registerToPunkCity () {
     //   const ABI = [

@@ -128,6 +128,11 @@
 				"internalType": "uint256",
 				"name": "_serviceId",
 				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_businessId",
+				"type": "uint256"
 			}
 		],
 		"name": "buyService",
@@ -178,7 +183,7 @@
 						"type": "string"
 					}
 				],
-				"internalType": "struct serviceNFT.Service",
+				"internalType": "struct productNFT.Service",
 				"name": "",
 				"type": "tuple"
 			}
@@ -292,51 +297,6 @@
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "getServicesForOwner",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "serviceId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "price",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address payable",
-						"name": "owner",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "serviceDescription",
-						"type": "string"
-					},
-					{
-						"internalType": "bool",
-						"name": "sold",
-						"type": "bool"
-					},
-					{
-						"internalType": "string",
-						"name": "tokenURI",
-						"type": "string"
-					}
-				],
-				"internalType": "struct serviceNFT.Service[]",
-				"name": "",
-				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -422,7 +382,7 @@
 						"type": "string"
 					}
 				],
-				"internalType": "struct serviceNFT.Service[]",
+				"internalType": "struct productNFT.Service[]",
 				"name": "",
 				"type": "tuple[]"
 			}
@@ -485,51 +445,6 @@
 				"internalType": "address",
 				"name": "",
 				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "printAllServices",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "serviceId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "price",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address payable",
-						"name": "owner",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "serviceDescription",
-						"type": "string"
-					},
-					{
-						"internalType": "bool",
-						"name": "sold",
-						"type": "bool"
-					},
-					{
-						"internalType": "string",
-						"name": "tokenURI",
-						"type": "string"
-					}
-				],
-				"internalType": "struct serviceNFT.Service[]",
-				"name": "",
-				"type": "tuple[]"
 			}
 		],
 		"stateMutability": "view",

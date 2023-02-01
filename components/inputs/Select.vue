@@ -397,16 +397,16 @@ export default {
 
       this.emitInput()
     },
-    // filter() {
+    // filter () {
     //   if (!this.ajax) {
     //     if (this.filterText.length > 0) {
     //       this.filteredItems = this.items.filter(
     //         item =>
     //           item.text.toLowerCase().indexOf(this.filterText.toLowerCase()) ===
     //           0
-    //       );
+    //       )
     //     } else {
-    //       this.filteredItems = this.items;
+    //       this.filteredItems = this.items
     //     }
     //   } else {
     //     setTimeout(this.filterTimout, 700)
@@ -468,14 +468,7 @@ export default {
         input = this.selectedItems.map((item) => {
           return item.value
         })
-      }
-      //  else if (
-      //   this.selectedItems[0] &&
-      //   this.selectedItems[0].value === value
-      // ) {
-      //   this.selectedItems = [];
-      // }
-      else {
+      } else {
         this.hasFocus = false
         this.selectedItems = []
         this.selectedItems.push(
