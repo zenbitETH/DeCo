@@ -293,7 +293,7 @@
             <Input
               v-model="form.price"
               type="number"
-              placeholder="2. Choose a price for your NFT in MATIC"
+              placeholder="2. Choose a price for your NFT in DAI"
               class="col-span-2"
             />
             <div class="md:w-full mx-5 mb-3 text-deco-400">
@@ -366,6 +366,7 @@ export default {
   mixins: [CommonFunctions],
   data () {
     return {
+      buyApproved: 0,
       income: 0,
       likes: 0,
       disLikes: 0,

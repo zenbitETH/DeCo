@@ -127,7 +127,7 @@
               <!-- There is no name filed in the serviceNFT smartcontract, we shall omit this one -->
               <!-- <Input v-model="form.name" type="text" placeholder="1. What is the name of your business?" class="mt-8 col-span-2" /> -->
               <Textarea v-model="form.description" placeholder="1. Describe your service" class="mt-8 col-span-2" :rows="3" />
-              <Input v-model="form.price" type="number" placeholder="2. Choose a price for your NFT in MATIC" class="col-span-2" />
+              <Input v-model="form.price" type="number" placeholder="2. Choose a price for your NFT in DAI" class="col-span-2" />
               <div class="md:w-full mx-5 mb-3 text-deco-400">
                 3. Upload an image for your product or service
                 <Input v-model="form.imageUrl" type="text" placeholder="" :disabled="true" class="w-full" />
@@ -183,10 +183,7 @@
             </client-only>
             <div class="text-center">
               <button class="mintButton" @click="mintNFT()">
-                Mint Business NFT
-              </button>
-              <button class="mintButton" @click="approveDai()">
-                Approve DAI
+                {{ isApproved? "MintBusinessNFT" : "Approve and Mint" }}
               </button>
             </div>
           </div>
@@ -269,15 +266,15 @@ export default {
     },
     getBusinessType () {
       return this.$store.state.businessTypes.find(businessType => businessType.value === this.form.type).text
+    },
+    connectedAddress () {
+      return this.$store.state.connectedAddress
     }
   },
-
   beforeMount () {
-    this.checkApprove().then((response) => {
-      this.isApproved = response.data.isApproved
-    })
-    console.log('isApproved is', this.isApproved)
+    this.checkApprove()
   },
+
   methods: {
     async upload ({ file }) {
       this.loading = true
@@ -295,6 +292,9 @@ export default {
     async mintNFT () {
       // TODO mint business or service NFT based on kind
       this.loading = true
+      if (this.isApproved === false) {
+        await this.getApproval() // async functionel kell megcsinálni
+      }
       if (this.form.kind === 'businesses') {
         const metadata = {
           name: this.getBusinessType,
@@ -329,13 +329,12 @@ export default {
       }
     },
     async checkApprove () {
-      const result = await checkApproval(this.$config.contractBusinessNft)
-      console.log(result)
+      this.isApproved = await checkApproval(this.$config.contractBusinessNft, this.connectedAddress)
+      console.log('contract Approved is: ', this.isApproved)
     },
-    async approveDai () {
-      await approveBusinessContract(this.$config.contractDai, this.$config.contractBusinessNft).then(async (response) => {
-        await response.wait()
-      })
+    async getApproval () {
+      const res = await approveBusinessContract(this.$config.contractDai, this.$config.contractBusinessNft)
+      console.log(res)
     }
     // async registerToPunkCity () {
     //   const ABI = [

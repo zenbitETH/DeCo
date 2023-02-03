@@ -8,8 +8,8 @@
               My Deco Vault
             </div>
             <div class="grid fhd:grid-cols-3 gap-5 h-full ">
-              <div>My MATIC Balance: {{ userMaticBalance }} MATIC</div>
-              <div>Vault Balance: {{ vaultBalance }} MATIC</div>
+              <div>My MATIC Balance: {{ userMaticBalance }} DAI</div>
+              <div>Vault Balance: {{ vaultBalance }} DAI</div>
               <div>Current NFTs on Sale: {{ onSaleNFTs }}</div>
             </div>
           </div>
@@ -59,7 +59,7 @@
 
                   <div class="vAssetBG">
                     <div class="col-span-3">
-                      Matic
+                      DAI
                     </div>
                     <div class="col-span-2">
                       0 USD
@@ -124,7 +124,7 @@
 
                   <div class="vAssetBG1">
                     <div class="col-span-3">
-                      Matic
+                      DAI
                     </div>
                     <div class="col-span-2">
                       0 USD
@@ -211,7 +211,7 @@
 
                   <div class="vAssetBG">
                     <div class="col-span-3">
-                      Matic
+                      DAI
                     </div>
                     <div class="col-span-2">
                       0 USD
@@ -276,7 +276,7 @@
 
                   <div class="vAssetBG1">
                     <div class="col-span-3">
-                      Matic
+                      DAI
                     </div>
                     <div class="col-span-2">
                       0 USD
@@ -331,7 +331,7 @@
             placeholder="0"
             class="inNum"
             :value="'(' + number + ') matic'"
-          ><span class="inMatic right-1/5">Matic <div class="text-lg">available <br> 2 Matic</div></span>
+          ><span class="inMatic right-1/5">DAI <div class="text-lg">available <br> 2 DAI</div></span>
         </div>
         <div class="text-center mt-10">
           <button class="myVaultBT2 py-3 px-5 text-2xl font-exo">

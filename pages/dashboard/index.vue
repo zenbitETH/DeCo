@@ -7,12 +7,12 @@
             🏪 My Deco Business NFT
             <div class="text-lg text-left m-5 grid grid-cols-7 fhd:gap-3 mt-12">
               <div class="bigNumber col-span-3">
-                0 <span class="text-base">matic</span>
+                0 <span class="text-base">DAI</span>
               </div><div class="numDesc">
                 Total income
               </div>
               <div class="bigNumber col-span-3">
-                0 <span class="text-base">matic</span>
+                0 <span class="text-base">DAI</span>
               </div><div class="numDesc">
                 Inocome on vault
               </div>
@@ -115,7 +115,7 @@
                 <div class="col-span-2">
                   Black T-shirt
                 </div>
-                <div>0.0002 matic</div>
+                <div>0.0002 DAI</div>
               </div>
             </div>
           </div>
@@ -125,7 +125,6 @@
   </section>
 </template>
 <script>
-import getBusinessByOwner from '~/contracts/business-nft/getBusinessByOwner'
 
 export default {
   computed: {
@@ -143,13 +142,6 @@ export default {
   },
   mounted () {
     if (!this.hasBusiness) { setTimeout(this.getBusinessByOwner, 3000) }
-  },
-  methods: {
-    getBusinessByOwner () {
-      getBusinessByOwner(this.$config.contractBusinessNft).then((response) => {
-        if (response.createdAt !== 0) { this.$store.commit('setMyBusiness', response) }
-      })
-    }
   }
 }
 </script>

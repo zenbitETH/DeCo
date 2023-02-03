@@ -1,36 +1,60 @@
 <template>
-  <section class="text-white">
-    <div class="MainScreen">
-      <div class="dBoard">
-        <div class="assetBoard">
-          <div
-            class="businessCard"
-          >
-            <div class="text-lg absolute top-5 right-5">
-              📍{{ business ? `${business.city} ` : "Loading..." }}
+  <OverlayLoader :loading="loading">
+    <section class="text-white">
+      <div class="MainScreen">
+        <div class="dBoard">
+          <div class="assetBoard">
+            <div class="businessCard">
+              <div class="text-lg absolute top-5 right-5">
+                📍{{ business ? `${business.city} ` : "Loading..." }}
               <!--📍{{ business ? `${business.googleAddress} ` : 'Loading...' }}-->
-            </div>
-            <div class="relative text-center col-span-2 pb-11/12">
-              <img class="absolute w-auto h-full  left-1/2 transform -translate-x-1/2" :src="logo">
-            </div>
-            <div class="col-span-4 pl-5 grid gap-2">
-              <div class="xl:text-5xl text-2xl">
-                {{ business ? business.shortname : 'Loading...' }}
               </div>
-              <div class="col-span-6 text-lg text-left  rounded-tf ">
-                {{ business ? business.description : 'Loading...' }}
+              <div class="relative text-center col-span-2 pb-11/12">
+                <img
+                  class="
+                  absolute
+                  w-auto
+                  h-full
+                  left-1/2
+                  transform
+                  -translate-x-1/2
+                "
+                  :src="logo"
+                >
+              </div>
+              <div class="col-span-4 pl-5 grid gap-2">
+                <div class="xl:text-5xl text-2xl">
+                  {{ business ? business.shortname : "Loading..." }}
+                </div>
+                <div class="col-span-6 text-lg text-left rounded-tf">
+                  {{ business ? business.description : "Loading..." }}
+                </div>
+              </div>
+              <div
+                class="
+                absolute
+                bottom-5
+                right-5
+                text-center
+                grid grid-cols-2
+                gap-3
+              "
+              >
+                <div
+                  class="myVaultBT bg-glass-300 hover:bg-green-500"
+                  @click="makeUpVote()"
+                >
+                  <span>{{ likes }}</span>👍
+                </div>
+                <div
+                  class="myVaultBT bg-glass-300 hover:bg-red-500"
+                  @click="makeDownVote()"
+                >
+                  <span>{{ disLikes }}</span>👎
+                </div>
               </div>
             </div>
-            <div class="absolute bottom-5 right-5 text-center grid grid-cols-2 gap-3 ">
-              <div class="myVaultBT bg-glass-300 hover:bg-green-500" @click="makeUpVote()">
-                <span>{{ likes }}</span>👍
-              </div>
-              <div class="myVaultBT bg-glass-300 hover:bg-red-500" @click="makeDownVote()">
-                <span>{{ disLikes }}</span>👎
-              </div>
-            </div>
-          </div>
-          <!--  <div class="grid fhd:col-span-2 col-span-4 gap-3 row-span-2">
+            <!--  <div class="grid fhd:col-span-2 col-span-4 gap-3 row-span-2">
              <div class="p-3">
                 Tags
               </div>
@@ -40,128 +64,227 @@
             </div>
             -->
 
-          <div v-if="business" class="md:row-span-6 rounded-xl grid grid-cols-3 gap-5">
-            <div class="bg-gradient-to-tl p-3 from-glass-400 to-glass-100 rounded-tf relative">
-              <div class="p-3">
-                <img class=" h-fit" :src="'/3dAssets/' + business.businessType + '.png'">
+            <div
+              v-if="business"
+              class="md:row-span-6 rounded-xl grid grid-cols-3 gap-5"
+            >
+              <div
+                class="
+                bg-gradient-to-tl
+                p-3
+                from-glass-400
+                to-glass-100
+                rounded-tf
+                relative
+              "
+              >
+                <div class="p-3">
+                  <img
+                    class="h-fit"
+                    :src="'/3dAssets/' + business.businessType + '.png'"
+                  >
+                </div>
+                <div
+                  class="
+                  text-base
+                  xl:text-xl
+                  absolute
+                  bottom-5
+                  text-center
+                  left-0
+                  right-0
+                  font-bold
+                "
+                >
+                  {{
+                    business
+                      ? businessTypes.find(
+                        (t) => t.value === business.businessType
+                      ).text
+                      : "Type of place"
+                  }}
+                </div>
               </div>
-              <div class="text-base xl:text-xl absolute bottom-5 text-center left-0 right-0 font-bold">
-                {{ business ? businessTypes.find(t => t.value === business.businessType).text : 'Type of place' }}
+              <div class="businessCell">
+                <div class="md:text-6xl">
+                  {{ soldNFTs }}
+                </div>
+                <div class="text-base font-bold xl:text-xl">
+                  Products Sold
+                </div>
               </div>
-            </div>
-            <div class="businessCell">
-              <div class="md:text-6xl">
-                {{ soldNFTs }}
-              </div>
-              <div class="text-base font-bold xl:text-xl">
-                Products Sold
-              </div>
-            </div>
-            <div class="businessCell">
-              <div class="md:text-6xl">
-                {{ income / Math.pow(10,18) }} DAI
-              </div>
-              <div class="text-base font-bold xl:text-xl">
-                Total Income
+              <div class="businessCell">
+                <div class="md:text-6xl">
+                  {{ income / Math.pow(10, 18) }} DAI
+                </div>
+                <div class="text-base font-bold xl:text-xl">
+                  Total Income
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="inventory relative">
-          <ul id="tabs-tabFill" class="nav nav-tabs flex flex-row flex-wrap list-none border-b-0 pl-0 mb-4 absolute w-full " role="tablist">
-            <li class="nav-item flex-auto text-center" role="presentation">
-              <a
-                id="tabs-home-tabFill"
-                href="#tabs-onsaleFill"
-                class="tabFill active focus:text-cyber-100"
-                data-bs-toggle="pill"
-                data-bs-target="#tabs-onsaleFill"
-                role="tab"
-                aria-controls="tabs-onsaleFill"
-                aria-selected="true"
+          <div class="inventory relative">
+            <ul
+              id="tabs-tabFill"
+              class="
+              nav nav-tabs
+              flex flex-row flex-wrap
+              list-none
+              border-b-0
+              pl-0
+              mb-4
+              absolute
+              w-full
+            "
+              role="tablist"
+            >
+              <li class="nav-item flex-auto text-center" role="presentation">
+                <a
+                  id="tabs-home-tabFill"
+                  href="#tabs-onsaleFill"
+                  class="tabFill active focus:text-cyber-100"
+                  data-bs-toggle="pill"
+                  data-bs-target="#tabs-onsaleFill"
+                  role="tab"
+                  aria-controls="tabs-onsaleFill"
+                  aria-selected="true"
+                >
+                  On Sale
+                </a>
+              </li>
+              <li class="nav-item flex-auto text-center" role="presentation">
+                <a
+                  id="tabs-profile-tabFill"
+                  href="#tabs-soldFill"
+                  class="tabFill focus:text-solar-100"
+                  data-bs-toggle="pill"
+                  data-bs-target="#tabs-soldFill"
+                  role="tab"
+                  aria-controls="tabs-soldFill"
+                  aria-selected="false"
+                >Sold</a>
+              </li>
+            </ul>
+            <div id="tabs-tabContentFill" class="tab-content">
+              <div
+                id="tabs-onsaleFill"
+                class="
+                tab-pane
+                fade
+                bg-glass-100
+                rounded-tf
+                py-5
+                pt-16
+                show
+                active
+                h-full
+                overflow-y-hidden
+              "
+                role="tabpanel"
+                aria-labelledby="tabs-home-tabFill"
               >
-                On Sale
-              </a>
-            </li>
-            <li class="nav-item flex-auto text-center" role="presentation">
-              <a
-                id="tabs-profile-tabFill"
-                href="#tabs-soldFill"
-                class="tabFill focus:text-solar-100"
-                data-bs-toggle="pill"
-                data-bs-target="#tabs-soldFill"
-                role="tab"
-                aria-controls="tabs-soldFill"
-                aria-selected="false"
-              >Sold</a>
-            </li>
-          </ul>
-          <div id="tabs-tabContentFill" class="tab-content">
-            <div id="tabs-onsaleFill" class="tab-pane fade bg-glass-100 rounded-tf py-5 pt-16 show active h-full overflow-y-hidden" role="tabpanel" aria-labelledby="tabs-home-tabFill">
-              <div class="grid lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4  grid-flow-dense px-5 gap-3 ">
-                <div v-for="service in unsoldServices" :key="service.tokenId" class="PlaceBG relative" @click="purchaseServiceNft(service)">
-                  <div class="col-span-2 rounded-xl">
-                    <img
-                      class="mx-auto rounded-xl"
-                      :src="service.tokenURI"
-                    >
-                  </div>
-                  <div class="productCard">
-                    <div class="text-xl row-span-3">
-                      <div>Product Name</div>
-                      <div class="text-lg">
-                        {{ service.serviceDescription }}
-                      </div>
+                <div
+                  class="
+                  grid
+                  lg:grid-cols-2
+                  2xl:grid-cols-3
+                  3xl:grid-cols-4
+                  grid-flow-dense
+                  px-5
+                  gap-3
+                "
+                >
+                  <div
+                    v-for="service in unsoldServices"
+                    :key="service.tokenId"
+                    class="PlaceBG relative"
+                    @click="purchaseServiceNft(service)"
+                  >
+                    <div class="col-span-2 rounded-xl">
+                      <img class="mx-auto rounded-xl" :src="service.tokenURI">
                     </div>
-
-                    <div class="productBuy">
-                      <div class="text-xl">
-                        {{ service.price / Math.pow(10,18) }} DAI
+                    <div class="productCard">
+                      <div class="text-xl row-span-3">
+                        <div>Product Name</div>
+                        <div class="text-lg">
+                          {{ service.serviceDescription }}
+                        </div>
                       </div>
-                      <div class="buyBT">
-                        {{ buyApproved? "Buy" : "Approve DAI" }}
+
+                      <div class="productBuy">
+                        <div class="text-xl">
+                          {{ service.price / Math.pow(10, 18) }} DAI
+                        </div>
+                        <div class="buyBT">
+                          {{ buyA ? "Buy" : "Approve DAI" }}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div id="tabs-soldFill" class="tab-pane fade bg-glass-100 rounded-tf  pt-16 h-full overflow-y-hidden" role="tabpanel" aria-labelledby="tabs-profile-tabFill">
-              <div class="grid lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4  grid-flow-dense px-5 gap-3 ">
-                <div v-for="service in soldServices" :key="service.tokenId" class="PlaceBG relative">
-                  <div class="col-span-2 rounded-xl">
-                    <img
-                      class="mx-auto rounded-xl"
-                      :src="service.tokenURI"
-                    >
-                  </div>
-                  <div class="productCard">
-                    <div class="text-xl row-span-3">
-                      <div>Product Name</div>
-                      <div class="text-lg">
-                        {{ service.serviceDescription }}
-                      </div>
+              <div
+                id="tabs-soldFill"
+                class="
+                tab-pane
+                fade
+                bg-glass-100
+                rounded-tf
+                pt-16
+                h-full
+                overflow-y-hidden
+              "
+                role="tabpanel"
+                aria-labelledby="tabs-profile-tabFill"
+              >
+                <div
+                  class="
+                  grid
+                  lg:grid-cols-2
+                  2xl:grid-cols-3
+                  3xl:grid-cols-4
+                  grid-flow-dense
+                  px-5
+                  gap-3
+                "
+                >
+                  <div
+                    v-for="service in soldServices"
+                    :key="service.tokenId"
+                    class="PlaceBG relative"
+                  >
+                    <div class="col-span-2 rounded-xl">
+                      <img class="mx-auto rounded-xl" :src="service.tokenURI">
                     </div>
+                    <div class="productCard">
+                      <div class="text-xl row-span-3">
+                        <div>Product Name</div>
+                        <div class="text-lg">
+                          {{ service.serviceDescription }}
+                        </div>
+                      </div>
 
-                    <div class="productBuy">
-                      <div class="text-xl col-span-2">
-                        {{ service.price / Math.pow(10,18) }} DAI
+                      <div class="productBuy">
+                        <div class="text-xl col-span-2">
+                          {{ service.price / Math.pow(10, 18) }} DAI
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <button @click="approve()">
+            <!-- <button @click="approve()">
               approveDAI
-            </button>
+            </button> -->
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+    <BuyModal v-show="showModal" @goHome="goHomeClick" />
+  </OverlayLoader>
 </template>
 <script>
 import getAllIpfsHashbyTokenId from '~/contracts/business-nft/getAllIpfsHashByTokenId'
@@ -174,14 +297,23 @@ import downVote from '~/contracts/business-nft/downVote'
 import getDownVotes from '~/contracts/business-nft/getDownVotes'
 import getIncomeOfBusiness from '~/contracts/service-nft/getIncomeOfBusiness'
 import approveVaultContract from '~/contracts/vault/approveVaultContract'
-import checkApproval from '~/contracts/business-nft/checkApproval'
+import checkBuyAllowance from '~/contracts/vault/checkBuyAllowance'
+import BuyModal from '~/components/BuyModal.vue'
+import OverlayLoader from '~/components/OverlayLoader.vue'
 
 import getSoldProducts from '~/contracts/service-nft/getSoldProducts'
 
 export default {
+
+  components: {
+    BuyModal, OverlayLoader
+  },
+
   data () {
     return {
-      buyApproved: false,
+      loading: false,
+      showModal: false,
+      buyA: false,
       soldNFTs: 0,
       income: 0,
       likes: 0,
@@ -210,6 +342,9 @@ export default {
     },
     myServices () {
       return this.$store.state.myBusinessServices
+    },
+    connectedAddress () {
+      return this.$store.state.connectedAddress
     }
   },
   watch: {
@@ -225,10 +360,6 @@ export default {
     }
   },
   beforeMount () {
-    this.isApproved().then((response) => {
-      this.buyApproved = response.data.buyApproved
-      console.log('isApproved is', this.buyApproved)
-    })
     getAllIpfsHashbyTokenId()
     this.tokenId = parseInt(this.$route.params.tokenId)
     if (!this.businesses.length) {
@@ -238,33 +369,44 @@ export default {
         business => business.tokenId === this.tokenId
       )
     }
+    this.checkBuyApproval()
     listMyServices()
   },
   methods: {
     listMyServices () {
-      listMyServices(this.$config.contractServiceNft, this.$route.params.tokenId).then(
-        (result) => {
-          this.$store.commit('setMyBusinessServices', result)
-          // console.log(result)
-          // this.services = result
-        }
-      )
+      listMyServices(
+        this.$config.contractServiceNft,
+        this.$route.params.tokenId
+      ).then((result) => {
+        this.$store.commit('setMyBusinessServices', result)
+        // console.log(result)
+        // this.services = result
+      })
     },
     listAllBusinesses () {
       listAllBusinessNFTs(this.$config.contractBusinessNft).then((result) => {
         this.$store.commit('setAllBusinesses', result)
-        this.business = this.businesses.find(business => business.tokenId === this.tokenId)
+        this.business = this.businesses.find(
+          business => business.tokenId === this.tokenId
+        )
       })
     },
-    purchaseServiceNft (service) {
-      if (this.buyApproved === true) {
-        buy(this.$config.contractVault, service, this.$route.params.tokenId).then(() => {
-          console.log('succesful purchase')
-        // location.reload()
-        })
-      } else {
-        approveVaultContract(this.$config.contractDai, this.$config.contractVault)
+    async purchaseServiceNft (service) {
+      this.loading = true
+      if (this.buyA === false) {
+        await this.approve()
       }
+      await buy(
+        this.$config.contractVault,
+        service,
+        this.$route.params.tokenId,
+        this.connectedAddress
+      ).then(async (txHash) => {
+        await txHash.wait()
+        this.showModal = true
+        console.log('succesful purchase')
+        this.loading = false
+      })
     },
     async getLogo () {
       this.logo = await getAllIpfsHashbyTokenId(
@@ -279,34 +421,57 @@ export default {
       )
     },
     makeUpVote () {
-      upVote(this.$config.contractBusinessNft, this.$route.params.tokenId).then(async () => {
-        // console.log('Successfully upVoted')
-        // await location.reload()
-      })
+      upVote(this.$config.contractBusinessNft, this.$route.params.tokenId).then(
+        async () => {
+          // console.log('Successfully upVoted')
+          // await location.reload()
+        }
+      )
     },
     async getLikes () {
-      this.likes = await getUpVotes(this.$config.contractBusinessNft, this.$route.params.tokenId)
+      this.likes = await getUpVotes(
+        this.$config.contractBusinessNft,
+        this.$route.params.tokenId
+      )
     },
     async getDislikes () {
-      this.disLikes = await getDownVotes(this.$config.contractBusinessNft, this.$route.params.tokenId)
+      this.disLikes = await getDownVotes(
+        this.$config.contractBusinessNft,
+        this.$route.params.tokenId
+      )
     },
     makeDownVote () {
-      downVote(this.$config.contractBusinessNft, this.$route.params.tokenId).then(() => {
+      downVote(
+        this.$config.contractBusinessNft,
+        this.$route.params.tokenId
+      ).then(() => {
         // result.wait()
         console.log('Successfully upVoted')
         // location.reload()
       })
     },
     async getIncome () {
-      this.income = await getIncomeOfBusiness(this.$config.contractServiceNft, this.$route.params.tokenId)
+      this.income = await getIncomeOfBusiness(
+        this.$config.contractServiceNft,
+        this.$route.params.tokenId
+      )
     },
     async approve () {
-      await approveVaultContract(this.$config.contractDai, '0x001B3B4d0F3714Ca98ba10F6042DaEbF0B1B7b6F').then(() => {
-        console.log('Successfull approve')
-      })
+      await approveVaultContract(
+        this.$config.contractDai,
+        this.$config.contractVault
+      )
     },
-    async isApproved () {
-      await checkApproval(this.$config.contractBusinessNft)
+    async checkBuyApproval () {
+      this.buyA = await checkBuyAllowance(
+        this.$config.contractVault,
+        this.connectedAddress
+      )
+      console.log('Buy approved is: ', this.buyA)
+    },
+    goHomeClick () {
+      this.showModal = false
+      location.reload()
     }
   }
 }

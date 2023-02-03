@@ -5,12 +5,13 @@ export default async function (address, businessAddress) {
   const options = {
     contractAddress: address,
     functionName: 'approve',
-    daiAbi,
+    abi: daiAbi,
     params: {
       spender: businessAddress,
-      amount: 100000000000000000000000000
+      amount: Moralis.Units.ETH(100)
     }
   }
+  console.log('asd', address, businessAddress)
   const result = await Moralis.executeFunction(options)
   console.log(result)
   return result
