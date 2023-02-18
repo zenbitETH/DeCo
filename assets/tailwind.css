@@ -25,22 +25,22 @@ Input {
 }
 
 .top-hud { 
-  @apply xl:mx-40 qhd:mx-96 
-  mx-5 fixed grid  grid-cols-2 grid-rows-2 items-center top-0 left-0 right-0
+  @apply 
+  fixed grid  items-center top-0 left-1/2 -translate-x-1/2
   rounded-b-tf
   font-exo
   text-white
   text-sm
-  md:text-xl lg:text-2xl xl:text-2xl xl:grid-cols-3
+  md:text-xl lg:text-2xl xl:text-2xl
   border-none
 }
 
 .bottom-l-hud { 
   @apply
-  grid grid-cols-4 font-exo
+  grid grid-cols-3 font-exo
   bg-glass-200 items-center xl:rounded-r-tf
   fixed bottom-0 xl:grid-cols-1 xl:left-0 align-middle	
-  w-full xl:w-20 xl:h-[85%] xl:grid-rows-4 
+  w-full xl:w-20 xl:h-[85%] xl:grid-rows-3 
   xl:py-32 z-50 backdrop-blur-md	
   xl:inset-y-0 xl:my-auto 
 }
@@ -70,8 +70,7 @@ Input {
 
 .hud1 {
   @apply 
-  col-span-2
-  xl:col-span-1 xl:rounded-bl-lg
+  rounded-b-lg
   px-10
 }
 
