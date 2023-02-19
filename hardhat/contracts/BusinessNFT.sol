@@ -77,7 +77,7 @@ contract BusinessNFT is ERC721URIStorage {
         ownIpfsHash[msg.sender][businessNumber] = ipfsHash;
         tokenIdtoIpfsHash[businessNumber] = ipfsHash;
         businessNumber++;
-        daiToken.transferFrom(msg.sender, Vault, 100000000000000000);
+        daiToken.transferFrom(msg.sender, Vault, 100000000000000000); // 0.01 DAI
     }
 
     function addVaultContract(address payable _Vault) public {
@@ -117,13 +117,17 @@ contract BusinessNFT is ERC721URIStorage {
         return registeredABusiness[_businessOwner];
     }
 
+    function checkApproval(address _address) public view returns (bool){
+        return registeredABusiness[_address];
+    }
+
     function listAllBusinessNfts() public view returns(businessDetails[] memory) {
         return businesses;
     }
 
-    function getyourIpfsHash() public view returns (string memory) {
-        return ownIpfsHash[msg.sender][businessNumberMapping[msg.sender]];
-    }
+    // function getyourIpfsHash() public view returns (string memory) {
+    //     return ownIpfsHash[msg.sender][businessNumberMapping[msg.sender]];
+    // }
 
     function getyourIpfsHashbyTokenid(uint256 _tokenId) public view returns (string memory) {
         return ownIpfsHash[msg.sender][_tokenId];
@@ -158,4 +162,5 @@ contract BusinessNFT is ERC721URIStorage {
     function getDownVotes(uint256 _businessId) public view returns(uint256) {
         return downVotes[_businessId];
     }
+
 }
