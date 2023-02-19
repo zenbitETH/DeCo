@@ -2,13 +2,13 @@
 pragma solidity ^0.8.10;
 
 import "./productNFT.sol";
-// import { IAaveLendingPool } from "./IAaveLendingPool.sol";
 
 
  interface DaiTokenVault {
     function balanceOf(address account) external view returns (uint256);
     function allowance(address owner, address spender) external view returns (uint256);
     function transfer(address recipient, uint256 amount) external returns (bool);
+    function approve(address spender, uint256 amount) external returns(bool);
     function transferFrom(
     address sender,
     address recipient,
@@ -44,6 +44,13 @@ interface ILendingPool {
    *   0 if the action is executed directly by the user, without any middle-man
    **/
   function deposit(
+    address asset,
+    uint256 amount,
+    address onBehalfOf,
+    uint16 referralCode
+  ) external;
+
+  function supply(
     address asset,
     uint256 amount,
     address onBehalfOf,
@@ -91,20 +98,22 @@ contract Vault {
         // iLendingPool = ILendingPool(0x9198F13B08E299d85E096929fA9781A1E3d5d827);
         // usdcVault = UsdcTokenVault(0x2058A9D7613eEE744279e3856Ef0eAda5FCbaA7e);
         //  0x9c3C9283D3e44854697Cd22D3Faa240Cfb032889 - V2 wrappedMatic   
+        // This is the address where you actually can supply things on aave.com testnet: 0xee9eE614Ad26963bEc1Bec0D2c92879ae1F209fA
+        // 0x0b913A76beFF3887d35073b8e5530755D60F78C7 this is the aave pool proxy shiam gave to me 
 
 
     mapping(address => bool) daiApproved;
     mapping(address => uint256) userSupplyAvailability;
 
     constructor(address _productAddress){
-        setProductContract(_productAddress);
-        daiTokenVault = DaiTokenVault(0x001B3B4d0F3714Ca98ba10F6042DaEbF0B1B7b6F);
-        iLendingPool = ILendingPool(0x9198F13B08E299d85E096929fA9781A1E3d5d827);
+        setContracts(_productAddress);
+        daiTokenVault = DaiTokenVault(0xF14f9596430931E177469715c591513308244e8F);
+        iLendingPool = ILendingPool(0x0b913A76beFF3887d35073b8e5530755D60F78C7);
         usdcVault = UsdcTokenVault(0xe9DcE89B076BA6107Bb64EF30678efec11939234);
         // usdc erc20 contract: 0x2058A9D7613eEE744279e3856Ef0eAda5FCbaA7e
     }
     
-    function setProductContract(address _productAddress) public {
+    function setContracts(address _productAddress) public {
         _productNFT = productNFT(_productAddress);
     }
     
@@ -137,15 +146,30 @@ contract Vault {
         return daiApproved[buyerAddress];
     }
 
-    function aaveSupply(uint256 _amount) public {
+    function approveAaveContract(uint256 _amount) public {
+      daiTokenVault.approve(0x0b913A76beFF3887d35073b8e5530755D60F78C7, _amount);
+      // ez kell a supplyhoz
+      // withdrawnál pedig kell a sima metamask sending
+    }
+
+    function aaveSupply(address _address, uint256 _amount) public {
         // require(userSupplyAvailability[_sender] > 0, "You do not have any allowance to supply any DAI to the pool");
-        iLendingPool.deposit(0x001B3B4d0F3714Ca98ba10F6042DaEbF0B1B7b6F, _amount, msg.sender, 0);
+        iLendingPool.supply(_address, _amount, msg.sender, 0);
         // asset address is the DAI address in this example
         // onBehalfOf address is
         // referralCode is always 0
     }
-    function aaveWithdraw(uint256 _amount) public {
-        iLendingPool.withdraw(0x001B3B4d0F3714Ca98ba10F6042DaEbF0B1B7b6F, _amount, msg.sender);
+
+    function aaveDeposit(address _address, uint256 _amount) public {
+        // require(userSupplyAvailability[_sender] > 0, "You do not have any allowance to supply any DAI to the pool");
+        iLendingPool.deposit(_address, _amount, msg.sender, 0);
+        // asset address is the DAI address in this example
+        // onBehalfOf address is
+        // referralCode is always 0
+    }
+
+    function aaveWithdraw(address _address, uint256 _amount) public {
+        iLendingPool.withdraw(_address, _amount, msg.sender);
     }
 }
 
