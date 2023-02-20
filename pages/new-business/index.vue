@@ -115,9 +115,6 @@
               Next
             </button>
           </div>
-          <button :disabled="isApproved" class="mintButton" @click="getApproval()">
-            {{ isApproved ? "DAI is Approved" : "Approve your DAI" }}
-          </button>
         </section>
 
         <section v-else-if="currentPage === 2" id="Step3-Products" key="Step3" class="text-white font-lex xl:text-2xl">
@@ -178,8 +175,8 @@ import Map from '~/components/inputs/Map.vue'
 import MintModal from '~/components/MintModal.vue'
 import createBusiness from '~/contracts/business-nft/createBusiness'
 import CommonsFunctions from '~/mixins/CommonFunctions'
-import checkApproval from '~/contracts/business-nft/checkApproval'
-import approveBusinessContract from '~/contracts/business-nft/approveBusinessContract'
+// import checkApproval from '~/contracts/business-nft/checkApproval'
+// import approveBusinessContract from '~/contracts/business-nft/approveBusinessContract'
 // const IPFS = require('ipfs')
 export default {
   components: {
@@ -235,7 +232,7 @@ export default {
     }
   },
   beforeMount () {
-    this.checkApprove()
+    // this.checkApprove()
   },
 
   methods: {
@@ -287,90 +284,22 @@ export default {
       //     this.loading = false
       //   })
       // }
-    },
-    async checkApprove () {
-      this.isApproved = await checkApproval(this.$config.contractBusinessNft, this.connectedAddress)
-      // console.log('contract Approved is: ', this.isApproved);
-      console.log(' isApproved? : ', this.isApproved)
-    },
-    async getApproval () {
-      this.loading = true
-      const res = await approveBusinessContract(this.$config.contractDai, this.$config.contractBusinessNft).then(async (result) => {
-        await result.wait()
-        // await location.reload()
-        this.loading = false
-        console.log(res)
-        this.isApproved = true
-      })
     }
-    // async registerToPunkCity () {
-    //   const ABI = [
-    //     {
-    //       inputs: [
-    //         {
-    //           internalType: 'string',
-    //           name: '_name',
-    //           type: 'string'
-    //         },
-    //         {
-    //           internalType: 'string',
-    //           name: '_hometown',
-    //           type: 'string'
-    //         },
-    //         {
-    //           internalType: 'string',
-    //           name: '_country',
-    //           type: 'string'
-    //         }
-    //       ],
-    //       name: 'registerUser',
-    //       outputs: [],
-    //       stateMutability: 'nonpayable',
-    //       type: 'function'
-    //     }
-    //   ]
-    //   const options = {
-    //     contractAddress: this.$config.contractPunkCities,
-    //     functionName: 'registerUser',
-    //     abi: ABI,
-    //     params: { _name: 'faszfeh', _hometown: 'blblab', _country: 'kabbe.com' }
-    //   }
-    //   await Moralis.executeFunction(options)
+    // async checkApprove () {
+    //   this.isApproved = await checkApproval(this.$config.contractBusinessNft, this.connectedAddress)
+    //   // console.log('contract Approved is: ', this.isApproved);
+    //   console.log(' isApproved? : ', this.isApproved)
     // },
-    // async registerPunkCityPlace () {
-    //   const ABI = [
-    //     {
-    //       inputs: [
-    //         {
-    //           internalType: 'uint256',
-    //           name: '_placeType',
-    //           type: 'uint256'
-    //         },
-    //         {
-    //           internalType: 'uint256',
-    //           name: '_questType',
-    //           type: 'uint256'
-    //         },
-    //         {
-    //           internalType: 'string',
-    //           name: '_ipfsuri',
-    //           type: 'string'
-    //         }
-    //       ],
-    //       name: 'registerPlace',
-    //       outputs: [],
-    //       stateMutability: 'nonpayable',
-    //       type: 'function'
-    //     }
-    //   ]
-    //   const options = {
-    //     contractAddress: this.$config.contractPunkCities,
-    //     functionName: 'registerPlace',
-    //     abi: ABI,
-    //     params: { _placeType: 5, _questType: 1, _ipfsuri: 'punkCities.com' }
-    //   }
-    //   await Moralis.executeFunction(options)
-    // },
+    // async getApproval () {
+    //   this.loading = true
+    //   const res = await approveBusinessContract(this.$config.contractDai, this.$config.contractBusinessNft).then(async (result) => {
+    //     await result.wait()
+    //     // await location.reload()
+    //     this.loading = false
+    //     console.log(res)
+    //     this.isApproved = true
+    //   })
+    // }
   }
 }
 </script>

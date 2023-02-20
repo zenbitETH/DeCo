@@ -206,7 +206,7 @@
                     </div>
                     <div class="productCard">
                       <div class="text-xl row-span-3">
-                        <div>Product Name</div>
+                        <!-- <div>Product Name</div> -->
                         <div class="text-lg">
                           {{ service.serviceDescription }}
                         </div>
