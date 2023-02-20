@@ -115,6 +115,9 @@
               Next
             </button>
           </div>
+          <button :disabled="isApproved" class="mintButton" @click="getApproval()">
+            {{ isApproved ? "DAI is Approved" : "Approve your DAI" }}
+          </button>
         </section>
 
         <section v-else-if="currentPage === 2" id="Step3-Products" key="Step3" class="text-white font-lex xl:text-2xl">
@@ -144,7 +147,7 @@
             </client-only>
             <div class="text-center">
               <button class="mintButton" @click="mintNFT()">
-                {{ isApproved? "MintBusinessNFT" : "Approve and Mint" }}
+                Mint Business NFT
               </button>
             </div>
           </div>
@@ -174,7 +177,6 @@ import Upload from '~/components/inputs/Upload.vue'
 import Map from '~/components/inputs/Map.vue'
 import MintModal from '~/components/MintModal.vue'
 import createBusiness from '~/contracts/business-nft/createBusiness'
-import makeService from '~/contracts/service-nft/makeService'
 import CommonsFunctions from '~/mixins/CommonFunctions'
 import checkApproval from '~/contracts/business-nft/checkApproval'
 import approveBusinessContract from '~/contracts/business-nft/approveBusinessContract'
@@ -251,51 +253,55 @@ export default {
       this.loading = false
     },
     async mintNFT () {
-      // TODO mint business or service NFT based on kind
       this.loading = true
-      if (this.isApproved === false) {
-        await this.getApproval() // async functionel kell megcsinálni
+      this.form.kind = 'businesses'
+      const metadata = {
+        name: this.getBusinessType,
+        image: this.getImageUrl, // here there is no () as normally with functions, because getImageUrl() is used in methods!!!
+        description: this.form.description,
+        uploadedImage: this.form.logoPicture
       }
-      if (this.form.kind === 'businesses') {
-        const metadata = {
-          name: this.getBusinessType,
-          image: this.getImageUrl, // here there is no () as normally with functions, because getImageUrl() is used in methods!!!
-          description: this.form.description,
-          uploadedImage: this.form.logoPicture
-        }
-        const metadataFile = new Moralis.File('metadata.json', {
-          base64: btoa(JSON.stringify(metadata))
-        })
-        await metadataFile.saveIPFS()
-        const metadataURI = metadataFile.ipfs()
-        this.form.URI = metadataURI
-        console.log(metadataURI)
-        createBusiness(this.$config.contractBusinessNft, this.form).then(async (txHash) => {
-          await txHash.wait()
-          await this.listAllofMyBusinessNFTs()
-          this.showModal = true
-          this.loading = false
-        }).catch((e) => {
-          console.error(e)
-          this.loading = false
-        })
-      } else {
-        makeService(this.$config.contractServiceNft, this.form).then(() => {
-          this.loading = false
-          this.$router.push('/')
-        }).catch((e) => {
-          console.error(e)
-          this.loading = false
-        })
-      }
+      const metadataFile = new Moralis.File('metadata.json', {
+        base64: btoa(JSON.stringify(metadata))
+      })
+      await metadataFile.saveIPFS()
+      const metadataURI = metadataFile.ipfs()
+      this.form.URI = metadataURI
+      console.log(metadataURI)
+      createBusiness(this.$config.contractBusinessNft, this.form).then(async (txHash) => {
+        await txHash.wait()
+        // await this.listAllofMyBusinessNFTs()
+        this.showModal = true
+        this.loading = false
+      }).catch((e) => {
+        console.error(e)
+        this.loading = false
+      })
+      // }
+      // else {
+      //   makeService(this.$config.contractServiceNft, this.form).then(() => {
+      //     this.loading = false
+      //     this.$router.push('/')
+      //   }).catch((e) => {
+      //     console.error(e)
+      //     this.loading = false
+      //   })
+      // }
     },
     async checkApprove () {
       this.isApproved = await checkApproval(this.$config.contractBusinessNft, this.connectedAddress)
-      console.log('contract Approved is: ', this.isApproved)
+      // console.log('contract Approved is: ', this.isApproved);
+      console.log(' isApproved? : ', this.isApproved)
     },
     async getApproval () {
-      const res = await approveBusinessContract(this.$config.contractDai, this.$config.contractBusinessNft)
-      console.log(res)
+      this.loading = true
+      const res = await approveBusinessContract(this.$config.contractDai, this.$config.contractBusinessNft).then(async (result) => {
+        await result.wait()
+        // await location.reload()
+        this.loading = false
+        console.log(res)
+        this.isApproved = true
+      })
     }
     // async registerToPunkCity () {
     //   const ABI = [
