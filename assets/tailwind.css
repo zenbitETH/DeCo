@@ -323,7 +323,7 @@ Input {
   @apply rounded-tf
   text-center text-white
   grid xl:grid-cols-2
-  col-span-12 row-span-2 xl:row-span-1 xl:max-w-5xl mx-auto
+  col-span-12 row-span-2  mx-auto w-full
 }
 
 .productBoard {
@@ -342,7 +342,6 @@ Input {
 
 .businessCard {
   @apply
-
   rounded-tf
   grid
   text-center
