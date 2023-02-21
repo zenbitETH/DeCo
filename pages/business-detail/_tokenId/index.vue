@@ -6,31 +6,20 @@
           <div class="dBoard">
             <div class="assetBoard">
               <div class="businessCard">
-                <div class="text-lg absolute top-5 right-5">
-                  📍{{ business ? `${business.city} ` : "Loading..." }}
-                  <!--📍{{ business ? `${business.googleAddress} ` : "Loading..." }}-->
-                </div>
-                <div class="relative text-center col-span-2 pb-11/12">
-                  <img
-                    class="
-                    absolute
-                    w-auto
-                    h-full
-                    left-1/2
-                    transform
-                    -translate-x-1/2
-                  "
-                    :src="logo"
-                  >
-                </div>
-                <div class="col-span-4 pl-5 grid gap-2">
-                  <div class="xl:text-5xl text-2xl">
-                    {{ business ? business.shortname : "Loading..." }}
+                <div class="relative rounded-tf bg-glass-100 text-center items-center grid xl:grid-cols-6  h-full w-full">
+                  <div class="xl:col-span-2 mx-auto rounded-xl">
+                    <img class=" object-scale-down h-64 rounded-tf" :src="logo">
                   </div>
-                  <div class="col-span-6 text-lg text-left rounded-tf">
-                    {{ business ? business.description : "Loading..." }}
+                  <div class="col-span-4 pl-5 grid gap-2 text-left">
+                    <div class="xl:text-5xl text-2xl">
+                      {{ business ? business.shortname : "Loading..." }}
+                    </div>
+                    <div class="col-span-6 text-lg  rounded-tf">
+                      {{ business ? business.description : "Loading..." }}
+                    </div>
                   </div>
                 </div>
+
                 <div
                   class="
                   absolute
@@ -117,7 +106,7 @@
                   class="businessCell"
                 >
                   <div class="md:text-6xl">
-                    {{ income / Math.pow(10,18) }} MATIC
+                    {{ income / Math.pow(10,18) }} DAI
                   </div>
                   <div class="text-base font-bold xl:text-xl">
                     Total Income
@@ -178,7 +167,7 @@
                       </div>
                       <div class="productCard">
                         <div class="text-xl row-span-3">
-                          <div>Product Name</div>
+                          <!-- <div>Product Name</div> -->
                           <div class="text-lg">
                             {{ service.serviceDescription }}
                           </div>
@@ -186,7 +175,7 @@
 
                         <div class="productBuy">
                           <div class="text-xl col-span-2">
-                            {{ service.price / Math.pow(10,18) }} MATIC
+                            {{ service.price / Math.pow(10,18) }} DAI
                           </div>
                         </div>
                       </div>
@@ -204,7 +193,7 @@
                       </div>
                       <div class="productCard">
                         <div class="text-xl row-span-3">
-                          <div>Product Name</div>
+                          <!-- <div>Product Name</div> -->
                           <div class="text-lg">
                             {{ service.serviceDescription }}
                           </div>
@@ -212,7 +201,7 @@
 
                         <div class="productBuy">
                           <div class="text-xl col-span-2">
-                            {{ service.price / Math.pow(10,18) }} MATIC
+                            {{ service.price / Math.pow(10,18) }} DAI
                           </div>
                         </div>
                       </div>
@@ -293,7 +282,7 @@
             <Input
               v-model="form.price"
               type="number"
-              placeholder="2. Choose a price for your NFT in MATIC"
+              placeholder="2. Choose a price for your NFT in DAI"
               class="col-span-2"
             />
             <div class="md:w-full mx-5 mb-3 text-deco-400">
@@ -340,7 +329,6 @@ import getYourLogoPicture from '~/contracts/business-nft/getYourLogoPicture'
 import listAllBusinessNFTs from '~/contracts/business-nft/listAllBusinessNFTs'
 import listMyServices from '~/contracts/service-nft/listMyServices'
 import getSoldProducts from '~/contracts/service-nft/getSoldProducts'
-import buy from '~/contracts/vault/buy'
 import Input from '~/components/inputs/Input.vue'
 import Select from '~/components/inputs/Select.vue'
 import Textarea from '~/components/inputs/Textarea.vue'
@@ -367,6 +355,7 @@ export default {
   mixins: [CommonFunctions],
   data () {
     return {
+      buyApproved: 0,
       income: 0,
       likes: 0,
       disLikes: 0,
@@ -376,8 +365,9 @@ export default {
       tokenId: null,
       business: null,
       services: [],
-      logo: '',
       soldNFTs: 0,
+      logo: '',
+
       form: {
         // COMMON FIELDS
         // form data -> smart contract data
@@ -462,12 +452,6 @@ export default {
         this.business = this.businesses.find(
           business => business.tokenId === this.tokenId
         )
-      })
-    },
-    purchaseServiceNft (service) {
-      buy(this.$config.contractVault, service, this.$route.params.tokenId).then(() => {
-        console.log('succesful purchase')
-        // location.reload()
       })
     },
     async getLogo () {

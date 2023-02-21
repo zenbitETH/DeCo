@@ -3,10 +3,7 @@
     <div class="MainScreen">
       <div class="MainBoard">
         <div class="eBoard1">
-          <div class="my-2 ">
-            All Deco business
-          </div>
-          <div class="grid md:grid-cols-4 xl:grid-cols-8 grid-cols-2 px-10 gap-5">
+          <div class="grid md:grid-cols-4 xl:grid-cols-6 grid-cols-2 px-10 gap-5">
             <div v-for="business in businesses" :key="business.tokenId">
               <nuxt-link :to="'business-detail-customer/' + business.tokenId">
                 <div class="DecoBG bg-glass-200">

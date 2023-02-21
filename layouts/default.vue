@@ -3,20 +3,12 @@
     <nav class="top-hud">
       <div class="hud1">
         <div v-if="!connectedAddress" @click="showConnectWalletModal = true">
-          Connect to Deco
+          Connect
         </div>
         <!-- TODO show only first and last 4 characters= 0x04...abcd-->
         <div v-else class="" @click="logOut()">
-          {{ connectedAddress }}
+          Disconnect
         </div>
-      </div>
-      <div class="hud2">
-        <span> ⚡ </span>
-        <span class="mx-2">20</span>
-      </div>
-      <div class="hud3">
-        <span> 💽 </span>
-        <span class="mx-2">12</span>
       </div>
     </nav>
     <!-- The actual page will be inserted here -->
@@ -27,24 +19,17 @@
       <nuxt-link class="huda" to="/new-business">
         <div class="bigIcon">
           🏪
-        </div>Deco NFT
+        </div>New
       </nuxt-link>
       <nuxt-link class="hudb " to="/business-detail">
         <div class="bigIcon">
           🎛️
-        </div>My decos
+        </div>Manage
       </nuxt-link>
       <nuxt-link class="hudc " to="/all-businesses">
         <div class="bigIcon">
           🗺️
         </div>Explore
-      </nuxt-link>
-      <nuxt-link class="hudd " to="/dashboard">
-        <div class="bigIcon ">
-          🏦
-        </div><div class="">
-          Vault
-        </div>
       </nuxt-link>
     </nav>
 

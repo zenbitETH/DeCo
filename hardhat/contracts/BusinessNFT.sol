@@ -162,5 +162,4 @@ contract BusinessNFT is ERC721URIStorage {
     function getDownVotes(uint256 _businessId) public view returns(uint256) {
         return downVotes[_businessId];
     }
-
 }

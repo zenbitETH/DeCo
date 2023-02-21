@@ -100,6 +100,7 @@ module.exports = {
                 'qhd': '2560px',
                 'uhd': '3840px',
                 '3xl': '1800px',
+                md:'600px'
               },
               
             spacing: {

@@ -13,7 +13,7 @@
       Register Place
     </button> -->
       <transition name="slide" mode="out-in" class="relative mt-3">
-        <section v-if="currentPage === 1" id="Step1" key="Step1" class="text-white font-lex block xl:text-2xl">
+        <!--<section v-if="currentPage === 1" id="Step1" key="Step1" class="text-white font-lex block xl:text-2xl">
           <div class="relative">
             <div id="step2" class="step">
               <div class="placeNFT" @click.prevent="currentPage = 2; form.kind='businesses'">
@@ -23,7 +23,6 @@
                     class=""
                   >
                 </div>
-
                 <div class="NFTtitle text-solar-100">
                   Step 1: Create your Deco Business
                   <div class="NFTdes">
@@ -32,7 +31,7 @@
                 </div>
               </div>
 
-              <!-- <div class="decoNFT" @click.prevent="currentPage = 2; form.kind='service'">
+              <div class="decoNFT" @click.prevent="currentPage = 2; form.kind='service'">
                 <div class="NFTlogo px-2">
                   <img
                     src="/proser.png"
@@ -45,9 +44,9 @@
                     Add products or services to your business
                   </div>
                 </div>
-              </div> -->
+              </div>
             </div>
-            <!--  <h1 class="text-center text-5xl">
+          <h1 class="text-center text-5xl">
             Mint place or business NFT
           </h1>
         </div>
@@ -84,16 +83,16 @@
                 Mint your own business NFT to get income and defi interactions
               </div>
             </div>
-          </div>-->
           </div>
-        </section>
+          </div>
+        </section>-->
 
-        <section v-else-if="currentPage === 2" id="Step2" key="Step2" class="text-white font-lex xl:text-2xl">
+        <section v-if="currentPage === 1" id="Step2" key="Step2" class="text-white font-lex xl:text-2xl">
           <div class="stepTitle">
             Step 1: Set up your Deco business {{ form.kind === 'businesses' ? 'business' : 'service' }}
           </div>
           <div class="flex flex-col mt-8 text-deco-100 md:px-24 xl:px-48">
-            <div v-if="form.kind === 'businesses'" class="md:grid md:grid-cols-2 gap-3">
+            <div class="md:grid md:grid-cols-2 gap-3">
               <Select v-model="form.type" :items="businessTypes" placeholder="1. Choose the type of your business" />
               <Input v-model="form.name" type="text" placeholder="2. What is the name of your business?" :max-length="nameLength" />
               <div class="md:w-full mx-5 mb-3 text-deco-400">
@@ -108,55 +107,17 @@
                 :has-preview="true"
                 :upload="upload"
               />
-            <!-- There is no backing for the uploaded logo in the businessNFT smartcontract, so we cannot upload the image -->
-            <!-- <div class="md:w-full mx-5 mb-3 text-deco-400">
-              3. Upload a logo for your business
-              <Input v-model="form.imageUrl" type="text" placeholder="" :disabled="true" class="w-full" />
-            </div>
-            <Upload
-              v-model="file"
-              :max="1"
-              :return-raw="true"
-              class="mt-3 col-span-2"
-              :has-preview="true"
-              :upload="uploadFile"
-            /> -->
-            </div>
-
-            <div v-else class="md:grid md:grid-cols-2 gap-3">
-              <!-- There is no name filed in the serviceNFT smartcontract, we shall omit this one -->
-              <!-- <Input v-model="form.name" type="text" placeholder="1. What is the name of your business?" class="mt-8 col-span-2" /> -->
-              <Textarea v-model="form.description" placeholder="1. Describe your service" class="mt-8 col-span-2" :rows="3" />
-              <Input v-model="form.price" type="number" placeholder="2. Choose a price for your NFT in MATIC" class="col-span-2" />
-              <div class="md:w-full mx-5 mb-3 text-deco-400">
-                3. Upload an image for your product or service
-                <Input v-model="form.imageUrl" type="text" placeholder="" :disabled="true" class="w-full" />
-              </div>
-              <Upload
-                v-model="file"
-                :max="1"
-                :return-raw="true"
-                class="mt-3"
-                :has-preview="true"
-                :upload="upload"
-              />
             </div>
           </div>
 
-          <div v-if="form.kind ==='businesses'" class="text-center mt-8">
-            <button class="mintButton w-48" @click="currentPage = 3">
+          <div class="text-center mt-8">
+            <button class="mintButton w-48" @click="currentPage = 2">
               Next
-            </button>
-          </div>
-
-          <div v-else class="text-center mt-8">
-            <button class="mintButton w-48" @click="mintNFT()">
-              Mint Service NFT
             </button>
           </div>
         </section>
 
-        <section v-else-if="currentPage === 3" id="Step3-Products" key="Step3" class="text-white font-lex xl:text-2xl">
+        <section v-else-if="currentPage === 2" id="Step3-Products" key="Step3" class="text-white font-lex xl:text-2xl">
           <div class="stepTitle mt-3">
             Step 2: Add details to your Deco NFT
           </div>
@@ -213,8 +174,9 @@ import Upload from '~/components/inputs/Upload.vue'
 import Map from '~/components/inputs/Map.vue'
 import MintModal from '~/components/MintModal.vue'
 import createBusiness from '~/contracts/business-nft/createBusiness'
-import makeService from '~/contracts/service-nft/makeService'
 import CommonsFunctions from '~/mixins/CommonFunctions'
+// import checkApproval from '~/contracts/business-nft/checkApproval'
+// import approveBusinessContract from '~/contracts/business-nft/approveBusinessContract'
 // const IPFS = require('ipfs')
 export default {
   components: {
@@ -223,6 +185,7 @@ export default {
   mixins: [CommonsFunctions],
   data () {
     return {
+      isApproved: false,
       loading: false,
       nameLength: 15,
       dLength: 140,
@@ -250,6 +213,7 @@ export default {
       }
     }
   },
+
   computed: {
     businessTypes () {
       return this.$store.state.businessTypes
@@ -262,8 +226,15 @@ export default {
     },
     getBusinessType () {
       return this.$store.state.businessTypes.find(businessType => businessType.value === this.form.type).text
+    },
+    connectedAddress () {
+      return this.$store.state.connectedAddress
     }
   },
+  beforeMount () {
+    // this.checkApprove()
+  },
+
   methods: {
     async upload ({ file }) {
       this.loading = true
@@ -279,109 +250,56 @@ export default {
       this.loading = false
     },
     async mintNFT () {
-      // TODO mint business or service NFT based on kind
       this.loading = true
-      if (this.form.kind === 'businesses') {
-        const metadata = {
-          name: this.getBusinessType,
-          image: this.getImageUrl, // here there is no () as normally with functions, because getImageUrl() is used in methods!!!
-          description: this.form.description,
-          uploadedImage: this.form.logoPicture
-        }
-        const metadataFile = new Moralis.File('metadata.json', {
-          base64: btoa(JSON.stringify(metadata))
-        })
-        await metadataFile.saveIPFS()
-        const metadataURI = metadataFile.ipfs()
-        this.form.URI = metadataURI
-        console.log(metadataURI)
-        createBusiness(this.$config.contractBusinessNft, this.form).then(async (txHash) => {
-          await txHash.wait()
-          await this.listAllofMyBusinessNFTs()
-          this.showModal = true
-          this.loading = false
-        }).catch((e) => {
-          console.error(e)
-          this.loading = false
-        })
-      } else {
-        makeService(this.$config.contractServiceNft, this.form).then(() => {
-          this.loading = false
-          this.$router.push('/')
-        }).catch((e) => {
-          console.error(e)
-          this.loading = false
-        })
+      this.form.kind = 'businesses'
+      const metadata = {
+        name: this.getBusinessType,
+        image: this.getImageUrl, // here there is no () as normally with functions, because getImageUrl() is used in methods!!!
+        description: this.form.description,
+        uploadedImage: this.form.logoPicture
       }
+      const metadataFile = new Moralis.File('metadata.json', {
+        base64: btoa(JSON.stringify(metadata))
+      })
+      await metadataFile.saveIPFS()
+      const metadataURI = metadataFile.ipfs()
+      this.form.URI = metadataURI
+      console.log(metadataURI)
+      createBusiness(this.$config.contractBusinessNft, this.form).then(async (txHash) => {
+        await txHash.wait()
+        // await this.listAllofMyBusinessNFTs()
+        this.showModal = true
+        this.loading = false
+      }).catch((e) => {
+        console.error(e)
+        this.loading = false
+      })
+      // }
+      // else {
+      //   makeService(this.$config.contractServiceNft, this.form).then(() => {
+      //     this.loading = false
+      //     this.$router.push('/')
+      //   }).catch((e) => {
+      //     console.error(e)
+      //     this.loading = false
+      //   })
+      // }
     }
-    // async registerToPunkCity () {
-    //   const ABI = [
-    //     {
-    //       inputs: [
-    //         {
-    //           internalType: 'string',
-    //           name: '_name',
-    //           type: 'string'
-    //         },
-    //         {
-    //           internalType: 'string',
-    //           name: '_hometown',
-    //           type: 'string'
-    //         },
-    //         {
-    //           internalType: 'string',
-    //           name: '_country',
-    //           type: 'string'
-    //         }
-    //       ],
-    //       name: 'registerUser',
-    //       outputs: [],
-    //       stateMutability: 'nonpayable',
-    //       type: 'function'
-    //     }
-    //   ]
-    //   const options = {
-    //     contractAddress: this.$config.contractPunkCities,
-    //     functionName: 'registerUser',
-    //     abi: ABI,
-    //     params: { _name: 'faszfeh', _hometown: 'blblab', _country: 'kabbe.com' }
-    //   }
-    //   await Moralis.executeFunction(options)
+    // async checkApprove () {
+    //   this.isApproved = await checkApproval(this.$config.contractBusinessNft, this.connectedAddress)
+    //   // console.log('contract Approved is: ', this.isApproved);
+    //   console.log(' isApproved? : ', this.isApproved)
     // },
-    // async registerPunkCityPlace () {
-    //   const ABI = [
-    //     {
-    //       inputs: [
-    //         {
-    //           internalType: 'uint256',
-    //           name: '_placeType',
-    //           type: 'uint256'
-    //         },
-    //         {
-    //           internalType: 'uint256',
-    //           name: '_questType',
-    //           type: 'uint256'
-    //         },
-    //         {
-    //           internalType: 'string',
-    //           name: '_ipfsuri',
-    //           type: 'string'
-    //         }
-    //       ],
-    //       name: 'registerPlace',
-    //       outputs: [],
-    //       stateMutability: 'nonpayable',
-    //       type: 'function'
-    //     }
-    //   ]
-    //   const options = {
-    //     contractAddress: this.$config.contractPunkCities,
-    //     functionName: 'registerPlace',
-    //     abi: ABI,
-    //     params: { _placeType: 5, _questType: 1, _ipfsuri: 'punkCities.com' }
-    //   }
-    //   await Moralis.executeFunction(options)
-    // },
+    // async getApproval () {
+    //   this.loading = true
+    //   const res = await approveBusinessContract(this.$config.contractDai, this.$config.contractBusinessNft).then(async (result) => {
+    //     await result.wait()
+    //     // await location.reload()
+    //     this.loading = false
+    //     console.log(res)
+    //     this.isApproved = true
+    //   })
+    // }
   }
 }
 </script>

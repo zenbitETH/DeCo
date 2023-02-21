@@ -54,9 +54,8 @@ contract productNFT is ERC721URIStorage{
         require(newService[_serviceId].owner != msg.sender, "You cannot buy your own service");
         require(newService[_serviceId].sold == false, "This service has already been bought or id unavailable");
 
-        ServicesOfBusiness[_businessId][_serviceId].sold = true;
         newService[_serviceId].sold = true;
-        
+        ServicesOfBusiness[_businessId][_serviceId].sold = true;
         //Service memory deletedService = deleteService(_serviceId);
         incomeOfBusiness[_businessId] += newService[_serviceId].price;
         soldNFTs[_businessId]++;

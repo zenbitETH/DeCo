@@ -24,7 +24,7 @@
             <div class="col-span-2 row-span-2 p-3 xl:text-9xl text-7xl productBT absolute bottom-0 right-0">
               <div class="xl:text-2xl text-xl">
                 Buy for
-              </div> 5 <span class="xl:text-2xl text-xl">Matic</span>
+              </div> 5 <span class="xl:text-2xl text-xl">DAI</span>
             </div>
           </div>
           <div class="col-span-4 row-span-2 p-3">
