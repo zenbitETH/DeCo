@@ -89,6 +89,7 @@ Input {
   @apply p-1 
    text-center text-white
   hover:bg-glass-800
+  focus:bg-glass-800
   border-none
   cursor-pointer
 }
