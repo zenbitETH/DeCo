@@ -454,7 +454,7 @@ Input {
 .bigIcon {
   @apply
   text-xl text-center
-  md:text-5xl
+  md:text-3xl
   xl:pt-3
 }
 
