@@ -6,31 +6,20 @@
           <div class="dBoard">
             <div class="assetBoard">
               <div class="businessCard">
-                <div class="text-lg absolute top-5 right-5">
-                  📍{{ business ? `${business.city} ` : "Loading..." }}
-                  <!--📍{{ business ? `${business.googleAddress} ` : "Loading..." }}-->
-                </div>
-                <div class="relative text-center col-span-2 pb-11/12">
-                  <img
-                    class="
-                    absolute
-                    w-auto
-                    h-full
-                    left-1/2
-                    transform
-                    -translate-x-1/2
-                  "
-                    :src="logo"
-                  >
-                </div>
-                <div class="col-span-4 pl-5 grid gap-2">
-                  <div class="xl:text-5xl text-2xl">
-                    {{ business ? business.shortname : "Loading..." }}
+                <div class="relative rounded-tf bg-glass-100 text-center items-center grid xl:grid-cols-6  h-full w-full">
+                  <div class="xl:col-span-2 mx-auto rounded-xl">
+                    <img class=" object-scale-down h-64 rounded-tf" :src="logo">
                   </div>
-                  <div class="col-span-6 text-lg text-left rounded-tf">
-                    {{ business ? business.description : "Loading..." }}
+                  <div class="col-span-4 pl-5 grid gap-2 text-left">
+                    <div class="xl:text-5xl text-2xl">
+                      {{ business ? business.shortname : "Loading..." }}
+                    </div>
+                    <div class="col-span-6 text-lg  rounded-tf">
+                      {{ business ? business.description : "Loading..." }}
+                    </div>
                   </div>
                 </div>
+
                 <div
                   class="
                   absolute

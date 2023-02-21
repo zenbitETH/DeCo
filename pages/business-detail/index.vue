@@ -23,7 +23,7 @@
           </div>
 
           <div class="relative bg-cyber-100/40 rounded-xl p-3 grid grid-cols-3 items-center text-center py-10 xl:py-3">
-            <div class="bg-glass-200 absolute p-2 rounded-tl-xl rounded-b r-xl top-0 left-0 text-2xl text-white/90">
+            <div class="bg-glass-200 absolute p-2 rounded-tl-xl rounded-b-xl r-xl top-0 left-0 text-2xl text-white/90">
               🏦 <span class="text-sm">Vault</span>
             </div>
             <div class="grid gap-5">
@@ -70,11 +70,11 @@
           </div>
         </div>
         <div class="xl:col-span-12">
-          <div class="grid md:grid-cols-4 xl:grid-cols-8 grid-cols-2 px-10 gap-5">
+          <div class="grid md:grid-cols-4 xl:grid-cols-6 grid-cols-2  gap-5">
             <div v-for="business in businesses" :key="business.tokenId">
               <nuxt-link :to="'business-detail/' + business.tokenId">
                 <div class="DecoBG bg-glass-200">
-                  <div class="text-lg">
+                  <div class="text-lg text-center">
                     <img class="fhd:h-full mx-auto" :src="'/3dAssets/' + business.businessType + '.png'">
                     <!-- <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="/deco logo.svg"> -->
                     {{ business.shortname }}
