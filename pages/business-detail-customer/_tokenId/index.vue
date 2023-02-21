@@ -63,10 +63,10 @@
 
                   <div class="productBuy" @click="purchaseServiceNft(service)">
                     <div class="text-xl">
-                      {{ service.price / Math.pow(10,18) }} MATIC
+                      {{ service.price / Math.pow(10,18) }} DAI
                     </div>
                     <div class="buyBT">
-                      Buy
+                      {{ buyA ? "Buy" : "Approve DAI" }}
                     </div>
                   </div>
                 </div>
@@ -92,6 +92,9 @@ import getIncomeOfBusiness from '~/contracts/service-nft/getIncomeOfBusiness'
 import OverlayLoader from '~/components/OverlayLoader.vue'
 import getSoldProducts from '~/contracts/service-nft/getSoldProducts'
 import BuyModal from '~/components/BuyModal.vue'
+import checkBuyAllowance from '~/contracts/vault/checkBuyAllowance'
+import approveVaultContract from '~/contracts/vault/approveVaultContract'
+
 export default {
   components: {
     OverlayLoader,
@@ -99,6 +102,7 @@ export default {
   },
   data () {
     return {
+      buyA: false,
       showModal: false,
       loading: false,
       soldNFTS: 0,
@@ -129,6 +133,9 @@ export default {
     },
     myServices () {
       return this.$store.state.myBusinessServices
+    },
+    connectedAddress () {
+      return this.$store.state.connectedAddress
     }
   },
   watch: {
@@ -154,6 +161,7 @@ export default {
       )
     }
     listMyServices()
+    setTimeout(this.checkBuy, 3000)
   },
   methods: {
     listMyServices () {
@@ -171,9 +179,12 @@ export default {
         this.business = this.businesses.find(business => business.tokenId === this.tokenId)
       })
     },
-    purchaseServiceNft (service) {
+    async purchaseServiceNft (service) {
       this.loading = true
-      buy(this.$config.contractVault, service, this.$route.params.tokenId).then(async (txHash) => {
+      if (this.buyA === false) {
+        await approveVaultContract(this.$config.contractDai, this.$config.contractVault)
+      }
+      buy(this.$config.contractVault, service, this.$route.params.tokenId, this.connectedAddress).then(async (txHash) => {
         await txHash.wait()
         this.showModal = true
         this.loading = false
@@ -226,6 +237,10 @@ export default {
     goHomeClick () {
       this.showModal = false
       location.reload()
+    },
+    async checkBuy () {
+      this.buyA = await checkBuyAllowance(this.$config.contractVault, this.connectedAddress)
+      console.log('buyAllowance:', this.buyA)
     }
   }
 }

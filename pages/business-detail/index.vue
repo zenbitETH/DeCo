@@ -47,7 +47,7 @@
                   </div>
                   <span
                     class="text-4xl"
-                  >$100 <span class="xl:text-xl text-sm">DAI</span></span>
+                  >${{ totalBalance / Math.pow(10,18) }}<span class="xl:text-xl text-sm">DAI</span></span>
                 </div>
               </div>
               <div class="grid grid-cols-2 col-span-2 items-center">
@@ -70,7 +70,7 @@
                     class="absolute -bottom-5 left-10 cursor-pointer hover:text-cyber-100 text-sm text-white/50"
                   >
                     <div>
-                      {{ userDAI }} <span>DAI</span>
+                      {{ userDAI / Math.pow(10,18) }} <span>DAI</span>
                       <span>available</span>
                     </div>
                   </div>
@@ -131,12 +131,13 @@ import CommonFunctions from '~/mixins/CommonFunctions'
 import getBusinessNumber from '~/contracts/business-nft/getBusinessNumber'
 import getTotalSales from '~/contracts/vault/getTotalSales'
 import getAaaveAvailibility from '~/contracts/vault/getAaaveAvailibility'
-import approveAaveContract from '~/contracts/vault/approveAaveContract'
 import isAaveApproved from '~/contracts/vault/isAaveApproved'
 import aaveDeposit from '~/contracts/vault/aaveDeposit'
 import aaveWithdraw from '~/contracts/vault/aaveWithdraw'
 import AaveModal from '~/components/AaveModal.vue'
 import OverlayLoader from '~/components/OverlayLoader.vue'
+import getTotalBalance from '~/contracts/vault/getTotalBalance'
+import approveAaveContract from '~/contracts/vault/approveAaveContract'
 
 export default {
   components: {
@@ -151,7 +152,8 @@ export default {
       totalSales: 0,
       userDAI: 0,
       aaveApproved: false,
-      depositedAmount: 0
+      depositedAmount: 0,
+      totalBalance: 0
     }
   },
   computed: {
@@ -168,6 +170,7 @@ export default {
     setTimeout(this.getSalesNumber, 3000)
     setTimeout(this.isAaveavailable, 3000)
     setTimeout(this.isAaveApproved, 3000)
+    setTimeout(this.getTotalAmount, 3000)
   },
   methods: {
     async getBusinessNumber () {
@@ -207,11 +210,15 @@ export default {
       this.loading = false
     },
     setMaxDAI () {
-      this.depositedAmount = this.userDAI
+      this.depositedAmount = this.userDAI / Math.pow(10, 18)
     },
     goHomeClick () {
       this.showModal = false
       location.reload()
+    },
+    async getTotalAmount () {
+      this.totalBalance = await getTotalBalance(this.$config.contractVault)
+      console.log('is this working?:', this.totalBalance)
     }
   }
 }
