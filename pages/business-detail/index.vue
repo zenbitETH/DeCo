@@ -23,7 +23,7 @@
                 <div class="text-2xl">
                   total sales
                 </div>
-                ${{ totalSales }} <span class="xl:text-xl text-sm">DAI</span>
+                ${{ totalSales / 100 }} <span class="xl:text-xl text-sm">DAI</span>
               </div>
             </div>
 

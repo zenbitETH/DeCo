@@ -55,7 +55,7 @@
                 </div>
                 <div class="productCard">
                   <div class="text-xl row-span-3">
-                    <div>Product Name</div>
+                    <!-- <div>Product Name</div> -->
                     <div class="text-lg">
                       {{ service.serviceDescription }}
                     </div>
@@ -180,11 +180,22 @@ export default {
       })
     },
     async purchaseServiceNft (service) {
+      console.log(service, this.$route.params.tokenId)
       this.loading = true
       if (this.buyA === false) {
-        await approveVaultContract(this.$config.contractDai, this.$config.contractVault)
+        await approveVaultContract(this.$config.contractDai, this.$config.contractVault).then(async (result) => {
+          await result.wait()
+          await buy(this.$config.contractVault, service, this.$route.params.tokenId, this.connectedAddress).then(async (txHash) => {
+            await txHash.wait()
+            this.showModal = true
+            this.loading = false
+          }).catch((e) => {
+            console.error(e)
+            this.loading = false
+          })
+        })
       }
-      buy(this.$config.contractVault, service, this.$route.params.tokenId, this.connectedAddress).then(async (txHash) => {
+      await buy(this.$config.contractVault, service, this.$route.params.tokenId, this.connectedAddress).then(async (txHash) => {
         await txHash.wait()
         this.showModal = true
         this.loading = false
