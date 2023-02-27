@@ -3,10 +3,10 @@
     <div class="h-96 h-96 rounded-tf bg-white/60 m-auto grid items-center p-10 text-center">
       <div>
         <div class="text-8xl animate-bounce">
-          🏷️
+          🏪
         </div>
         <div class="text-xl">
-          Your item has been added!
+          Your Business NFT has been minted!
         </div>
       </div>
       <button class="text-xl mx-auto px-3 py-2 bg-cyber-100/80 hover:bg-solar-100 text-white hover:text-gray-800 cursor-pointer rounded-tf" @click="goHome()">

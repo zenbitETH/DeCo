@@ -270,23 +270,22 @@
             /> -->
           </div>
 
-          <div v-else class="md:grid md:grid-cols-2 gap-3">
+          <div v-else class="md:grid gap-3">
             <!-- There is no name filed in the serviceNFT smartcontract, we shall omit this one -->
             <!-- <Input v-model="form.name" type="text" placeholder="1. What is the name of your business?" class="mt-8 col-span-2" /> -->
             <Textarea
               v-model="form.description"
               placeholder="1. Describe your service"
-              class="mt-8 col-span-2"
+              class="mt-8"
               :rows="3"
             />
             <Input
               v-model="form.price"
               type="number"
               placeholder="2. Choose a price for your NFT in DAI"
-              class="col-span-2"
             />
-            <div class="md:w-full mx-5 mb-3 text-deco-400">
-              3. Upload an image for your product or service
+            <div class="md:w-full mx-5 mb-3 text-deco-400 text-center">
+              <div>3. Upload an image for your product or service</div>
               <Input
                 v-model="form.imageUrl"
                 type="text"
@@ -319,7 +318,7 @@
         </div>
       </section>
     </transition>
-    <MintModal v-show="showModal" @goHome="goHomeClick" />
+    <ItemModal v-show="showModal" @goHome="goHomeClick" />
   </OverlayLoader>
 </template>
 <script>
@@ -335,7 +334,7 @@ import Textarea from '~/components/inputs/Textarea.vue'
 import Upload from '~/components/inputs/Upload.vue'
 import makeService from '~/contracts/service-nft/makeService'
 import OverlayLoader from '~/components/OverlayLoader.vue'
-import MintModal from '~/components/MintModal.vue'
+import ItemModal from '~/components/ItemModal.vue'
 import CommonFunctions from '~/mixins/CommonFunctions'
 import upVote from '~/contracts/business-nft/upVote'
 import getUpVotes from '~/contracts/business-nft/getUpVotes'
@@ -350,7 +349,7 @@ export default {
     Textarea,
     Upload,
     OverlayLoader,
-    MintModal
+    ItemModal
   },
   mixins: [CommonFunctions],
   data () {
