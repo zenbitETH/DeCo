@@ -19,13 +19,13 @@
       </div>
       <button
         id="dropzone"
-        class="h-12 px-5 w-full focus:outline-none focus:bg-transparent border-b group-disabled:bg-gray-300 disabled:bg-gray-300 valid:text-deco-400 border-deco-400 hover:border-deco-100 selection:text-deco-400
+        class="h-12 px-5 w-full focus:outline-none focus:bg-transparent border-b group-disabled:bg-gray-500 disabled:bg-gray-500 valid:text-deco-200 border-deco-200/60 selection:text-deco-200 selection:bg-deco-200
         flex items-center group"
         :class="{
           'justify-center text-center': center,
           'justify-start': !center,
           ' font-semibold rounded-none ring-0 text-lg': gray,
-          '!bg-gray-300 !placeholder-gray-light !pointer-events-none cursor-default': disabled,
+          '!bg-gray-200 !placeholder-gray-light !pointer-events-none cursor-default': disabled,
           'h-8': small,
           'pl-11': icon
         }"
@@ -36,7 +36,7 @@
       >
         <p
           v-if="selectedItems.length == 0"
-          class="text-deco-400 border-deco-400 whitespace-nowrap"
+          class="text-deco-200 border-deco-400 "
           :class="{ '!text-white': disabled}"
         >
           {{ placeholder }}
@@ -47,7 +47,7 @@
           :key="index"
           :draggable="draggable"
           :class="{
-            'inline-block mr-2 rounded-3xl bg-gray-lightest py-1 px-2 hover:bg-gray-light overflow-ellipsis': multiple,
+            'bg-black inline-block mr-2 rounded-3xl  py-1 px-2 hover:bg-gray-light overflow-ellipsis': multiple,
             'cursor-move': draggable
           }"
           @dragstart="dragStart($event, item.value)"
@@ -55,7 +55,7 @@
           {{ item.text }}
           <span
             v-if="multiple"
-            class="ml-1 hover:text-red hover:cursor-pointer text-gray-300 text-sm"
+            class="ml-1 hover:text-red hover:cursor-pointer bg-black text-gray-300 text-sm"
             @click.stop="selectItem(item.value)"
           >
             <i
@@ -82,7 +82,7 @@
 
       <div
         :class="{
-          'ring-[#CFCFCF] max-h-[224px] px-5 py-3': hasFocus,
+          'ring-[#0000] max-h-[224px] px-5 py-3': hasFocus,
           'ring-transparent max-h-[0px] py-0 px-5': !hasFocus,
           'text-center': center,
           'bg-gray-lightest': gray
@@ -124,7 +124,7 @@
             <div>
               <p
                 v-if="showSelected"
-                class="mt-3 text-deco-400"
+                class="mt-3 text-deco-200"
               >
                 Lehetőségek {{ resultSize !== -1 ? '(' + resultSize +' db)' : '' }}:
               </p>
@@ -153,7 +153,7 @@
               <div
                 v-for="(item, index) in selectedItems"
                 :key="'selected_'+ index + (item.key ? item.key : item.value)"
-                class="pointer-events-auto cursor-pointer  text-deco-400 border-deco-400"
+                class="pointer-events-auto cursor-pointer  text-deco-200 border-deco-400"
                 @click="selectItem(item.value)"
               >
                 {{ item.text }}
@@ -162,7 +162,7 @@
             <div>
               <p
                 v-if="showSelected"
-                class="mt-3 text-deco-400 border-deco-400"
+                class="mt-3 text-deco-200 border-deco-400"
               >
                 Lehetőségek {{ resultSize !== -1 ? '(' + resultSize +' db)' : '' }}:
               </p>

@@ -6,17 +6,17 @@
 
 Input {
   @apply
-  bg-transparent font-lex border-white
+  bg-transparent font-lex 
   placeholder-gray-400
   hover:border-deco-200 hover:placeholder-deco-200
   focus:outline-none focus:border-deco-100 focus:placeholder-transparent focus:text-deco-200
-  valid:text-deco-100 valid:border-deco-400 
+  valid:text-deco-100 valid:border-deco-100 
   h-12 px-5 w-full border-b group-hover:bg-[#e8f0fe] group-disabled:bg-gray-300 disabled:bg-gray-300
 }
 
 .inNum {
   @apply
-  !text-deco-900 text-3xl
+  !text-deco-200 text-3xl
 }
 
 .inMatic {
@@ -148,7 +148,7 @@ Input {
 
 .stepTitle {
   @apply
-  text-3xl text-left text-center text-deco-400
+  text-3xl text-left text-center text-deco-100
   animate-pulse
 }
 
