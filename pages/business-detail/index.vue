@@ -102,8 +102,8 @@
                     <div
                       class="bg-glass-600 rounded-b-tf grid grid-cols-2 text-center text-base py-2"
                     >
-                      <div>0 👍</div>
-                      <div>0 👎</div>
+                      <div>{{ business.upVotes }} 👍</div>
+                      <div>{{ business.downVotes }}👎</div>
                     </div>
                   </div>
                 </nuxt-link>
@@ -174,12 +174,12 @@ export default {
   },
   methods: {
     async getBusinessNumber () {
-      this.minted = await getBusinessNumber(this.$config.contractBusinessNft)
-      // console.log('minted is: ', this.minted)
+      this.minted = await getBusinessNumber(this.$config.contractBusinessNft, this.connectedAddress)
+      console.log('minted is: ', this.minted)
     },
     async getSalesNumber () {
-      this.totalSales = await getTotalSales(this.$config.contractVault)
-      // console.log('totalSales is: ', this.totalSales)
+      this.totalSales = await getTotalSales(this.$config.contractVault, this.connectedAddress)
+      console.log('totalSales is: ', this.totalSales)
     },
     async isAaveavailable () {
       this.userDAI = await getAaaveAvailibility(this.$config.contractVault, this.connectedAddress)
@@ -218,7 +218,7 @@ export default {
     },
     async getTotalAmount () {
       this.totalBalance = await getTotalBalance(this.$config.contractVault)
-      console.log('is this working?:', this.totalBalance)
+      console.log('totalBalance is:', this.totalBalance)
     }
   }
 }

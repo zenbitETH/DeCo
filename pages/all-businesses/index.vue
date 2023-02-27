@@ -13,8 +13,8 @@
                     {{ business.shortname }}
                   </div>
                   <div class="bg-glass-600 rounded-b-tf grid grid-cols-2 text-center text-base py-2">
-                    <div>0 👍</div>
-                    <div>0 👎</div>
+                    <div>{{ business.upVotes }}👍</div>
+                    <div>>{{ business.downVotes }} 👎</div>
                   </div>
                 </div>
               </nuxt-link>

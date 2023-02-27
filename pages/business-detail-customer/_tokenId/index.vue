@@ -77,6 +77,7 @@
       </div>
     </section>
     <BuyModal v-show="showModal" @goHome="goHomeClick" />
+    <VoteModal v-show="showVoteModal" @goHome="goHomeClickVote" />
   </OverlayLoader>
 </template>
 <script>
@@ -94,11 +95,13 @@ import getSoldProducts from '~/contracts/service-nft/getSoldProducts'
 import BuyModal from '~/components/BuyModal.vue'
 import checkBuyAllowance from '~/contracts/vault/checkBuyAllowance'
 import approveVaultContract from '~/contracts/vault/approveVaultContract'
+import VoteModal from '~/components/VoteModal.vue'
 
 export default {
   components: {
     OverlayLoader,
-    BuyModal
+    BuyModal,
+    VoteModal
   },
   data () {
     return {
@@ -216,11 +219,14 @@ export default {
         this.$route.params.tokenId
       )
     },
-    makeUpVote () {
-      upVote(this.$config.contractBusinessNft, this.$route.params.tokenId).then(async () => {
+    async makeUpVote () {
+      this.loading = true
+      await upVote(this.$config.contractBusinessNft, this.$route.params.tokenId).then(async (result) => {
         // console.log('Successfully upVoted')
         // await location.reload()
-        await alert('You successfully made a vote for this business. In order to see the result please refresh the page after the Metamask Transaction')
+        await result.wait()
+        this.showVoteModal = true
+        this.loading = false
       }).catch((error) => {
         console.error(error)
         alert('You can only vote for a business once')
@@ -232,11 +238,14 @@ export default {
     async getDislikes () {
       this.disLikes = await getDownVotes(this.$config.contractBusinessNft, this.$route.params.tokenId)
     },
-    makeDownVote () {
-      downVote(this.$config.contractBusinessNft, this.$route.params.tokenId).then(async () => {
+    async makeDownVote () {
+      this.loading = true
+      await downVote(this.$config.contractBusinessNft, this.$route.params.tokenId).then(async (result) => {
+        await result.wait()
+        this.showVoteModal = true
+        this.loading = false
         // console.log('Successfully upVoted')
         // await location.reload()
-        await alert('You successfully made a vote for this business. In order to see the result please refresh the page after the Metamask Transaction')
       }).catch((error) => {
         console.error(error)
         alert('You can only vote for a business once')
@@ -247,6 +256,10 @@ export default {
     },
     goHomeClick () {
       this.showModal = false
+      location.reload()
+    },
+    goHomeClickVote () {
+      this.showVoteModal = false
       location.reload()
     },
     async checkBuy () {
