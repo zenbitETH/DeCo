@@ -149,7 +149,7 @@
                 <div id="tabs-onsaleFill" class="tab-pane fade bg-glass-100 rounded-tf py-10 pt-16 show active h-full overflow-y-hidden" role="tabpanel" aria-labelledby="tabs-home-tabFill">
                   <div class="grid lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 px-5 gap-3 ">
                     <div
-                      class="PlaceBG hover:bg-glass-800 cursor-pointer"
+                      class="PlaceBG hover:bg-deco-200/60 cursor-pointer"
                       @click="currentPage = 2"
                     >
                       <div class="bigIcon col-span-5">
