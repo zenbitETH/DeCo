@@ -8,9 +8,9 @@ Input {
   @apply
   bg-transparent font-lex border-white
   placeholder-gray-400
-  hover:border-deco-100 hover:placeholder-deco-100
-  focus:outline-none focus:border-deco-100 focus:placeholder-transparent focus:text-deco-100
-  valid:text-deco-400 valid:border-deco-400 
+  hover:border-deco-200 hover:placeholder-deco-200
+  focus:outline-none focus:border-deco-100 focus:placeholder-transparent focus:text-deco-200
+  valid:text-deco-100 valid:border-deco-400 
   h-12 px-5 w-full border-b group-hover:bg-[#e8f0fe] group-disabled:bg-gray-300 disabled:bg-gray-300
 }
 
@@ -63,7 +63,7 @@ Input {
   @apply p-1 
   bg-glass-200 text-center
   border-none
-  hover:bg-glass-800
+  hover:bg-deco-200/20
   hover:text-white
   cursor-pointer
 }
@@ -86,9 +86,10 @@ Input {
 
 .huda, .hudb, .hudc, .hudd {
   @apply p-1 
-   text-center text-white
-  hover:bg-glass-800
-  focus:bg-glass-800
+   text-center text-gray-400
+  hover:bg-deco-200/60
+  focus:text-white
+  focus:bg-deco-200/60
   border-none
   cursor-pointer
 }
@@ -194,9 +195,9 @@ Input {
 
 .mintButton {
   @apply
-  text-white font-lex 
-  bg-deco-100 p-3 rounded-tf 
-  hover:bg-deco-400 hover:text-deco-900 hover:cursor-pointer 
+  text-white 
+  bg-deco-100/80 p-3 rounded-tf 
+  hover:bg-deco-200/80 hover:text-gray-800 hover:cursor-pointer 
 }
 
 .xBT {
