@@ -2,11 +2,11 @@
   <div class="relative py-10 bg-gradient-to-t from-deco-700 to-deco-700 h-screen overflow-y-auto">
     <nav class="top-hud">
       <div class="hud1">
-        <div v-if="!connectedAddress" @click="showConnectWalletModal = true">
+        <div v-if="!connectedAddress" class="object-fill px-10" @click="showConnectWalletModal = true">
           Connect
         </div>
         <!-- TODO show only first and last 4 characters= 0x04...abcd-->
-        <div v-else class="" @click="logOut()">
+        <div v-else class=" object-fill px-10" @click="logOut()">
           Disconnect
         </div>
       </div>
@@ -35,7 +35,7 @@
 
     <Modal :show="showConnectWalletModal">
       <h2 class="wTitle text-deco-900 mb-10">
-        Choose your wallet or create a new wallet
+        Choose or create wallet
       </h2>
       <div class="grid grid-cols-3 text-center xl:px-10">
         <div class="wButton">

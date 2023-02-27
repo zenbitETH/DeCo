@@ -89,15 +89,14 @@
 
         <section v-if="currentPage === 1" id="Step2" key="Step2" class="text-white font-lex xl:text-2xl">
           <div class="stepTitle">
-            Step 1: Set up your Deco business {{ form.kind === 'businesses' ? 'business' : 'service' }}
+            Step 1: Set up your new store {{ form.kind === 'businesses' ? 'business' : 'service' }}
           </div>
-          <div class="flex flex-col mt-8 text-deco-100 md:px-24 xl:px-48">
-            <div class="md:grid md:grid-cols-2 gap-3">
+          <div class="flex flex-col mt-8 text-deco-100 md:px-24 xl:px-48 mx-auto">
+            <div class="gap-6">
               <Select v-model="form.type" :items="businessTypes" placeholder="1. Choose the type of your business" />
               <Input v-model="form.name" type="text" placeholder="2. What is the name of your business?" :max-length="nameLength" />
-              <div class="md:w-full mx-5 mb-3 text-deco-400">
+              <div class="md:w-full mx-5 mb-3 text-white">
                 3. Upload a logo for your business
-                <Input v-model="form.imageUrl" type="text" placeholder="" class="w-full bg-transparent" />
               </div>
               <Upload
                 v-model="file"

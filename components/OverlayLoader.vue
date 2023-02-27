@@ -4,10 +4,15 @@
   >
     <div
       ref="overlay"
-      class="z-50 fixed top-0 opacity-70 bg-gray-300 left-0 w-full h-full place-content-center"
+      class="z-50 fixed top-0 bg-black/60 left-0 w-full h-full place-content-center backdrop-blur-md"
       :class="{'flex  justify-center items-center': loading, 'hidden': !loading}"
     >
-      <div class="loader ease-linear rounded-full border-8 border-t-8 border-red-200 h-24 w-24" />
+      <div class="grid items-center text-center mx-auto font-exo gap-3">
+        <div class="mx-auto animate-spin border-8 border-t-cyber-100 border-white/50 ease-linear rounded-full h-24 w-24" />
+        <div class="text-2xl text-white text-center text-solar-100 animate-pulse grid items-center">
+          Please confirm on your web3 wallet
+        </div>
+      </div>
     </div>
 
     <slot />
@@ -79,20 +84,3 @@ export default {
   }
 }
 </script>
-<style>
-  .loader {
-    border-top-color: rgb(20, 145, 62);
-    -webkit-animation: spinner 1.5s linear infinite;
-    animation: spinner 1.5s linear infinite;
-  }
-
-  @-webkit-keyframes spinner {
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
-  }
-
-  @keyframes spinner {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-</style>

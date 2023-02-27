@@ -1,9 +1,31 @@
 <template>
   <client-only>
-    <div class="w-full -m">
+    <div class="mx-auto">
       <div
-        class="bg-glass-200 hover:bg-glass-500 animate-pulse p-3 border-none flex flex-col place-items-center rounded-tf"
+        class="mx-auto   p-3 flex flex-col place-items-center rounded-tf"
       >
+        <div
+          class="mx-auto flex justify-center items-center  place-content-center "
+        >
+          <label
+            :for="id"
+            class="font-merriweather-sans text-lg cursor-pointer pointer-events-auto"
+          >
+            <input
+              :id="id"
+              :name="id + '[]'"
+              class="hidden bg-cover cursor-pointer"
+              type="file"
+              data-multiple-caption="{count} files selected"
+              multiple
+              @change="onFileUpload($event)"
+            >
+            <div class="font-bold text-center  h-full w-full text-2xl text-white bg-deco-100/20 hover:bg-deco-200/20 rounded-tf p-5 animate-pulse">Select a file
+              <div class="text-semigray">or drag it here!</div>
+            </div>
+
+          </label>
+        </div>
         <div
           class="w-full text-center "
           @drop.prevent="onDrop($event)"
@@ -19,13 +41,13 @@
             <div
               v-for="(file, index) in files"
               :key="file.url"
-              class="w-full lg:w-1/3 px-1 text-center"
+              class="w-full lg:w-1/3 px-1 text-center mx-auto"
             >
               <img
                 :src="imgPreview[index]"
-                class="w-full text-center"
+                class="w-full mx-auto text-center"
               >
-              <span class="text-left text-semigray">
+              <span class="text-left text-sm w-full">
                 {{ file.name }}
                 <i
                   class="fas fa-times cursor-pointer text-black hover:text-red"
@@ -62,26 +84,6 @@
                 />
               </li>
             </ul>
-          </div>
-          <div
-            class="w-full min-h-[50px] flex justify-center items-center  place-content-center p-8"
-          >
-            <input
-              :id="id"
-              :name="id + '[]'"
-              class="hidden"
-              type="file"
-              data-multiple-caption="{count} files selected"
-              multiple
-              @change="onFileUpload($event)"
-            >
-            <label
-              :for="id"
-              class="font-merriweather-sans text-lg"
-            >
-              <span class="font-bold pointer-events-auto cursor-pointer text-white">Select a file</span><br>
-              <span class="text-semigray">or drag it here!</span>
-            </label>
           </div>
         </div>
       </div>
