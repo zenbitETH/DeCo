@@ -158,7 +158,7 @@
                       </div>
                     </div>
 
-                    <div v-for="service in unsoldServices" :key="service.tokenId" class="PlaceBG relative" @click="purchaseServiceNft(service)">
+                    <div v-for="service in unsoldServices" :key="service.tokenId" class="PlaceBG relative">
                       <div class="col-span-2 rounded-xl">
                         <img
                           class="mx-auto rounded-xl"
