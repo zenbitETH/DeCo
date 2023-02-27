@@ -71,7 +71,6 @@ Input {
 .hud1 {
   @apply 
   rounded-b-lg
-  px-10
 }
 
 .hud2 {
