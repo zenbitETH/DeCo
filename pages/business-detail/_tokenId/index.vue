@@ -99,7 +99,7 @@
                     {{ soldNFTs }}
                   </div>
                   <div class="text-base font-bold xl:text-xl">
-                    Products Sold
+                    itemsNFT Sold
                   </div>
                 </div>
                 <div
@@ -154,7 +154,7 @@
                     >
                       <div class="bigIcon col-span-5">
                         +
-                        Add a product or service
+                        Add an itemNFT
                       </div>
                     </div>
 
@@ -219,8 +219,7 @@
         class="text-white font-lex xl:text-2xl"
       >
         <div class="stepTitle">
-          Step 1: Set up your Deco business
-          {{ form.kind === "businesses" ? "business" : "service" }}
+          Add new itemNFT
         </div>
         <div class="flex flex-col mt-8 text-deco-100 md:px-24 xl:px-48">
           <div
@@ -239,7 +238,7 @@
               :max-length="nameLength"
             />
             <div class="md:w-full mx-5 mb-3 text-deco-400">
-              3. Upload a logo for your business
+              3. Upload an image for your item
               <Input
                 v-model="form.imageUrl"
                 type="text"
@@ -275,17 +274,17 @@
             <!-- <Input v-model="form.name" type="text" placeholder="1. What is the name of your business?" class="mt-8 col-span-2" /> -->
             <Textarea
               v-model="form.description"
-              placeholder="1. Describe your service"
+              placeholder="1. Describe your item"
               class="mt-8"
               :rows="3"
             />
             <Input
               v-model="form.price"
               type="number"
-              placeholder="2. Choose a price for your NFT in DAI"
+              placeholder="2. Set a price for your item in DAI"
             />
             <div class="md:w-full mx-5 mb-3 text-deco-400 text-center">
-              <div>3. Upload an image for your product or service</div>
+              <div>3. Upload an image for your itemNFT</div>
               <Input
                 v-model="form.imageUrl"
                 type="text"
