@@ -1,6 +1,6 @@
 
 import Moralis from 'moralis'
-import { normalizeContractOutput } from '../methods'
+// import { normalizeContractOutput } from '../methods'
 import abi from './abi.json'
 
 export default async function (address, tokenId) {
@@ -12,8 +12,8 @@ export default async function (address, tokenId) {
       _businessId: parseInt(tokenId)
     }
   }
-  const result = normalizeContractOutput(await Moralis.executeFunction(options))
+  const result = await Moralis.executeFunction(options)
   console.log(result)
-  alert('You successfully made a vote for this business. In order to see the result please refresh the page after the Metamask Transaction')
+  // alert('You successfully made a vote for this business. In order to see the result please refresh the page after the Metamask Transaction')
   return result
 }
