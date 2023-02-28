@@ -390,7 +390,7 @@ Input {
 .DecoBG {
   @apply 
   bg-glass-200 rounded-tf 
-  hover:bg-glass-800
+  hover:bg-deco-200/60
   cursor-pointer
 }
 
