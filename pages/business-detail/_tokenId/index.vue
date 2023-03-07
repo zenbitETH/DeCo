@@ -99,7 +99,7 @@
                     {{ soldNFTs }}
                   </div>
                   <div class="text-base font-bold xl:text-xl">
-                    Products Sold
+                    itemsNFT Sold
                   </div>
                 </div>
                 <div
@@ -154,7 +154,7 @@
                     >
                       <div class="bigIcon col-span-5">
                         +
-                        Add a product or service
+                        Add an itemNFT
                       </div>
                     </div>
 
@@ -184,7 +184,7 @@
                 </div>
                 <div id="tabs-soldFill" class="tab-pane fade bg-glass-100 rounded-tf py-10 pt-16 h-full overflow-y-hidden" role="tabpanel" aria-labelledby="tabs-profile-tabFill">
                   <div class="grid lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4  grid-flow-dense px-5 gap-3 ">
-                    <div v-for="service in soldServices" :key="service.tokenId" class="PlaceBG bg-glass-500 relative">
+                    <div v-for="service in mySoldServices" :key="service.tokenId" class="PlaceBG bg-glass-500 relative">
                       <div class="col-span-2 rounded-xl">
                         <img
                           class="mx-auto rounded-xl"
@@ -219,8 +219,7 @@
         class="text-white font-lex xl:text-2xl"
       >
         <div class="stepTitle">
-          Step 1: Set up your Deco business
-          {{ form.kind === "businesses" ? "business" : "service" }}
+          Add new itemNFT
         </div>
         <div class="flex flex-col mt-8 text-deco-100 md:px-24 xl:px-48">
           <div
@@ -239,7 +238,7 @@
               :max-length="nameLength"
             />
             <div class="md:w-full mx-5 mb-3 text-deco-400">
-              3. Upload a logo for your business
+              3. Upload an image for your item
               <Input
                 v-model="form.imageUrl"
                 type="text"
@@ -275,17 +274,17 @@
             <!-- <Input v-model="form.name" type="text" placeholder="1. What is the name of your business?" class="mt-8 col-span-2" /> -->
             <Textarea
               v-model="form.description"
-              placeholder="1. Describe your service"
+              placeholder="1. Describe your item"
               class="mt-8"
               :rows="3"
             />
             <Input
               v-model="form.price"
               type="number"
-              placeholder="2. Choose a price for your NFT in DAI"
+              placeholder="2. Set a price for your item in DAI"
             />
             <div class="md:w-full mx-5 mb-3 text-deco-400 text-center">
-              <div>3. Upload an image for your product or service</div>
+              <div>3. Upload an image for your itemNFT</div>
               <Input
                 v-model="form.imageUrl"
                 type="text"
@@ -341,6 +340,7 @@ import getUpVotes from '~/contracts/business-nft/getUpVotes'
 import downVote from '~/contracts/business-nft/downVote'
 import getDownVotes from '~/contracts/business-nft/getDownVotes'
 import getIncomeOfBusiness from '~/contracts/service-nft/getIncomeOfBusiness'
+import listSoldServices from '~/contracts/service-nft/listMySoldServices'
 
 export default {
   components: {
@@ -434,6 +434,7 @@ export default {
       )
     }
     listMyServices()
+    listSoldServices()
   }, // Itt már alapból összemergeli a listMyServices-t
   methods: {
     // listMyServices () {
@@ -451,6 +452,11 @@ export default {
         this.business = this.businesses.find(
           business => business.tokenId === this.tokenId
         )
+      })
+    },
+    listAllSoldServices () {
+      listSoldServices(this.$config.contractServiceNft, this.$route.params.tokenId).then((result) => {
+        this.$store.commit('setMyPurchasedService', result)
       })
     },
     async getLogo () {

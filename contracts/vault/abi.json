@@ -3,7 +3,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_productAddress",
+        "name": "_itemAddress",
         "type": "address"
       }
     ],
@@ -24,6 +24,19 @@
         "internalType": "bool",
         "name": "",
         "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "_apolDAI",
+    "outputs": [
+      {
+        "internalType": "contract aPolDAI",
+        "name": "",
+        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -82,12 +95,12 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "serviceId",
+        "name": "_businessId",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
-        "name": "_businessId",
+        "name": "serviceId",
         "type": "uint256"
       },
       {
@@ -136,6 +149,19 @@
   {
     "inputs": [
       {
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "directSupply",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "address",
         "name": "_user",
         "type": "address"
@@ -166,7 +192,13 @@
     "type": "function"
   },
   {
-    "inputs": [],
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_owner",
+        "type": "address"
+      }
+    ],
     "name": "getTotalSales",
     "outputs": [
       {
@@ -181,6 +213,38 @@
   {
     "inputs": [],
     "name": "getVaultBalance",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getWithdrawBalance",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_user",
+        "type": "address"
+      }
+    ],
+    "name": "getYourDaiBalance",
     "outputs": [
       {
         "internalType": "uint256",
@@ -217,7 +281,7 @@
         "type": "uint256"
       }
     ],
-    "name": "sendSomethingOut",
+    "name": "sendDaiOut",
     "outputs": [],
     "stateMutability": "payable",
     "type": "function"
@@ -226,7 +290,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_productAddress",
+        "name": "_itemAddress",
         "type": "address"
       }
     ],

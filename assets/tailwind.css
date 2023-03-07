@@ -195,8 +195,8 @@ Input {
 
 .mintButton {
   @apply
-  text-white 
-  bg-deco-100/80 p-3 rounded-tf 
+  text-white text-base
+  bg-deco-100/80 py-2 px-5 rounded-tf mx-auto
   hover:bg-deco-200/80 hover:text-gray-800 hover:cursor-pointer 
 }
 
@@ -390,7 +390,7 @@ Input {
 .DecoBG {
   @apply 
   bg-glass-200 rounded-tf 
-  hover:bg-glass-800
+  hover:bg-deco-200/60
   cursor-pointer
 }
 

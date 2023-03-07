@@ -6,10 +6,10 @@ import abi from './abi.json'
 export default async function (address, userAddress) {
   const options = {
     contractAddress: address,
-    functionName: 'getTotalSales',
+    functionName: 'getYourDaiBalance',
     abi,
     params: {
-      _owner: userAddress
+      _user: userAddress
     }
   }
   //   const result = normalizeContractOutput(await Moralis.executeFunction(options))

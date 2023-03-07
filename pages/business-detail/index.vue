@@ -3,84 +3,173 @@
     <section class="text-white">
       <div class="MainScreen">
         <div class="MainBoard">
-          <div class="xl:col-span-12 grid xl:grid-cols-2 gap-3">
+          <div class="xl:col-span-12 grid xl:grid-cols-5 gap-3">
             <div
               class="relative bg-white/10 rounded-xl p-3 grid grid-cols-2 items-center text-center py-10 xl:py-3"
             >
               <div
-                class="bg-white/10 absolute p-2 rounded-tl-xl rounded-br-xl top-0 left-0 text-2xl text-white/90"
+                class="bg-deco-200/40 absolute p-2 rounded-tl-xl rounded-br-xl top-0 left-0 text-2xl text-white/90"
               >
-                🏪 <span class="text-sm">Stores</span>
+                🏪 <span class="text-base">Stores</span>
               </div>
-              <div class="xl:text-8xl text-5xl">
+              <div class="text-5xl">
                 <div class="text-2xl">
                   Minted
                 </div>
                 {{ minted }}
               </div>
 
-              <div class="xl:text-8xl text-5xl">
+              <div class="text-5xl">
                 <div class="text-2xl">
                   total sales
                 </div>
-                ${{ totalSales / 100 }} <span class="xl:text-xl text-sm">DAI</span>
+                ${{ totalSales / Math.pow(10,18) }} <span class="xl:text-xl text-sm">DAI</span>
               </div>
             </div>
 
             <div
-              class="relative bg-white/10 rounded-xl p-3 grid grid-cols-3 items-center text-center py-10 xl:py-3"
+              class="relative bg-white/10 rounded-xl p-3 grid grid-cols-2 items-center text-center py-10 xl:py-3 col-span-2"
             >
               <div
                 class="bg-deco-100/40 absolute p-2 rounded-tl-xl rounded-b-xl r-xl top-0 left-0 text-2xl text-white/90"
               >
-                🏦 <span class="text-sm">Vault</span>
+                🏦 <span class="text-base">Vault</span>
               </div>
-              <div class="grid gap-5">
-                <div>
+              <div class="grid gap-5 grid-cols-3 col-span-2 items-center">
+                <div class="">
                   <div class="xl:text-base text-sm">
-                    APY <span class="text-4xl">1.3%</span>
-                  </div>
-                </div>
-                <div>
-                  <div class="xl:text-base text-sm">
-                    Balance
+                    Balance on vault
                   </div>
                   <span
                     class="text-4xl"
-                  >${{ totalBalance / Math.pow(10,18) }}<span class="xl:text-xl text-sm">DAI</span></span>
+                  >${{ vaultBalance / Math.pow(10,18) }} <span class="xl:text-xl text-sm">DAI</span></span>
                 </div>
-              </div>
-              <div class="grid grid-cols-2 col-span-2 items-center">
-                <div class="relative pl-5">
-                  <input
-                    id="price"
-                    v-model="depositedAmount"
-                    type="text"
-                    name="price"
-                    class="w-full rounded-gen border-white/25 pl-5 focus:border-green-100 focus:ring-green-100 text-xl"
-                    placeholder="0.00 DAI"
-                  >
-                  <div
-                    class="absolute top-1/2 -translate-y-1/2 right-0 cursor-pointer hover:text-cyber-200"
-                    @click="setMaxDAI()"
-                  >
-                    max
-                  </div>
-                  <div
-                    class="absolute -bottom-5 left-10  text-sm text-white/50"
-                  >
-                    <div>
-                      {{ userDAI / Math.pow(10,18) }} <span>DAI</span>
-                      <span>available</span>
+                <div class="col-span-2 grid gap-5">
+                  <div class="grid grid-cols-2 items-center">
+                    <div class="relative">
+                      <input
+                        id="price"
+                        v-model="depositedAmount"
+                        type="text"
+                        name="price"
+                        class="w-full rounded-gen border-white/25 pl-5 focus:border-green-100 focus:ring-green-100 text-xl"
+                        placeholder="0.00 DAI"
+                      >
+                      <div
+                        class="absolute top-1/2 -translate-y-1/2 right-0 cursor-pointer hover:text-deco-200 text-sm"
+                        @click="setMaxDAI()"
+                      >
+                        max
+                      </div>
+                      <div
+                        class="absolute -bottom-5 right-0 text-sm text-white/50"
+                      >
+                        <div>
+                          <span>Max</span>
+                          {{ userDAI / Math.pow(10,18) }} <span>DAI</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="grid gap-5">
+                      <div class="grid gap-10 px-2">
+                        <div class="mintButton" @click="aaveDeposit()">
+                          Supply👻
+                        </div>
+                      </div>
+                      <div class="grid gap-5 px-2">
+                        <div class="mintButton" @click="aaveWithdraw()">
+                          Withdraw💵
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="grid gap-5 px-5">
-                  <div class="mintButton" @click="aaveDeposit()">
-                    supply
+              </div>
+            </div>
+            <div
+              class="relative bg-white/10 rounded-xl p-3 grid grid-cols-3 items-center text-center py-10 xl:py-3 col-span-2"
+            >
+              <div
+                class="bg-gradient-to-b from-glass-700 to-glass-800 absolute p-2 rounded-tl-xl rounded-b-xl r-xl top-0 left-0 text-2xl text-white/90"
+              >
+                👻 <span class="text-base">Aave / </span>
+                <span class="xl:text-sm ">
+                  <span>APY </span>
+                  <span class="">1.3%</span>
+                </span>
+              </div>
+
+              <div class="grid gap-3 mx-5 items-center">
+                <div>
+                  <div class="xl:text-base text-sm">
+                    Balance on Aave
                   </div>
-                  <div class="mintButton" @click="aaveWithdraw()">
-                    withdraw
+                  <span
+                    class="text-4xl"
+                  >$<span class="xl:text-xl text-sm">aDAI</span></span>
+                </div>
+              </div>
+              <div class="grid gap-5 col-span-2">
+                <div class="grid grid-cols-2 col-span-2 items-center">
+                  <div class="relative pl-5">
+                    <input
+                      id="price"
+                      v-model="depositedWalletDAI"
+                      type="text"
+                      name="price"
+                      class="w-full rounded-gen border-white/25 pl-5 focus:border-green-100 focus:ring-green-100 text-xl"
+                      placeholder="0.00 DAI"
+                    >
+                    <div
+                      class="absolute top-1/2 -translate-y-1/2 right-0 cursor-pointer hover:text-cyber-200"
+                      @click="setMaxWalletDAI()"
+                    >
+                      max
+                    </div>
+                    <div
+                      class="absolute -bottom-5 left-10  text-sm text-white/50"
+                    >
+                      <div>
+                        <span>{{ walletDAIBalance / Math.pow(10,18) }} DAI</span>
+                        <span>available</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="grid gap-5 px-2">
+                    <div class="mintButton" @click="aaveWithdraw()">
+                      Deposit & supply
+                    </div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 col-span-2 items-center">
+                  <div class="relative pl-5">
+                    <input
+                      id="price"
+                      v-model="depositedWalletDAI"
+                      type="text"
+                      name="price"
+                      class="w-full rounded-gen border-white/25 pl-5 focus:border-green-100 focus:ring-green-100 text-xl"
+                      placeholder="0.00 DAI"
+                    >
+                    <div
+                      class="absolute top-1/2 -translate-y-1/2 right-0 cursor-pointer hover:text-cyber-200"
+                      @click="setMaxWalletDAI()"
+                    >
+                      max
+                    </div>
+                    <div
+                      class="absolute -bottom-5 left-10  text-sm text-white/50"
+                    >
+                      <div>
+                        <span>{{ walletDAIBalance / Math.pow(10,18) }} aDAI</span>
+                        <span>available</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="grid gap-5 px-2">
+                    <div class="mintButton" @click="aaveWithdraw()">
+                      Withdraw💵
+                    </div>
                   </div>
                 </div>
               </div>
@@ -90,33 +179,17 @@
             <div class="grid md:grid-cols-4 xl:grid-cols-6 grid-cols-2 gap-5">
               <div v-for="business in businesses" :key="business.tokenId">
                 <nuxt-link :to="'business-detail/' + business.tokenId">
-                  <div class="DecoBG bg-glass-200">
+                  <div class="DecoBG">
                     <div class="text-lg text-center">
                       <img
                         class="fhd:h-full mx-auto"
                         :src="'/3dAssets/' + business.businessType + '.png'"
                       >
-                      <!-- <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="/deco logo.svg"> -->
                       {{ business.shortname }}
-                    </div>
-                    <div
-                      class="bg-glass-600 rounded-b-tf grid grid-cols-2 text-center text-base py-2"
-                    >
-                      <div>0 👍</div>
-                      <div>0 👎</div>
                     </div>
                   </div>
                 </nuxt-link>
               </div>
-            <!-- <nuxt-link to="business-detail-customer" class="DecoBG bg-glass-500">
-              <div class="">
-                <img class="xl:h-32 qhd:h-43 h-32 mx-auto" src="../../static/deco logo.svg">
-              </div>
-              <div class="bg-deco-900 rounded-b-tf grid grid-cols-2 text-center text-base py-2">
-                <div>0 👍</div>
-                <div>0 🛍️</div>
-              </div>
-            </nuxt-link> -->
             </div>
           </div>
         </div>
@@ -138,6 +211,8 @@ import AaveModal from '~/components/AaveModal.vue'
 import OverlayLoader from '~/components/OverlayLoader.vue'
 import getTotalBalance from '~/contracts/vault/getTotalBalance'
 import approveAaveContract from '~/contracts/vault/approveAaveContract'
+import getVaultBalance from '~/contracts/vault/getVaultBalance'
+import getYourDAIBalance from '~/contracts/vault/getWalletDAIBalance'
 
 export default {
   components: {
@@ -146,6 +221,9 @@ export default {
   mixins: [CommonFunctions],
   data () {
     return {
+      walletDAIBalance: 0,
+      depositedWalletDAI: 0,
+      vaultBalance: 0,
       showModal: false,
       loading: false,
       minted: 0,
@@ -171,15 +249,17 @@ export default {
     setTimeout(this.isAaveavailable, 3000)
     setTimeout(this.isAaveApproved, 3000)
     setTimeout(this.getTotalAmount, 3000)
+    setTimeout(this.getVBalance, 3000)
+    setTimeout(this.getYourDBalance, 3000)
   },
   methods: {
     async getBusinessNumber () {
-      this.minted = await getBusinessNumber(this.$config.contractBusinessNft)
-      // console.log('minted is: ', this.minted)
+      this.minted = await getBusinessNumber(this.$config.contractBusinessNft, this.connectedAddress)
+      console.log('minted is: ', this.minted)
     },
     async getSalesNumber () {
-      this.totalSales = await getTotalSales(this.$config.contractVault)
-      // console.log('totalSales is: ', this.totalSales)
+      this.totalSales = await getTotalSales(this.$config.contractVault, this.connectedAddress)
+      console.log('totalSales is: ', this.totalSales)
     },
     async isAaveavailable () {
       this.userDAI = await getAaaveAvailibility(this.$config.contractVault, this.connectedAddress)
@@ -218,8 +298,20 @@ export default {
     },
     async getTotalAmount () {
       this.totalBalance = await getTotalBalance(this.$config.contractVault)
-      console.log('is this working?:', this.totalBalance)
+      console.log('totalBalance is:', this.totalBalance)
+    },
+    async getVBalance () {
+      this.vaultBalance = await getVaultBalance(this.$config.contractVault)
+      console.log('Vault Balance is: ', this.vaultBalance)
+    },
+    async getYourDBalance () {
+      this.walletDAIBalance = await getYourDAIBalance(this.$config.contractVault, this.connectedAddress)
+      console.log('Your DAI Balance is: ', this.walletDAIBalance)
+    },
+    setMaxWalletDAI () {
+      this.depositedWalletDAI = this.walletDAIBalance / Math.pow(10, 18)
     }
+
   }
 }
 </script>
