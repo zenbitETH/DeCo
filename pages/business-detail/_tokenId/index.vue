@@ -184,7 +184,7 @@
                 </div>
                 <div id="tabs-soldFill" class="tab-pane fade bg-glass-100 rounded-tf py-10 pt-16 h-full overflow-y-hidden" role="tabpanel" aria-labelledby="tabs-profile-tabFill">
                   <div class="grid lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4  grid-flow-dense px-5 gap-3 ">
-                    <div v-for="service in soldServices" :key="service.tokenId" class="PlaceBG bg-glass-500 relative">
+                    <div v-for="service in mySoldServices" :key="service.tokenId" class="PlaceBG bg-glass-500 relative">
                       <div class="col-span-2 rounded-xl">
                         <img
                           class="mx-auto rounded-xl"
@@ -340,6 +340,7 @@ import getUpVotes from '~/contracts/business-nft/getUpVotes'
 import downVote from '~/contracts/business-nft/downVote'
 import getDownVotes from '~/contracts/business-nft/getDownVotes'
 import getIncomeOfBusiness from '~/contracts/service-nft/getIncomeOfBusiness'
+import listSoldServices from '~/contracts/service-nft/listMySoldServices'
 
 export default {
   components: {
@@ -433,6 +434,7 @@ export default {
       )
     }
     listMyServices()
+    listSoldServices()
   }, // Itt már alapból összemergeli a listMyServices-t
   methods: {
     // listMyServices () {
@@ -450,6 +452,11 @@ export default {
         this.business = this.businesses.find(
           business => business.tokenId === this.tokenId
         )
+      })
+    },
+    listAllSoldServices () {
+      listSoldServices(this.$config.contractServiceNft, this.$route.params.tokenId).then((result) => {
+        this.$store.commit('setMyPurchasedService', result)
       })
     },
     async getLogo () {
