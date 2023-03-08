@@ -42,8 +42,8 @@ export const mutations = {
   setMyBusinessServices: (state, payload) => {
     state.myBusinessServices = payload
   },
-  setMyPurchasedService: (state, payload) => {
-    state.myPurchasedService = payload
+  setMyPurchasedServices: (state, payload) => {
+    state.myPurchasedServices = payload
   }
 }
 
