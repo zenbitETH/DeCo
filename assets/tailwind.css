@@ -37,10 +37,10 @@ Input {
 
 .bottom-l-hud { 
   @apply
-  grid grid-cols-3 font-exo
+  grid grid-cols-4 font-exo
   bg-glass-200 items-center xl:rounded-r-tf
   fixed bottom-0 xl:grid-cols-1 xl:left-0 align-middle	
-  w-full xl:w-20 xl:h-[85%] xl:grid-rows-3 
+  w-full xl:w-20 xl:h-[85%] xl:grid-rows-4 
   xl:py-32 z-50 backdrop-blur-md	
   xl:inset-y-0 xl:my-auto 
 }
