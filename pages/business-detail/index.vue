@@ -210,6 +210,7 @@
         </div>
       </div>
     </section>
+    <WithdrawModal v-show="showWithdrawModal" @goHome="goHomeClick" />
     <AaveModal v-show="showModal" @goHome="goHomeClick" />
   </OverlayLoader>
 </template>
@@ -223,6 +224,7 @@ import isAaveApproved from '~/contracts/vault/isAaveApproved'
 import aaveDeposit from '~/contracts/vault/aaveDeposit'
 import aaveWithdraw from '~/contracts/vault/aaveWithdraw'
 import AaveModal from '~/components/AaveModal.vue'
+import WithdrawModal from '~/components/WithdrawModal.vue'
 import OverlayLoader from '~/components/OverlayLoader.vue'
 import getTotalBalance from '~/contracts/vault/getTotalBalance'
 import approveAaveContract from '~/contracts/vault/approveAaveContract'
@@ -235,11 +237,13 @@ import directAaveSupply from '~/contracts/vault/directAaveSupply'
 export default {
   components: {
     OverlayLoader,
-    AaveModal
+    AaveModal,
+    WithdrawModal
   },
   mixins: [CommonFunctions],
   data () {
     return {
+      showWithdrawModal: false,
       walletDAIBalance: 0,
       depositedWalletDAI: 0,
       aaveBalance: 0,
@@ -331,7 +335,7 @@ export default {
     async aaveWithdraw () {
       this.loading = true
       await aaveWithdraw(this.$config.contractVault, this.depositedAave)
-      this.showModal = true
+      this.showWithdrawModal = true
       this.loading = false
     },
     setMaxDAI () {
@@ -374,7 +378,7 @@ export default {
         this.userDAI / Math.pow(10, 18)
       ).then(async (result) => {
         await result.wait()
-        this.showModal = true
+        this.showWithdrawModal = true
         this.loading = false
       })
     },
