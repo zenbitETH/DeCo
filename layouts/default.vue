@@ -31,6 +31,11 @@
           🗺️
         </div>Explore
       </nuxt-link>
+      <nuxt-link class="hudc " to="/bought">
+        <div class="bigIcon">
+          🛍️
+        </div>Bought
+      </nuxt-link>
     </nav>
 
     <Modal :show="showConnectWalletModal">
