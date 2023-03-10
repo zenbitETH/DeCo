@@ -408,7 +408,7 @@ export default {
       return this.$store.state.myBusinessServices
     },
     mySoldServices () {
-      return this.$store.myPurchasedServices
+      return this.$store.state.myPurchasedServices
     }
   },
   watch: {
@@ -434,7 +434,7 @@ export default {
       )
     }
     listMyServices()
-    listSoldServices()
+    this.listAllSoldServices()
   }, // Itt már alapból összemergeli a listMyServices-t
   methods: {
     // listMyServices () {
@@ -456,7 +456,7 @@ export default {
     },
     listAllSoldServices () {
       listSoldServices(this.$config.contractServiceNft, this.$route.params.tokenId).then((result) => {
-        this.$store.commit('setMyPurchasedService', result)
+        this.$store.commit('setMyPurchasedServices', result)
       })
     },
     async getLogo () {
@@ -516,7 +516,7 @@ export default {
     makeDownVote () {
       downVote(this.$config.contractBusinessNft, this.$route.params.tokenId).then(() => {
         // result.wait()
-        console.log('Successfully upVoted')
+        console.log('Successfully downVoted')
         // location.reload()
       })
     },

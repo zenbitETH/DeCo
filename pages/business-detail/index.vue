@@ -23,7 +23,8 @@
                 <div class="text-2xl">
                   total sales
                 </div>
-                ${{ totalSales / Math.pow(10,18) }} <span class="xl:text-xl text-sm">DAI</span>
+                ${{ totalSales / Math.pow(10, 18) }}
+                <span class="xl:text-xl text-sm">DAI</span>
               </div>
             </div>
 
@@ -42,7 +43,8 @@
                   </div>
                   <span
                     class="text-4xl"
-                  >${{ vaultBalance / Math.pow(10,18) }} <span class="xl:text-xl text-sm">DAI</span></span>
+                  >${{ vaultBalance / Math.pow(10, 18) }}
+                    <span class="xl:text-xl text-sm">DAI</span></span>
                 </div>
                 <div class="col-span-2 grid gap-5">
                   <div class="grid grid-cols-2 items-center">
@@ -66,7 +68,7 @@
                       >
                         <div>
                           <span>Max</span>
-                          {{ userDAI / Math.pow(10,18) }} <span>DAI</span>
+                          {{ userDAI / Math.pow(10, 18) }} <span>DAI</span>
                         </div>
                       </div>
                     </div>
@@ -77,7 +79,7 @@
                         </div>
                       </div>
                       <div class="grid gap-5 px-2">
-                        <div class="mintButton" @click="aaveWithdraw()">
+                        <div class="mintButton" @click="directDaiWithdraw()">
                           Withdraw💵
                         </div>
                       </div>
@@ -93,7 +95,7 @@
                 class="bg-gradient-to-b from-glass-700 to-glass-800 absolute p-2 rounded-tl-xl rounded-b-xl r-xl top-0 left-0 text-2xl text-white/90"
               >
                 👻 <span class="text-base">Aave / </span>
-                <span class="xl:text-sm ">
+                <span class="xl:text-sm">
                   <span>APY </span>
                   <span class="">1.3%</span>
                 </span>
@@ -106,7 +108,11 @@
                   </div>
                   <span
                     class="text-4xl"
-                  >$<span class="xl:text-xl text-sm">aDAI</span></span>
+                  >$<span class="xl:text-xl text-sm">
+                    {{
+                      Math.round((aaveBalance / Math.pow(10, 18)) * 100) / 100
+                    }}
+                    aDAI</span></span>
                 </div>
               </div>
               <div class="grid gap-5 col-span-2">
@@ -127,25 +133,30 @@
                       max
                     </div>
                     <div
-                      class="absolute -bottom-5 left-10  text-sm text-white/50"
+                      class="absolute -bottom-5 left-10 text-sm text-white/50"
                     >
                       <div>
-                        <span>{{ walletDAIBalance / Math.pow(10,18) }} DAI</span>
+                        <span>{{
+                          Math.round(
+                            (walletDAIBalance / Math.pow(10, 18)) * 100
+                          ) / 100
+                        }}
+                          DAI</span>
                         <span>available</span>
                       </div>
                     </div>
                   </div>
                   <div class="grid gap-5 px-2">
-                    <div class="mintButton" @click="aaveWithdraw()">
+                    <button class="mintButton" :disabled="!supplied" @click="directAaveSupply()">
                       Deposit & supply
-                    </div>
+                    </button>
                   </div>
                 </div>
                 <div class="grid grid-cols-2 col-span-2 items-center">
                   <div class="relative pl-5">
                     <input
                       id="price"
-                      v-model="depositedWalletDAI"
+                      v-model="depositedAave"
                       type="text"
                       name="price"
                       class="w-full rounded-gen border-white/25 pl-5 focus:border-green-100 focus:ring-green-100 text-xl"
@@ -153,15 +164,19 @@
                     >
                     <div
                       class="absolute top-1/2 -translate-y-1/2 right-0 cursor-pointer hover:text-cyber-200"
-                      @click="setMaxWalletDAI()"
+                      @click="setMaxPolDAI()"
                     >
                       max
                     </div>
                     <div
-                      class="absolute -bottom-5 left-10  text-sm text-white/50"
+                      class="absolute -bottom-5 left-10 text-sm text-white/50"
                     >
                       <div>
-                        <span>{{ walletDAIBalance / Math.pow(10,18) }} aDAI</span>
+                        <span>{{
+                          Math.round((aaveBalance / Math.pow(10, 18)) * 100) /
+                            100
+                        }}
+                          aDAI</span>
                         <span>available</span>
                       </div>
                     </div>
@@ -195,6 +210,7 @@
         </div>
       </div>
     </section>
+    <WithdrawModal v-show="showWithdrawModal" @goHome="goHomeClick" />
     <AaveModal v-show="showModal" @goHome="goHomeClick" />
   </OverlayLoader>
 </template>
@@ -208,22 +224,33 @@ import isAaveApproved from '~/contracts/vault/isAaveApproved'
 import aaveDeposit from '~/contracts/vault/aaveDeposit'
 import aaveWithdraw from '~/contracts/vault/aaveWithdraw'
 import AaveModal from '~/components/AaveModal.vue'
+import WithdrawModal from '~/components/WithdrawModal.vue'
 import OverlayLoader from '~/components/OverlayLoader.vue'
 import getTotalBalance from '~/contracts/vault/getTotalBalance'
 import approveAaveContract from '~/contracts/vault/approveAaveContract'
 import getVaultBalance from '~/contracts/vault/getVaultBalance'
 import getYourDAIBalance from '~/contracts/vault/getWalletDAIBalance'
+import getAaveBalance from '~/contracts/vault/getAaveBalance'
+import vaultWithdraw from '~/contracts/vault/vaultWithdraw'
+import directAaveSupply from '~/contracts/vault/directAaveSupply'
+import hasSupplied from '~/contracts/vault/hasSupplied'
 
 export default {
   components: {
-    OverlayLoader, AaveModal
+    OverlayLoader,
+    AaveModal,
+    WithdrawModal
   },
   mixins: [CommonFunctions],
   data () {
     return {
+      supplied: false,
+      showWithdrawModal: false,
       walletDAIBalance: 0,
       depositedWalletDAI: 0,
+      aaveBalance: 0,
       vaultBalance: 0,
+      depositedAave: 0,
       showModal: false,
       loading: false,
       minted: 0,
@@ -251,42 +278,67 @@ export default {
     setTimeout(this.getTotalAmount, 3000)
     setTimeout(this.getVBalance, 3000)
     setTimeout(this.getYourDBalance, 3000)
+    setTimeout(this.getYourAaveBalance, 3000)
+    setTimeout(this.hasSupplied, 3000)
   },
   methods: {
     async getBusinessNumber () {
-      this.minted = await getBusinessNumber(this.$config.contractBusinessNft, this.connectedAddress)
+      this.minted = await getBusinessNumber(
+        this.$config.contractBusinessNft,
+        this.connectedAddress
+      )
       console.log('minted is: ', this.minted)
     },
     async getSalesNumber () {
-      this.totalSales = await getTotalSales(this.$config.contractVault, this.connectedAddress)
+      this.totalSales = await getTotalSales(
+        this.$config.contractVault,
+        this.connectedAddress
+      )
       console.log('totalSales is: ', this.totalSales)
     },
     async isAaveavailable () {
-      this.userDAI = await getAaaveAvailibility(this.$config.contractVault, this.connectedAddress)
+      this.userDAI = await getAaaveAvailibility(
+        this.$config.contractVault,
+        this.connectedAddress
+      )
       // console.log(this.connectedAddress, this.userDAI)
     },
     async isAaveApproved () {
-      this.aaveApproved = await isAaveApproved(this.$config.contractVault, this.connectedAddress)
+      this.aaveApproved = await isAaveApproved(
+        this.$config.contractVault,
+        this.connectedAddress
+      )
       console.log('Aave approved?', this.aaveApproved)
     },
     async aaveDeposit () {
       if (this.aaveApproved === false) {
         this.loading = true
-        await approveAaveContract(this.$config.contractVault, this.connectedAddress)
-        await aaveDeposit(this.$config.contractVault, this.connectedAddress, this.depositedAmount)
+        await approveAaveContract(
+          this.$config.contractVault,
+          this.connectedAddress
+        )
+        await aaveDeposit(
+          this.$config.contractVault,
+          this.connectedAddress,
+          this.depositedAmount
+        )
         this.showModal = true
         this.loading = false
       } else {
         this.loading = true
-        await aaveDeposit(this.$config.contractVault, this.connectedAddress, this.depositedAmount)
+        await aaveDeposit(
+          this.$config.contractVault,
+          this.connectedAddress,
+          this.depositedAmount
+        )
         this.showModal = true
         this.loading = false
       }
     },
     async aaveWithdraw () {
       this.loading = true
-      await aaveWithdraw(this.$config.contractVault, this.depositedAmount)
-      this.showModal = true
+      await aaveWithdraw(this.$config.contractVault, this.depositedAave)
+      this.showWithdrawModal = true
       this.loading = false
     },
     setMaxDAI () {
@@ -305,13 +357,53 @@ export default {
       console.log('Vault Balance is: ', this.vaultBalance)
     },
     async getYourDBalance () {
-      this.walletDAIBalance = await getYourDAIBalance(this.$config.contractVault, this.connectedAddress)
+      this.walletDAIBalance = await getYourDAIBalance(
+        this.$config.contractVault,
+        this.connectedAddress
+      )
       console.log('Your DAI Balance is: ', this.walletDAIBalance)
     },
     setMaxWalletDAI () {
       this.depositedWalletDAI = this.walletDAIBalance / Math.pow(10, 18)
+    },
+    async getYourAaveBalance () {
+      this.aaveBalance = await getAaveBalance(this.$config.contractVault)
+      console.log('aPolDAI balance is: ', this.aaveBalance)
+    },
+    setMaxPolDAI () {
+      this.depositedAave = this.aaveBalance / Math.pow(10, 18)
+    },
+    async directDaiWithdraw () {
+      this.loading = true
+      await vaultWithdraw(
+        this.$config.contractVault,
+        this.connectedAddress,
+        this.userDAI / Math.pow(10, 18)
+      ).then(async (result) => {
+        await result.wait()
+        this.showWithdrawModal = true
+        this.loading = false
+      })
+    },
+    async directAaveSupply () {
+      this.loading = true
+      if (this.aaveApproved === false) {
+        await approveAaveContract(this.$config.contractVault, this.depositedWalletDAI)
+        await directAaveSupply(this.$config.contractVault, this.depositedWalletDAI)
+        this.showModal = true
+        this.loading = false
+      } else {
+        await directAaveSupply(this.$config.contractVault, this.depositedWalletDAI).then(async (txHash) => {
+          await txHash.wait()
+          this.showModal = true
+          this.loading = false
+        })
+      }
+    },
+    async hasSupplied () {
+      this.supplied = await hasSupplied(this.$config.contractVault)
+      console.log('supplied?', this.supplied)
     }
-
   }
 }
 </script>
