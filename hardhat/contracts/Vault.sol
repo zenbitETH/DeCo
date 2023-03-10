@@ -1,10 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.10;
 
-import "./productNFT.sol";
-import { IAaveLendingPool } from "./IAaveLendingPool.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-
+import "./itemNFT.sol";
 
  interface DaiTokenVault {
     function balanceOf(address account) external view returns (uint256);
@@ -18,58 +15,150 @@ import "@openzeppelin/contracts/access/Ownable.sol";
   ) external returns (bool);
 }
 
-contract Vault is Ownable {
+  interface aPolDAI {
+    function balanceOf(address user) external view returns (uint256);
+  }
+
+interface ILendingPool {
+
+  function deposit(
+    address asset,
+    uint256 amount,
+    address onBehalfOf,
+    uint16 referralCode
+  ) external;
+
+  function supply(
+    address asset,
+    uint256 amount,
+    address onBehalfOf,
+    uint16 referralCode
+  ) external;
+
+  function withdraw(
+    address asset,
+    uint256 amount,
+    address to
+  ) external returns (uint256);
+}
+
+contract Vault {
 
     DaiTokenVault public daiTokenVault;
-    productNFT private _productNFT;
-    // IAaveLendingPool private aaveLendingPool;
+    itemNFT private _itemNFT;
+    ILendingPool public iLendingPool;
+    aPolDAI public _apolDAI;
 
-    mapping(address => uint256) daiBalance;
 
-    constructor(address _productAddress){
-        setProductContract(_productAddress);
-        daiTokenVault = DaiTokenVault(0x001B3B4d0F3714Ca98ba10F6042DaEbF0B1B7b6F);
+    // 0xF14f9596430931E177469715c591513308244e8F - V3 DAI contract
+    // daiTokenVault V2 = DaiTokenVault(0x001B3B4d0F3714Ca98ba10F6042DaEbF0B1B7b6F);
+    // aPolDAI contract = 0xFAF6a49b4657D9c8dDa675c41cB9a05a94D3e9e9
+
+    mapping(address => bool) daiApproved;
+    mapping(address => uint256) userSupplyAvailability;
+    mapping(address => bool) contractApproved;
+    mapping(address => uint256) totalSales;
+    mapping(address => bool) hasSupplied;
+
+    uint256 totalBalance = 0;
+
+    constructor(address _itemAddress){
+        setContracts(_itemAddress);
+        daiTokenVault = DaiTokenVault(0xF14f9596430931E177469715c591513308244e8F);
+        iLendingPool = ILendingPool(0x0b913A76beFF3887d35073b8e5530755D60F78C7);
+        _apolDAI = aPolDAI(0xFAF6a49b4657D9c8dDa675c41cB9a05a94D3e9e9);
     }
     
-    function setProductContract(address _productAddress) public {
-        _productNFT = productNFT(_productAddress);
+    function setContracts(address _itemAddress) public {
+        _itemNFT = itemNFT(_itemAddress);
     }
-
-    // function setAaveContract(address _aaveAddress) public {
-    //     aaveLendingPool = IAaveLendingPool(_aaveAddress);
-    // }
-
-    // function borrowTest() public {
-        // Here we need to add a requirity that each user can borrow things up how much daiTokenBalance they are having in the Vault contract
-    // }
     
-    function buy(uint256 serviceId, uint256 _businessId) public payable {
-        require(_productNFT.getOwnerOfService(serviceId) != msg.sender, "You cannot buy your own service");
+    function buy(uint256 _businessId, uint256 serviceId, address _buyerAddress) public  {
+        require(_itemNFT.getOwnerOfService(serviceId) != _buyerAddress, "You cannot buy your own service");
         // require for nonexistentBusiness
-        uint256 price = _productNFT.getPriceForAService(serviceId);
-        require(daiTokenVault.balanceOf(msg.sender) >= price, "you want to pay less than the actual price");
+        uint256 price = _itemNFT.getPriceForAService(serviceId);
+        // require(daiTokenVault.balanceOf(msg.sender) >= price, "you want to pay less than the actual price");
         // require(daiTokenVault.allowance(msg.sender, address(this)) >= price, "You don't have enough allowance to buy this product");
-        address payable receiver = _productNFT.getOwnerOfService(serviceId);
+        address receiver = _itemNFT.getOwnerOfService(serviceId);
 
+        userSupplyAvailability[receiver] += price ; // 100% goes into Vault now
+        totalBalance += price;
+        totalSales[receiver]+= price;
 
-        daiTokenVault.transferFrom(msg.sender, receiver, price / 10 * 9); // 90% goes into the user's Wallet. 
-        daiTokenVault.transferFrom(msg.sender, address(this), price / 10); // 10% goes to the Vault after the transaction
-
-        daiBalance[msg.sender] += price / 10; // This mapping lets you know that how much DAI each user has access in the Vault 
-
-        // receiver.transfer(msg.value / 10 * 9);  90% to seller 10% to Vault ( only user can access it, not 
-        _productNFT.buyService(serviceId, _businessId);
+        daiTokenVault.transferFrom(msg.sender, address(this), price);
+        // daiTokenVault.transferFrom(msg.sender, receiver, price / 10 * 9); // 90% DAI to the receiver
+        // daiTokenVault.transferFrom(msg.sender, address(this), price / 10); // 10% DAI to the Vault
+        // receiver.transfer(msg.value / 10 * 9);  90% to seller 10% to Vault
+        if(daiApproved[_buyerAddress] == false){
+            daiApproved[_buyerAddress] = true;
+        }
+        _itemNFT.buyService(_businessId, serviceId);
     }
 
     function getVaultBalance() public view returns(uint256){
         return daiTokenVault.balanceOf(address(this));
     }
-    function sendSomethingOut(address payable _address, uint256 daiAmount) public payable onlyOwner {
+
+    function sendDaiOut(address _address, uint256 daiAmount) public payable {
+        require(userSupplyAvailability[_address] >= daiAmount, "You do not have that much DAI in the vault which you can send out");
+        userSupplyAvailability[_address] -= daiAmount;
         daiTokenVault.transfer(_address, daiAmount);
     }
-    
-    function checkYourVaultDaiBalance() public view returns (uint256){ // We might need to add an argument here for address, but we need to check this later
-        return daiBalance[msg.sender];
+
+    function checkBuyAllowance(address buyerAddress) public view returns(bool){
+        return daiApproved[buyerAddress];
     }
 
+    function approveAaveContract(address _caller, uint256 _amount) public {
+      daiTokenVault.approve(0x0b913A76beFF3887d35073b8e5530755D60F78C7, _amount);
+      if(contractApproved[_caller] == false){
+        contractApproved[_caller] = true;
+      }
+    }
+
+    function getTotalSales(address _owner) public view returns (uint256){
+      return totalSales[_owner];
+    }
+
+    function IsAaveApproved(address _caller) public view returns(bool){
+      return contractApproved[_caller];
+    }
+
+    function getAaaveAvailibility(address _user) public view returns(uint256){
+      return userSupplyAvailability[_user];
+    }
+
+    function aaveDeposit(address _address, uint256 _amount) public {
+        require(userSupplyAvailability[_address] >= _amount, "You do not have any allowance to supply any DAI to the pool");
+
+        iLendingPool.deposit(0xF14f9596430931E177469715c591513308244e8F, _amount, msg.sender, 0);
+        userSupplyAvailability[_address] -= _amount;
+        totalBalance -= _amount;
+        hasSupplied[msg.sender] = true;
+    }
+
+    function aaveWithdraw(uint256 _amount) public {
+        iLendingPool.withdraw(0xF14f9596430931E177469715c591513308244e8F, _amount, msg.sender);
+    }
+
+    function getTotalBalance() public view returns (uint256){
+      return totalBalance;
+    }
+
+    function getWithdrawBalance() public view returns (uint256){
+      return _apolDAI.balanceOf(msg.sender);
+    }
+
+    function getYourDaiBalance(address _user) public view returns (uint256){
+      return daiTokenVault.balanceOf(_user);
+    }
+
+    function directSupply(uint256 _amount) public {
+      iLendingPool.deposit(0xF14f9596430931E177469715c591513308244e8F, _amount, msg.sender, 0);
+    }
+
+    function isSupplied() public view returns(bool){
+      return hasSupplied[msg.sender];
+    }
 }
+

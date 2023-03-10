@@ -131,6 +131,11 @@
             "internalType": "string",
             "name": "tokenURI",
             "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "businessName",
+            "type": "string"
           }
         ],
         "internalType": "struct itemNFT.Service",
@@ -237,6 +242,11 @@
             "internalType": "string",
             "name": "tokenURI",
             "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "businessName",
+            "type": "string"
           }
         ],
         "internalType": "struct itemNFT.Service",
@@ -281,6 +291,11 @@
           {
             "internalType": "string",
             "name": "tokenURI",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "businessName",
             "type": "string"
           }
         ],
@@ -457,6 +472,11 @@
             "internalType": "string",
             "name": "tokenURI",
             "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "businessName",
+            "type": "string"
           }
         ],
         "internalType": "struct itemNFT.Service[]",
@@ -526,6 +546,11 @@
             "internalType": "string",
             "name": "tokenURI",
             "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "businessName",
+            "type": "string"
           }
         ],
         "internalType": "struct itemNFT.Service[]",
@@ -576,6 +601,11 @@
           {
             "internalType": "string",
             "name": "tokenURI",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "businessName",
             "type": "string"
           }
         ],
@@ -846,6 +876,11 @@
       {
         "internalType": "string",
         "name": "tokenURI",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "businessName",
         "type": "string"
       }
     ],

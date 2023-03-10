@@ -6,7 +6,7 @@ export const state = {
   myBusiness: null,
   myBusinessServices: [],
   myPurchasedServices: [],
-  myAllSoldServices: [],
+  myAllBoughtServices: [],
 
   businessTypes: [
     { key: 'clothes', value: 'products-1', text: ' Clothes', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmUti5SNcWjPEFZpv47cbYmQPU3FMcGKrXH7fHTdcqft8z' },
@@ -47,7 +47,7 @@ export const mutations = {
     state.myPurchasedServices = payload
   },
   setMyAllSoldServices: (state, payload) => {
-    state.myAllSoldServices = payload
+    state.myAllBoughtServices = payload
   }
 }
 

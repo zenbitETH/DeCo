@@ -147,9 +147,9 @@
                     </div>
                   </div>
                   <div class="grid gap-5 px-2">
-                    <div class="mintButton" @click="directAaveSupply()">
+                    <button class="mintButton" :disabled="!supplied" @click="directAaveSupply()">
                       Deposit & supply
-                    </div>
+                    </button>
                   </div>
                 </div>
                 <div class="grid grid-cols-2 col-span-2 items-center">
@@ -233,6 +233,7 @@ import getYourDAIBalance from '~/contracts/vault/getWalletDAIBalance'
 import getAaveBalance from '~/contracts/vault/getAaveBalance'
 import vaultWithdraw from '~/contracts/vault/vaultWithdraw'
 import directAaveSupply from '~/contracts/vault/directAaveSupply'
+import hasSupplied from '~/contracts/vault/hasSupplied'
 
 export default {
   components: {
@@ -243,6 +244,7 @@ export default {
   mixins: [CommonFunctions],
   data () {
     return {
+      supplied: false,
       showWithdrawModal: false,
       walletDAIBalance: 0,
       depositedWalletDAI: 0,
@@ -277,6 +279,7 @@ export default {
     setTimeout(this.getVBalance, 3000)
     setTimeout(this.getYourDBalance, 3000)
     setTimeout(this.getYourAaveBalance, 3000)
+    setTimeout(this.hasSupplied, 3000)
   },
   methods: {
     async getBusinessNumber () {
@@ -396,6 +399,10 @@ export default {
           this.loading = false
         })
       }
+    },
+    async hasSupplied () {
+      this.supplied = await hasSupplied(this.$config.contractVault)
+      console.log('supplied?', this.supplied)
     }
   }
 }

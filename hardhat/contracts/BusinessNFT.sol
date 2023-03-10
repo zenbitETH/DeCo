@@ -2,25 +2,25 @@
 pragma solidity ^0.8.10;
 
 //import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+// import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "./PunkCities.sol";
 
 
-interface DaiToken {
-    function balanceOf(address account) external view returns (uint256);
-    function allowance(address owner, address spender) external view returns (uint256);
-    function transferFrom(
-    address sender,
-    address recipient,
-    uint256 amount
-  ) external returns (bool);
-}
+// interface DaiToken {
+//     function balanceOf(address account) external view returns (uint256);
+//     function allowance(address owner, address spender) external view returns (uint256);
+//     function transferFrom(
+//     address sender,
+//     address recipient,
+//     uint256 amount
+//   ) external returns (bool);
+// }
 
 contract BusinessNFT is ERC721URIStorage {
 
     //PunkCity private _PunkCity;
     uint256 businessNumber = 0;
-    DaiToken public daiToken;
+    // DaiToken public daiToken;
     address payable Vault;
 
     struct businessDetails {
@@ -36,6 +36,8 @@ contract BusinessNFT is ERC721URIStorage {
         uint256 createdAt; // timestamp
         string[] services; // services
         string ipfsHash;
+        uint16 upVotes;
+        uint16 downVotes;
     }
 
     businessDetails [] businesses;
@@ -54,19 +56,19 @@ contract BusinessNFT is ERC721URIStorage {
     mapping(address => mapping(uint256 => string)) ownIpfsHash; // needed for retrieving the logo pictures in the own business site
     mapping(address => mapping(uint256 => string)) tokenIdHash;
     mapping(uint256 => string) tokenIdtoIpfsHash;
+    mapping(address => uint256) businessCount;
 
     constructor() ERC721("BusinessNFT", "BT") {
-        daiToken = DaiToken(0x001B3B4d0F3714Ca98ba10F6042DaEbF0B1B7b6F);
-        // Vault = _Vault;
+        
     } 
     // Before calling this function we need to approve the token allowance for address(this) via external call
-    function createBusiness(string memory cityName, string memory _businessType, string memory kind, string memory description,  string memory name, string memory _googleAddress, string[] memory _services, string memory URI, string memory ipfsHash) external payable {
+    function createBusiness(string memory cityName, string memory _businessType, string memory kind, string memory description,  string memory name, string memory _googleAddress, string[] memory _services, string memory URI, string memory ipfsHash) public {
         //require(_PunkCity.checkRegisteredPlace(msg.sender) == true, "You must be registered for Punk Cities in order to create a Business");
         //require(registeredABusiness[msg.sender] == false, "You already own a business");
         // require(daiToken.balanceOf(msg.sender) >= 100000000000000000, "You do not have enough Dai to mint this NFT");
         // require(daiToken.allowance(msg.sender, address(this)) <= 100000000000000000, "Not enough allowance");
         // require(daiToken.transferFrom(msg.sender, Vault, 100000000000000000), "ERC20 transfer failed");
-        businessDetails memory nextBusiness = businessDetails(businesses.length, cityName, _businessType, kind, description, name, msg.sender, _googleAddress, block.timestamp, _services, ipfsHash);
+        businessDetails memory nextBusiness = businessDetails(businesses.length, cityName, _businessType, kind, description, name, msg.sender, _googleAddress, block.timestamp, _services, ipfsHash, 0, 0);
         businesses.push(nextBusiness);
         myBusinessess[msg.sender].push(nextBusiness);
         _mint(msg.sender, businessNumber);
@@ -76,17 +78,16 @@ contract BusinessNFT is ERC721URIStorage {
         businessbyOwner[msg.sender] = nextBusiness;
         ownIpfsHash[msg.sender][businessNumber] = ipfsHash;
         tokenIdtoIpfsHash[businessNumber] = ipfsHash;
+        businessCount[msg.sender]++;
         businessNumber++;
-        daiToken.transferFrom(msg.sender, Vault, 100000000000000000); // 0.01 DAI
     }
-
-    function addVaultContract(address payable _Vault) public {
-        Vault = _Vault;
-    }
-
     function getBusiness(uint256 _id) public view returns(uint256, string memory, string memory, address, string memory, uint256, string[] memory) {
         return (businesses[_id].tokenId, businesses[_id].city, businesses[_id].shortname, businesses[_id].owner,
                 businesses[_id].googleAddress, businesses[_id].createdAt, businesses[_id].services);
+    }
+
+    function getbusinessName(uint256 _id) public view returns(string memory){
+        return(businesses[_id].shortname);
     }
 
     function getBusinessByOwner() public view returns (businessDetails memory){
@@ -116,11 +117,6 @@ contract BusinessNFT is ERC721URIStorage {
     function ownsABusiness(address _businessOwner) public view returns (bool) {
         return registeredABusiness[_businessOwner];
     }
-
-    function checkApproval(address _address) public view returns (bool){
-        return registeredABusiness[_address];
-    }
-
     function listAllBusinessNfts() public view returns(businessDetails[] memory) {
         return businesses;
     }
@@ -143,6 +139,7 @@ contract BusinessNFT is ERC721URIStorage {
 
     function upVote(uint256 _businessId) public returns (bool) {
         require(alreadyVoted[_businessId][msg.sender] == false, "You cannot vote on a business more than once");
+        businesses[_businessId].upVotes++;
         alreadyVoted[_businessId][msg.sender] = true;
         upVotes[_businessId]++;
         return true;
@@ -150,6 +147,7 @@ contract BusinessNFT is ERC721URIStorage {
 
     function downVote(uint256 _businessId) public returns (bool) {
         require(alreadyVoted[_businessId][msg.sender] == false, "You cannot vote on a business more than once");
+        businesses[_businessId].downVotes++;
         alreadyVoted[_businessId][msg.sender] = true;
         downVotes[_businessId]++;
         return true;
@@ -161,5 +159,9 @@ contract BusinessNFT is ERC721URIStorage {
 
     function getDownVotes(uint256 _businessId) public view returns(uint256) {
         return downVotes[_businessId];
+    }
+
+    function getBusinessNumber(address _owner) public view returns (uint256){
+        return businessCount[_owner];
     }
 }
