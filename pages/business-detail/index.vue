@@ -393,11 +393,9 @@ export default {
         this.showModal = true
         this.loading = false
       } else {
-        await directAaveSupply(this.$config.contractVault, this.depositedWalletDAI).then(async (txHash) => {
-          await txHash.wait()
-          this.showModal = true
-          this.loading = false
-        })
+        await directAaveSupply(this.$config.contractVault, this.depositedWalletDAI)
+        this.showModal = true
+        this.loading = false
       }
     },
     async hasSupplied () {
