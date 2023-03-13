@@ -23,7 +23,7 @@
                 <div
                   class="absolute right-0 top-0 px-3 py-1 bg-deco-100/60 rounded-tr-tf rounded-bl-tf text-xl"
                 >
-                  {{ service.price / Math.pow(10, 18) }}
+                  {{ service.price / Math.pow(10, 18) }} DAI
                 </div>
                 <div class="mintButton">
                   Reedem

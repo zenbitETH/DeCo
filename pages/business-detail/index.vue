@@ -43,7 +43,7 @@
                   </div>
                   <span
                     class="text-4xl"
-                  >${{ vaultBalance / Math.pow(10, 18) }}
+                  >${{ userDAI / Math.pow(10, 18) }}
                     <span class="xl:text-xl text-sm">DAI</span></span>
                 </div>
                 <div class="col-span-2 grid gap-5">
@@ -108,11 +108,11 @@
                   </div>
                   <span
                     class="text-4xl"
-                  >$<span class="xl:text-xl text-sm">
-                    {{
-                      Math.round((aaveBalance / Math.pow(10, 18)) * 100) / 100
-                    }}
-                    aDAI</span></span>
+                  >${{
+                    Math.round((aaveBalance / Math.pow(10, 18)) * 100) / 100
+                  }}
+                    <span class="xl:text-xl text-sm">
+                      aDAI</span></span>
                 </div>
               </div>
               <div class="grid gap-5 col-span-2">
@@ -147,7 +147,7 @@
                     </div>
                   </div>
                   <div class="grid gap-5 px-2">
-                    <button class="mintButton" :disabled="!supplied" @click="directAaveSupply()">
+                    <button class="mintButton disabled:bg-gray-500/50 disabled:cursor-not-allowed disabled:hover:text-white" :disabled="!supplied" @click="directAaveSupply()">
                       Deposit & supply
                     </button>
                   </div>

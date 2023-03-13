@@ -312,7 +312,7 @@
 
         <div v-else class="text-center mt-8">
           <button class="mintButton w-48" @click="mintNFT()">
-            Mint Service NFT
+            Mint Item NFT
           </button>
         </div>
       </section>
