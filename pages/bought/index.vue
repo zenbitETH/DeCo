@@ -25,7 +25,7 @@
                 >
                   {{ service.price / Math.pow(10, 18) }} DAI
                 </div>
-                <div class="mintButton">
+                <div class="mintButton cursor-not-allowed bg-gray-500/50">
                   Reedem
                 </div>
               </div>
