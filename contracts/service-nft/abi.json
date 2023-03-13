@@ -194,6 +194,11 @@
         "internalType": "uint256",
         "name": "_serviceId",
         "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_buyerAddress",
+        "type": "address"
       }
     ],
     "name": "buyService",
@@ -258,7 +263,13 @@
     "type": "function"
   },
   {
-    "inputs": [],
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_buyerAddress",
+        "type": "address"
+      }
+    ],
     "name": "getAllSoldServices",
     "outputs": [
       {

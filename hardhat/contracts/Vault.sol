@@ -49,10 +49,15 @@ contract Vault {
     ILendingPool public iLendingPool;
     aPolDAI public _apolDAI;
 
-
+    // Polygon contracts:
     // 0xF14f9596430931E177469715c591513308244e8F - V3 DAI contract
-    // daiTokenVault V2 = DaiTokenVault(0x001B3B4d0F3714Ca98ba10F6042DaEbF0B1B7b6F);
     // aPolDAI contract = 0xFAF6a49b4657D9c8dDa675c41cB9a05a94D3e9e9
+    // Pool Contract = 0x0b913A76beFF3887d35073b8e5530755D60F78C7
+
+    // Göerli contracts:
+    // DAI: 0xBa8DCeD3512925e52FE67b1b5329187589072A55
+    // Pool contract: 0x7b5C526B7F8dfdff278b4a3e045083FBA4028790
+    // aPolDAI: 
 
     mapping(address => bool) daiApproved;
     mapping(address => uint256) userSupplyAvailability;
@@ -64,8 +69,8 @@ contract Vault {
 
     constructor(address _itemAddress){
         setContracts(_itemAddress);
-        daiTokenVault = DaiTokenVault(0xF14f9596430931E177469715c591513308244e8F);
-        iLendingPool = ILendingPool(0x0b913A76beFF3887d35073b8e5530755D60F78C7);
+        daiTokenVault = DaiTokenVault(0xBa8DCeD3512925e52FE67b1b5329187589072A55);
+        iLendingPool = ILendingPool(0x7b5C526B7F8dfdff278b4a3e045083FBA4028790);
         _apolDAI = aPolDAI(0xFAF6a49b4657D9c8dDa675c41cB9a05a94D3e9e9);
     }
     
@@ -110,7 +115,7 @@ contract Vault {
     }
 
     function approveAaveContract(address _caller, uint256 _amount) public {
-      daiTokenVault.approve(0x0b913A76beFF3887d35073b8e5530755D60F78C7, _amount);
+      daiTokenVault.approve(0x7b5C526B7F8dfdff278b4a3e045083FBA4028790, _amount);
       if(contractApproved[_caller] == false){
         contractApproved[_caller] = true;
       }
@@ -131,14 +136,14 @@ contract Vault {
     function aaveDeposit(address _address, uint256 _amount) public {
         require(userSupplyAvailability[_address] >= _amount, "You do not have any allowance to supply any DAI to the pool");
 
-        iLendingPool.deposit(0xF14f9596430931E177469715c591513308244e8F, _amount, msg.sender, 0);
+        iLendingPool.deposit(0xBa8DCeD3512925e52FE67b1b5329187589072A55, _amount, msg.sender, 0);
         userSupplyAvailability[_address] -= _amount;
         totalBalance -= _amount;
         hasSupplied[msg.sender] = true;
     }
 
     function aaveWithdraw(uint256 _amount) public {
-        iLendingPool.withdraw(0xF14f9596430931E177469715c591513308244e8F, _amount, msg.sender);
+        iLendingPool.withdraw(0xBa8DCeD3512925e52FE67b1b5329187589072A55, _amount, msg.sender);
     }
 
     function getTotalBalance() public view returns (uint256){
@@ -154,7 +159,7 @@ contract Vault {
     }
 
     function directSupply(uint256 _amount) public {
-      iLendingPool.deposit(0xF14f9596430931E177469715c591513308244e8F, _amount, msg.sender, 0);
+      iLendingPool.deposit(0xBa8DCeD3512925e52FE67b1b5329187589072A55, _amount, msg.sender, 0);
     }
 
     function isSupplied() public view returns(bool){
