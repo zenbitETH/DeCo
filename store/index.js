@@ -9,14 +9,20 @@ export const state = {
   myAllBoughtServices: [],
 
   businessTypes: [
-    { key: 'clothes', value: 'products-1', text: ' Clothes', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmUti5SNcWjPEFZpv47cbYmQPU3FMcGKrXH7fHTdcqft8z' },
-    { key: 'food', value: 'products-2', text: ' Food / Restaurant', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmfEbx2aFHNmTZqgye5FNqE3yNLS8vZJm1nTaNHxLfZLn4 ' },
-    { key: 'punk-products', value: 'products-3', text: ' Punk Products', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmUKSuYhkR5GiyHQ2VU6jM1nfzN6hjc1T3GTaVWKrMaiwf ' },
-    { key: 'general-store', value: 'products-4', text: ' General store', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmbYezsAuWcsiKGkNU5ZRudUyAWGe7j4JBqhXqdRvkDTjc ' },
-    { key: 'fitness', value: 'services-1', text: ' Fitness', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmfXw61b7sjPquphjLVivdAas9a8XZT1Bs6BqoAiExzo4r ' },
-    { key: 'art-fun', value: 'services-2', text: ' Art/fun', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmT9bTPitveSZhf2yAoHmG8D8cAsksByD383vvf2JEdFm2 ' },
-    { key: 'beauty', value: 'services-3', text: ' Beauty/Barber shop', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmdRX9bWmuZu24wvBEscm4L3z9TEs3yPfCeGWvwpHKhfFC ' },
-    { key: 'professional', value: 'services-4', text: ' Profesional/Talent', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmVD1c9rtBCfjFmBZ3AjDtL7nzVUDgkG96KysrB1LneGvp ' }
+    { key: 'conv-store', value: 'products-1', text: '🏪 Convenience Store', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmbYezsAuWcsiKGkNU5ZRudUyAWGe7j4JBqhXqdRvkDTjc' },
+
+    { key: 'clothes', value: 'products-2', text: '👚 Clothing Shop ', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmUti5SNcWjPEFZpv47cbYmQPU3FMcGKrXH7fHTdcqft8z' },
+    //  { key: 'food', value: 'products-2', text: ' Food / Restaurant', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmfEbx2aFHNmTZqgye5FNqE3yNLS8vZJm1nTaNHxLfZLn4 ' },
+
+    { key: 'urban-store', value: 'products-3', text: '🛹 Urban Store', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmUKSuYhkR5GiyHQ2VU6jM1nfzN6hjc1T3GTaVWKrMaiwf ' },
+
+    //  { key: 'fitness', value: 'services-1', text: ' Fitness', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmfXw61b7sjPquphjLVivdAas9a8XZT1Bs6BqoAiExzo4r ' },
+
+    { key: 'artwork', value: 'services-4', text: '🖼️ Artworks', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmT9bTPitveSZhf2yAoHmG8D8cAsksByD383vvf2JEdFm2 ' },
+
+    { key: 'beauty', value: 'services-3', text: '🪞 Beauty Shop', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmdRX9bWmuZu24wvBEscm4L3z9TEs3yPfCeGWvwpHKhfFC ' },
+
+    { key: 'professional', value: 'services-4', text: '💼 Profesional Service', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmVD1c9rtBCfjFmBZ3AjDtL7nzVUDgkG96KysrB1LneGvp ' }
   ]
 
 }
