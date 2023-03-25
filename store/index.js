@@ -9,22 +9,21 @@ export const state = {
   myAllBoughtServices: [],
 
   businessTypes: [
-    { key: 'conv-store', value: 'products-1', text: '🏪 Convenience Store', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmbYezsAuWcsiKGkNU5ZRudUyAWGe7j4JBqhXqdRvkDTjc' },
+    { key: 'store', value: 'products-1', text: 'Convenience Store', imageUrl: 'https://bafybeidk6giaif72qno3idbpzuku47btmwyd2cgkl6owmwkoq4s64wjnla.ipfs.nftstorage.link' },
 
-    { key: 'clothes', value: 'products-2', text: '👚 Clothing Shop ', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmUti5SNcWjPEFZpv47cbYmQPU3FMcGKrXH7fHTdcqft8z' },
+    { key: 'clothes', value: 'products-2', text: 'Clothing Shop ', imageUrl: 'https://bafybeihx2xihqljwfpsnyvxniyxdns2jk2vi2t2win3ugu5agxfmhdv5vm.ipfs.nftstorage.link' },
     //  { key: 'food', value: 'products-2', text: ' Food / Restaurant', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmfEbx2aFHNmTZqgye5FNqE3yNLS8vZJm1nTaNHxLfZLn4 ' },
 
-    { key: 'urban-store', value: 'products-3', text: '🛹 Urban Store', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmUKSuYhkR5GiyHQ2VU6jM1nfzN6hjc1T3GTaVWKrMaiwf ' },
+    { key: 'urban', value: 'products-3', text: 'Urban Store', imageUrl: 'https://bafybeiaxoauncqu7t5zdiv6lf3ais7vrwgv3orp4zq74eeasprrvsyy5bm.ipfs.nftstorage.link' },
 
     //  { key: 'fitness', value: 'services-1', text: ' Fitness', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmfXw61b7sjPquphjLVivdAas9a8XZT1Bs6BqoAiExzo4r ' },
 
-    { key: 'artwork', value: 'services-4', text: '🖼️ Artworks', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmT9bTPitveSZhf2yAoHmG8D8cAsksByD383vvf2JEdFm2 ' },
+    { key: 'artwork', value: 'products-4', text: 'Artworks', imageUrl: 'https://bafybeichd5f7x3bmsxoj6nlrfpihep2zis4nmei5mkheln5x5uvgwi6x24.ipfs.nftstorage.link' },
 
-    { key: 'beauty', value: 'services-3', text: '🪞 Beauty Shop', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmdRX9bWmuZu24wvBEscm4L3z9TEs3yPfCeGWvwpHKhfFC ' },
+    { key: 'beauty', value: 'products-5', text: 'Beauty Shop', imageUrl: 'https://bafybeihfpwxmxten7loypo43efi5hfblb5m3n3r34al5copluq6lba5e6y.ipfs.nftstorage.link' },
 
-    { key: 'professional', value: 'services-4', text: '💼 Profesional Service', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmVD1c9rtBCfjFmBZ3AjDtL7nzVUDgkG96KysrB1LneGvp ' }
+    { key: 'professional', value: 'products-6', text: 'Profesional Service', imageUrl: 'https://bafybeigxcc4klso32bc4f5nfhpjlsajdueozx2teon6p5qv2wl7l2bgwmu.ipfs.nftstorage.link' }
   ]
-
 }
 
 export const getters = {
