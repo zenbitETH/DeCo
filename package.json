@@ -27,6 +27,7 @@
     "nft.storage": "^6.2.0",
     "nuxt": "^2.15.7",
     "tw-elements": "^1.0.0-alpha12",
+    "vue-carousel": "^0.18.0",
     "vue2-google-maps": "^0.10.7",
     "web3": "^1.7.3"
   },

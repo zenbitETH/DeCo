@@ -1,5 +1,5 @@
 <template>
-  <div class="relative py-10 bg-gradient-to-t from-deco-700 to-deco-700 h-screen overflow-y-auto">
+  <div class="relative py-10 bg-gradient-to-b from-deco-900 to-deco-800 h-screen overflow-y-auto">
     <nav class="top-hud">
       <div class="hud1">
         <div v-if="!connectedAddress" class="object-fill px-10" @click="showConnectWalletModal = true">
@@ -57,7 +57,7 @@
         </div>
       </div>
       <div class="text-center mt-10">
-        <button class="myVaultBT py-3 px-5 text-2xl font-exo" @click="showConnectWalletModal = false">
+        <button class="myVaultBT py-3 px-5 text-2xl font-lex" @click="showConnectWalletModal = false">
           Cancel
         </button>
       </div>

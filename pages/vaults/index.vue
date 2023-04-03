@@ -334,12 +334,12 @@
           ><span class="inMatic right-1/5">DAI <div class="text-lg">available <br> 2 DAI</div></span>
         </div>
         <div class="text-center mt-10">
-          <button class="myVaultBT2 py-3 px-5 text-2xl font-exo">
+          <button class="myVaultBT2 py-3 px-5 text-2xl font-lex">
             Withdraw funds
           </button>
         </div>
         <div class="absolute -top-10 right-0 text-center mt-10">
-          <button class="xBT py-3 px-5 text-2xl font-exo" @click="showWithdrawModal = false">
+          <button class="xBT py-3 px-5 text-2xl font-lex" @click="showWithdrawModal = false">
             X
           </button>
         </div>
@@ -359,12 +359,12 @@
           ><span class="inMatic right-1/5">Matic <div class="text-lg">available <br> 2 Matic</div></span>
         </div>
         <div class="text-center mt-10">
-          <button class="myVaultBT2 py-3 px-5 text-2xl font-exo">
+          <button class="myVaultBT2 py-3 px-5 text-2xl font-lex">
             Withdraw funds
           </button>
         </div>
         <div class="absolute -top-10 right-0 text-center mt-10">
-          <button class="xBT py-3 px-5 text-2xl font-exo" @click="showBorrowModal = false">
+          <button class="xBT py-3 px-5 text-2xl font-lex" @click="showBorrowModal = false">
             X
           </button>
         </div>
@@ -384,12 +384,12 @@
           ><span class="inMatic right-1/5">Matic <div class="text-lg">available <br> 2 Matic</div></span>
         </div>
         <div class="text-center mt-10">
-          <button class="myVaultBT2 py-3 px-5 text-2xl font-exo">
+          <button class="myVaultBT2 py-3 px-5 text-2xl font-lex">
             Withdraw funds
           </button>
         </div>
         <div class="absolute -top-10 right-0 text-center mt-10">
-          <button class="xBT py-3 px-5 text-2xl font-exo" @click="showSupplyModal = false">
+          <button class="xBT py-3 px-5 text-2xl font-lex" @click="showSupplyModal = false">
             X
           </button>
         </div>
@@ -409,12 +409,12 @@
           ><span class="inMatic right-1/5">Matic <div class="text-lg">available <br> 2 Matic</div></span>
         </div>
         <div class="text-center mt-10">
-          <button class="myVaultBT2 py-3 px-5 text-2xl font-exo">
+          <button class="myVaultBT2 py-3 px-5 text-2xl font-lex">
             Withdraw funds
           </button>
         </div>
         <div class="absolute -top-10 right-0 text-center mt-10">
-          <button class="xBT py-3 px-5 text-2xl font-exo" @click="showRepayModal = false">
+          <button class="xBT py-3 px-5 text-2xl font-lex" @click="showRepayModal = false">
             X
           </button>
         </div>
