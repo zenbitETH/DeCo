@@ -9,20 +9,20 @@ export const state = {
   myAllBoughtServices: [],
 
   businessTypes: [
-    { key: 'store', value: 'products-1', text: 'Convenience Store', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmZbE92xWPaqL55s7xWdap1Y3yT2L6eLZP8EjcXczrHANT' },
+    { key: 'store', value: '1-store', text: 'Convenience Store', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmZbE92xWPaqL55s7xWdap1Y3yT2L6eLZP8EjcXczrHANT' },
 
-    { key: 'clothes', value: 'products-2', text: 'Clothing Shop ', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmeWQiDnFwaSTXR6oHzGnYB5HQkxmQquAkDcfh5WsBULni' },
+    { key: 'clothes', value: '2-clothes', text: 'Clothing Shop ', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmeWQiDnFwaSTXR6oHzGnYB5HQkxmQquAkDcfh5WsBULni' },
     //  { key: 'food', value: 'products-2', text: ' Food / Restaurant', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmfEbx2aFHNmTZqgye5FNqE3yNLS8vZJm1nTaNHxLfZLn4 ' },
 
-    { key: 'urban', value: 'products-3', text: 'Urban Store', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmXsPvTTooo1VJqH1D18x7LEfhVoTHCz7eaKYcVqei5yte' },
+    { key: 'urban', value: '3-urban', text: 'Urban Store', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmXsPvTTooo1VJqH1D18x7LEfhVoTHCz7eaKYcVqei5yte' },
 
     //  { key: 'fitness', value: 'services-1', text: ' Fitness', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmfXw61b7sjPquphjLVivdAas9a8XZT1Bs6BqoAiExzo4r ' },
 
-    { key: 'artwork', value: 'products-4', text: 'Artworks', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmZxhaqU17xvr7wRJYcdP897JTPi7BAvZhRyqAVgnFhb41' },
+    { key: 'artwork', value: '4-artwork', text: 'Artworks', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmZxhaqU17xvr7wRJYcdP897JTPi7BAvZhRyqAVgnFhb41' },
 
-    { key: 'beauty', value: 'products-5', text: 'Beauty Shop', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmRj4eYixtwLX6Bfb5LMzzrZxqQABP6kN75MGpsZ9ZtS7H' },
+    { key: 'beauty', value: '5-beauty', text: 'Beauty Shop', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmRj4eYixtwLX6Bfb5LMzzrZxqQABP6kN75MGpsZ9ZtS7H' },
 
-    { key: 'professional', value: 'products-6', text: 'Profesional Service', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmWdPdsQRWJdEWcBwDb4tWFHLznpznxXU2a131v92znqDq' }
+    { key: 'professional', value: '6-professional', text: 'Profesional Service', imageUrl: 'https://ipfs.moralis.io:2053/ipfs/QmWdPdsQRWJdEWcBwDb4tWFHLznpznxXU2a131v92znqDq' }
   ]
 }
 
