@@ -7,7 +7,7 @@
       class="z-50 fixed top-0 bg-black/60 left-0 w-full h-full place-content-center backdrop-blur-md"
       :class="{'flex  justify-center items-center': loading, 'hidden': !loading}"
     >
-      <div class="grid items-center text-center mx-auto font-exo gap-3">
+      <div class="grid items-center text-center mx-auto font-lex gap-3">
         <div class="mx-auto animate-spin border-8 border-t-deco-200 border-deco-100 ease-linear rounded-full h-24 w-24" />
         <div class="text-2xl text-white text-center text-solar-100 animate-pulse grid items-center">
           Loading...

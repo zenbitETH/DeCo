@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-overlay items-center bg-black/60 backdrop-blur-md font-exo">
+  <div class="modal-overlay items-center bg-black/60 backdrop-blur-md font-lex">
     <div class="h-96 h-96 rounded-tf bg-white/60 m-auto grid items-center p-10 text-center">
       <div>
         <div class="text-8xl animate-bounce">

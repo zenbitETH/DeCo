@@ -7,7 +7,7 @@ export default async function (address, amount) {
     type: 'erc20',
     amount: Moralis.Units.ETH(amount),
     receiver: address,
-    contractAddress: '0xBa8DCeD3512925e52FE67b1b5329187589072A55'
+    contractAddress: '0xf556C102F47d806E21E8E78438E58ac06A14A29E'
   }
 
   const options = {
@@ -18,7 +18,7 @@ export default async function (address, amount) {
     params: {
       type: 'erc20',
       _amount: Moralis.Units.ETH(amount),
-      contractAddress: '0xBa8DCeD3512925e52FE67b1b5329187589072A55'
+      contractAddress: '0xf556C102F47d806E21E8E78438E58ac06A14A29E'
     }
   }
 
